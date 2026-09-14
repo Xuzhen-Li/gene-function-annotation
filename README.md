@@ -27,6 +27,7 @@ Chooser reviews live in structure [`docs/REVIEWS.md`](https://github.com/Xuzhen-
 | Doc | |
 |-----|--|
 | **[`docs/ROADMAP.md`](docs/ROADMAP.md)** | **Branch map** — trunk F1 vs alternate frames vs add-ons |
+| **[`docs/EVALUATION.md`](docs/EVALUATION.md)** | **Final criteria** — F-L0/F-L1 hard gates |
 | **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — F1 walkthrough + what each file means |
 | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | F0–release: inputs → outputs → checks |
 | [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) | Allowlisted journals only (Cell+ / MP PC PBJ HR MBE NAR GB) |

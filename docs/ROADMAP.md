@@ -117,7 +117,8 @@ Naming quirk (historical): script `F2_eggnog.sh` is the **eggNOG step inside F1*
 |-----|-----|
 | [`QUICKSTART.md`](QUICKSTART.md) | Run F1 once |
 | [`STAGE_IO.md`](STAGE_IO.md) | Inputs → products |
-| [`PLAYBOOK.md`](PLAYBOOK.md) | FA checklist |
+| [`EVALUATION.md`](EVALUATION.md) | **Final** F-L0/F-L1 criteria |
+| [`PLAYBOOK.md`](PLAYBOOK.md) | Short FA checklist |
 | [`SCENARIOS_FUNCTIONAL.md`](SCENARIOS_FUNCTIONAL.md) | Situation recipes |
 | [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) | DBs / tools |
 | [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |

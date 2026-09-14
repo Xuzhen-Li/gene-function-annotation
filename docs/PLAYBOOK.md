@@ -26,7 +26,9 @@ Full draft-vs-add-on map: [`ROADMAP.md`](ROADMAP.md).
 
 ## Qualification checklist (FA release)
 
-A functional release is **qualified** here when:
+**Full criteria:** [`EVALUATION.md`](EVALUATION.md).
+
+A functional release is **qualified** (F-L1) here when:
 
 - [ ] `PROTEINS_FA` source named (structure `RELEASE_TAG` or external) in METHODS
 - [ ] F0 protein BUSCO lineage + Completeness recorded (or explicitly skipped with reason)

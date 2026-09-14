@@ -2,6 +2,15 @@
 
 英文：[`../FLOW_TOOL.md`](../FLOW_TOOL.md) · [`../../pipeline/flow_tool/README.md`](../../pipeline/flow_tool/README.md)
 
+## 为什么
+
+1. FA 框选错（F2 当 F1）的 METHODS 成本很高。  
+2. 计划书强迫写清 F0→框→加件→merge→release。  
+3. 与结构 flow 分工：上游选 S，本仓选 F。  
+4. Print-first 助手适配本地 DB 布局。  
+5. 不宣称一键投递整条 FA — 边界诚实。
+
+**反例：** 未改 answers 就默认植物加件全开，目录空着却写进 stub。
 ## Step 1：答题 → 选框 → 讲解计划
 
 ```bash

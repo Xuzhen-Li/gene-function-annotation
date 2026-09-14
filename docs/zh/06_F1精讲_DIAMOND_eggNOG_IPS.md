@@ -2,6 +2,18 @@
 
 默认论文骨架。英文逐步：[`../QUICKSTART.md`](../QUICKSTART.md) · [`../FUNCTIONAL_GUIDE.md`](../FUNCTIONAL_GUIDE.md)
 
+## 为什么
+
+1. 三件套覆盖**线索 / 直系同源转移 / 结构域**三条正交证据。  
+2. 单靠 BLAST 易把旁系命中当成正式功能。  
+3. 有域无 GO、有 GO 无域都常见 — 同表才解释得清。  
+4. 版本钉死（Swiss-Prot / eggNOG / emapper / IPS）是复现契约。  
+5. Merge 总表才是放行真相，不是原始 diamond/ 文件夹。
+
+**反例：** 只跑 DIAMOND，宣称「完整功能组学注释」。  
+
+深课：[13_为什么F1是三件套.md](13_为什么F1是三件套.md)
+
 ## 三根柱子各回答什么
 
 | 步 | 工具 | 回答 | 典型输出 |

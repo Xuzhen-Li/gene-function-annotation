@@ -1,6 +1,6 @@
 # 中文教学入口 — 基因**功能**注释
 
-> 中文讲概念与选路；**跑 DIAMOND/eggNOG/InterPro、写 METHODS** 用英文文档。
+> 中文讲概念、**为什么**与选路；**跑 DIAMOND/eggNOG/InterPro、写 METHODS** 用英文文档。
 
 [English policy](../BILINGUAL.md) · [仓库首页](../../README.md)  
 上游结构教学：[gene-structure-annotation `docs/zh/`](https://github.com/Xuzhen-Li/gene-structure-annotation/tree/main/docs/zh)
@@ -11,6 +11,7 @@
 
 | 顺序 | 文档 | 你学到什么 |
 |------|------|------------|
+| 0 | [00_为什么要做功能注释.md](00_为什么要做功能注释.md) | **WHY**：第二层；FA 修不了什么 |
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 功能层回答什么；F1 三件套 |
 | 2 | [02_和结构注释的关系.md](02_和结构注释的关系.md) | 先结构后功能；F0 急刹车 |
 | 3 | [03_怎么开始跑.md](03_怎么开始跑.md) | flow + local.env |
@@ -23,7 +24,12 @@
 | 10 | [10_验收_FL0_FL1.md](10_验收_FL0_FL1.md) | F-L0/F-L1 门禁（指针英文 EVALUATION） |
 | 11 | [11_flow工具怎么用.md](11_flow工具怎么用.md) | answers → plan；print-first |
 | 12 | [12_常见翻车.md](12_常见翻车.md) | DB 错配、假 CAFA、无 provenance… |
+| 13 | [13_为什么F1是三件套.md](13_为什么F1是三件套.md) | **WHY**：DIAMOND+eggNOG+IPS；非 BLAST-only |
+| 14 | [14_为什么先结构后功能.md](14_为什么先结构后功能.md) | **WHY**：provenance；灾难 F0；装饰坏模型 |
+| 15 | [15_为什么版本和谱系必须写清.md](15_为什么版本和谱系必须写清.md) | **WHY**：eggNOG 配对；IPS 日期；BUSCO 谱系 |
 | 99 | [99_术语表.md](99_术语表.md) | F 线 / emapper / master TSV… |
+
+> 课 00 / 13–15 是 **WHY 层**；课 01–12 正文里也有短 `## 为什么`（含反例）。操作与门禁仍以英文为准。
 
 ## 英文操作
 
@@ -33,6 +39,7 @@
 | 安装库 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) |
 | 合格标准 | [`../EVALUATION.md`](../EVALUATION.md) |
 | 路线图 | [`../ROADMAP.md`](../ROADMAP.md) |
+| 综述指针 | [`../REVIEWS.md`](../REVIEWS.md) |
 | 上手 | [`../QUICKSTART.md`](../QUICKSTART.md) |
 
 ## 一句话自测

@@ -1,5 +1,10 @@
 # gene-function-annotation
 
+> **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / 与结构的关系 / 怎么跑 / F线）  
+> **English ops:** [`docs/BILINGUAL.md`](docs/BILINGUAL.md)
+
+---
+
 ## What this repo is
 
 **Label proteins** — names, GO/KEGG-ish maps, domains — **after** gene models exist.

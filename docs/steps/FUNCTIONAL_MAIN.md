@@ -17,7 +17,7 @@ curated proteins (+ GFF)
   → merge tables → F_release.sh
 ```
 
-No proteins yet? Upstream structural spine: [`MAIN.md`](MAIN.md) (S1–S14), then return here.
+No proteins yet? Upstream structural spine: [`gene-structure-annotation` MAIN](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/steps/MAIN.md) (S1–S14), then return here.
 
 ## Default order (paper)
 

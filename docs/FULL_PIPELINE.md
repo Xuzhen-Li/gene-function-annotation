@@ -1,21 +1,13 @@
-# Stage reference (assembly → release)
+# Full pipeline index — structural half moved
 
-**Main process index:** [`steps/MAIN.md`](steps/MAIN.md) · AI: [`AI_ASSIST.md`](AI_ASSIST.md) · S14: [`steps/dclab/`](steps/dclab/).
+Assembly → GFF release is documented in:
 
-Human guides: [`PLAYBOOK.md`](PLAYBOOK.md) · [`SCENARIOS.md`](SCENARIOS.md).  
-**Branch diagram:** repository README.
+[`gene-structure-annotation` docs/FULL_PIPELINE.md](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/FULL_PIPELINE.md)  
+(and [`docs/steps/MAIN.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/steps/MAIN.md)).
 
-| Stage | Path |
-|-------|------|
-| Asm0 Assembly | [`../pipeline/Asm0_assembly.md`](../pipeline/Asm0_assembly.md) |
-| Asm1 Assembly QC | [`../pipeline/Asm1_assembly_qc.md`](../pipeline/Asm1_assembly_qc.md) |
-| A0 / A0b Soft-mask | `A0_softmask.md` · `A0b_protexcluder.md` |
-| A1 / A1b | engine · RNA |
-| A2 / A2b / A2c / A2d | drafts · Liftoff · EGAPx |
-| A4 Merge | `A4_merge_sets.sh` |
-| A5 / A5b / A5c | AGAT · OMArk · expression filter |
-| A3 Proteins | `A3_proteins_from_gff.sh` |
-| 01–06 Last mile | QC → GSAman → SynGAP → release |
-| A6 Function | optional |
+**This repo (function layer):**
 
-Default branch: **S1** after Asm0–A0.
+1. Upstream: qualified `proteins.faa` (+ optional GFF) from structure or your own release  
+2. [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md)  
+3. [`SCENARIOS_FUNCTIONAL.md`](SCENARIOS_FUNCTIONAL.md) **F1**  
+4. `bash pipeline/F_release.sh`

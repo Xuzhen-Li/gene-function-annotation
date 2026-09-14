@@ -114,7 +114,7 @@ python3 "$REPO_ROOT/pipeline/F_merge_tables.py" -h
 
 ## 4. Input protein rules
 
-- One representative protein **per gene** (use `pipeline/A3_proteins_from_gff.sh` if you have a GFF).  
+- One representative protein **per gene** (extract from a release GFF upstream in [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-annotation), or bring your own).  
 - FASTA headers = stable gene IDs (no spaces).  
 - Soft-mask/TE junk cleaned upstream if gene count exploded.
 

@@ -10,4 +10,4 @@ This folder is an index into the copy-paste spine. Prefer:
 | [`../../INSTALL_FUNCTIONAL.md`](../../INSTALL_FUNCTIONAL.md) | Install |
 | [`../../METHODS_FUNCTIONAL.md`](../../METHODS_FUNCTIONAL.md) | METHODS text |
 
-Upstream structure (only if you still need gene models): [`../MAIN.md`](../MAIN.md).
+Upstream structure (only if you still need gene models): [`gene-structure-annotation` MAIN](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/steps/MAIN.md).

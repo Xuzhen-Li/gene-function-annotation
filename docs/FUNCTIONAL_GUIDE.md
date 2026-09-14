@@ -21,10 +21,10 @@ busco -i "$PROTEINS_FA" -l "${BUSCO_LINEAGE_PROTEIN:-eukaryota_odb10}" -m protei
   -o prot_busco --out_path "$FUNCTION_DIR/qc" -c "$THREADS"
 
 seqkit stats "$PROTEINS_FA" | tee "$FUNCTION_DIR/qc/seqkit_stats.txt"
-# Optional: bash pipeline/A5b_omark_compleasm.sh
+# Optional OMArk/compleasm: run upstream in gene-structure-annotation if needed
 ```
 
-**Pass:** summary exists under `function/qc/`. If Completeness is catastrophic, fix structure upstream (`docs/steps/MAIN.md`) before spending InterProScan time.
+**Pass:** summary exists under `function/qc/`. If Completeness is catastrophic, fix structure upstream ([gene-structure-annotation MAIN](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/steps/MAIN.md)) before spending InterProScan time.
 
 ---
 

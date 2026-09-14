@@ -8,7 +8,7 @@
 
 Organism-general teaching / METHODS playbook (not grape-only, not plant-only). Core spine is eukaryote-friendly; *Vitis* / plant paths are **worked examples and optional add-ons**. Set `GENOME_PREFIX`, `FUN_PREFIX`, BUSCO lineage, and eggNOG tax scope for your species or clade. Cite tools and papers you use ([`docs/CITATIONS.md`](docs/CITATIONS.md)); it is not a mirror of another lab’s repo.
 
-Structural annotation (finding gene models) is **upstream input**, documented under `docs/steps/` so you can produce or accept a qualified GFF+proteins — then this repo’s primary spine starts.
+Structural annotation (finding gene models) is **upstream input** in [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation). Bring a qualified GFF+proteins — then this repo’s primary spine starts.
 
 > Formerly `vitis-gene-annotation`. Pair with [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation) for gene models.
 
@@ -29,7 +29,7 @@ Chooser reviews live in structure [`docs/REVIEWS.md`](https://github.com/Xuzhen-
 | **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — F1 walkthrough + what each file means |
 | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | F0–release: inputs → outputs → checks |
 | [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) | Allowlisted journals only (Cell+ / MP PC PBJ HR MBE NAR GB) |
-| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Structure-side reviews/benchmarks (chooser; FA uses RECENT_HIGH_QUALITY) |
+| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Stub → structure chooser reviews; FA uses [`RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) |
 | **[`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md)** | **Install DBs + tools (start here)** |
 | **[`docs/steps/FUNCTIONAL_MAIN.md`](docs/steps/FUNCTIONAL_MAIN.md)** | **Main process — functional** |
 | **[`docs/FUNCTIONAL_GUIDE.md`](docs/FUNCTIONAL_GUIDE.md)** | Functional steps + commands |

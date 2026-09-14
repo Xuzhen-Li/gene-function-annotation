@@ -192,8 +192,8 @@ bash "$REPO_ROOT/pipeline/F8_run.sh"
 # Optional full-length NB-LRR refinement (HRP):
 # see docs/tools/hrp.md → outputs under $FUNCTION_DIR/nlr/hrp/
 
-# Optional: prioritize NLR rows in curated GFF (upstream structural helpers)
-# python3 "$REPO_ROOT/pipeline/02_priority_loci.py" ...
+# Optional: prioritize NLR loci in curated GFF upstream
+# (gene-structure-annotation pipeline helpers — not mirrored here)
 ```
 
 ---

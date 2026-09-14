@@ -1,12 +1,7 @@
-# Four structural error classes (from GSAman)
+# Structural error classes — moved
 
-Use these labels when tagging priority loci and release notes.
+Gene-model error taxonomy (tandem collapse, TE fusion, wrong splice, …) lives in:
 
-| Class | Symptom | Typical grape risk |
-|-------|---------|-------------------|
-| Fragmentation | One locus split into several gene IDs | Under-count of gene family size; broken domains |
-| Adjacent fusion | Two loci merged into one | Inflated CDS; false chimeric transcripts |
-| Exon / splice error | Missing exon, wrong GT-AG, bad start/stop | Wrong protein length; false “novel isoform” |
-| Tandem collapse | Paralogs collapsed to one model | Severe under-annotation of NLR / stilbene / RGA clusters |
+[`gene-structure-annotation` docs/ERROR_CLASSES.md](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/ERROR_CLASSES.md)
 
-QC triage: low PSAURON + fragmented BUSCO orthologs + tandem-array neighborhoods first.
+Use it during GSAman / IGV curation upstream. This FA repo does not curate exon structure.

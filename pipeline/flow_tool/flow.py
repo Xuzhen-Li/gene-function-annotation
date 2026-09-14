@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""flow.py — Step-1 flow tool for gene-function-annotation."""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import sys
+from pathlib import Path
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
+
+def load_answers(path: Path) -> dict:
+    text = path.read_text()
+    if yaml is not None:
+        data = yaml.safe_load(text)
+    else:
+        data = {}
+        for line in text.splitlines():
+            s = line.split("#", 1)[0].strip()
+            if not s or ":" not in s:
+                continue
+            k, v = s.split(":", 1)
+            k, v = k.strip(), v.strip().strip('"').strip("'")
+            if v.lower() in ("true", "yes"):
+                v = True
+            elif v.lower() in ("false", "no"):
+                v = False
+            data[k] = v
+    return data
+
+
+def choose_frame(a: dict) -> dict:
+    if not a.get("proteins_ready", True):
+        return {
+            "frame": None,
+            "grade": "blocked",
+            "reason": "Proteins not ready — finish gene-structure-annotation first.",
+            "addons": [],
+        }
+    if str(a.get("structure_grade", "L1")).upper() == "L0":
+        grade = "F-L0"
+    else:
+        grade = "F-L1"
+
+    if a.get("transcriptome_only"):
+        frame, reason = "F5", "Transcriptome CDS → Trinotate (± F1 on peptides)."
+    elif a.get("use_entap"):
+        frame, reason = "F3", "EnTAP-centric lab frame."
+    elif a.get("prefer_fast"):
+        frame, reason = "F2", "Fast emapper (± Kofam); IPS deferred."
+        grade = "F-L0"
+    else:
+        frame, reason = "F1", "Default paper frame: DIAMOND + eggNOG + InterProScan."
+
+    addons = []
+    if a.get("want_ahrd"):
+        addons.append("F4")
+    if a.get("want_mercator"):
+        addons.append("F6")
+    if a.get("want_orthofinder"):
+        addons.append("F7")
+    if a.get("want_nlr"):
+        addons.append("F8")
+    if a.get("want_itak"):
+        addons.append("F9")
+
+    return {"frame": frame, "grade": grade, "reason": reason, "addons": addons}
+
+
+def stages_for(choice: dict, a: dict) -> list[dict]:
+    if choice["frame"] is None:
+        return [
+            {
+                "id": "blocked",
+                "title": "Upstream structure required",
+                "inputs": "None yet",
+                "software": "gene-structure-annotation flow tool",
+                "process": "Run structure plan to L1/L2; export proteins.faa.",
+                "outputs": "PROTEINS_FA with RELEASE_TAG",
+                "helper": "https://github.com/Xuzhen-Li/gene-structure-annotation",
+            }
+        ]
+    stages = []
+
+    def add(sid, title, inputs, software, process, outputs, helper=""):
+        stages.append(dict(id=sid, title=title, inputs=inputs, software=software, process=process, outputs=outputs, helper=helper))
+
+    add(
+        "F0",
+        "Protein-set sanity (BUSCO)",
+        "PROTEINS_FA from structure release",
+        "BUSCO protein mode — sanity brake before expensive IPS.",
+        "Record Completeness + lineage; if catastrophic, return to structure.",
+        "qc/ BUSCO summary",
+        "docs/FUNCTIONAL_GUIDE.md",
+    )
+
+    fr = choice["frame"]
+    if fr == "F1":
+        add("F1a", "DIAMOND Swiss-Prot", "PROTEINS_FA + DIAMOND_DB", "DIAMOND blastp vs Swiss-Prot — curated homology names/hits.", "Sensitive search; keep TSV.", "function/diamond/", "pipeline/F1_diamond.sh")
+        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/eggnog/", "pipeline/F2_eggnog.sh")
+        add("F1c", "InterProScan", "PROTEINS_FA", "InterProScan — domains, sites, member-DB signatures.", "CPU-heavy; batch if needed.", "function/interpro/", "pipeline/F3_interproscan.sh")
+    elif fr == "F2":
+        add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± Kofam F1b)", "Skip or defer IPS; label release F-L0.", "function/eggnog/", "pipeline/F2_eggnog.sh")
+    elif fr == "F3":
+        add("F3", "EnTAP frame", "PROTEINS_FA / transcriptome", "EnTAP (DIAMOND + emapper ± IPS inside EnTAP)", "Follow EnTAP docs; copy tables into merge layout.", "EnTAP out → merge/", "docs/tools/entap.md")
+    elif fr == "F5":
+        add("F5", "Trinotate transcriptome frame", "Trinity CDS/peptides", "Trinotate", "Transcriptome FA; optional still run F1 on peptides.", "Trinotate report", "docs/tools/trinotate.md")
+
+    for ad in choice["addons"]:
+        if ad == "F4":
+            add("F4", "AHRD readable names", "DIAMOND/blast tables", "AHRD — human-readable gene names for papers.", "Join into master via F4_join_ahrd.py.", "AHRD table", "pipeline/F4_run_ahrd.md")
+        elif ad == "F6":
+            add("F6", "Mercator4 MapMan BINs", "PROTEINS_FA", "Mercator4 — plant pathway BINs.", "Ingest with F6_ingest_mercator.py.", "MapMan table", "pipeline/F6_ingest_mercator.py")
+        elif ad == "F7":
+            add("F7", "OrthoFinder then FA on reps", "Multi-genome proteins", "OrthoFinder", "Pick representatives; re-enter F1 on reps.", "orthogroups + reps", "pipeline/F7_orthofinder.sh")
+        elif ad == "F8":
+            add("F8", "NLR census", "IPS TSV", "IPS filter ± HRP", "Plant resistance-gene list.", "NLR list", "pipeline/F8_run.sh")
+        elif ad == "F9":
+            add("F9", "iTAK TF/kinase", "PROTEINS_FA", "iTAK", "Plant TF/kinase classification.", "iTAK table", "pipeline/F9_itak.sh")
+
+    add(
+        "merge",
+        "Merge → master TSV",
+        "Per-tool tables",
+        "F_merge_tables.py — gene-centric join.",
+        "Require row count ≈ proteins; document drops.",
+        "function/merge/functional_master.tsv",
+        "pipeline/F_merge_tables.py",
+    )
+    add(
+        "release",
+        "Package FA release",
+        "master TSV + proteins + METHODS",
+        "F_release.sh",
+        "Tick docs/EVALUATION.md F-L0/F-L1 gates.",
+        "function/release/<TAG>/",
+        "pipeline/F_release.sh",
+    )
+    return stages
+
+
+def render(a, choice, stages, emit_commands: bool) -> str:
+    now = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    lines = [
+        f"# Function flow plan — {a.get('species_label', 'run')}",
+        "",
+        f"Generated: {now}",
+        "",
+        "## Chooser decision",
+        "",
+        f"- **Frame:** `{choice['frame']}`",
+        f"- **Add-ons:** {', '.join(choice['addons']) if choice['addons'] else '(none)'}",
+        f"- **Target grade:** `{choice['grade']}`",
+        f"- **Reason:** {choice['reason']}",
+        f"- **Protein provenance:** {a.get('proteins_provenance', '(set me)')}",
+        "",
+        "---",
+        "",
+        "## Narrated stages",
+        "",
+    ]
+    for i, st in enumerate(stages, 1):
+        lines += [
+            f"### {i}. {st['id']} — {st['title']}",
+            "",
+            f"**Input:** {st['inputs']}",
+            "",
+            f"**Software & purpose:** {st['software']}",
+            "",
+            f"**Process:** {st['process']}",
+            "",
+            f"**Output:** {st['outputs']}",
+            "",
+        ]
+        if st.get("helper"):
+            lines.append(f"**Helper / doc:** `{st['helper']}`")
+            lines.append("")
+        if emit_commands and str(st.get("helper", "")).endswith(".sh"):
+            lines += ["```bash", f"bash {st['helper']}", "```", ""]
+    lines += [
+        "---",
+        "",
+        "See docs/ROADMAP.md and docs/EVALUATION.md. Step-1 tool = plan + explain only.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def main(argv=None) -> int:
+    p = argparse.ArgumentParser()
+    p.add_argument("--answers", type=Path, required=True)
+    p.add_argument("-o", "--output", type=Path)
+    p.add_argument("--emit-commands", action="store_true")
+    args = p.parse_args(argv)
+    a = load_answers(args.answers)
+    choice = choose_frame(a)
+    stages = stages_for(choice, a)
+    md = render(a, choice, stages, args.emit_commands)
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(md)
+        print(f"Wrote {args.output}", file=sys.stderr)
+    print(md)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

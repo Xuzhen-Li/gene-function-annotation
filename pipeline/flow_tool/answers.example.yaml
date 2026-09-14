@@ -1,0 +1,21 @@
+# FA flow answers — python3 pipeline/flow_tool/flow.py --answers ...
+
+# Input readiness
+proteins_ready: true
+proteins_provenance: "structure RELEASE_TAG or path/hash"
+structure_grade: L1          # L0 | L1 | L2
+
+# Frame choice
+prefer_fast: false           # true → F2 (emapper±Kofam), skip full IPS for now
+use_entap: false             # F3
+transcriptome_only: false    # F5 Trinotate lane
+
+# Optional plant add-ons (after F1)
+want_ahrd: true
+want_mercator: false
+want_orthofinder: false
+want_nlr: false
+want_itak: false
+
+species_label: "Species_v1"
+notes: ""

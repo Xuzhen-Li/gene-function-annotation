@@ -1,20 +1,29 @@
 # 中文教学入口 — 基因**功能**注释
 
-> 中文讲概念；**跑 DIAMOND/eggNOG/InterPro、写 METHODS** 用英文文档。
+> 中文讲概念与选路；**跑 DIAMOND/eggNOG/InterPro、写 METHODS** 用英文文档。
 
 [English policy](../BILINGUAL.md) · [仓库首页](../../README.md)  
 上游结构教学：[gene-structure-annotation `docs/zh/`](https://github.com/Xuzhen-Li/gene-structure-annotation/tree/main/docs/zh)
 
 ---
 
-## 按序读
+## 完整课程（建议按序）
 
-| 顺序 | 文档 |
-|------|------|
-| 1 | [01_什么是功能注释.md](01_什么是功能注释.md) |
-| 2 | [02_和结构注释的关系.md](02_和结构注释的关系.md) |
-| 3 | [03_怎么开始跑.md](03_怎么开始跑.md) |
-| 4 | [04_F线怎么选.md](04_F线怎么选.md) |
+| 顺序 | 文档 | 你学到什么 |
+|------|------|------------|
+| 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 功能层回答什么；F1 三件套 |
+| 2 | [02_和结构注释的关系.md](02_和结构注释的关系.md) | 先结构后功能；F0 急刹车 |
+| 3 | [03_怎么开始跑.md](03_怎么开始跑.md) | flow + local.env |
+| 4 | [04_F线怎么选.md](04_F线怎么选.md) | 主干 / 替代框 / 加件 |
+| 5 | [05_F0蛋白BUSCO.md](05_F0蛋白BUSCO.md) | 为何 FA 前再跑蛋白 BUSCO |
+| 6 | [06_F1精讲_DIAMOND_eggNOG_IPS.md](06_F1精讲_DIAMOND_eggNOG_IPS.md) | 默认论文骨架逐步讲 |
+| 7 | [07_替代框架_F2F3F5.md](07_替代框架_F2F3F5.md) | 快框 / EnTAP / Trinotate |
+| 8 | [08_植物加件_F4F6F8F9.md](08_植物加件_F4F6F8F9.md) | AHRD、MapMan、NLR、iTAK、F7 |
+| 9 | [09_合并与放行.md](09_合并与放行.md) | master TSV + release 包 |
+| 10 | [10_验收_FL0_FL1.md](10_验收_FL0_FL1.md) | F-L0/F-L1 门禁（指针英文 EVALUATION） |
+| 11 | [11_flow工具怎么用.md](11_flow工具怎么用.md) | answers → plan；print-first |
+| 12 | [12_常见翻车.md](12_常见翻车.md) | DB 错配、假 CAFA、无 provenance… |
+| 99 | [99_术语表.md](99_术语表.md) | F 线 / emapper / master TSV… |
 
 ## 英文操作
 
@@ -24,6 +33,7 @@
 | 安装库 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) |
 | 合格标准 | [`../EVALUATION.md`](../EVALUATION.md) |
 | 路线图 | [`../ROADMAP.md`](../ROADMAP.md) |
+| 上手 | [`../QUICKSTART.md`](../QUICKSTART.md) |
 
 ## 一句话自测
 

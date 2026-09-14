@@ -18,6 +18,7 @@ and Nature / Science family research journals.
 | eggNOG v7 DB | **NAR** 2026 | Hernández-Plaza et al. doi:10.1093/nar/gkaf1249 | emapper DB |
 | eggNOG 5/6 DBs | **NAR** | Huerta-Cepas et al. | legacy DB notes |
 | InterPro / InterProScan | **NAR** (resource issues) | Blum / Paysan-Lafosse et al. InterPro updates | F1 domains/GO |
+| InterPro 2025 resource | **NAR** 2025 | Blum et al. doi:10.1093/nar/gkae1082 | Cite current InterPro DB for F1 IPS |
 | MapMan4 + Mercator4 | **MP** 2019 | Schwacke et al. doi:10.1016/j.molp.2019.01.003 | F6 plant BINs |
 | BRAKER3 | **Genome Research** 2024 | Gabriel et al. doi:10.1101/gr.278090.123 | upstream structure |
 | GSAman last-mile | **The Innovation** (Cell Press partner) 2026 | Chen, Chen & Xia doi:10.1016/j.xinn.2026.101537 | upstream curation |
@@ -114,3 +115,13 @@ Copy-paste: [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) → [`SCENARIOS_FUN
 | GeneForge GitHub | No allowlisted paper attached here |
 | zgtools marketing claims | Not a listed journal METHODS |
 | G3 / Frontiers genome notes | Below allowlist |
+
+---
+
+## E. Haul 2026-09-14 (allowlist-compatible only)
+
+New **NAR** InterPro 2025 resource paper folded into table A above (doi:10.1093/nar/gkae1082).
+
+**Does not change F1 spine:** DIAMOND Swiss-Prot + eggNOG-mapper + InterProScan remains journal-grade default (HR HSE / MBE-NAR pattern).
+
+Below-allowlist but useful FA peers (TransAnnot, InterProScan 6, CAFA4 preprint, EnTAP/Trinotate speed notes) → [`RELATED_SOFTWARE.md`](RELATED_SOFTWARE.md) § Haul 2026-09-14 — **not** standards here.

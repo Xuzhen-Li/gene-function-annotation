@@ -30,7 +30,8 @@ Chooser reviews live in structure [`docs/REVIEWS.md`](https://github.com/Xuzhen-
 | **[`docs/QUICKSTART.md`](docs/QUICKSTART.md)** | **Start here** — F1 walkthrough + what each file means |
 | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) | F0–release: inputs → outputs → checks |
 | [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) | Allowlisted journals only (Cell+ / MP PC PBJ HR MBE NAR GB) |
-| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Stub → structure chooser reviews; FA uses [`RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) |
+| [`docs/REVIEWS.md`](docs/REVIEWS.md) | Pointer → structure chooser + FA allowlist + Haul 2026-09-14 |
+| [`docs/SELF_AUDIT.md`](docs/SELF_AUDIT.md) | 2026-09-14 self-audit gap table (FA) |
 | **[`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md)** | **Install DBs + tools (start here)** |
 | **[`docs/steps/FUNCTIONAL_MAIN.md`](docs/steps/FUNCTIONAL_MAIN.md)** | **Main process — functional** |
 | **[`docs/FUNCTIONAL_GUIDE.md`](docs/FUNCTIONAL_GUIDE.md)** | Functional steps + commands |

@@ -120,3 +120,5 @@ Naming quirk (historical): script `F2_eggnog.sh` is the **eggNOG step inside F1*
 | [`PLAYBOOK.md`](PLAYBOOK.md) | FA checklist |
 | [`SCENARIOS_FUNCTIONAL.md`](SCENARIOS_FUNCTIONAL.md) | Situation recipes |
 | [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) | DBs / tools |
+| [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
+| [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md) | Allowlisted FA standards |

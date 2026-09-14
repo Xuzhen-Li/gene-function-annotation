@@ -4,6 +4,8 @@ Biology-general. **Goal:** attach function to a stable gene set.
 **Input:** representative `PROTEINS_FA` (+ optional `CURATED_GFF`).  
 **Output:** `$WORK_DIR/function/merge/functional_master.tsv` (+ optional AHRD/MapMan/NLR/iTAK tables), then `$WORK_DIR/function/release/<TAG>/`.
 
+**Branch map (trunk / alternates / add-ons):** [`../ROADMAP.md`](../ROADMAP.md).
+
 **Downstream:** METHODS text, enrichment / MapMan figures, curated gene lists — not automatic GFF attribute write-back.
 
 **Upstream:** sibling [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation) evidence chooser → S1–S14 *or* bring your own GFF+proteins. Structure and function are separate layers (Ji *NRG* 2026).

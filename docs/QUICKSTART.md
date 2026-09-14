@@ -6,6 +6,7 @@
 
 | Need | Doc |
 |------|-----|
+| Branch map | [`ROADMAP.md`](ROADMAP.md) |
 | Stage I/O | [`STAGE_IO.md`](STAGE_IO.md) |
 | Install DBs/tools | [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) |
 | Main process | [`steps/FUNCTIONAL_MAIN.md`](steps/FUNCTIONAL_MAIN.md) |

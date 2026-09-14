@@ -59,6 +59,7 @@ cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
 | Done? | [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | Install | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) |
 | Branch map | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
+| Audit 2026-09-14 | [`docs/AUDIT_2026-09-14.md`](docs/AUDIT_2026-09-14.md) |
 | Journal patterns | [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) |
 
 Figure: ![overview](docs/figures/functional_overview.png)

@@ -68,7 +68,7 @@ Schwacke et al. **MP** 2019: plant-specific BIN ontology + Mercator4 web annotat
 
 Assembly-first (Verkko-Fillet, TTT, …). Gene models often **CAT + Liftoff / LiftOn** (CHM13 lineage).  
 **Functional:** not a new FA standard — use A/B1–B3 above after proteins exist.  
-**Our mapping:** LiftOn → upstream S4/S11 only ([`tools/lifton.md`](tools/lifton.md)).
+**Our mapping:** LiftOn → upstream S4/S11 only ([LiftOn (structure repo)](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/tools/lifton.md)).
 
 ### B5. *Nature Genetics* — Garg et al. 2024 plant T2T review
 

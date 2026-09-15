@@ -7,6 +7,8 @@ Prefer **containers** (Docker / Singularity / Apptainer) over compiling by hand.
 
 ## Functional tools (this repo)
 
+> **Numbering:** table IDs F1a/F1b/F1c = steps inside **frame F1**. Scripts are named `F1_diamond.sh` / `F2_eggnog.sh` / `F3_interproscan.sh` (F2 script ≠ frame F2). Checklist gates F1–F7 are yet another index — see [`zh/FAQ_入门.md`](zh/FAQ_入门.md).
+
 | Order | Tool | Makes |
 |-------|------|-------|
 | F0 | [BUSCO](tools/busco.md) proteins | completeness |

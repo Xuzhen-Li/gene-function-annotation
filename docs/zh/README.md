@@ -16,11 +16,11 @@
 | 步 | 打开 | 做什么 |
 |----|------|--------|
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 搞清：本仓给蛋白贴标签，不改 GFF 坐标 |
-| 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 确认已有 `proteins.faa` → `flow.py` → `my_fa_plan.md` |
-| 3 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) → 工具页 [`../TOOLS.md`](../TOOLS.md) → 跑 F1 | 默认 **F1** 三件套；装库看 INSTALL，单工具看 TOOLS |
+| 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 确认已有 `proteins.faa` → `cp example.env → local.env` → `flow.py` → `my_fa_plan.md` |
+| 3 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) → [`../TOOLS.md`](../TOOLS.md) → `RUN=1` 跑 F1 三脚本 | 默认 **框架 F1**；脚本名 F2_eggnog = F1 内步，见 FAQ |
 | 4 | [**验收勾选表**](验收勾选表.md)（或英文 [`../EVALUATION_CHECKLIST.md`](../EVALUATION_CHECKLIST.md)） | 勾完才知道 **行不行**；默认目标 **F-L1** |
 
-卡住再查：[04_F线怎么选](04_F线怎么选.md) · [12_常见翻车](12_常见翻车.md) · [99_术语表](99_术语表.md)
+卡住再查：[04_F线怎么选](04_F线怎么选.md) · [12_常见翻车](12_常见翻车.md) · [99_术语表](99_术语表.md) · **[FAQ_入门.md](FAQ_入门.md)**（**先读 F 编号对照**）
 
 **没有稳定 proteins？** 先回结构仓放行，再来本仓。
 

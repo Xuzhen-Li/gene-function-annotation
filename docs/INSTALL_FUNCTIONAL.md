@@ -39,6 +39,16 @@ mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,kofam,ahrd,mercator,merge,rel
 
 ## 1. Core binaries (pick one lane)
 
+### Which lane?
+
+| Situation | Pick |
+|-----------|------|
+| Laptop / try DIAMOND+BUSCO only | **A** |
+| Full F1 (eggNOG + InterProScan) on HPC | **B** (or site modules) |
+| Compute nodes without internet | Download DBs/images on login node → copy to `$DB_ROOT` |
+
+Disk budget (rough): **80–150 GB** for F1 databases/installs (InterProScan alone often >50 GB), plus workdir.
+
 ### Lane A — conda/mamba (laptop / shared node)
 
 ```bash

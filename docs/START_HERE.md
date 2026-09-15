@@ -14,4 +14,6 @@ You want **protein labels** (names / GO-ish / domains), not new exon coordinates
 One-sentence test: *Do I already have stable proteins?*  
 No → [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-annotation). Yes → this repo (default **F1**).
 
+Chinese FAQ (numbering + install): [`zh/FAQ_入门.md`](zh/FAQ_入门.md).
+
 Back to [`../README.md`](../README.md).

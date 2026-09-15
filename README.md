@@ -20,7 +20,8 @@ proteins.faa  (from structure release)
 **Not** gene finding / GFF editing — that is upstream  
 [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation).
 
-Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
+Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.  
+Full cheat sheet (framework vs scripts vs TOOLS vs checklist gates): Chinese [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
 ---
 
@@ -46,7 +47,9 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **F-L1**.
 
 ```bash
-cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
+cp config/example.env config/local.env
+# set PROTEINS_FA to your structure release proteins (one representative per gene)
+# set DIAMOND_DB, EGGNOG_*, INTERPROSCAN_HOME, BUSCO_LINEAGE_PROTEIN, …
 ```
 
 ---

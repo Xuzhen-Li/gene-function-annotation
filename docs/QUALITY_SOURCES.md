@@ -36,3 +36,10 @@ Chinese: [`zh/验收勾选表.md`](zh/验收勾选表.md)
 | Journal METHODS patterns | [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md) |
 
 Upstream structure QC shelf: [gene-structure-annotation `QUALITY_SOURCES.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/QUALITY_SOURCES.md).
+
+## Print recommended commands
+
+```bash
+set -a && source config/local.env && set +a
+python3 pipeline/print_qc_commands.py
+```

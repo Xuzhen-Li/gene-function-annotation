@@ -20,6 +20,8 @@
 
 **没有稳定 proteins？** 先回结构仓放行，再来本仓。
 
+验收命令打印：`python3 pipeline/print_qc_commands.py`（需先 `source config/local.env`）。
+
 **英文操作入口：** [`../../pipeline/flow_tool/`](../../pipeline/flow_tool/) · [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) · [`../EVALUATION.md`](../EVALUATION.md)
 
 ---

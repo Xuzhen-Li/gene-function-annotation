@@ -58,7 +58,7 @@ cp config/example.env config/local.env
 
 ```bash
 set -a && source config/local.env && set +a
-mkdir -p "$FUNCTION_DIR"/{diamond,eggnog,interpro,merge,qc,release}
+mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,merge,qc,release}
 ```
 
 Follow [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) for databases.
@@ -89,7 +89,7 @@ RUN=1 bash pipeline/F1_diamond.sh
 RUN=1 bash pipeline/F2_eggnog.sh
 ```
 
-**Produces:** emapper annotations under `$FUNCTION_DIR/eggnog/` (exact names depend on emapper version).  
+**Produces:** emapper annotations under `$FUNCTION_DIR/emapper/` (exact names depend on emapper version).  
 **Check:** preferred names / GOs present for a sample of genes.
 
 ### F1c — InterProScan
@@ -104,7 +104,12 @@ RUN=1 bash pipeline/F3_interproscan.sh
 ### Merge
 
 ```bash
-python3 pipeline/F_merge_tables.py   # if present; else see FUNCTIONAL_GUIDE
+python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
+  --proteins "$PROTEINS_FA" \
+  --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
+  --ips "$FUNCTION_DIR/interpro"/${FUN_PREFIX:-ann}_ips.tsv \
+  --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
+  --out "$FUNCTION_DIR/merge/functional_master.tsv"
 ```
 
 **Produces:** `$FUNCTION_DIR/merge/functional_master.tsv` — **source of truth**.  

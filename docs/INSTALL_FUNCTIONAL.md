@@ -87,6 +87,12 @@ Set `EGGNOG_DATA_DIR="$DB_ROOT/eggnog"`.
 Unpack InterProScan distribution under `$DB_ROOT/interproscan` so `interproscan.sh` exists.  
 First run may download member DBs; keep disk quota large (tens of GB).
 
+In `config/local.env` set:
+
+```bash
+INTERPROSCAN_HOME="$DB_ROOT/interproscan"   # required by pipeline/F3_interproscan.sh
+```
+
 ### 2.4 KofamScan (optional F1+/F2)
 
 ```bash

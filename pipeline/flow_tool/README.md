@@ -9,3 +9,7 @@ python3 pipeline/flow_tool/flow.py --answers /tmp/fa_answers.yaml -o /tmp/fa_flo
 ```
 
 Upstream structure chooser: [gene-structure-annotation flow_tool](https://github.com/Xuzhen-Li/gene-structure-annotation/tree/main/pipeline/flow_tool).
+
+Related: [`../../docs/TOOLS.md`](../../docs/TOOLS.md) · [`../../docs/START_HERE.md`](../../docs/START_HERE.md).
+
+Honesty: this step writes a **plan**; it does not one-click InterProScan on your HPC.

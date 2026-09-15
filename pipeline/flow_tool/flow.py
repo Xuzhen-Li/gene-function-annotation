@@ -103,10 +103,10 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     fr = choice["frame"]
     if fr == "F1":
         add("F1a", "DIAMOND Swiss-Prot", "PROTEINS_FA + DIAMOND_DB", "DIAMOND blastp vs Swiss-Prot — curated homology names/hits.", "Sensitive search; keep TSV.", "function/diamond/", "pipeline/F1_diamond.sh")
-        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/eggnog/", "pipeline/F2_eggnog.sh")
+        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/emapper/", "pipeline/F2_eggnog.sh")
         add("F1c", "InterProScan", "PROTEINS_FA", "InterProScan — domains, sites, member-DB signatures.", "CPU-heavy; batch if needed.", "function/interpro/", "pipeline/F3_interproscan.sh")
     elif fr == "F2":
-        add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± Kofam F1b)", "Skip or defer IPS; label release F-L0.", "function/eggnog/", "pipeline/F2_eggnog.sh")
+        add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± Kofam F1b)", "Skip or defer IPS; label release F-L0.", "function/emapper/", "pipeline/F2_eggnog.sh")
     elif fr == "F3":
         add("F3", "EnTAP frame", "PROTEINS_FA / transcriptome", "EnTAP (DIAMOND + emapper ± IPS inside EnTAP)", "Follow EnTAP docs; copy tables into merge layout.", "EnTAP out → merge/", "docs/tools/entap.md")
     elif fr == "F5":

@@ -17,7 +17,7 @@ Upstream structure products: [gene-structure-annotation STAGE_IO](https://github
 |-------|-------|--------|--------|-------|
 | **F0** | `PROTEINS_FA` | BUSCO proteins | `$FUNCTION_DIR/qc/` | Completeness + lineage named |
 | **F1 DIAMOND** | proteins + `DIAMOND_DB` | `F1_diamond.sh` | `diamond/swissprot.tsv` | Rows > 0; spot-check stitle |
-| **F1 eggNOG** | proteins | `F2_eggnog.sh` | `eggnog/*` | Names/GO for controls |
+| **F1 eggNOG** | proteins | `F2_eggnog.sh` | `emapper/*` | Names/GO for controls |
 | **F1 InterPro** | proteins | `F3_interproscan.sh` | `interpro/*` | Domains for controls |
 | **Merge** | the three TSVs | `F_merge_tables.py` | `merge/functional_master.tsv` | One row/gene |
 | **F4** optional | master + BLAST-ish | AHRD helpers | master + readable names | Names improved, not hallucinated |
@@ -33,5 +33,5 @@ Upstream structure products: [gene-structure-annotation STAGE_IO](https://github
 
 ```text
 $FUNCTION_DIR/
-  diamond/  eggnog/  interpro/  merge/  qc/  release/<TAG>/
+  diamond/  emapper/  interpro/  merge/  qc/  release/<TAG>/
 ```

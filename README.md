@@ -20,6 +20,8 @@ proteins.faa  (from structure release)
 **Not** gene finding / GFF editing — that is upstream  
 [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation).
 
+Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
+
 ---
 
 ## Three steps (start here)
@@ -54,6 +56,8 @@ cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
 | Need | Open |
 |------|------|
 | Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
+| Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/tools/`](docs/tools/) |
+| Start here | [`docs/START_HERE.md`](docs/START_HERE.md) |
 | Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
 | Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | QC methods / papers | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |

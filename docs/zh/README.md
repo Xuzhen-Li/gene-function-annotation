@@ -5,6 +5,10 @@
 [English policy](../BILINGUAL.md) · [仓库首页](../../README.md)  
 上游结构教学：[gene-structure-annotation `docs/zh/`](https://github.com/Xuzhen-Li/gene-structure-annotation/tree/main/docs/zh)
 
+![功能注释总览](../figures/functional_overview.png)
+
+命名提醒：`pipeline/F2_eggnog.sh` 是默认 **F1 里的 eggNOG 一步**，不是快框分支 F2。
+
 ---
 
 ## 今天最短路径（先做这个）
@@ -13,7 +17,7 @@
 |----|------|--------|
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 搞清：本仓给蛋白贴标签，不改 GFF 坐标 |
 | 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 确认已有 `proteins.faa` → `flow.py` → `my_fa_plan.md` |
-| 3 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) → 跑 F1 → [`../EVALUATION.md`](../EVALUATION.md) | 默认 **F1** 三件套 |
+| 3 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) → 工具页 [`../TOOLS.md`](../TOOLS.md) → 跑 F1 | 默认 **F1** 三件套；装库看 INSTALL，单工具看 TOOLS |
 | 4 | [**验收勾选表**](验收勾选表.md)（或英文 [`../EVALUATION_CHECKLIST.md`](../EVALUATION_CHECKLIST.md)） | 勾完才知道 **行不行**；默认目标 **F-L1** |
 
 卡住再查：[04_F线怎么选](04_F线怎么选.md) · [12_常见翻车](12_常见翻车.md) · [99_术语表](99_术语表.md)
@@ -22,7 +26,7 @@
 
 验收命令打印：`python3 pipeline/print_qc_commands.py`（需先 `source config/local.env`）。
 
-**英文操作入口：** [`../../pipeline/flow_tool/`](../../pipeline/flow_tool/) · [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) · [`../EVALUATION.md`](../EVALUATION.md)
+**英文操作入口：** [`START_HERE.md`](../START_HERE.md) · [`../../pipeline/flow_tool/`](../../pipeline/flow_tool/) · [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) · [`../TOOLS.md`](../TOOLS.md) · [`../EVALUATION.md`](../EVALUATION.md)
 
 ---
 

@@ -6,6 +6,7 @@ Path choice: [`ROADMAP.md`](ROADMAP.md). **This page judges the finish.**
 Upstream structure criteria: [gene-structure-annotation `EVALUATION.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/EVALUATION.md).
 
 Journal patterns: [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md) · peers: [`RELATED_SOFTWARE.md`](RELATED_SOFTWARE.md) · gaps: [`SELF_AUDIT.md`](SELF_AUDIT.md).
+QC methods shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
 
 ---
 
@@ -114,6 +115,8 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 | IPS domain coverage | Domain evidence density | GO from homology alone without saying so |
 | AHRD / Mercator / NLR / iTAK | Optional modules — list used or unused | Implying MapMan ran when it did not |
 | Count match master↔proteins | Supports F5 | Padding empty stubs to force 100% |
+| Domain-only / GO-empty split | Honest evidence mix in METHODS | Treating empty GO as “unannotated failure” |
+| Upstream structure OMArk/RNA story | Two-layer audit trail | Using FA hit rates to excuse bad structure |
 
 **Not claimed (automatic non-goal):** writing GO/KEGG into GFF column 9.
 

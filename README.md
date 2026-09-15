@@ -56,6 +56,7 @@ cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
 | Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
 | Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
 | Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| QC methods / papers | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
 | Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 

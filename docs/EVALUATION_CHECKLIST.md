@@ -14,6 +14,14 @@ Full rules: [`EVALUATION.md`](EVALUATION.md). Chinese tick sheet: [`zh/验收勾
 - [ ] F6 `function/release/<TAG>/` pack
 - [ ] F7 No private reads / multi-GB DBs in release
 
+## Soft (report)
+
+- [ ] Hit / domain coverage narrative (clade-aware)
+- [ ] Domain-only vs GO-empty noted if relevant
+- [ ] Upstream structure grade / TAG recorded
+
+Shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
+
 ## Auto-fail
 
 - [ ] No alternate frame branded as F1 without waiver

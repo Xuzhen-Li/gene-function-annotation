@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# KofamScan KEGG KO. Set RUN=1.
+# KofamScan KEGG KO = F1+ optional KO (NOT TOOLS F1b; F1b = eggNOG). Set RUN=1.
 set -euo pipefail
 : "${PROTEINS_FA:?}"
 : "${WORK_DIR:?}"

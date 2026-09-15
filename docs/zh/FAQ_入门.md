@@ -13,10 +13,13 @@
 | **框架 F1** | 默认论文骨架：DIAMOND + eggNOG + InterProScan | **默认就认这个** |
 | **框架 F2 / F3 / F5** | 快框 / EnTAP / Trinotate 等**替代整框** | 只有 `prefer_fast` 或 waiver 才走 |
 | **脚本 `F1_diamond.sh` / `F2_eggnog.sh` / `F3_interproscan.sh`** | F1 骨架里的**三步文件名**（历史命名） | 按 diamond → eggnog → IPS 跑；**文件名里的 F2 ≠ 快框 F2** |
-| **TOOLS 表 F1a / F1b / F1c** | 同上三步的素养页 | 与脚本三步一一对应 |
+| **TOOLS 表 F1a / F1b / F1c** | 同上三步的素养页（**F1b=eggNOG**） | 与脚本三步一一对应 |
+| **TOOLS / 叙事 F1+** | 可选加件（如 KofamScan） | **≠ F1b**；`F1b_kofam.sh` 只是历史文件名 |
 | **验收 Gate-F1…Gate-F7** | 放行**硬门槛条目** | 写 METHODS 说「通过 Gate-F2（蛋白 BUSCO）」等；**不要说「做完了 F2」** |
 
 **口诀：** 拿不准就宣称 **框架 F1**；动手顺序永远是 **diamond → emapper → InterProScan**；`bash pipeline/F2_eggnog.sh` = F1 里的 eggNOG 步。
+
+**反例（F1b ≠ `F1b_kofam.sh`）：** TOOLS **F1b** = eggNOG-mapper（框架 F1 第二步）。可选 KofamScan 是 **F1+**；脚本文件名虽叫 `pipeline/F1b_kofam.sh`，**不要**口头说「Kofam F1b」。口播用「F1+ 可选 KO / Kofam」。
 
 **报告推荐口播：** 「功能注释采用框架 F1（DIAMOND + eggNOG-mapper + InterProScan），合并为 functional_master.tsv；脚本 F2_eggnog.sh 只是 F1 内第二步的历史文件名。验收按 F-L1 勾选表记录。」
 

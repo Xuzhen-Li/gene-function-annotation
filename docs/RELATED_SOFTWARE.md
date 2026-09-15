@@ -31,7 +31,7 @@ Gene-finding / GFF release tools (BRAKER, GALBA, EviAnn, EVM, Liftoff, GSAman, E
 | Software | Notes |
 |----------|-------|
 | BlastKOALA / GhostKOALA | Kanehisa *JMB* 2016 — classic KEGG KO web |
-| KofamScan / KofamKOALA | HMM KO (optional F1b) |
+| KofamScan / KofamKOALA | HMM KO (optional **F1+**; not TOOLS F1b) |
 | [DeepKOALA](https://github.com/zhaoxi120/deepkoala) | DL KO assignment; fast batch |
 | DeepGOPlus (DeepGO family) | DL GO — post-F1 optional |
 | [ProteInfer](https://github.com/google-research/proteinfer) | DL GO/EC from sequence |

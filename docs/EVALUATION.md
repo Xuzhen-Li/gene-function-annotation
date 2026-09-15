@@ -39,9 +39,9 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 ---
 
-## Hard gates (F-L1 — fail any ⇒ not qualified)
+## Hard gates (Gate-F*) (F-L1 — fail any ⇒ not qualified)
 
-### F1 — Stable protein input
+### Gate-F1 — Stable protein input
 
 | | |
 |--|--|
@@ -50,7 +50,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 **Background:** Function tables are worthless without knowing *which* gene models they describe. Structure releases change after GSAman; a tag/hash is the join key between layers (Ji two-layer model).
 
-### F2 — Upstream sanity (F0)
+### Gate-F2 — Upstream sanity (F0)
 
 | | |
 |--|--|
@@ -59,7 +59,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 **Background:** F0 reuses the same ortholog-completeness idea as structure G6, but here it is a **sanity brake** for FA spend (InterProScan is expensive). Catastrophic M/F means the input set is not ready — same logic as “don’t annotate a genome that fails Asm1.”
 
-### F3 — Default frame (or waiver)
+### Gate-F3 — Default frame (or waiver)
 
 | | |
 |--|--|
@@ -68,7 +68,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 **Background:** F1 mirrors high-quality genome METHODS: curated homology (Swiss-Prot), orthology-aware transfer (eggNOG v7 / emapper), and integrative domains (InterPro). Alternates exist — EnTAP (F3) wraps similar ideas for transcriptomes; Trinotate (F5) for Trinity; TransAnnot for speed — but each has different error modes and must be named (see RELATED_SOFTWARE). BLAST-only best-hit is the classic over-annotation failure eggNOG-mapper was built to reduce.
 
-### F4 — Versions pinned
+### Gate-F4 — Versions pinned
 
 | | |
 |--|--|
@@ -77,7 +77,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 **Background:** Orthology DBs and InterPro member signatures change coverage year to year (*NAR* DB issues). eggNOG-mapper **v3** expects eggNOG **v7** (not v5). Undated FA is not reproducible and fails review checklists.
 
-### F5 — Master table integrity
+### Gate-F5 — Master table integrity
 
 | | |
 |--|--|
@@ -86,7 +86,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 **Background:** The master TSV is the lab’s source of truth (GFF column-9 write-back is explicitly **not** claimed yet — [`SELF_AUDIT.md`](SELF_AUDIT.md)). Count drift means join bugs or ID mismaps — the same class of error as stale proteins in structure G5.
 
-### F6 — Release pack
+### Gate-F6 — Release pack
 
 | | |
 |--|--|
@@ -95,7 +95,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 **Background:** Same contract as structure G8: a tag, a frozen table, METHODS. Raw tool outputs are intermediates; journals and collaborators cite the merged product.
 
-### F7 — Hygiene
+### Gate-F7 — Hygiene
 
 | | |
 |--|--|
@@ -114,7 +114,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 | Swiss-Prot / emapper hit rates | Coverage narrative in METHODS | Claiming “all genes annotated” from partial hits |
 | IPS domain coverage | Domain evidence density | GO from homology alone without saying so |
 | AHRD / Mercator / NLR / iTAK | Optional modules — list used or unused | Implying MapMan ran when it did not |
-| Count match master↔proteins | Supports F5 | Padding empty stubs to force 100% |
+| Count match master↔proteins | Supports Gate-F5 | Padding empty stubs to force 100% |
 | Domain-only / GO-empty split | Honest evidence mix in METHODS | Treating empty GO as “unannotated failure” |
 | Upstream structure OMArk/RNA story | Two-layer audit trail | Using FA hit rates to excuse bad structure |
 
@@ -157,12 +157,13 @@ Function cannot rescue wrong loci, merged tandems, or TE-captured ORFs; it can o
 
 ```text
 Grade: F-L0 / F-L1
-F1 PROTEINS_FA provenance ________
-F2 F0 BUSCO lineage + C/D/F/M ________
-F3 Frame F1 / F2 / F3 / F5 ________
-F4 Versions (diamond, emapper, IPS, DBs) ________
-F5 master rows / protein n / drops ________
-F6 release/<TAG>/ ________
+Gate-F1 PROTEINS_FA provenance ________
+Gate-F2 F0 BUSCO lineage + C/D/F/M ________
+Gate-F3 Frame F1 / F2 / F3 / F5 ________
+Gate-F4 Versions (diamond, emapper, IPS, DBs) ________
+Gate-F5 master rows / protein n / drops ________
+Gate-F6 release/<TAG>/ ________
+Gate-F7 hygiene (no private reads / multi-GB DBs) ________
 Add-ons: F4[ ] F6[ ] F7[ ] F8[ ] F9[ ] unused[ ]
 ```
 

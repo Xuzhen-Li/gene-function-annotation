@@ -51,7 +51,9 @@ cp config/example.env config/local.env
 | `DIAMOND_DB` | Swiss-Prot `.dmnd` |
 | `FUNCTION_DIR` | Usually `$WORK_DIR/function` |
 | `FUN_PREFIX` | Short label for output files |
+| `EGGNOG_DATA_DIR` | eggNOG-mapper data pack (required for local/SIF runs) |
 | `EGGNOG_TAX_SCOPE` | `auto` or your clade |
+| `INTERPROSCAN_HOME` | Dir containing `interproscan.sh` (for F1c / `F3_interproscan.sh`) |
 | `BUSCO_LINEAGE_PROTEIN` | For F0 |
 | `RELEASE_TAG` | Release folder name |
 | `THREADS` | Cores |

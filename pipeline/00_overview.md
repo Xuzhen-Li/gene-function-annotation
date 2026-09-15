@@ -20,4 +20,4 @@ Finish a qualified GFF + `proteins.faa` in
 
 ## F-line scripts here
 
-`F1_diamond.sh` · `F1b_kofam.sh` · `F2_eggnog.sh` · `F3_interproscan.sh` · `F4_*` · `F4b_*` · `F6_*` · `F7_*` · `F8_*` · `F9_*` · `F_merge_tables.py` · `F_release.sh`
+`F1_diamond.sh` · `F1b_kofam.sh` (F1+ optional KO) · `F2_eggnog.sh` · `F3_interproscan.sh` · `F4_*` · `F4b_*` · `F6_*` · `F7_*` · `F8_*` · `F9_*` · `F_merge_tables.py` · `F_release.sh`

@@ -26,7 +26,7 @@ RUN=1 bash "$REPO_ROOT/pipeline/F2_eggnog.sh"
 # InterProScan
 RUN=1 bash "$REPO_ROOT/pipeline/F3_interproscan.sh"
 
-# optional Kofam
+# optional Kofam (F1+ optional KO; script filename historical)
 # RUN=1 bash "$REPO_ROOT/pipeline/F1b_kofam.sh"
 
 python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
@@ -52,7 +52,7 @@ bash "$REPO_ROOT/pipeline/F_release.sh"
 ```bash
 busco -i "$PROTEINS_FA" -l "${BUSCO_LINEAGE_PROTEIN:-eukaryota_odb10}" -m proteins -o prot_busco --out_path "$FUNCTION_DIR/qc" -c "$THREADS"
 RUN=1 bash "$REPO_ROOT/pipeline/F2_eggnog.sh"
-# optional: RUN=1 bash "$REPO_ROOT/pipeline/F1b_kofam.sh"
+# optional F1+ Kofam: RUN=1 bash "$REPO_ROOT/pipeline/F1b_kofam.sh"
 python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
   --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
@@ -235,7 +235,7 @@ wc -l /tmp/vga_toy_master.tsv
 | Multi-genome panel | **F7 → F1** |
 | NLR focus (plants) | **F1 → F8** |
 | TF / kinase table (plants) | **F9** |
-| Extra KO (KEGG) | F1b Kofam / DeepKOALA / BlastKOALA |
+| Extra KO (KEGG) | **F1+** Kofam / DeepKOALA / BlastKOALA |
 | Extra GO DL | DeepGOPlus / ProteInfer / DeepFRI / NetGO3 after F1 (optional) |
 | CAZyme / secretome | dbCAN3 · SignalP6 · DeepLoc2 after F1 |
 | Isoform FA | SQANTI3 → IsoAnnot/FIT (after LR structure) |

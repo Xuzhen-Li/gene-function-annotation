@@ -35,7 +35,7 @@ No proteins yet? Upstream structural spine: [`gene-structure-annotation` MAIN](h
 |----|------|------------|----------------|
 | **F0** | Always | BUSCO proteins | inline in scenarios |
 | **F1** | Default / paper | DIAMOND + emapper + InterProScan | `F1_diamond.sh` `F2_eggnog.sh` `F3_interproscan.sh` |
-| **F2** | Fast | emapper (± Kofam) | `F2_eggnog.sh` `F1b_kofam.sh` |
+| **F2** | Fast | emapper (± optional Kofam **F1+**) | `F2_eggnog.sh` `F1b_kofam.sh` (F1+) |
 | **F3** | EnTAP frame | EnTAP | docs + copy TSV |
 | **F4** | Readable names | AHRD | `F4_join_ahrd.py` · `F4_run_ahrd.md` |
 | **F5** | Transcriptome CDS | Trinotate (± F1) | docs/tools/trinotate.md |

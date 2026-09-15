@@ -55,7 +55,7 @@ These change *how* the main homology/domain tables are produced. Still rejoin at
 | ID | When | Core | Notes |
 |----|------|------|-------|
 | **F1** | Default / paper | DIAMOND + eggNOG + InterProScan | Preferred METHODS spine |
-| **F2** | Fast / lightweight | eggNOG (± Kofam `F1b`) | Skip or defer InterProScan |
+| **F2** | Fast / lightweight | eggNOG (± optional Kofam **F1+**) | Skip or defer InterProScan |
 | **F3** | EnTAP-centric lab | EnTAP → copy TSVs into merge | Docs-driven; not a full runner rewrite |
 | **F5** | Transcriptome CDS (no genome GFF) | Trinotate (± still run F1 on peptides) | Not a plant-genome default |
 

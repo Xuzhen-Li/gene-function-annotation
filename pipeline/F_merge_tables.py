@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Merge eggNOG / InterProScan / DIAMOND into one gene-centric TSV (best-effort parsers)."""
 from __future__ import annotations
-import argparse, csv, re
+import argparse, csv, re, sys
 from pathlib import Path
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 def fasta_ids(path: str) -> list[str]:
     ids = []
@@ -90,6 +90,19 @@ def parse_diamond(path: Path) -> dict[str, dict]:
         v.pop("_bits", None)
     return best
 
+def _row_has_annotation(row: dict) -> bool:
+    keys = (
+        "emapper_GOs", "emapper_KEGG_ko", "emapper_PFAMs", "emapper_Preferred_name",
+        "emapper_Description", "emapper_COG", "emapper_KEGG_Pathway",
+        "ips_InterPro", "ips_signatures", "ips_GOs",
+        "diamond_sseqid",
+    )
+    for k in keys:
+        v = row.get(k) or ""
+        if str(v).strip():
+            return True
+    return False
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--proteins", required=True)
@@ -100,6 +113,19 @@ def main():
     args = ap.parse_args()
 
     ids = fasta_ids(args.proteins)
+    # Gate-F5 honesty: duplicate gene_id must not fake-pass
+    counts = Counter(ids)
+    dups = sorted([g for g, n in counts.items() if n > 1])
+    if dups:
+        sample = ", ".join(dups[:10])
+        more = f" (+{len(dups)-10} more)" if len(dups) > 10 else ""
+        print(
+            f"[ERR] Gate-F5: duplicate gene_id in --proteins ({len(dups)} ids); "
+            f"e.g. {sample}{more}. Deduplicate before merge.",
+            file=sys.stderr,
+        )
+        return 1
+
     em, ip, di = {}, {}, {}
     for p in args.emapper:
         em.update(parse_emapper(Path(p)))
@@ -107,6 +133,16 @@ def main():
         ip.update(parse_ips_tsv(Path(p)))
     for p in args.diamond:
         di.update(parse_diamond(Path(p)))
+
+    # Per-source hit counts (coverage visible for Gate-F5 narrative)
+    n_em = sum(1 for gid in ids if gid in em)
+    n_ip = sum(1 for gid in ids if gid in ip)
+    n_di = sum(1 for gid in ids if gid in di)
+    print(
+        f"[merge] source_hits proteins={len(ids)} "
+        f"emapper={n_em} ips={n_ip} diamond={n_di}",
+        file=sys.stderr,
+    )
 
     fields = [
         "gene_id",
@@ -116,6 +152,7 @@ def main():
         "diamond_sseqid", "diamond_pident", "diamond_evalue", "diamond_stitle",
     ]
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    annotated = 0
     with open(args.out, "w", newline="") as fo:
         w = csv.DictWriter(fo, fieldnames=fields, delimiter="\t", extrasaction="ignore")
         w.writeheader()
@@ -124,24 +161,25 @@ def main():
             row.update(em.get(gid, {}))
             row.update(ip.get(gid, {}))
             row.update(di.get(gid, {}))
+            if _row_has_annotation(row):
+                annotated += 1
             w.writerow(row)
-    print(f"[OK] {len(ids)} genes → {args.out}")
-    _warn_empty_master(Path(args.out), len(ids))
+    print(
+        f"[merge] rows={len(ids)} proteins_in={len(ids)} "
+        f"rows_with_any_annotation={annotated}",
+        file=sys.stderr,
+    )
 
-def _warn_empty_master(out: Path, n_proteins: int) -> None:
-    try:
-        lines = out.read_text().splitlines()
-    except OSError:
-        return
-    if len(lines) < 2:
-        print("[WARN] master missing or header-only")
-        return
-    body = lines[1:]
-    nonempty = sum(1 for L in body if ("GO:" in L) or ("\tPF" in L) or ("IPR" in L) or ("K0" in L))
-    print(f"[merge] rows={len(body)} proteins_in={n_proteins} rows_with_GO/PF/IPR/K_signal≈{nonempty}")
-    if body and nonempty == 0:
-        print("[WARN] all rows look annotation-empty — check emapper/IPS paths and DB↔binary versions")
+    if ids and annotated == 0:
+        print(
+            "[ERR] Gate-F5: all rows look annotation-empty — check emapper/IPS/DIAMOND "
+            "paths and DB↔binary versions. Refusing exit 0 (would fake-pass Gate-F5).",
+            file=sys.stderr,
+        )
+        return 1
+    print(f"[OK] {len(ids)} genes → {args.out}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

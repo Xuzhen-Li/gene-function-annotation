@@ -50,7 +50,12 @@ Or: `bash pipeline/F1_diamond.sh` (prints the same; remove `[STOP]` by exporting
 
 ## F1.2 eggNOG-mapper
 
-**Conda/binary example (emapper v2-style flags; adjust for v3 per your install):**
+**Canonical runner:** `pipeline/F2_eggnog.sh` (print-first; `RUN=1` to execute).  
+Defaults match the script: `--go_evidence non-electronic` and `--pfam_realign realtime`  
+(`realtime` is slower/heavier — override with `EGGNOG_PFAM_REALIGN=none` if cost-constrained).  
+Do not drift GUIDE examples away from the script.
+
+**Conda/binary example (same flags as the script; adjust for emapper v3 per your install):**
 
 ```bash
 emapper.py -i "$PROTEINS_FA" \
@@ -65,14 +70,18 @@ ls "$FUNCTION_DIR/emapper"/*.emapper.annotations
 head -20 "$FUNCTION_DIR/emapper"/*.emapper.annotations
 ```
 
-**Singularity example:**
+Or: `bash pipeline/F2_eggnog.sh` (exports `RUN=1` to execute).
+
+**Singularity example (same evidence / Pfam defaults):**
 
 ```bash
 singularity exec "$EGGNOG_SIF" emapper.py -i "$PROTEINS_FA" \
   --output ${FUN_PREFIX:-ann}_fun --output_dir "$FUNCTION_DIR/emapper" \
   --cpu "$THREADS" --type proteins -m diamond \
   --data_dir "$EGGNOG_DATA_DIR" \
-  --tax_scope "${EGGNOG_TAX_SCOPE:-auto}"
+  --tax_scope "${EGGNOG_TAX_SCOPE:-auto}" \
+  --go_evidence non-electronic \
+  --pfam_realign realtime
 ```
 
 ## F1.3 InterProScan

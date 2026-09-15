@@ -44,7 +44,8 @@ def choose_frame(a: dict) -> dict:
             "reason": "Proteins not ready — finish gene-structure-annotation first.",
             "addons": [],
         }
-    if str(a.get("structure_grade", "L1")).upper() == "L0":
+    structure_l0 = str(a.get("structure_grade", "L1")).upper() == "L0"
+    if structure_l0:
         grade = "F-L0"
     else:
         grade = "F-L1"
@@ -54,10 +55,13 @@ def choose_frame(a: dict) -> dict:
     elif a.get("use_entap"):
         frame, reason = "F3", "EnTAP-centric lab frame."
     elif a.get("prefer_fast"):
-        frame, reason = "F2", "Fast emapper (± Kofam); IPS deferred."
+        frame, reason = "F2", "Fast emapper (± optional Kofam F1+); IPS deferred; grade capped at F-L0."
         grade = "F-L0"
     else:
         frame, reason = "F1", "Default paper frame: DIAMOND + eggNOG + InterProScan."
+
+    if structure_l0 and "grade capped" not in reason:
+        reason = reason.rstrip(".") + "; grade capped at F-L0 (structure L0)."
 
     addons = []
     if a.get("want_ahrd"):
@@ -109,7 +113,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/emapper/", "pipeline/F2_eggnog.sh", "Script name F2_* = frame F1 step 2; not fast-frame F2")
         add("F1c", "InterProScan", "PROTEINS_FA", "InterProScan — domains, sites, member-DB signatures.", "CPU-heavy; batch if needed.", "function/interpro/", "pipeline/F3_interproscan.sh")
     elif fr == "F2":
-        add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± Kofam F1b)", "Skip or defer IPS; label release F-L0.", "function/emapper/", "pipeline/F2_eggnog.sh")
+        add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± optional Kofam F1+)", "Skip or defer IPS; grade capped at F-L0.", "function/emapper/", "pipeline/F2_eggnog.sh")
     elif fr == "F3":
         add("F3", "EnTAP frame", "PROTEINS_FA / transcriptome", "EnTAP (DIAMOND + emapper ± IPS inside EnTAP)", "Follow EnTAP docs; copy tables into merge layout.", "EnTAP out → merge/", "docs/tools/entap.md")
     elif fr == "F5":

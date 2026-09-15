@@ -66,7 +66,7 @@ def main() -> int:
     print("# Function QC — print-first")
     print(f"# Target: {args.grade}  ·  docs/EVALUATION_CHECKLIST.md")
     print("# Does not run DIAMOND/eggNOG/IPS for you — prints the spine.")
-print("# !!! MUST set YOUR BUSCO_LINEAGE_PROTEIN in local.env — default eukaryota_odb10 is a placeholder.")
+    print("# !!! MUST set YOUR BUSCO_LINEAGE_PROTEIN in local.env — default eukaryota_odb10 is a placeholder.")
     print()
 
     print("## Pack smoke")

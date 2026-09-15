@@ -41,7 +41,7 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 ### 3. Install DBs → run F1 → release
 
 [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) → follow `my_fa_plan.md` →  
-tick [`docs/EVALUATION.md`](docs/EVALUATION.md) (F-L1 default).
+tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **F-L1**.
 
 ```bash
 cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
@@ -55,7 +55,7 @@ cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
 |------|------|
 | Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
 | Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
-| Install · Done? | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 

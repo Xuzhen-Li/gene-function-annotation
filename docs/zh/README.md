@@ -14,6 +14,7 @@
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 搞清：本仓给蛋白贴标签，不改 GFF 坐标 |
 | 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 确认已有 `proteins.faa` → `flow.py` → `my_fa_plan.md` |
 | 3 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) → 跑 F1 → [`../EVALUATION.md`](../EVALUATION.md) | 默认 **F1** 三件套 |
+| 4 | [**验收勾选表**](验收勾选表.md)（或英文 [`../EVALUATION_CHECKLIST.md`](../EVALUATION_CHECKLIST.md)） | 勾完才知道 **行不行**；默认目标 **F-L1** |
 
 卡住再查：[04_F线怎么选](04_F线怎么选.md) · [12_常见翻车](12_常见翻车.md) · [99_术语表](99_术语表.md)
 

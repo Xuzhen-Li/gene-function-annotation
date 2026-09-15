@@ -8,6 +8,8 @@ import datetime as dt
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[2]
+
 try:
     import yaml
 except ImportError:
@@ -87,8 +89,9 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         ]
     stages = []
 
-    def add(sid, title, inputs, software, process, outputs, helper=""):
-        stages.append(dict(id=sid, title=title, inputs=inputs, software=software, process=process, outputs=outputs, helper=helper))
+    def add(sid, title, inputs, software, process, outputs, helper="", note=""):
+        # helper = one path only (for --emit-commands). Extra docs go in note.
+        stages.append(dict(id=sid, title=title, inputs=inputs, software=software, process=process, outputs=outputs, helper=helper, note=note))
 
     add(
         "F0",
@@ -103,7 +106,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     fr = choice["frame"]
     if fr == "F1":
         add("F1a", "DIAMOND Swiss-Prot", "PROTEINS_FA + DIAMOND_DB", "DIAMOND blastp vs Swiss-Prot — curated homology names/hits.", "Sensitive search; keep TSV.", "function/diamond/", "pipeline/F1_diamond.sh")
-        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/emapper/", "pipeline/F2_eggnog.sh (= frame F1 step 2; not fast-frame F2)")
+        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/emapper/", "pipeline/F2_eggnog.sh", "Script name F2_* = frame F1 step 2; not fast-frame F2")
         add("F1c", "InterProScan", "PROTEINS_FA", "InterProScan — domains, sites, member-DB signatures.", "CPU-heavy; batch if needed.", "function/interpro/", "pipeline/F3_interproscan.sh")
     elif fr == "F2":
         add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± Kofam F1b)", "Skip or defer IPS; label release F-L0.", "function/emapper/", "pipeline/F2_eggnog.sh")
@@ -204,11 +207,26 @@ def render(a, choice, stages, emit_commands: bool) -> str:
             f"**Output:** {st['outputs']}",
             "",
         ]
-        if st.get("helper"):
-            lines.append(f"**Helper / doc:** `{st['helper']}`")
+        h = str(st.get("helper") or "").strip()
+        note = str(st.get("note") or "").strip()
+        if h:
+            lines.append(f"**Helper:** `{h}`")
             lines.append("")
-        if emit_commands and str(st.get("helper", "")).endswith(".sh"):
-            lines += ["```bash", f"bash {st['helper']}", "```", ""]
+        if note:
+            lines.append(f"**Also see:** {note}")
+            lines.append("")
+        if emit_commands and h.endswith(".sh"):
+            hp = REPO / h
+            if hp.is_file():
+                lines += [
+                    "```bash",
+                    "# Print-first: DRY-run first; set RUN=1 only after review (see script header).",
+                    f"bash {h}",
+                    "```",
+                    "",
+                ]
+            else:
+                lines += [f"> **emit skipped:** `{h}` not found under repo root.", ""]
     lines += [
         "---",
         "",
@@ -218,7 +236,7 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         "2. Tick `docs/EVALUATION_CHECKLIST.md` (Chinese: `docs/zh/验收勾选表.md`).",
         "3. Optional: `python3 pipeline/print_qc_commands.py`.",
         "4. Print-first helpers: `F1_diamond.sh` → `F2_eggnog.sh` (= F1 eggNOG step) → `F3_interproscan.sh` → merge.",
-        "5. Add-ons (e.g. AHRD/F4) are optional — skipping them can still be F-L1 if the F1 spine passes; state that in METHODS, or set want_ahrd: false and re-run flow.",
+        "5. Add-ons (AHRD/F4, …) appear **only** when the matching `want_*` flag is true (default `want_ahrd: false` → Add-ons:(none)). F1 spine alone can still be F-L1; METHODS: say which add-ons you skipped.",
         "",
         "See docs/ROADMAP.md · docs/zh/FAQ_入门.md. Step-1 tool = plan + explain only.",
         "",

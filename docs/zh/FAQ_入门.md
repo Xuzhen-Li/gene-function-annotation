@@ -51,8 +51,8 @@ A：本仓真相是 **`functional_master.tsv`**。浏览器/投稿需要列 9 �
 
 ## flow / answers
 
-**Q：plan 里默认挂了 AHRD/F4，必须做吗？**  
-A：**不是。** 三件套过关仍可 F-L1；METHODS 写未跑 AHRD。或 want_ahrd: false 重出 plan。
+**Q：plan 会不会默认挂 AHRD/F4？必须做吗？**  
+A：**默认不挂。** `answers.example.yaml` 里 `want_ahrd: false`，plan 的 Add-ons 应为 `(none)`。只有改成 `want_ahrd: true` 才会出现 F4。三件套过关仍可 F-L1；METHODS 写清未跑 AHRD 即可。
 
 **Q：宿舍盘不够 80GB，课程作业最低交付？**  
 A：问老师。可约定：读懂 plan + FAQ 编号 + 列出库与磁盘预算；完整装库未必是课堂硬门槛。

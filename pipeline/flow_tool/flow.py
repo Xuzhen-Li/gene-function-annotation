@@ -186,7 +186,14 @@ def render(a, choice, stages, emit_commands: bool) -> str:
     lines += [
         "---",
         "",
-        "See docs/ROADMAP.md and docs/EVALUATION.md. Step-1 tool = plan + explain only.",
+        "## After this plan",
+        "",
+        "1. Copy `config/example.env` → `config/local.env` (PROTEINS_FA, DIAMOND_DB, EGGNOG_*, INTERPROSCAN_HOME).",
+        "2. Tick `docs/EVALUATION_CHECKLIST.md` (Chinese: `docs/zh/验收勾选表.md`).",
+        "3. Optional: `python3 pipeline/print_qc_commands.py`.",
+        "4. Print-first helpers: `F1_diamond.sh` → `F2_eggnog.sh` (= F1 eggNOG step) → `F3_interproscan.sh` → merge.",
+        "",
+        "See docs/ROADMAP.md · docs/zh/FAQ_入门.md. Step-1 tool = plan + explain only.",
         "",
     ]
     return "\n".join(lines)

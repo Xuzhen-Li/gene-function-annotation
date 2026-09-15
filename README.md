@@ -53,15 +53,13 @@ cp config/example.env config/local.env   # PROTEINS_FA, DIAMOND_DB, …
 
 | Need | Open |
 |------|------|
+| Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
 | Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
+| Install · Done? | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
-| Stage I/O | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) |
-| Done? | [`docs/EVALUATION.md`](docs/EVALUATION.md) |
-| Install | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) |
-| Branch map | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
-| Audit 2026-09-14 | [`docs/AUDIT_2026-09-14.md`](docs/AUDIT_2026-09-14.md) |
-| [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) | External **tutorials** (Galaxy eggNOG/IPS) & meeting pointers |
-| Journal patterns | [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) |
+
+More: [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md).
 
 Figure: ![overview](docs/figures/functional_overview.png)
 

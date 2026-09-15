@@ -1,5 +1,7 @@
 # flow_tool (function) — step 1
 
+Chinese short path: [`docs/zh/`](../../docs/zh/) (今天最短路径).
+
 ```bash
 cd gene-function-annotation
 cp pipeline/flow_tool/answers.example.yaml /tmp/fa_answers.yaml

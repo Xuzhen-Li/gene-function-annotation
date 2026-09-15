@@ -4,15 +4,15 @@ Full rules: [`EVALUATION.md`](EVALUATION.md). Chinese tick sheet: [`zh/验收勾
 
 **Target:** [ ] F-L0 slim [ ] F-L1 qualified (default)
 
-## F-L1 hard gates (any fail ⇒ not F-L1)
+## F-L1 hard gates (Gate-F*) (any fail ⇒ not F-L1)
 
-- [ ] F1 Protein provenance (structure TAG or hash)
-- [ ] F2 F0 protein BUSCO Completeness **+ lineage**
-- [ ] F3 F1 frame (DIAMOND + eggNOG + IPS) or written waiver
-- [ ] F4 Tool + DB versions pinned
-- [ ] F5 Master TSV count ≈ proteins; drops documented
-- [ ] F6 `function/release/<TAG>/` pack
-- [ ] F7 No private reads / multi-GB DBs in release
+- [ ] Gate-F1 Protein provenance (structure TAG or hash)
+- [ ] Gate-F2 F0 protein BUSCO Completeness **+ lineage**
+- [ ] Gate-F3 F1 frame (DIAMOND + eggNOG + IPS) or written waiver
+- [ ] Gate-F4 Tool + DB versions pinned
+- [ ] Gate-F5 Master TSV count ≈ proteins; drops documented
+- [ ] Gate-F6 `function/release/<TAG>/` pack
+- [ ] Gate-F7 No private reads / multi-GB DBs in release
 
 ## Soft (report)
 

@@ -14,7 +14,7 @@
 | **框架 F2 / F3 / F5** | 快框 / EnTAP / Trinotate 等**替代整框** | 只有 `prefer_fast` 或 waiver 才走 |
 | **脚本 `F1_diamond.sh` / `F2_eggnog.sh` / `F3_interproscan.sh`** | F1 骨架里的**三步文件名**（历史命名） | 按 diamond → eggnog → IPS 跑；**文件名里的 F2 ≠ 快框 F2** |
 | **TOOLS 表 F1a / F1b / F1c** | 同上三步的素养页 | 与脚本三步一一对应 |
-| **验收勾选 F1…F7** | 放行**硬门槛条目**（蛋白来源、BUSCO、三件套…） | 写 METHODS 时说「验收门 G/F1…」或直接抄勾选表原文，**不要说「做完了 F2」这种歧义句** |
+| **验收 Gate-F1…Gate-F7** | 放行**硬门槛条目** | 写 METHODS 说「通过 Gate-F2（蛋白 BUSCO）」等；**不要说「做完了 F2」** |
 
 **口诀：** 拿不准就宣称 **框架 F1**；动手顺序永远是 **diamond → emapper → InterProScan**；`bash pipeline/F2_eggnog.sh` = F1 里的 eggNOG 步。
 
@@ -42,7 +42,7 @@ seqkit fx2tab "$PROTEINS_MULTI" | awk -F '\t' '{
 ```
 
 更稳：**默认要求结构放行时就给出 one-per-gene**（与结构 METHODS 的 isoform 政策一致）。  
-若结构 ID 是 `xxx-mRNA-1` / `gene:ID` 等非 `GENE.t1` 形——**不要盲抄 awk**；先打开结构仓放行 METHODS / [结构 FAQ](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/FAQ_入门.md) 的 isoform 句，按**同一套 gene 主键**再抽。FAQ 里的 awk 只是示意。
+若结构 ID 是 `xxx-mRNA-1`、`gene:Gene0001`、`GENE_t001` 等——**不要盲抄 awk**；先打开结构仓放行 METHODS / [结构 FAQ](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/FAQ_入门.md) 的 isoform 句，按**同一套 gene 主键**再抽。FAQ 里的 awk 只是示意。
 
 **Q：GO 不写回 GFF 第 9 列，下游怎么用？**  
 A：本仓真相是 **`functional_master.tsv`**。浏览器/投稿需要列 9 时，**另做一步**（本仓暂不自动宣称）。METHODS 写「功能以 master TSV 为准」。
@@ -79,6 +79,7 @@ A：勾一份即可；中文 `验收勾选表` ↔ 英文 `EVALUATION_CHECKLIST`
 |----------|------|
 | 笔记本 / 小试 diamond+BUSCO | Lane A 即可 |
 | 要跑 **eggNOG-mapper + InterProScan 全量** | **Lane B（或集群模块）**；IPS/eggNOG 数据体积大 |
+| **只** conda（Lane A） | 通常够 DIAMOND+BUSCO；**不够**完整框架 F1 |
 | 共享 HPC、已有镜像 | Lane B |
 | 计算节点无外网 | 登录节点先下好 DB/镜像再拷到 `$DB_ROOT` |
 
@@ -108,6 +109,18 @@ A：目标与蛋白条数一致；差几条须在 METHODS/`merge` 日志说明�
 
 ---
 
+## 变量→产物路径（改 FUN_PREFIX 要对齐）
+
+先 `set -a && source config/local.env && set +a`。默认 `FUN_PREFIX=ann`：
+
+| 变量/约定 | 典型产物 |
+|------------|----------|
+| `PROTEINS_FA` | 输入每基因一条蛋白 |
+| `FUNCTION_DIR/diamond/` | Swiss-Prot TSV |
+| `FUNCTION_DIR/emapper/${FUN_PREFIX}_fun.emapper.annotations` | eggNOG |
+| `FUNCTION_DIR/interpro/${FUN_PREFIX}_ips.tsv` | InterProScan |
+| `FUNCTION_DIR/merge/functional_master.tsv` | 总表 |
+
 ## 执行顺序（默认 F1）
 
 `FUN_PREFIX`、输出子目录在 [`../../config/example.env`](../../config/example.env) 已有默认（`FUN_PREFIX=ann` → `emapper/ann_fun.emapper.annotations`、`interpro/ann_ips.tsv`）。  
@@ -121,6 +134,7 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 RUN=1 bash pipeline/F1_diamond.sh
 RUN=1 bash pipeline/F2_eggnog.sh      # = F1 的 eggNOG 步
 RUN=1 bash pipeline/F3_interproscan.sh
+# 集群可参考 pipeline/sbatch_f1_examples.sh（改分区/账户；先 source local.env）
 python3 pipeline/F_merge_tables.py --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper/${FUN_PREFIX}_fun.emapper.annotations" \
   --ips "$FUNCTION_DIR/interpro/${FUN_PREFIX}_ips.tsv" \

@@ -126,6 +126,22 @@ def main():
             row.update(di.get(gid, {}))
             w.writerow(row)
     print(f"[OK] {len(ids)} genes → {args.out}")
+    _warn_empty_master(Path(args.out), len(ids))
+
+def _warn_empty_master(out: Path, n_proteins: int) -> None:
+    try:
+        lines = out.read_text().splitlines()
+    except OSError:
+        return
+    if len(lines) < 2:
+        print("[WARN] master missing or header-only")
+        return
+    body = lines[1:]
+    nonempty = sum(1 for L in body if ("GO:" in L) or ("\tPF" in L) or ("IPR" in L) or ("K0" in L))
+    print(f"[merge] rows={len(body)} proteins_in={n_proteins} rows_with_GO/PF/IPR/K_signal≈{nonempty}")
+    if body and nonempty == 0:
+        print("[WARN] all rows look annotation-empty — check emapper/IPS paths and DB↔binary versions")
+
 
 if __name__ == "__main__":
     main()

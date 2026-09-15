@@ -154,8 +154,11 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         "",
         "## Chooser decision",
         "",
+        "> **Numbering legend:** **Frame** F1/F2/… = annotation strategy; script names like `F2_eggnog.sh` = historical step files inside frame F1; checklist **Gate-*** = release pass/fail (see `docs/zh/FAQ_入门.md`).",
+        "",
         f"- **Frame:** `{choice['frame']}`",
-        f"- **Add-ons:** {', '.join(choice['addons']) if choice['addons'] else '(none)'}",
+        f"- **Add-ons:** {', '.join(choice['addons']) if choice['addons'] else '(none)'}"
+        + (" — optional modules, NOT F-L1 hard gates" if choice.get("addons") else ""),
         f"- **Target grade:** `{choice['grade']}`",
         f"- **Reason:** {choice['reason']}",
         f"- **Protein provenance:** {a.get('proteins_provenance', '(set me)')}",

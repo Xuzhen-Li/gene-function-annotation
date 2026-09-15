@@ -13,7 +13,7 @@ use_entap: false             # F3
 transcriptome_only: false    # F5 Trinotate lane
 
 # Optional plant add-ons (after F1)
-want_ahrd: true
+want_ahrd: false  # optional plant naming; not required for F-L1
 want_mercator: false
 want_orthofinder: false
 want_nlr: false

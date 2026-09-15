@@ -39,6 +39,16 @@ mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,kofam,ahrd,mercator,merge,rel
 
 ## 1. Core binaries (pick one lane)
 
+### F1 minimum install (read this first)
+
+| Goal | What you need | Lane |
+|------|---------------|------|
+| Read plan / BUSCO F0 / DIAMOND only | `diamond`, `busco`, `seqkit` | **A** enough |
+| Full **frame F1** (emapper + InterProScan) | + emapper image/data + InterProScan home | **B** (or site modules) |
+| Claim F-L1 | Full F1 + merge + release pack | **B** for emapper/IPS |
+
+Shortest-path “run F1 scripts” assumes you can reach Lane B (or equivalent modules). Lane A alone is **not** a complete F1 install.
+
 ### Which lane?
 
 | Situation | Pick |
@@ -47,7 +57,16 @@ mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,kofam,ahrd,mercator,merge,rel
 | Full F1 (eggNOG + InterProScan) on HPC | **B** (or site modules) |
 | Compute nodes without internet | Download DBs/images on login node → copy to `$DB_ROOT` |
 
-Disk budget (rough): **80–150 GB** for F1 databases/installs (InterProScan alone often >50 GB), plus workdir.
+Disk budget (rough, plus workdir):
+
+| Component | Download / unpack (order of magnitude) | Typical wall-clock (once) |
+|-----------|------------------------------------------|---------------------------|
+| Swiss-Prot FASTA + DIAMOND DB | ~0.5–1 GB | minutes |
+| eggNOG-mapper data (v7 pack) | tens of GB | tens of min–hours (I/O) |
+| InterProScan distribution + member DBs | often **>50 GB** | hours first run / fetch |
+| **Total F1 data+install** | **~80–150 GB** | plan overnight on shared FS |
+
+Offline nodes: on a login/data node download Swiss-Prot, eggNOG data dir, InterProScan tree, and any `.sif`, then copy the whole `$DB_ROOT` to the compute filesystem.
 
 ### Lane A — conda/mamba (laptop / shared node)
 

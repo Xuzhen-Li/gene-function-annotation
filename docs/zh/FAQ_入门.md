@@ -39,7 +39,8 @@ seqkit fx2tab "$PROTEINS_MULTI" | awk -F '\t' '{
 } END { for (g in seq) print ">"keep[g]"\n"seq[g] }' > proteins.one_per_gene.faa
 ```
 
-更稳：用结构放行时已约定的「每基因一条」文件，并在 provenance 写清规则。
+更稳：**默认要求结构放行时就给出 one-per-gene**（与结构 METHODS 的 isoform 政策一致）。  
+若结构 ID 是 `xxx-mRNA-1` / `gene:ID` 等非 `GENE.t1` 形——**不要盲抄 awk**；先打开结构仓放行 METHODS / [结构 FAQ](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/FAQ_入门.md) 的 isoform 句，按**同一套 gene 主键**再抽。FAQ 里的 awk 只是示意。
 
 **Q：GO 不写回 GFF 第 9 列，下游怎么用？**  
 A：本仓真相是 **`functional_master.tsv`**。浏览器/投稿需要列 9 时，**另做一步**（本仓暂不自动宣称）。METHODS 写「功能以 master TSV 为准」。
@@ -100,6 +101,9 @@ A：目标与蛋白条数一致；差几条须在 METHODS/`merge` 日志说明�
 ---
 
 ## 执行顺序（默认 F1）
+
+`FUN_PREFIX`、输出子目录在 [`../../config/example.env`](../../config/example.env) 已有默认（`FUN_PREFIX=ann` → `emapper/ann_fun.emapper.annotations`、`interpro/ann_ips.tsv`）。  
+第一次：对照 `example.env` + 各脚本头注释；改了 `FUN_PREFIX` 就要改 merge 路径里的同名。
 
 ```bash
 cp config/example.env config/local.env   # 填 PROTEINS_FA、DIAMOND_DB、EGGNOG_*、INTERPROSCAN_HOME…

@@ -18,6 +18,8 @@
 
 **口诀：** 拿不准就宣称 **框架 F1**；动手顺序永远是 **diamond → emapper → InterProScan**；`bash pipeline/F2_eggnog.sh` = F1 里的 eggNOG 步。
 
+**报告推荐口播：** 「功能注释采用框架 F1（DIAMOND + eggNOG-mapper + InterProScan），合并为 functional_master.tsv；脚本 F2_eggnog.sh 只是 F1 内第二步的历史文件名。验收按 F-L1 勾选表记录。」
+
 ---
 
 ## 和结构仓怎么接
@@ -48,6 +50,12 @@ A：本仓真相是 **`functional_master.tsv`**。浏览器/投稿需要列 9 �
 ---
 
 ## flow / answers
+
+**Q：plan 里默认挂了 AHRD/F4，必须做吗？**  
+A：**不是。** 三件套过关仍可 F-L1；METHODS 写未跑 AHRD。或 want_ahrd: false 重出 plan。
+
+**Q：宿舍盘不够 80GB，课程作业最低交付？**  
+A：问老师。可约定：读懂 plan + FAQ 编号 + 列出库与磁盘预算；完整装库未必是课堂硬门槛。
 
 **Q：`prefer_fast: true` 是什么？**  
 A：框架走**快框 F2**（emapper 为主、IPS 可延期）→ 验收通常只能 **F-L0**，除非你另有完整 F1。默认请保持 `false`。

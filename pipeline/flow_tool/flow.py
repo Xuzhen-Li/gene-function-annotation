@@ -103,7 +103,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     fr = choice["frame"]
     if fr == "F1":
         add("F1a", "DIAMOND Swiss-Prot", "PROTEINS_FA + DIAMOND_DB", "DIAMOND blastp vs Swiss-Prot — curated homology names/hits.", "Sensitive search; keep TSV.", "function/diamond/", "pipeline/F1_diamond.sh")
-        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/emapper/", "pipeline/F2_eggnog.sh")
+        add("F1b", "eggNOG-mapper", "PROTEINS_FA", "emapper — orthology-aware GO/KEGG/COG transfer (match DB↔mapper version).", "Run with EGGNOG_TAX_SCOPE for your clade.", "function/emapper/", "pipeline/F2_eggnog.sh (= frame F1 step 2; not fast-frame F2)")
         add("F1c", "InterProScan", "PROTEINS_FA", "InterProScan — domains, sites, member-DB signatures.", "CPU-heavy; batch if needed.", "function/interpro/", "pipeline/F3_interproscan.sh")
     elif fr == "F2":
         add("F2", "Fast emapper frame", "PROTEINS_FA", "eggNOG-mapper (± Kofam F1b)", "Skip or defer IPS; label release F-L0.", "function/emapper/", "pipeline/F2_eggnog.sh")
@@ -159,12 +159,35 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         f"- **Target grade:** `{choice['grade']}`",
         f"- **Reason:** {choice['reason']}",
         f"- **Protein provenance:** {a.get('proteins_provenance', '(set me)')}",
+        f"- **structure_grade (self-declared):** {a.get('structure_grade', '(unset)')}",
         "",
         "---",
         "",
         "## Narrated stages",
         "",
     ]
+
+    # Placeholder / grade warnings for learners
+    try:
+        dash = lines.index("---")
+    except ValueError:
+        dash = None
+    if dash is not None:
+        prov = str(a.get("proteins_provenance", ""))
+        warns = []
+        if ("or path/hash" in prov) or ("RELEASE_TAG or" in prov) or ("(set me)" in prov) or (not prov.strip()):
+            warns.append(
+                "> **Warning:** `proteins_provenance` still looks like a placeholder — "
+                "replace with a real structure RELEASE_TAG or path/sha256 before claiming F-L1."
+            )
+        if str(a.get("structure_grade", "")).upper() == "L0" and choice.get("grade") == "F-L1":
+            warns.append(
+                "> **Warning:** structure_grade is L0 but target is F-L1 — keep FA provisional / F-L0 until structure is L1."
+            )
+        for w in reversed(warns):
+            lines.insert(dash, "")
+            lines.insert(dash, w)
+
     for i, st in enumerate(stages, 1):
         lines += [
             f"### {i}. {st['id']} — {st['title']}",
@@ -192,6 +215,7 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         "2. Tick `docs/EVALUATION_CHECKLIST.md` (Chinese: `docs/zh/验收勾选表.md`).",
         "3. Optional: `python3 pipeline/print_qc_commands.py`.",
         "4. Print-first helpers: `F1_diamond.sh` → `F2_eggnog.sh` (= F1 eggNOG step) → `F3_interproscan.sh` → merge.",
+        "5. Add-ons (e.g. AHRD/F4) are optional — skipping them can still be F-L1 if the F1 spine passes; state that in METHODS, or set want_ahrd: false and re-run flow.",
         "",
         "See docs/ROADMAP.md · docs/zh/FAQ_入门.md. Step-1 tool = plan + explain only.",
         "",

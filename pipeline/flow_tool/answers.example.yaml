@@ -1,12 +1,11 @@
 # prefer_fast: true → framework F2 (usually F-L0). Default false = framework F1.
-# structure_grade: your claim only — not auto-read from structure release.
+# structure_grade is self-declared — flow does not read the structure repo.
 # FA flow answers — python3 pipeline/flow_tool/flow.py --answers ...
 
 # Input readiness
 proteins_ready: true
-proteins_provenance: "structure RELEASE_TAG or path/hash"
-structure_grade:  # self-declared (flow does not read the structure repo)
-# structure_grade: L1          # L0 | L1 | L2
+proteins_provenance: "structure RELEASE_TAG or path/hash"  # replace with real TAG/hash
+structure_grade: L1          # L0 | L1 | L2 (your claim only)
 
 # Frame choice
 prefer_fast: false           # true → F2 (emapper±Kofam), skip full IPS for now

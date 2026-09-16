@@ -11,6 +11,8 @@
 
 ---
 
+> 换作物/对照结构三套模拟：结构仓 [`植物三种模拟`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/植物三种模拟.md) · 本仓 [`examples/plant_sim/`](../../examples/plant_sim/)
+
 ## 今天最短路径（先做这个）
 
 | 步 | 打开 | 做什么 |

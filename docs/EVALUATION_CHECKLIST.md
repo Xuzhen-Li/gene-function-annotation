@@ -8,7 +8,7 @@ Full rules: [`EVALUATION.md`](EVALUATION.md). Chinese tick sheet: [`zh/验收勾
 
 - [ ] Gate-F1 Protein provenance (structure TAG or hash)
 - [ ] Gate-F2 F0 protein BUSCO Completeness **+ lineage**
-- [ ] Gate-F3 F1 frame (DIAMOND + eggNOG + IPS) or written waiver
+- [ ] Gate-F3 **frame F1** (DIAMOND + eggNOG + IPS) or written waiver naming alternate **frame**
 - [ ] Gate-F4 Tool + DB versions pinned
 - [ ] Gate-F5 Master TSV count ≈ proteins; drops documented
 - [ ] Gate-F6 `function/release/<TAG>/` pack
@@ -29,7 +29,7 @@ Shelf: [`QUALITY_SOURCES.md`](QUALITY_SOURCES.md).
 - [ ] No CAFA-grade GO claims from BLAST-only
 - [ ] No anonymous proteins without TAG/hash
 
-**Verdict:** status=________ TAG=________ structure TAG=________
+**Verdict:** grade=F-L0|F-L1 status=provisional|qualified frame=F__ TAG=________ structure TAG=________
 
 ## Pack smoke (optional)
 

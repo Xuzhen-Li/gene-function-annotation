@@ -82,10 +82,14 @@ Never replace F1 as the gene-centric master without a documented reason.
 | **F9** | Plant TF / kinase | iTAK | `F9_itak.sh` |
 
 ```text
-Typical plant paper:   F0 → F1 → F4 → (F6) → (F8/F9) → merge → release
-Minimal eukaryote:     F0 → F1 → merge → release
+Default (any clade):   F0 → frame F1 → merge → release
+Plant paper (pick):    F1 required; then F4 / F6 / F8 / F9 only if that figure or species needs them
+  — F8 = NLR candidates/screen, not a curated NLR set; skip if no disease/NLR story
+  — F4/F6/F9 likewise optional — not a higher F-L grade by themselves
 Multi-genome panel:    F7 → F1 on representatives → merge
 ```
+
+Do **not** treat AHRD+Mercator+NLR+iTAK as a plant-genome checklist. `cases/` and grape examples are illustrations, not the only L2/F-L1 template.
 
 ---
 

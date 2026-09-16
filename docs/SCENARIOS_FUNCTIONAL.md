@@ -186,17 +186,15 @@ export PROTEINS_FA="$FUNCTION_DIR/orthofinder/reps.faa"
 ```bash
 # Need InterProScan TSV from F1.3:
 #   $FUNCTION_DIR/interpro/${FUN_PREFIX:-ann}_ips.tsv
-
+# Needs WORK_DIR + REPO_ROOT. No RUN=1 dry mode — missing IPS fails closed.
 bash "$REPO_ROOT/pipeline/F8_run.sh"
+```
 
+### F8 vs structure S7 families (timing — do not conflate)
 
-## F8 — NLR census vs structure S7 families
-
-**Timing (do not conflate):**
-
-1. **Structure S7a (optional, before/during curation):** build `curate/families.tsv` (`gene_id\tNLR`) from HRP / curated lists → `02_priority_loci.py --families` for G9.  
-2. **FA F8 (after InterProScan):** `bash pipeline/F8_run.sh` → `function/nlr/nlr_candidates.tsv` (gene_id + IPS signatures) for the FA release.  
-3. **Loop-back (optional):** if you want FA NLR hits to re-boost structure priority later:
+1. **Structure S7a (optional, before/during curation):** build `curate/families.tsv` (`gene_id\tNLR`) from HRP / curated lists → `02_priority_loci.py --families` for G9.
+2. **FA F8 (after InterProScan):** `bash pipeline/F8_run.sh` → `function/nlr/nlr_candidates.tsv` (gene_id + IPS signatures) for the FA release.
+3. **Loop-back (optional):** convert FA NLR hits for a later structure re-priority:
 
 ```bash
 python3 pipeline/F8b_nlr_to_families.py \
@@ -207,14 +205,8 @@ python3 pipeline/F8b_nlr_to_families.py \
 # python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --families curate/families_from_f8.tsv
 ```
 
-`F8_run.sh` needs `WORK_DIR` + `REPO_ROOT` (and an IPS TSV). It has **no** `RUN=1` dry mode — missing IPS fails closed.
-
-# Optional full-length NB-LRR refinement (HRP):
-# see docs/tools/hrp.md → outputs under $FUNCTION_DIR/nlr/hrp/
-
-# Optional: prioritize NLR loci in curated GFF upstream
-# (gene-structure-annotation pipeline helpers — not mirrored here)
-```
+Optional full-length NB-LRR refinement: [HRP](tools/hrp.md) → `$FUNCTION_DIR/nlr/hrp/`.  
+Optional: prioritize NLR loci in curated GFF upstream (gene-structure-annotation helpers — not mirrored here).
 
 ---
 

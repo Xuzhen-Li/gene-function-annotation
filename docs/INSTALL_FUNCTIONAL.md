@@ -1,5 +1,7 @@
 # Install everything for functional annotation (copy this)
 
+**Tick list (disk + METHODS fields):** [`DB_INSTALL_CHECKLIST.md`](DB_INSTALL_CHECKLIST.md)
+
 Biology-general install. Clone [`gene-function-annotation`](https://github.com/Xuzhen-Li/gene-function-annotation); set `FUN_PREFIX`, BUSCO lineage, and `EGGNOG_TAX_SCOPE` for your species/clade.
 
 You only need this file + `config/example.env` + `pipeline/F*.sh` to run **F1**.  

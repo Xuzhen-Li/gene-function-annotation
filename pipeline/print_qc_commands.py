@@ -56,7 +56,7 @@ def main() -> int:
     work = g(env, "WORK_DIR", "$WORK_DIR")
     proteins = g(env, "PROTEINS_FA", "$PROTEINS_FA")
     fun = g(env, "FUNCTION_DIR", f"{work}/function")
-    lineage = g(env, "BUSCO_LINEAGE_PROTEIN", "eukaryota_odb10")  # PLACEHOLDER — set YOUR lineage
+    lineage = g(env, "BUSCO_LINEAGE_PROTEIN", "YOUR_BUSCO_LINEAGE_odb10")  # PLACEHOLDER — MUST set YOUR lineage
     busco_out = g(env, "BUSCO_OUT", f"{fun}/qc/busco_prot")
     threads = g(env, "THREADS", "16")
     tag = g(env, "RELEASE_TAG", "fun_tag")
@@ -66,7 +66,7 @@ def main() -> int:
     print("# Function QC — print-first")
     print(f"# Target: {args.grade}  ·  docs/EVALUATION_CHECKLIST.md")
     print("# Does not run DIAMOND/eggNOG/IPS for you — prints the spine.")
-    print("# !!! MUST set YOUR BUSCO_LINEAGE_PROTEIN in local.env — default eukaryota_odb10 is a placeholder.")
+    print("# !!! MUST set YOUR BUSCO_LINEAGE_PROTEIN in local.env — default YOUR_* is a placeholder — not a copyable clade.")
     print()
 
     print("## Pack smoke")

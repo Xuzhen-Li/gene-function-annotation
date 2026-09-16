@@ -30,6 +30,8 @@ CAFA-style GO accuracy is a research benchmark (CAFA4 preprint) — **not** what
 | **F-L0 Slim** | `status=provisional` or `frame=F2/F3/F5` | Fast frame only; IPS deferred; or incomplete merge |
 | **F-L1 Qualified** | `status=qualified` | Hard gates below — default paper FA |
 
+Write **`grade=F-L0|F-L1`** and **`status=provisional|qualified`** separately. Do **not** write `status=F-L1`.
+
 Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are METHODS modules on top of F-L1.
 
 ### Background — grades

@@ -44,6 +44,8 @@ else
 
 Fill every FILL before claiming F-L1 (see docs/METHODS_FUNCTIONAL.md).
 
+- Grade / status: grade=F-L0|F-L1 ; status=provisional|qualified (never status=F-L1)
+
 - Protein provenance (Gate-F1): structure RELEASE_TAG or hash/path = FILL
 - DIAMOND software version: FILL ; Swiss-Prot DB release: FILL
 - eggNOG-mapper version: FILL ; eggNOG database: FILL ; tax_scope: FILL ; GO evidence flags: FILL

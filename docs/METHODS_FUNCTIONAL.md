@@ -1,3 +1,4 @@
+<!-- Fill: grade=F-L0|F-L1 ; status=provisional|qualified (never status=F-L1) -->
 # METHODS template — functional annotation
 
 Copy into `work/function/release/<TAG>/METHODS.md` and fill FILLs.  

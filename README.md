@@ -2,6 +2,8 @@
 
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / 与结构的关系 / 怎么跑 / F线）  
 > **English ops:** [`docs/BILINGUAL.md`](docs/BILINGUAL.md)
+> **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — paired with structure (Vitis+NLR / Oryza plain F1 / Solanum+Mercator).
+
 
 ---
 

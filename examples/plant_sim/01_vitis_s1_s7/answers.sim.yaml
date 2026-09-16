@@ -1,0 +1,13 @@
+proteins_ready: true
+proteins_provenance: "Vitis_sim.v0.1"   # must match structure RELEASE_TAG after real run
+structure_grade: L1
+prefer_fast: false
+use_entap: false
+transcriptome_only: false
+want_ahrd: false
+want_mercator: false
+want_orthofinder: false
+want_nlr: true
+want_itak: false
+species_label: "Vitis_vinifera_sim"
+notes: "After structure S1+S7: F1 spine + optional NLR (want_nlr). Default AHRD still off."

@@ -1,0 +1,13 @@
+proteins_ready: true
+proteins_provenance: "Solanum_sim.v0.1"
+structure_grade: L1
+prefer_fast: false
+use_entap: false
+transcriptome_only: false
+want_ahrd: false
+want_mercator: true
+want_orthofinder: false
+want_nlr: false
+want_itak: false
+species_label: "Solanum_lycopersicum_sim"
+notes: "F1 + optional Mercator (MapMan) only — want_ahrd still false."

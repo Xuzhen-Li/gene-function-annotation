@@ -22,7 +22,21 @@ proteins.faa  (from structure release)
 **Not** gene finding / GFF editing — that is upstream  
 [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation).
 
-Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.  
+Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
+
+## F numbering (one glance)
+
+Four namespaces — do not mix them in speech or METHODS:
+
+| Namespace | Examples | Means |
+|-----------|----------|--------|
+| **Framework** | F1 / F2 / F3 / F5 | Which whole annotation *frame* you claim (default **F1** = DIAMOND+eggNOG+IPS) |
+| **Script filenames** | `F1_diamond.sh`, `F2_eggnog.sh`, `F3_interproscan.sh` | Steps *inside* framework F1 (historical names; **F2_eggnog ≠ framework F2**) |
+| **TOOLS cards** | F1a / F1b / F1c | Same three steps as literacy pages (F1b = eggNOG) |
+| **Gates** | Gate-F1 … Gate-F7 | Release hard checks (provenance, BUSCO, versions, row counts, …) |
+
+Full Chinese cheat sheet: [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md). Script renames to semantic names are backlog (②); until then, use this table.
+  
 Full cheat sheet (framework vs scripts vs TOOLS vs checklist gates): Chinese [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
 ---

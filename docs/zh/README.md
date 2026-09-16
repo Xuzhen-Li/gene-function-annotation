@@ -17,10 +17,11 @@
 
 | 步 | 打开 | 做什么 |
 |----|------|--------|
-| 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 搞清：本仓给蛋白贴标签，不改 GFF 坐标 |
-| 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 确认已有 `proteins.faa` → `cp example.env → local.env` → `flow.py` → `my_fa_plan.md` |
-| 3 | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) → [`../TOOLS.md`](../TOOLS.md) → `RUN=1` 跑 F1 三脚本 | 默认 **框架 F1**；脚本名 F2_eggnog = F1 内步，见 FAQ |
-| 4 | [**验收勾选表**](验收勾选表.md)（或英文 [`../EVALUATION_CHECKLIST.md`](../EVALUATION_CHECKLIST.md)） | 勾完才知道 **行不行**；默认目标 **F-L1** |
+| 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 给蛋白贴标签，不改 GFF 坐标 |
+| 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 有 `proteins.faa` → `local.env` → `flow.py` → `my_fa_plan.md` |
+| 3a | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) | **只装库**（当晚无集群可停在「读懂 plan」） |
+| 3b | 按 plan `RUN=1` 跑框架 F1 三脚本 | diamond → `F2_eggnog.sh`（=F1 内步）→ IPS；见 [编号对照](FAQ_入门.md) |
+| 4 | [**验收勾选表**](验收勾选表.md) | 默认目标 **F-L1** |
 
 卡住再查：[04_F线怎么选](04_F线怎么选.md) · [12_常见翻车](12_常见翻车.md) · [99_术语表](99_术语表.md) · **[FAQ_入门.md](FAQ_入门.md)**（**先读 F 编号对照**）
 
@@ -28,7 +29,12 @@
 
 验收命令打印：`python3 pipeline/print_qc_commands.py`（需先 `source config/local.env`）。
 
-**英文操作入口：** [`START_HERE.md`](../START_HERE.md) · [`../../pipeline/flow_tool/`](../../pipeline/flow_tool/) · [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) · [`../TOOLS.md`](../TOOLS.md) · [`../EVALUATION.md`](../EVALUATION.md)
+<details>
+<summary>英文操作入口（折叠）</summary>
+
+[`START_HERE.md`](../START_HERE.md) · [`flow_tool/`](../../pipeline/flow_tool/) · [`TOOLS.md`](../TOOLS.md) · [`EVALUATION.md`](../EVALUATION.md)
+
+</details>
 
 ---
 

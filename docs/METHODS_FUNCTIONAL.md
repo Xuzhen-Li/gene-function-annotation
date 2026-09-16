@@ -24,3 +24,17 @@ completeness was summarized with BUSCO (lineage FILL; mode proteins).
 
 **Do not** claim this repository mirrors another lab’s private pipeline; cite the
 tools and papers above.
+
+
+## Gate-F5 — table accounting (fill before claiming F-L1)
+
+Record numbers from `F_merge_tables.py` stderr / summary (do not invent):
+
+- Input protein count (from `PROTEINS_FA`): FILL
+- Master row count (`functional_master.tsv`): FILL
+- Per-source hit counts (DIAMOND / eggNOG / IPS / …): FILL
+- Genes with ≥1 annotation vs all-empty: FILL / FILL
+- Rows dropped or duplicate `gene_id` rejected: FILL (must be 0 duplicates)
+
+Empty-all or duplicate gene_id must not pass (script exits non-zero).
+

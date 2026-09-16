@@ -4,10 +4,10 @@
 #   set -a && source config/local.env && set +a
 # Does NOT run anything until you sbatch it. Print-first culture still applies inside each script (RUN=1).
 
-#SBATCH --job-name=fa_f1a
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=32G
-#SBATCH --time=12:00:00
+# #SBATCH --job-name=fa_f1a
+# #SBATCH --cpus-per-task=16
+# #SBATCH --mem=32G
+# #SBATCH --time=12:00:00
 # #SBATCH --partition=YOUR_PARTITION
 # set -a && source "$REPO_ROOT/config/local.env" && set +a
 # RUN=1 bash "$REPO_ROOT/pipeline/F1_diamond.sh"

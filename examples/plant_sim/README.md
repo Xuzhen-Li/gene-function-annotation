@@ -1,28 +1,24 @@
-# Plant simulation trio — exercise post-review defaults
+# Plant simulation trio — function side
 
-Three **print-first** plant setups that stress the L1 fixes (TE honesty, lineage placeholders,
-conditional A4, S7 narration, S11 chooser). Paths in `env.snippet` are placeholders — do not
-commit real cluster paths.
+Paired with [gene-structure-annotation `examples/plant_sim/`](https://github.com/Xuzhen-Li/gene-structure-annotation/tree/main/examples/plant_sim) (same folder IDs).
+Paths in `env.snippet` are placeholders — do not commit real cluster paths.
 
-| ID | Species | Structure chooser stress | Function stress |
-|----|---------|--------------------------|-----------------|
-| `01_vitis_s1_s7` | Grape | S1 + S7 overlay; `TRUSTED_TE_LIB`; no forced A4 | F1 + `want_nlr` |
-| `02_oryza_s1` | Rice | S1; non-grape EDTA/lineage (no Vitis `--u`) | Plain F1 |
-| `03_solanum_s11` | Tomato + close ref | **S11** liftover-first | F1 + Mercator |
+| ID | Species | Function stress |
+|----|---------|-----------------|
+| `01_vitis_s1_s7` | Grape | F1 + `want_nlr` (F8) |
+| `02_oryza_s1` | Rice | Plain F1; Add-ons (none) |
+| `03_solanum_s11` | Tomato | F1 + Mercator (F6) |
 
-## Run (structure)
+## Run (function)
 
 ```bash
 cd gene-function-annotation
 for d in examples/plant_sim/01_vitis_s1_s7 examples/plant_sim/02_oryza_s1 examples/plant_sim/03_solanum_s11; do
   python3 pipeline/flow_tool/flow.py --answers "$d/answers.sim.yaml" --emit-commands -o "$d/plan.md"
 done
-# Optional: merge env.snippet into config/local.env, then
+# Optional: merge this folder's env.snippet into config/local.env, then
 # python3 pipeline/print_qc_commands.py
 ```
 
-## Run (function)
-
-Paired with structure `examples/plant_sim/` (same folder names).
-
-These sims do **not** download genomes or run BRAKER/IPS. They only show the plan/QC command surface.
+**Classroom minimum ≠ finish IPS tonight** — see [`docs/START_HERE.md`](../../docs/START_HERE.md).
+These sims do **not** download DBs or run DIAMOND/eggNOG/IPS.

@@ -2,9 +2,8 @@
 
 | File | Role |
 |------|------|
-| `functional_overview_SOURCE.drawio` | Untouched user Co-Scientist figure (style donor) |
-| `functional_overview.drawio` | **Edit this** — same file, labels/modules retargeted to gene-function-annotation; extra cards duplicated in-place |
-| `functional_overview.png` | README render (export from draw.io desktop when CLI fails) |
-| `functional_overview.svg` | Optional vector export |
+| `functional_spine.svg` / `.png` | **Beginner** one-glance spine (zh + root README) |
+| `functional_overview.*` | Advanced playbook (keep; fold on zh entry) |
+| `plant_sim_three_lines.*` | Copy of structure classroom crop lines |
 
-Workflow: change text / swap images / duplicate modules on `functional_overview.drawio` — do not rebuild a new layout from scratch.
+Edit spine SVG, then `rsvg-convert` to PNG. Do not rebuild overview layout from scratch — see prior draw.io notes.

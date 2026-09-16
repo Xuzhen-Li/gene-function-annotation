@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360">
+  <rect width="1100" height="360" fill="#fff"/>
+  <text x="28" y="34" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#111">gene-function-annotation — beginner spine</text>
+  <text x="28" y="56" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#6b7280">Labels on proteins. Not gene finding. Mercator / AHRD / NLR = add-ons after merge.</text>
+
+  <rect x="20" y="90" width="140" height="70" rx="10" fill="#f3f4f6" stroke="#374151" stroke-width="2"/>
+  <text x="90" y="120" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#111">proteins.faa</text>
+  <text x="90" y="142" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#4b5563">structure release</text>
+
+  <rect x="190" y="90" width="110" height="70" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="245" y="120" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#92400e">F0 QC</text>
+  <text x="245" y="142" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#b45309">protein BUSCO</text>
+
+  <rect x="330" y="90" width="200" height="70" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="430" y="118" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#1e3a8a">Framework F1</text>
+  <text x="430" y="140" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#1d4ed8">DIAMOND · eggNOG · IPS</text>
+
+  <rect x="560" y="90" width="130" height="70" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="625" y="120" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#065f46">merge</text>
+  <text x="625" y="142" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#047857">master.tsv</text>
+
+  <rect x="720" y="90" width="160" height="70" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="800" y="118" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#5b21b6">add-ons</text>
+  <text x="800" y="140" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#6d28d9">F4/F6/F8 ingest</text>
+
+  <rect x="910" y="90" width="160" height="70" rx="10" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
+  <text x="990" y="120" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#854d0e">release</text>
+  <text x="990" y="142" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#a16207">+ METHODS · F-L1</text>
+
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6b7280"/></marker></defs>
+  <line x1="160" y1="125" x2="186" y2="125" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="300" y1="125" x2="326" y2="125" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="530" y1="125" x2="556" y2="125" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="690" y1="125" x2="716" y2="125" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="880" y1="125" x2="906" y2="125" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="28" y="200" width="1044" height="120" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+  <text x="48" y="232" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Remember</text>
+  <text x="48" y="258" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons — ingest after merge (web Mercator may submit in parallel with F1).</text>
+  <text x="48" y="282" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#334155">• Script F2_eggnog.sh = eggNOG step inside framework F1 (not fast-frame F2). See README “F numbering”.</text>
+  <text x="48" y="306" font-family="Helvetica,Arial,sans-serif" font-size="12" fill="#64748b">Advanced playbook figure: functional_overview.png (optional after the spine).</text>
+</svg>

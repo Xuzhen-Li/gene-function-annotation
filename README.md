@@ -22,6 +22,8 @@ proteins.faa  (from structure release)
 **Not** gene finding / GFF editing — that is upstream  
 [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation).
 
+![Beginner spine](docs/figures/functional_spine.png)
+
 Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
 
 ## F numbering (one glance)
@@ -36,8 +38,6 @@ Four namespaces — do not mix them in speech or METHODS:
 | **Gates** | Gate-F1 … Gate-F7 | Release hard checks (provenance, BUSCO, versions, row counts, …) |
 
 Full Chinese cheat sheet: [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md). Script renames to semantic names are backlog (②); until then, use this table.
-  
-Full cheat sheet (framework vs scripts vs TOOLS vs checklist gates): Chinese [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
 ---
 
@@ -85,6 +85,11 @@ cp config/example.env config/local.env
 
 More: [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md).
 
-Figure: ![overview](docs/figures/functional_overview.png)
+<details>
+<summary>Advanced overview figure (optional)</summary>
+
+![overview](docs/figures/functional_overview.png)
+
+</details>
 
 **Author:** Xuzhen Li · [ORCID](https://orcid.org/0000-0003-3670-6657)

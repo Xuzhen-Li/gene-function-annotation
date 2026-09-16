@@ -5,13 +5,22 @@
 [English policy](../BILINGUAL.md) · [仓库首页](../../README.md)  
 上游结构教学：[gene-structure-annotation `docs/zh/`](https://github.com/Xuzhen-Li/gene-structure-annotation/tree/main/docs/zh)
 
-![功能注释总览](../figures/functional_overview.png)
+![功能注释简版主线](../figures/functional_spine.png)
 
-命名提醒：`pipeline/F2_eggnog.sh` 是默认 **F1 里的 eggNOG 一步**，不是快框分支 F2。
+读图：`proteins → F0 → 框架 F1 → merge →（加件）→ release`。Mercator/AHRD/NLR 是**加件**，不是第二套框架。
+
+命名提醒：`pipeline/F2_eggnog.sh` 是默认 **F1 里的 eggNOG 一步**，不是快框分支 F2。详见 [编号对照](FAQ_入门.md)。
+
+> 换作物对照：[植物三种模拟（结构仓）](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/植物三种模拟.md) · 图 [`plant_sim_three_lines.png`](../figures/plant_sim_three_lines.png) · 本仓 [`examples/plant_sim/`](../../examples/plant_sim/)
+
+<details>
+<summary>进阶总览大图（可选，信息量大）</summary>
+
+![功能注释进阶总览](../figures/functional_overview.png)
+
+</details>
 
 ---
-
-> 换作物/对照结构三套模拟：结构仓 [`植物三种模拟`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/植物三种模拟.md) · 本仓 [`examples/plant_sim/`](../../examples/plant_sim/)
 
 ## 今天最短路径（先做这个）
 

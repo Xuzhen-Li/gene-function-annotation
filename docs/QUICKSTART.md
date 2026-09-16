@@ -59,7 +59,10 @@ cp config/example.env config/local.env
 | `THREADS` | Cores |
 
 ```bash
+# Edit every /path/to in local.env first (PROTEINS_FA, WORK_DIR, DBs…).
 set -a && source config/local.env && set +a
+case "$WORK_DIR" in /path/to*|*/path/to*) echo "edit WORK_DIR before mkdir"; exit 1;; esac
+case "$FUNCTION_DIR" in /path/to*|*/path/to*) echo "edit FUNCTION_DIR before mkdir"; exit 1;; esac
 mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,merge,qc,release}
 ```
 

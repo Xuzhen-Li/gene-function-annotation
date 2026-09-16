@@ -1,6 +1,6 @@
 # Function flow plan — Oryza_sativa_sim
 
-Generated: 2026-09-16 02:29 UTC
+Generated: 2026-09-16 02:32 UTC
 
 ## Chooser decision
 
@@ -107,7 +107,7 @@ bash pipeline/F3_interproscan.sh
 **Helper:** `pipeline/F_release.sh`
 
 ```bash
-# Print-first: DRY-run first; set RUN=1 only after review (see script header).
+# Needs real inputs (no RUN=1 dry mode). Fails closed if paths/TSVs missing — review script header first.
 bash pipeline/F_release.sh
 ```
 

@@ -189,6 +189,26 @@ export PROTEINS_FA="$FUNCTION_DIR/orthofinder/reps.faa"
 
 bash "$REPO_ROOT/pipeline/F8_run.sh"
 
+
+## F8 — NLR census vs structure S7 families
+
+**Timing (do not conflate):**
+
+1. **Structure S7a (optional, before/during curation):** build `curate/families.tsv` (`gene_id\tNLR`) from HRP / curated lists → `02_priority_loci.py --families` for G9.  
+2. **FA F8 (after InterProScan):** `bash pipeline/F8_run.sh` → `function/nlr/nlr_candidates.tsv` (gene_id + IPS signatures) for the FA release.  
+3. **Loop-back (optional):** if you want FA NLR hits to re-boost structure priority later:
+
+```bash
+python3 pipeline/F8b_nlr_to_families.py \
+  --nlr "$FUNCTION_DIR/nlr/nlr_candidates.tsv" \
+  --out /path/to/structure/curate/families_from_f8.tsv \
+  --family NLR
+# then on structure side:
+# python3 pipeline/02_priority_loci.py -i "$PSAURON_TSV" -o curate/priority.tsv --families curate/families_from_f8.tsv
+```
+
+`F8_run.sh` needs `WORK_DIR` + `REPO_ROOT` (and an IPS TSV). It has **no** `RUN=1` dry mode — missing IPS fails closed.
+
 # Optional full-length NB-LRR refinement (HRP):
 # see docs/tools/hrp.md → outputs under $FUNCTION_DIR/nlr/hrp/
 

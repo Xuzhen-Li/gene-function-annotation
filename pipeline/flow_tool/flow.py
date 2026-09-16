@@ -160,7 +160,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         elif ad == "F7":
             add("F7", "OrthoFinder then FA on reps", "Multi-genome proteins", "OrthoFinder", "Pick representatives; re-enter F1 on reps.", "orthogroups + reps", "pipeline/F7_orthofinder.sh")
         elif ad == "F8":
-            add("F8", "NLR census", "IPS TSV", "IPS filter ± HRP", "Plant resistance-gene list (can run after IPS; often after merge for release).", "NLR list", "pipeline/F8_run.sh")
+            add("F8", "NLR census", "IPS TSV (+ WORK_DIR, REPO_ROOT)", "IPS filter ± HRP", "Requires InterProScan TSV. Writes nlr_candidates.tsv (gene_id + signatures) — NOT structure families.tsv. For structure S7/G9 boost: convert with pipeline/F8b_nlr_to_families.py or see SCENARIOS_FUNCTIONAL §F8 timing.", "function/nlr/nlr_candidates.tsv", "pipeline/F8_run.sh", "Structure S7a wants gene_id\\tNLR families.tsv — different product; convert after F8 if looping back.")
         elif ad == "F9":
             add("F9", "iTAK TF/kinase", "PROTEINS_FA", "iTAK", "Plant TF/kinase classification.", "iTAK table", "pipeline/F9_itak.sh")
 
@@ -255,13 +255,16 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         elif emit_commands and h.endswith(".sh"):
             hp = REPO / h
             if hp.is_file():
-                lines += [
-                    "```bash",
-                    "# Print-first: DRY-run first; set RUN=1 only after review (see script header).",
-                    f"bash {h}",
-                    "```",
-                    "",
-                ]
+                body = hp.read_text(encoding="utf-8", errors="replace")
+                dry = 'RUN' in body and ('RUN:-0' in body or '${RUN' in body or 'RUN:-' in body or '[[ "${RUN' in body)
+                lines.append("```bash")
+                if dry:
+                    lines.append("# Print-first: DRY-run first; set RUN=1 only after review (see script header).")
+                else:
+                    lines.append("# Needs real inputs (no RUN=1 dry mode). Fails closed if paths/TSVs missing — review script header first.")
+                lines.append(f"bash {h}")
+                lines.append("```")
+                lines.append("")
             else:
                 lines += [f"> **emit skipped:** `{h}` not found under repo root.", ""]
     lines += [

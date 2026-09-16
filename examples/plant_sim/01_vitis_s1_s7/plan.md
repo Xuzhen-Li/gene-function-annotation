@@ -1,6 +1,6 @@
 # Function flow plan — Vitis_vinifera_sim
 
-Generated: 2026-09-16 02:29 UTC
+Generated: 2026-09-16 02:32 UTC
 
 ## Chooser decision
 
@@ -96,18 +96,20 @@ bash pipeline/F3_interproscan.sh
 
 ### 6. F8 — NLR census
 
-**Input:** IPS TSV
+**Input:** IPS TSV (+ WORK_DIR, REPO_ROOT)
 
 **Software & purpose:** IPS filter ± HRP
 
-**Process:** Plant resistance-gene list (can run after IPS; often after merge for release).
+**Process:** Requires InterProScan TSV. Writes nlr_candidates.tsv (gene_id + signatures) — NOT structure families.tsv. For structure S7/G9 boost: convert with pipeline/F8b_nlr_to_families.py or see SCENARIOS_FUNCTIONAL §F8 timing.
 
-**Output:** NLR list
+**Output:** function/nlr/nlr_candidates.tsv
 
 **Helper:** `pipeline/F8_run.sh`
 
+**Also see:** Structure S7a wants gene_id\tNLR families.tsv — different product; convert after F8 if looping back.
+
 ```bash
-# Print-first: DRY-run first; set RUN=1 only after review (see script header).
+# Needs real inputs (no RUN=1 dry mode). Fails closed if paths/TSVs missing — review script header first.
 bash pipeline/F8_run.sh
 ```
 
@@ -124,7 +126,7 @@ bash pipeline/F8_run.sh
 **Helper:** `pipeline/F_release.sh`
 
 ```bash
-# Print-first: DRY-run first; set RUN=1 only after review (see script header).
+# Needs real inputs (no RUN=1 dry mode). Fails closed if paths/TSVs missing — review script header first.
 bash pipeline/F_release.sh
 ```
 

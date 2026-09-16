@@ -126,5 +126,6 @@ Naming quirk (historical): script `F2_eggnog.sh` is the **eggNOG step inside F1*
 | [`SCENARIOS_FUNCTIONAL.md`](SCENARIOS_FUNCTIONAL.md) | Situation recipes |
 | [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) | DBs / tools |
 | [`DB_INSTALL_CHECKLIST.md`](DB_INSTALL_CHECKLIST.md) | F1 DB tick list + disk / METHODS fields |
+| [`POST_STRUCTURE.md`](POST_STRUCTURE.md) | One-page proteins → DB → F1 → release |
 | [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
 | [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md) | Allowlisted FA standards |

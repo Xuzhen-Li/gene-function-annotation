@@ -29,7 +29,7 @@
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 给蛋白贴标签，不改 GFF 坐标 |
 | 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 有 `proteins.faa` → `local.env` → `flow.py` → `my_fa_plan.md` |
 | 3a | 读 plan + [FAQ 编号](FAQ_入门.md) + 磁盘/DB 清单 | **课堂默认可停这里**（无集群/无 IPS 也诚实） |
-| 3b | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) | 有盘再装库 |
+| 3b | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) · 勾选 [`DB_INSTALL_CHECKLIST.md`](DB_INSTALL_CHECKLIST.md) | 有盘再装库 |
 | 3c | 按 plan `RUN=1` 跑框架 F1 | diamond → `F2_eggnog.sh`（=F1 内步）→ IPS；见 [编号对照](FAQ_入门.md) |
 | 4 | [**验收勾选表**](验收勾选表.md) | 认清 **F-L1** 档位（≠今晚必交满跑） |
 
@@ -71,6 +71,16 @@
 | 99 | [99_术语表.md](99_术语表.md) | 术语 |
 
 > 课 00 / 13–15 是 **WHY 层**。操作与门禁仍以英文为准。
+
+
+## 英文助手中文指针（3–5 行）
+
+| 指针 | 对应英文 |
+|------|----------|
+| [DB_INSTALL_CHECKLIST.md](DB_INSTALL_CHECKLIST.md) | F1 装库勾选 |
+| [golden_pack.md](golden_pack.md) | FA 放行包长什么样 |
+
+英文一页路径：[`../POST_STRUCTURE.md`](../POST_STRUCTURE.md)。
 
 ## 一句话自测
 

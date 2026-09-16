@@ -6,10 +6,11 @@ You want **protein labels** (names / GO-ish / domains), not new exon coordinates
 
 1. Confirm you have `proteins.faa` from a structure release (TAG or hash).  
 2. Flow tool → [`../pipeline/flow_tool/README.md`](../pipeline/flow_tool/README.md)  
-3. Install DBs → [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) · per-tool pages → [`TOOLS.md`](TOOLS.md)  
+3. Install DBs → [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) · tick [`DB_INSTALL_CHECKLIST.md`](DB_INSTALL_CHECKLIST.md) · per-tool → [`TOOLS.md`](TOOLS.md)  
 4. Tick [`EVALUATION_CHECKLIST.md`](EVALUATION_CHECKLIST.md)  
    (Chinese: [`zh/验收勾选表.md`](zh/验收勾选表.md); full: [`EVALUATION.md`](EVALUATION.md))  
 5. Optional: `python3 pipeline/print_qc_commands.py`
+6. One-page after structure: [`POST_STRUCTURE.md`](POST_STRUCTURE.md)
 
 One-sentence test: *Do I already have stable proteins?*  
 No → [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-annotation). Yes → this repo (default **F1**).

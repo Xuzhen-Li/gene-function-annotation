@@ -84,6 +84,7 @@ cp config/example.env config/local.env
 | QC methods / papers | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
 | Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| **After structure (one-pager)** | [`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md) |
 
 More: [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md).
 

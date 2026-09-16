@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
-"""Print recommended function QC / F0–F1 commands (print-first).
-
-Maps to docs/EVALUATION_CHECKLIST.md / docs/QUALITY_SOURCES.md.
-
-Usage:
-  set -a && source config/local.env && set +a
-  python3 pipeline/print_qc_commands.py
-  python3 pipeline/print_qc_commands.py --env config/example.env
-"""
+"""Print recommended function QC / F0–F1 commands (print-first)."""
 from __future__ import annotations
 
 import argparse
@@ -41,9 +33,20 @@ def load_env(path: Path | None) -> dict[str, str]:
     return env
 
 
-def g(env: dict[str, str], key: str, default: str = "/path/to/…") -> str:
+def g(env: dict[str, str], key: str, default: str = "") -> str:
     v = env.get(key, "").strip()
     return v if v else default
+
+
+def is_placeholder(v: str) -> bool:
+    if not v:
+        return True
+    low = v.lower()
+    if "/path/to" in low or v.startswith("/path/"):
+        return True
+    if "your_" in low or "YOUR_" in v:
+        return True
+    return False
 
 
 def main() -> int:
@@ -55,66 +58,62 @@ def main() -> int:
 
     work = g(env, "WORK_DIR", "$WORK_DIR")
     proteins = g(env, "PROTEINS_FA", "$PROTEINS_FA")
-    fun = g(env, "FUNCTION_DIR", f"{work}/function")
-    lineage = g(env, "BUSCO_LINEAGE_PROTEIN", "YOUR_BUSCO_LINEAGE_odb10")  # PLACEHOLDER — MUST set YOUR lineage
+    fun = g(env, "FUNCTION_DIR", f"{work}/function" if work and not work.startswith("$") else "$FUNCTION_DIR")
+    lineage = g(env, "BUSCO_LINEAGE_PROTEIN", "")
     busco_out = g(env, "BUSCO_OUT", f"{fun}/qc/busco_prot")
     threads = g(env, "THREADS", "16")
     tag = g(env, "RELEASE_TAG", "fun_tag")
     release = f"{fun}/release/{tag}"
     diamond = g(env, "DIAMOND_DB", "$DIAMOND_DB")
 
+    bad = []
+    for label, val in [
+        ("WORK_DIR", work),
+        ("PROTEINS_FA", proteins),
+        ("FUNCTION_DIR", fun),
+        ("BUSCO_LINEAGE_PROTEIN", lineage),
+        ("DIAMOND_DB", diamond),
+    ]:
+        if is_placeholder(val) or val.startswith("$"):
+            bad.append(f"{label}={val or '(empty)'}")
+    if lineage and re.search(r"(?i)^eukaryota", lineage):
+        bad.append(f"BUSCO_LINEAGE_PROTEIN={lineage} (bare eukaryota anti-pattern)")
+
     print("# Function QC — print-first")
     print(f"# Target: {args.grade}  ·  docs/EVALUATION_CHECKLIST.md")
-    print("# Does not run DIAMOND/eggNOG/IPS for you — prints the spine.")
-    print("# !!! MUST set YOUR BUSCO_LINEAGE_PROTEIN in local.env — default YOUR_* is a placeholder — not a copyable clade.")
+    print("# Bare bash pipeline/F*.sh without RUN=1 is DRY (may still refuse placeholders).")
     print()
+
+    if bad:
+        print("# [STOP] Placeholders / unset — do NOT paste mkdir/busco/F* RUN=1 yet:")
+        for b in bad:
+            print(f"#   - {b}")
+        print("# Edit config/local.env to real paths + clade lineage, then re-run this printer.")
+        print("# Gate-F1 reminder: PROTEINS_FA must be structure release/<TAG>/proteins.faa (or hash in METHODS)")
+        return 0
 
     print("## Pack smoke")
     print(f"python3 pipeline/check_release_pack.py {release}")
     print()
-
-    print("## Gate-F1 — protein provenance (hard)")
+    print("## Gate-F1 — protein provenance")
     print(f"# PROTEINS_FA={proteins}")
-    print("# Confirm structure RELEASE_TAG or hash is in METHODS")
     print()
-
-    print("## Gate-F2 — F0 protein BUSCO (hard)")
+    print("## Gate-F2 — F0 protein BUSCO")
     print(f"mkdir -p {busco_out}")
     print(f"busco -i {proteins} -l {lineage} -o $(basename {busco_out}) \\")
     print(f"  --out_path $(dirname {busco_out}) -m proteins -c {threads}")
-    print("# Record Completeness + lineage name; catastrophic → fix structure first")
     print()
-
-    print("## Gate-F3 — F1 frame (hard) or waiver")
-    print(f"# DIAMOND vs Swiss-Prot: DIAMOND_DB={diamond}")
-    print("bash pipeline/F1_diamond.sh      # after sourcing local.env")
-    print("bash pipeline/F2_eggnog.sh        # writes $FUNCTION_DIR/emapper/  (F1 step, not fast-frame F2)")
-    print("# needs INTERPROSCAN_HOME=.../interproscan  (dir with interproscan.sh)")
-    print("bash pipeline/F3_interproscan.sh")
+    print("## Gate-F3 — framework F1 scripts")
+    print(f"# DIAMOND_DB={diamond}")
+    print("RUN=1 bash pipeline/F1_diamond.sh")
+    print("RUN=1 bash pipeline/F2_eggnog.sh   # F1 inner step, not fast-frame F2")
+    print("RUN=1 bash pipeline/F3_interproscan.sh")
     print('python3 pipeline/F_merge_tables.py \\')
     print(f'  --proteins "{proteins}" \\')
     print(f'  --emapper "{fun}/emapper/${{FUN_PREFIX:-ann}}_fun.emapper.annotations" \\')
     print(f'  --ips "{fun}/interpro/${{FUN_PREFIX:-ann}}_ips.tsv" \\')
     print(f'  --diamond "{fun}/diamond/swissprot.tsv" \\')
     print(f'  --out "{fun}/merge/functional_master.tsv"')
-    print("# Or written waiver naming alternate frames F2/F3/F5")
-    print()
-
-    print("## Gate-F4–Gate-F6 — versions, master count, release")
-    print("bash pipeline/F_release.sh")
-    print("# METHODS: tool + DB versions (Gate-F4); master rows ≈ proteins (Gate-F5); release/<TAG>/ (Gate-F6)")
-    print()
-
-    print("## Gate-F7 — hygiene (hard, checklist)")
-    print("# No private BAM/FASTQ / multi-GB DBs in release")
-    print()
-    print("## Soft")
-    print("# Hit / domain coverage narrative (clade-aware)")
-    print("# Domain-only vs GO-empty if relevant")
-    print("# Shelf: docs/QUALITY_SOURCES.md")
-    print()
-
-    print("## Finish — tick docs/zh/验收勾选表.md")
     return 0
 
 

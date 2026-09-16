@@ -57,10 +57,12 @@ cp pipeline/flow_tool/answers.example.yaml my_answers.yaml
 python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 ```
 
-### 3. Install DBs → run F1 → release
+### 3. Plan tonight; run when you have DBs + compute
 
-[`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) → follow `my_fa_plan.md` →  
-tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). Default bar **F-L1**.
+**Classroom / honest stop:** finish `my_fa_plan.md` (± list DB disk paths). That is enough for tonight without InterProScan.
+
+**When ready:** [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) → `RUN=1` framework F1 →  
+tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) (full rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)). **F-L1** is the acceptance *bar*, not “must finish IPS tonight.”
 
 ```bash
 cp config/example.env config/local.env

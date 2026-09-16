@@ -1,6 +1,6 @@
 # Function flow plan — Vitis_vinifera_sim
 
-Generated: 2026-09-16 02:32 UTC
+Generated: 2026-09-16 03:23 UTC
 
 ## Chooser decision
 
@@ -94,7 +94,7 @@ bash pipeline/F3_interproscan.sh
 
 **Helper:** `pipeline/F_merge_tables.py`
 
-### 6. F8 — NLR census
+### 6. F8 — NLR candidates / screen
 
 **Input:** IPS TSV (+ WORK_DIR, REPO_ROOT)
 

@@ -160,7 +160,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         elif ad == "F7":
             add("F7", "OrthoFinder then FA on reps", "Multi-genome proteins", "OrthoFinder", "Pick representatives; re-enter F1 on reps.", "orthogroups + reps", "pipeline/F7_orthofinder.sh")
         elif ad == "F8":
-            add("F8", "NLR census", "IPS TSV (+ WORK_DIR, REPO_ROOT)", "IPS filter ± HRP", "Requires InterProScan TSV. Writes nlr_candidates.tsv (gene_id + signatures) — NOT structure families.tsv. For structure S7/G9 boost: convert with pipeline/F8b_nlr_to_families.py or see SCENARIOS_FUNCTIONAL §F8 timing.", "function/nlr/nlr_candidates.tsv", "pipeline/F8_run.sh", "Structure S7a wants gene_id\\tNLR families.tsv — different product; convert after F8 if looping back.")
+            add("F8", "NLR candidates / screen", "IPS TSV (+ WORK_DIR, REPO_ROOT)", "IPS filter ± HRP", "Requires InterProScan TSV. Writes nlr_candidates.tsv (gene_id + signatures) — NOT structure families.tsv. For structure S7/G9 boost: convert with pipeline/F8b_nlr_to_families.py or see SCENARIOS_FUNCTIONAL §F8 timing.", "function/nlr/nlr_candidates.tsv", "pipeline/F8_run.sh", "Structure S7a wants gene_id\\tNLR families.tsv — different product; convert after F8 if looping back.")
         elif ad == "F9":
             add("F9", "iTAK TF/kinase", "PROTEINS_FA", "iTAK", "Plant TF/kinase classification.", "iTAK table", "pipeline/F9_itak.sh")
 

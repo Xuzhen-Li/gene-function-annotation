@@ -1,6 +1,6 @@
 # Function flow plan — Oryza_sativa_sim
 
-Generated: 2026-09-16 02:21 UTC
+Generated: 2026-09-16 02:29 UTC
 
 ## Chooser decision
 
@@ -84,11 +84,11 @@ bash pipeline/F3_interproscan.sh
 
 ### 5. merge — Merge → master TSV
 
-**Input:** Per-tool tables
+**Input:** Per-tool F1 tables (DIAMOND / eggNOG / IPS)
 
 **Software & purpose:** F_merge_tables.py — gene-centric join.
 
-**Process:** Require row count ≈ proteins; document drops.
+**Process:** Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.
 
 **Output:** function/merge/functional_master.tsv
 
@@ -96,11 +96,11 @@ bash pipeline/F3_interproscan.sh
 
 ### 6. release — Package FA release
 
-**Input:** master TSV + proteins + METHODS
+**Input:** master TSV (± MapMan/AHRD) + proteins + METHODS
 
 **Software & purpose:** F_release.sh
 
-**Process:** Tick docs/EVALUATION.md F-L0/F-L1 gates.
+**Process:** Tick docs/EVALUATION.md F-L0/F-L1 gates. If Mercator ran, prefer the with_mapman master for release.
 
 **Output:** function/release/<TAG>/
 

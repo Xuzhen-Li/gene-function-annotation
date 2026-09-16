@@ -1,6 +1,6 @@
 # Function flow plan — Vitis_vinifera_sim
 
-Generated: 2026-09-16 02:21 UTC
+Generated: 2026-09-16 02:29 UTC
 
 ## Chooser decision
 
@@ -82,13 +82,25 @@ bash pipeline/F2_eggnog.sh
 bash pipeline/F3_interproscan.sh
 ```
 
-### 5. F8 — NLR census
+### 5. merge — Merge → master TSV
+
+**Input:** Per-tool F1 tables (DIAMOND / eggNOG / IPS)
+
+**Software & purpose:** F_merge_tables.py — gene-centric join.
+
+**Process:** Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.
+
+**Output:** function/merge/functional_master.tsv
+
+**Helper:** `pipeline/F_merge_tables.py`
+
+### 6. F8 — NLR census
 
 **Input:** IPS TSV
 
 **Software & purpose:** IPS filter ± HRP
 
-**Process:** Plant resistance-gene list.
+**Process:** Plant resistance-gene list (can run after IPS; often after merge for release).
 
 **Output:** NLR list
 
@@ -99,25 +111,13 @@ bash pipeline/F3_interproscan.sh
 bash pipeline/F8_run.sh
 ```
 
-### 6. merge — Merge → master TSV
-
-**Input:** Per-tool tables
-
-**Software & purpose:** F_merge_tables.py — gene-centric join.
-
-**Process:** Require row count ≈ proteins; document drops.
-
-**Output:** function/merge/functional_master.tsv
-
-**Helper:** `pipeline/F_merge_tables.py`
-
 ### 7. release — Package FA release
 
-**Input:** master TSV + proteins + METHODS
+**Input:** master TSV (± MapMan/AHRD) + proteins + METHODS
 
 **Software & purpose:** F_release.sh
 
-**Process:** Tick docs/EVALUATION.md F-L0/F-L1 gates.
+**Process:** Tick docs/EVALUATION.md F-L0/F-L1 gates. If Mercator ran, prefer the with_mapman master for release.
 
 **Output:** function/release/<TAG>/
 

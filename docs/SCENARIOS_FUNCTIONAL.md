@@ -153,7 +153,7 @@ echo "Keep Trinotate_report.tsv beside functional_master in the release folder."
 
 python3 "$REPO_ROOT/pipeline/F6_ingest_mercator.py" \
   --master "$FUNCTION_DIR/merge/functional_master.tsv" \
-  --mercator "$FUNCTION_DIR/mercator/mercator_results.txt" \
+  --mercator-dir "$FUNCTION_DIR/mercator" \
   --out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
 
 cp "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv" \

@@ -93,9 +93,9 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         ]
     stages = []
 
-    def add(sid, title, inputs, software, process, outputs, helper="", note=""):
-        # helper = one path only (for --emit-commands). Extra docs go in note.
-        stages.append(dict(id=sid, title=title, inputs=inputs, software=software, process=process, outputs=outputs, helper=helper, note=note))
+    def add(sid, title, inputs, software, process, outputs, helper="", note="", emit=""):
+        # helper = one path; note = extra docs; emit = optional full command for --emit-commands
+        stages.append(dict(id=sid, title=title, inputs=inputs, software=software, process=process, outputs=outputs, helper=helper, note=note, emit=emit))
 
     add(
         "F0",
@@ -119,33 +119,57 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
     elif fr == "F5":
         add("F5", "Trinotate transcriptome frame", "Trinity CDS/peptides", "Trinotate", "Transcriptome FA; optional still run F1 on peptides.", "Trinotate report", "docs/tools/trinotate.md")
 
+    add(
+        "merge",
+        "Merge → master TSV",
+        "Per-tool F1 tables (DIAMOND / eggNOG / IPS)",
+        "F_merge_tables.py — gene-centric join.",
+        "Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.",
+        "function/merge/functional_master.tsv",
+        "pipeline/F_merge_tables.py",
+    )
+
+    # Add-ons AFTER merge when they join/ingest onto master (F4/F6) or consume F1 outputs
     for ad in choice["addons"]:
         if ad == "F4":
-            add("F4", "AHRD readable names", "DIAMOND/blast tables", "AHRD — human-readable gene names for papers.", "Join into master via F4_join_ahrd.py.", "AHRD table", "pipeline/F4_run_ahrd.md")
+            add(
+                "F4",
+                "AHRD readable names",
+                "functional_master.tsv + DIAMOND/blast tables",
+                "AHRD — human-readable gene names for papers.",
+                "Join into master via F4_join_ahrd.py (after merge).",
+                "AHRD-enriched table",
+                "pipeline/F4_run_ahrd.md",
+            )
         elif ad == "F6":
-            add("F6", "Mercator4 MapMan BINs", "PROTEINS_FA", "Mercator4 — plant pathway BINs.", "Ingest with F6_ingest_mercator.py.", "MapMan table", "pipeline/F6_ingest_mercator.py")
+            add(
+                "F6",
+                "Mercator4 MapMan BINs (ingest)",
+                "functional_master.tsv + Mercator result dir",
+                "Mercator4 web job can run in parallel with F1; ingest must be AFTER merge.",
+                "Unpack results under $FUNCTION_DIR/mercator/; then "
+                "python3 pipeline/F6_ingest_mercator.py --mercator-dir $FUNCTION_DIR/mercator "
+                "--master $FUNCTION_DIR/merge/functional_master.tsv --out …",
+                "master + mapman_bin (or with_mapman table)",
+                "pipeline/F6_ingest_mercator.py",
+                "docs/tools/mercator.md · docs/FUNCTIONAL_GUIDE.md F6",
+                'python3 pipeline/F6_ingest_mercator.py --mercator-dir "$FUNCTION_DIR/mercator" '
+                '--master "$FUNCTION_DIR/merge/functional_master.tsv" '
+                '--out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"',
+            )
         elif ad == "F7":
             add("F7", "OrthoFinder then FA on reps", "Multi-genome proteins", "OrthoFinder", "Pick representatives; re-enter F1 on reps.", "orthogroups + reps", "pipeline/F7_orthofinder.sh")
         elif ad == "F8":
-            add("F8", "NLR census", "IPS TSV", "IPS filter ± HRP", "Plant resistance-gene list.", "NLR list", "pipeline/F8_run.sh")
+            add("F8", "NLR census", "IPS TSV", "IPS filter ± HRP", "Plant resistance-gene list (can run after IPS; often after merge for release).", "NLR list", "pipeline/F8_run.sh")
         elif ad == "F9":
             add("F9", "iTAK TF/kinase", "PROTEINS_FA", "iTAK", "Plant TF/kinase classification.", "iTAK table", "pipeline/F9_itak.sh")
 
     add(
-        "merge",
-        "Merge → master TSV",
-        "Per-tool tables",
-        "F_merge_tables.py — gene-centric join.",
-        "Require row count ≈ proteins; document drops.",
-        "function/merge/functional_master.tsv",
-        "pipeline/F_merge_tables.py",
-    )
-    add(
         "release",
         "Package FA release",
-        "master TSV + proteins + METHODS",
+        "master TSV (± MapMan/AHRD) + proteins + METHODS",
         "F_release.sh",
-        "Tick docs/EVALUATION.md F-L0/F-L1 gates.",
+        "Tick docs/EVALUATION.md F-L0/F-L1 gates. If Mercator ran, prefer the with_mapman master for release.",
         "function/release/<TAG>/",
         "pipeline/F_release.sh",
     )
@@ -219,7 +243,16 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         if note:
             lines.append(f"**Also see:** {note}")
             lines.append("")
-        if emit_commands and h.endswith(".sh"):
+        emit_cmd = str(st.get("emit") or "").strip()
+        if emit_commands and emit_cmd:
+            lines += [
+                "```bash",
+                "# Print-first: review before running on cluster.",
+                emit_cmd,
+                "```",
+                "",
+            ]
+        elif emit_commands and h.endswith(".sh"):
             hp = REPO / h
             if hp.is_file():
                 lines += [

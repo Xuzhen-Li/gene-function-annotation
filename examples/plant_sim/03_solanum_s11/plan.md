@@ -1,6 +1,6 @@
 # Function flow plan — Solanum_lycopersicum_sim
 
-Generated: 2026-09-16 02:21 UTC
+Generated: 2026-09-16 02:29 UTC
 
 ## Chooser decision
 
@@ -82,37 +82,44 @@ bash pipeline/F2_eggnog.sh
 bash pipeline/F3_interproscan.sh
 ```
 
-### 5. F6 — Mercator4 MapMan BINs
+### 5. merge — Merge → master TSV
 
-**Input:** PROTEINS_FA
-
-**Software & purpose:** Mercator4 — plant pathway BINs.
-
-**Process:** Ingest with F6_ingest_mercator.py.
-
-**Output:** MapMan table
-
-**Helper:** `pipeline/F6_ingest_mercator.py`
-
-### 6. merge — Merge → master TSV
-
-**Input:** Per-tool tables
+**Input:** Per-tool F1 tables (DIAMOND / eggNOG / IPS)
 
 **Software & purpose:** F_merge_tables.py — gene-centric join.
 
-**Process:** Require row count ≈ proteins; document drops.
+**Process:** Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.
 
 **Output:** function/merge/functional_master.tsv
 
 **Helper:** `pipeline/F_merge_tables.py`
 
+### 6. F6 — Mercator4 MapMan BINs (ingest)
+
+**Input:** functional_master.tsv + Mercator result dir
+
+**Software & purpose:** Mercator4 web job can run in parallel with F1; ingest must be AFTER merge.
+
+**Process:** Unpack results under $FUNCTION_DIR/mercator/; then python3 pipeline/F6_ingest_mercator.py --mercator-dir $FUNCTION_DIR/mercator --master $FUNCTION_DIR/merge/functional_master.tsv --out …
+
+**Output:** master + mapman_bin (or with_mapman table)
+
+**Helper:** `pipeline/F6_ingest_mercator.py`
+
+**Also see:** docs/tools/mercator.md · docs/FUNCTIONAL_GUIDE.md F6
+
+```bash
+# Print-first: review before running on cluster.
+python3 pipeline/F6_ingest_mercator.py --mercator-dir "$FUNCTION_DIR/mercator" --master "$FUNCTION_DIR/merge/functional_master.tsv" --out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
+```
+
 ### 7. release — Package FA release
 
-**Input:** master TSV + proteins + METHODS
+**Input:** master TSV (± MapMan/AHRD) + proteins + METHODS
 
 **Software & purpose:** F_release.sh
 
-**Process:** Tick docs/EVALUATION.md F-L0/F-L1 gates.
+**Process:** Tick docs/EVALUATION.md F-L0/F-L1 gates. If Mercator ran, prefer the with_mapman master for release.
 
 **Output:** function/release/<TAG>/
 

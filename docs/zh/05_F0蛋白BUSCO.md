@@ -1,6 +1,6 @@
 # F0：蛋白 BUSCO（开工前的急刹车）
 
-英文：[`../STAGE_IO.md`](../STAGE_IO.md) · [`../FUNCTIONAL_GUIDE.md`](../FUNCTIONAL_GUIDE.md) · EVALUATION 门 F2
+英文：[`../STAGE_IO.md`](../STAGE_IO.md) · [`../FUNCTIONAL_GUIDE.md`](../FUNCTIONAL_GUIDE.md) · EVALUATION Gate-F2
 
 ## 为什么
 

@@ -78,7 +78,7 @@ Never replace F1 as the gene-centric master without a documented reason.
 | **F4** | Readable gene names | AHRD names joined | `F4_run_ahrd.md` · `F4_join_ahrd.py` (± PANNZER `F4b`) |
 | **F6** | Plant MapMan BINs | Mercator4 ingest | `F6_ingest_mercator.py` |
 | **F7** | Multi-genome orthologs first | OrthoFinder reps → then F1 | `F7_orthofinder.sh` |
-| **F8** | Plant NLR census | IPS filter ± HRP | `F8_run.sh` |
+| **F8** | Plant NLR candidates / screen | IPS filter ± HRP | `F8_run.sh` |
 | **F9** | Plant TF / kinase | iTAK | `F9_itak.sh` |
 
 ```text

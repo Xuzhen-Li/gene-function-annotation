@@ -297,7 +297,7 @@ def render(a, choice, stages, emit_commands: bool) -> str:
                 if dry:
                     lines.append("# Print-first: DRY-run first; set RUN=1 only after review (see script header).")
                 else:
-                    lines.append("# Needs real inputs (no RUN=1 dry mode). Fails closed if paths/TSVs missing — review script header first.")
+                    lines.append("# Needs real inputs — 无 DRY/RUN 开关；假路径会直接失败。Review script header before paste.")
                 lines.append(f"bash {h}")
                 lines.append("```")
                 lines.append("")

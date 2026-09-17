@@ -28,21 +28,6 @@ Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, n
 
 **One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone tree).
 
-## F numbering (one glance)
-
-Four namespaces — do not mix them in speech or METHODS:
-
-| Namespace | Examples | Means |
-|-----------|----------|--------|
-| **Framework** | F1 / F2 / F3 / F5 | Which whole annotation *frame* you claim (default **F1** = DIAMOND+eggNOG+IPS) |
-| **Script filenames** | `F1_diamond.sh`, `F2_eggnog.sh`, `F3_interproscan.sh` | Steps *inside* framework F1 (historical names; **F2_eggnog ≠ framework F2**) |
-| **TOOLS cards** | F1a / F1b / F1c | Same three steps as literacy pages (F1b = eggNOG) |
-| **Gates** | Gate-F1 … Gate-F7 | Release hard checks (provenance, BUSCO, versions, row counts, …) |
-
-Full Chinese cheat sheet: [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md). Script renames to semantic names are backlog (②); until then, use this table.
-
----
-
 ## Three steps (start here)
 
 ### 1. You already have proteins
@@ -74,6 +59,22 @@ cp config/example.env config/local.env
 # set DIAMOND_DB, EGGNOG_*, INTERPROSCAN_HOME, BUSCO_LINEAGE_PROTEIN, …
 ```
 
+<details>
+<summary>F numbering (one glance) — expand if namespaces collide</summary>
+
+Four namespaces — do not mix them in speech or METHODS:
+
+| Namespace | Examples | Means |
+|-----------|----------|--------|
+| **Framework** | F1 / F2 / F3 / F5 | Which whole annotation *frame* you claim (default **F1** = DIAMOND+eggNOG+IPS) |
+| **Script filenames** | `F1_diamond.sh`, `F2_eggnog.sh`, `F3_interproscan.sh` | Steps *inside* framework F1 (historical names; **F2_eggnog ≠ framework F2**) |
+| **TOOLS cards** | F1a / F1b / F1c | Same three steps as literacy pages (F1b = eggNOG) |
+| **Gates** | Gate-F1 … Gate-F7 | Release hard checks (provenance, BUSCO, versions, row counts, …) |
+
+Full Chinese cheat sheet: [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md). Script renames to semantic names are backlog (②); until then, use this table.
+
+</details>
+
 ---
 
 ## Docs (when needed)
@@ -81,17 +82,25 @@ cp config/example.env config/local.env
 | Need | Open |
 |------|------|
 | Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
-| Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/tools/`](docs/tools/) |
 | Start here | [`docs/START_HERE.md`](docs/START_HERE.md) |
 | Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
-| Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · tick list [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) · [`docs/EVALUATION.md`](docs/EVALUATION.md) |
-| QC methods / papers | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
-| Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
-| Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · tick list [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) |
 | **After structure (one-pager)** | [`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md) |
-| Mercator4 web — when (F6) | [`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md) |
+| Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 
-More: [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md).
+<details>
+<summary>More docs</summary>
+
+| Need | Open |
+|------|------|
+| Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/tools/`](docs/tools/) |
+| Full evaluation rules | [`docs/EVALUATION.md`](docs/EVALUATION.md) |
+| QC methods / papers | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |
+| Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
+| Mercator4 web — when (F6) | [`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md) |
+| Tutorials · recent high-quality | [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md) |
+
+</details>
 
 <details>
 <summary>Advanced overview figure (optional)</summary>

@@ -22,7 +22,7 @@ _gfa_reject_busco_lineage() {
       ;;
   esac
   if [[ "$val" == eukaryota* || "$val" == *eukaryota_odb* ]]; then
-    echo "[ERR] BUSCO_LINEAGE_PROTEIN=$val bare eukaryota anti-pattern" >&2
+    echo "[ERR] BUSCO_LINEAGE_PROTEIN=$val is too broad — set a clade lineage (not bare eukaryota_*)" >&2
     return 1
   fi
   return 0

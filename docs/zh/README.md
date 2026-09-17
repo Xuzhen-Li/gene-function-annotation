@@ -26,7 +26,7 @@
 
 | 步 | 打开 | 做什么 |
 |----|------|--------|
-| 0 | [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) **或** 本仓口播页 | 打开口检页（Wiki 可选） |
+| 0 | [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) **或** [02_和结构注释的关系.md](02_和结构注释的关系.md) | 打开口检页（Wiki 可选；02 可离线） |
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 给蛋白贴标签，不改 GFF 坐标 |
 | 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 有 `proteins.faa` → `local.env` → `flow.py` → `my_fa_plan.md` |
 | 3a | 读 plan + [FAQ 编号](FAQ_入门.md) + 磁盘/DB 清单 | **课堂默认可停这里**（无集群/无 IPS 也诚实） |

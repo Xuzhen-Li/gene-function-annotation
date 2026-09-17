@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# eggNOG-mapper (frame F1 step / TOOLS F1b). Set RUN=1 to execute.
+# eggNOG-mapper — F1框架第二步；历史文件名仍叫 F2（= TOOLS F1b）。Set RUN=1 to execute.
 # Needs emapper.py on PATH or EGGNOG_SIF.
 # Canonical flags (also documented in docs/FUNCTIONAL_GUIDE.md F1.2):
 #   --go_evidence non-electronic

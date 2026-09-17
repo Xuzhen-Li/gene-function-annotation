@@ -77,7 +77,7 @@ def main() -> int:
         if is_placeholder(val) or val.startswith("$"):
             bad.append(f"{label}={val or '(empty)'}")
     if lineage and re.search(r"(?i)^eukaryota", lineage):
-        bad.append(f"BUSCO_LINEAGE_PROTEIN={lineage} (bare eukaryota anti-pattern)")
+        bad.append(f"BUSCO_LINEAGE_PROTEIN={lineage} (too broad — set a clade lineage, e.g. viridiplantae_odb12)")
 
     print("# Function QC — print-first")
     print(f"# Target: {args.grade}  ·  docs/EVALUATION_CHECKLIST.md")

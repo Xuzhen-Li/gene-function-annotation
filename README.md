@@ -1,19 +1,25 @@
 # gene-function-annotation
 
-[![Sibling: structure](https://img.shields.io/badge/sibling-gene--structure--annotation-1565C0?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation)
+[![Stars](https://img.shields.io/github/stars/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/stargazers)
+[![Forks](https://img.shields.io/github/forks/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/network/members)
 [![Last commit](https://img.shields.io/github/last-commit/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/commits/main)
+[![Issues](https://img.shields.io/github/issues/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/issues)
+[![Sibling: structure](https://img.shields.io/badge/sibling-gene--structure--annotation-1565C0?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation)
+[![Project](https://img.shields.io/badge/Project-structure→function-informational?style=flat-square)](https://github.com/users/Xuzhen-Li/projects/2)
 
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / 与结构的关系 / 怎么跑 / F线）  
 > **English ops:** [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
 > **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — paired with structure (Vitis+NLR / Oryza plain F1 / Solanum+Mercator).
 
-**Doors:** [`docs/START_HERE.md`](docs/START_HERE.md) · [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) · [Annotation board](https://github.com/users/Xuzhen-Li/projects/2)
 
 ---
 
 ## What this repo is
 
-Label proteins — names, GO/KEGG-ish maps, domains — after a structure release exists.
+**Label proteins** — names, GO/KEGG-ish maps, domains — **after** a structure release exists.
+
+This repo **starts after** structure ships `proteins.faa`.  
+**No** BRAKER / soft-mask / GFF editing / gene finding here.
 
 ```text
 proteins.faa  (from structure release)
@@ -23,13 +29,17 @@ proteins.faa  (from structure release)
   functional_master.tsv  +  release/<TAG>/
 ```
 
+Upstream gene models: [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation)  
+(three-layer boundary: [structure `docs/BOUNDARY.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/BOUNDARY.md)).  
+TE soft-mask and TE library build are **not** under function.
+
 ![Beginner spine](docs/figures/functional_spine.png)
 
-Starts after structure ships `proteins.faa`. No BRAKER / soft-mask / GFF editing / gene finding here.  
-Upstream: [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation) ([boundary](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/BOUNDARY.md)). TE soft-mask and TE library build are not under function.
+Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
 
-Naming note: `pipeline/F2_eggnog.sh` is the eggNOG step inside default F1, not the fast-frame branch F2.  
-Offline classroom: [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
+**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone) · offline [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
+
+**Track work:** [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2).
 
 ## F cheat (sticky — do not mix namespaces)
 

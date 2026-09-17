@@ -4,7 +4,7 @@ GitHub Wiki [Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotatio
 
 ## Done when
 
-- [ ] You generated and **read** `my_fa_plan.md`.
+- [ ] You generated and **read** `my_fa_plan.md`. How to scan: [`zh/读plan.md`](zh/读plan.md).
 - [ ] DB paths in `local.env` are listed **or** honestly left empty for tonight.
 - [ ] You can say one line: write `grade=` and `status=` separately (never `status=F-L1`); name `frame=F1` (or waiver).
 

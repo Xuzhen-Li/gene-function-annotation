@@ -61,9 +61,9 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 
 ### 3. Plan tonight; run when you have DBs + compute
 
-**Classroom / honest stop:** finish `my_fa_plan.md` (± list DB disk paths). That is enough for tonight without InterProScan.
+**Classroom / honest stop:** finish `my_fa_plan.md` (± list DB disk paths). That is enough for tonight without InterProScan. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts). Never write `status=F-L1`.
 
-**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1`. METHODS required fields must be draftable ([Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)).  
+**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1`. Browsing `python3 pipeline/print_qc_commands.py --env config/example.env` **will** show `[STOP]` — **expected**. METHODS required fields must be draftable ([Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)).  
 Then [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) / [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) → `RUN=1` framework F1 → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md). **F-L1** is the acceptance *bar*, not “must finish IPS tonight.”
 
 ```bash

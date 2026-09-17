@@ -1,0 +1,49 @@
+name: Structure → function handoff
+description: PROTEINS_FA · RELEASE_TAG · structure_grade before FA progress claims.
+title: "[handoff] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Paste from structure release into this repo’s `config/local.env`.
+        Card: [`docs/HANDOFF_STRUCTURE_TO_FUNCTION.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/HANDOFF_STRUCTURE_TO_FUNCTION.md)
+        Do **not** invent `grade=F-L1` from a provisional (`grade=L0`) GFF.
+  - type: input
+    id: release_tag
+    attributes:
+      label: RELEASE_TAG
+      description: Same tag as structure `release/<TAG>/`
+      placeholder: "species_ann.v0.1"
+    validations:
+      required: true
+  - type: input
+    id: proteins_fa
+    attributes:
+      label: PROTEINS_FA
+      description: Stable alias under release/<TAG>/proteins.faa — **not** a stale WORK_DIR root copy
+      placeholder: "/path/to/.../release/TAG/proteins.faa"
+    validations:
+      required: true
+  - type: input
+    id: structure_grade
+    attributes:
+      label: structure_grade (copy structure grade= and status=)
+      placeholder: "grade=L1 status=qualified  (or grade=L0 status=provisional)"
+    validations:
+      required: true
+  - type: checkboxes
+    id: handoff_ticks
+    attributes:
+      label: Handoff checks
+      options:
+        - label: Proteins match **this** structure RELEASE_TAG (not an older draft)
+          required: true
+        - label: Copied structure `grade=` / `status=` — did not invent FA grade from L0
+          required: true
+        - label: Ready to open FA plan / F1 issue (or blocked — explain below)
+          required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / blockers
+      placeholder: Missing proteins.faa, L0 provisional only, path questions…

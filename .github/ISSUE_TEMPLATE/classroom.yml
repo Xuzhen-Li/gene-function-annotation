@@ -1,0 +1,44 @@
+name: Classroom tonight
+description: Plan-only homework — my_fa_plan.md (± DB path list). Honest stop OK.
+title: "[classroom] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tonight is **plan-only**. Deliverable is **`my_fa_plan.md`** (filename locked).
+        Do **not** claim F-L1 / finished InterProScan.
+        Wiki: [Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) · offline [`docs/CLASSROOM_TONIGHT.md`](https://github.com/Xuzhen-Li/gene-function-annotation/blob/main/docs/CLASSROOM_TONIGHT.md)
+  - type: checkboxes
+    id: done_when
+    attributes:
+      label: Done when (tick before you stop)
+      options:
+        - label: Generated and **read** `my_fa_plan.md`
+          required: true
+        - label: DB paths in `local.env` listed **or** honestly left empty for tonight
+          required: true
+        - label: Can say one line — write `grade=` and `status=` separately (never `status=F-L1`); name `frame=F1` (or waiver)
+          required: true
+  - type: textarea
+    id: plan_note
+    attributes:
+      label: What my_fa_plan.md says (frame + tonight stop)
+      description: Name framework F1 (or waiver) and what you will **not** run tonight.
+      placeholder: "frame=F1; tonight stop = plan + DB path list; no RUN=1 / no IPS"
+    validations:
+      required: true
+  - type: dropdown
+    id: honest_stop
+    attributes:
+      label: Honest stop?
+      options:
+        - Plan complete — DB paths listed
+        - Plan complete — DB paths empty (honest stop; no RUN=1)
+        - Stuck — need help reading my_fa_plan.md
+    validations:
+      required: true
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers / questions (optional)
+      placeholder: print_qc [STOP] on example.env is expected…

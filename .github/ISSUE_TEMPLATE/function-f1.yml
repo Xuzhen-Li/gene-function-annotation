@@ -1,0 +1,65 @@
+name: Function F1 / release
+description: F1 frame · Gates · never status=F-L1. After handoff proteins exist.
+title: "[F1] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Default spine: proteins → F0 → framework **F1** (DIAMOND + eggNOG + InterProScan) → merge → release.
+        Keep namespaces straight: **frame** F1 ≠ script `F2_eggnog.sh` ≠ TOOLS F1a/b/c ≠ **Gates**.
+        Write `grade=` and `status=` separately — **never** `status=F-L1`.
+        Wiki: [Spine-F1](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Spine-F1) · [Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)
+  - type: dropdown
+    id: frame
+    attributes:
+      label: frame=
+      options:
+        - F1 (default — DIAMOND + eggNOG + InterProScan)
+        - F2 / F3 / F5 (written METHODS waiver required)
+    validations:
+      required: true
+  - type: dropdown
+    id: grade
+    attributes:
+      label: grade=
+      options:
+        - F-L0
+        - F-L1
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: status= (not a grade — never status=F-L1)
+      options:
+        - provisional
+        - qualified
+    validations:
+      required: true
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: Gates / before claiming F-L1
+      options:
+        - label: Handoff set — PROTEINS_FA + RELEASE_TAG + structure_grade recorded
+          required: false
+        - label: `print_qc` exit 0 with **no** `[STOP]` on real local.env
+          required: false
+        - label: Gate-F ≠ frame F (do not say “Gate-F3” when you mean framework F1)
+          required: false
+        - label: METHODS draftable (grade · status · frame · programs · databases · protein provenance)
+          required: false
+        - label: Plant add-ons (if any) sit on top of F1 — not a higher grade by themselves
+          required: false
+  - type: input
+    id: release_tag
+    attributes:
+      label: Function RELEASE_TAG / pack path (if packing)
+      placeholder: "function/release/TAG/"
+  - type: textarea
+    id: summary
+    attributes:
+      label: What you ran / what is stuck
+      placeholder: DB versions, IPS deferred (F-L0), merge notes, Gate failures…
+    validations:
+      required: true

@@ -158,7 +158,8 @@ Function cannot rescue wrong loci, merged tandems, or TE-captured ORFs; it can o
 ## Suggested METHODS tick list
 
 ```text
-Grade: F-L0 / F-L1
+grade=F-L0|F-L1 ; status=provisional|qualified ; frame=F1|F2|F3|F5
+# never status=F-L1
 Gate-F1 PROTEINS_FA provenance ________
 Gate-F2 F0 BUSCO lineage + C/D/F/M ________
 Gate-F3 Frame F1 / F2 / F3 / F5 ________

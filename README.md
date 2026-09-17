@@ -48,7 +48,7 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 
 | | |
 |--|--|
-| **Tonight (classroom)** | Finish `my_fa_plan.md` (± list DB disk paths). No InterProScan required. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts). Write `grade=` and `status=` separately — do **not** write `status=F-L1`. |
+| **Tonight (classroom)** | Finish `my_fa_plan.md` (± list DB disk paths). No InterProScan required. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) **or** offline [`docs/zh/02_和结构注释的关系.md`](docs/zh/02_和结构注释的关系.md). Write `grade=` and `status=` separately — do **not** write `status=F-L1`. |
 | **Later (cluster)** | Only after [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Otherwise **no** `RUN=1`. Browsing with `--env config/example.env` **will** show `[STOP]` — **expected**. METHODS required fields must be draftable ([Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)). |
 
 Then [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) / [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) → `RUN=1` framework F1 → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md). **F-L1** is the acceptance *bar*, not “must finish IPS tonight.”
@@ -79,20 +79,17 @@ Full Chinese cheat sheet: [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md). Scri
 
 ## Docs (when needed)
 
-| Need | Open |
-|------|------|
-| Chinese teaching (short path first) | [`docs/zh/`](docs/zh/) |
-| Start here | [`docs/START_HERE.md`](docs/START_HERE.md) |
-| Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
-| Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · tick list [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) |
-| **After structure (one-pager)** | [`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md) |
-| Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
+Chinese teaching + start door: [`docs/zh/`](docs/zh/) · [`docs/START_HERE.md`](docs/START_HERE.md)
 
 <details>
 <summary>More docs</summary>
 
 | Need | Open |
 |------|------|
+| Flow tool | [`pipeline/flow_tool/`](pipeline/flow_tool/) |
+| Install · **Done?** | [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) · tick list [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) · [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md) |
+| **After structure (one-pager)** | [`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md) |
+| Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Tool how-tos | [`docs/TOOLS.md`](docs/TOOLS.md) · [`docs/tools/`](docs/tools/) |
 | Full evaluation rules | [`docs/EVALUATION.md`](docs/EVALUATION.md) |
 | QC methods / papers | [`docs/QUALITY_SOURCES.md`](docs/QUALITY_SOURCES.md) |

@@ -23,7 +23,7 @@
 
 **口诀：** 拿不准就宣称 **框架 F1**；动手顺序永远是 **diamond → emapper → InterProScan**；`bash pipeline/F2_eggnog.sh` = F1 里的 eggNOG 步。
 
-**反例（F1b ≠ `F1b_kofam.sh`）：** TOOLS **F1b** = eggNOG-mapper（框架 F1 第二步）。可选 KofamScan 是 **F1+**；脚本文件名虽叫 `pipeline/F1b_kofam.sh`，**不要**口头说「Kofam F1b」。口播用「F1+ 可选 KO / Kofam」。
+**反例（F1b ≠ `F1b_kofam.sh`）：** TOOLS **F1b** = eggNOG（框架 F1 第二步）。`F1b_kofam.sh` 只是历史文件名，指可选 **F1+** Kofam——口播说「F1+ Kofam」，别说「Kofam F1b」。
 
 **报告推荐口播：** 「功能注释采用框架 F1（DIAMOND + eggNOG-mapper + InterProScan），合并为 functional_master.tsv；脚本 F2_eggnog.sh 只是 F1 内第二步的历史文件名。验收按 F-L1 勾选表记录。」
 
@@ -38,18 +38,15 @@ A：`PROTEINS_FA=` 指向结构仓 **`release/<TAG>/proteins.faa`**（稳定别�
 A：**不能诚实宣称 F-L1。** 勾 F-L0 / provisional，或先回结构仓升到 L1。`answers.yaml` 里的 `structure_grade` 是**你自己声明**，flow **不会**去读结构仓 release。
 
 **Q：有 isoform，要「每基因一条」吗？**  
-A：要。结构若吐出多 isoform，功能前先抽代表（与结构 METHODS 的 isoform 政策一致）。例（最长蛋白，需按你的 ID 规则改）：
+A：**要。** 优先让结构放行就给 one-per-gene（与结构 METHODS 一致）。若仍是多 isoform：按**同一套 gene 主键**抽最长蛋白——**不要盲抄**下面 awk（`xxx-mRNA-1` / `gene:Gene0001` 等规则不同）。示意：
 
 ```bash
-# 若 ID 形如 GENE.t1 / GENE-isoform2，先与结构仓约定再抽；下面仅示意
+# ID 形如 GENE.t1 时可用；其他命名先看结构 METHODS / 结构 FAQ
 seqkit fx2tab "$PROTEINS_MULTI" | awk -F '\t' '{
   id=$1; gsub(/ .*/,"",id); gene=id; sub(/\..*$/,"",gene); sub(/-.*$/,"",gene);
   if (length($2)>len[gene]) { len[gene]=length($2); seq[gene]=$2; keep[gene]=id }
 } END { for (g in seq) print ">"keep[g]"\n"seq[g] }' > proteins.one_per_gene.faa
 ```
-
-更稳：**默认要求结构放行时就给出 one-per-gene**（与结构 METHODS 的 isoform 政策一致）。  
-若结构 ID 是 `xxx-mRNA-1`、`gene:Gene0001`、`GENE_t001` 等——**不要盲抄 awk**；先打开结构仓放行 METHODS / [结构 FAQ](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/zh/FAQ_入门.md) 的 isoform 句，按**同一套 gene 主键**再抽。FAQ 里的 awk 只是示意。
 
 **Q：GO 不写回 GFF 第 9 列，下游怎么用？**  
 A：本仓真相是 **`functional_master.tsv`**。浏览器/投稿需要列 9 时，**另做一步**（本仓暂不自动宣称）。METHODS 写「功能以 master TSV 为准」。

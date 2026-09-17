@@ -295,10 +295,12 @@ def render(a, choice, stages, emit_commands: bool) -> str:
                 dry = 'RUN' in body and ('RUN:-0' in body or '${RUN' in body or 'RUN:-' in body or '[[ "${RUN' in body)
                 lines.append("```bash")
                 if dry:
-                    lines.append("# Print-first: DRY-run first; set RUN=1 only after review (see script header).")
+                    lines.append("# Print-first: DRY unless RUN=1 (see script header).")
+                    lines.append(f"bash {h}          # dry")
+                    lines.append(f"RUN=1 bash {h}    # execute on cluster after review")
                 else:
                     lines.append("# Needs real inputs — 无 DRY/RUN 开关；假路径会直接失败。Review script header before paste.")
-                lines.append(f"bash {h}")
+                    lines.append(f"bash {h}")
                 lines.append("```")
                 lines.append("")
             else:

@@ -1,5 +1,11 @@
 # gene-function-annotation
 
+[![Stars](https://img.shields.io/github/stars/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/stargazers)
+[![Forks](https://img.shields.io/github/forks/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/network/members)
+[![Last commit](https://img.shields.io/github/last-commit/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/commits/main)
+[![Issues](https://img.shields.io/github/issues/Xuzhen-Li/gene-function-annotation?style=flat-square)](https://github.com/Xuzhen-Li/gene-function-annotation/issues)
+[![Sibling: structure](https://img.shields.io/badge/sibling-gene--structure--annotation-1565C0?style=flat-square)](https://github.com/Xuzhen-Li/gene-structure-annotation)
+
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / 与结构的关系 / 怎么跑 / F线）  
 > **English ops:** [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
 > **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — paired with structure (Vitis+NLR / Oryza plain F1 / Solanum+Mercator).

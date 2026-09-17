@@ -2,6 +2,8 @@
 
 GitHub Wiki [Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) is **not** in the clone. Short checklist only — not a full Wiki copy.
 
+**Track work:** [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2).
+
 ## Done when
 
 - [ ] You generated and **read** `my_fa_plan.md`. How to scan: [`zh/读plan.md`](zh/读plan.md).

@@ -6,3 +6,5 @@ Full three-layer map (structure primary / function / TE library build):
 [gene-structure-annotation `docs/BOUNDARY.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/BOUNDARY.md).
 
 No BRAKER, soft-mask, or GFF editing here.
+
+**Board:** [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/projects/2) — structure → function.

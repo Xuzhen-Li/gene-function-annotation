@@ -85,6 +85,7 @@ cp config/example.env config/local.env
 | Stage I/O · branch map | [`docs/STAGE_IO.md`](docs/STAGE_IO.md) · [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Walkthrough | [`docs/QUICKSTART.md`](docs/QUICKSTART.md) |
 | **After structure (one-pager)** | [`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md) |
+| Mercator4 web — when (F6) | [`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md) |
 
 More: [`docs/TUTORIALS_AND_MEETINGS.md`](docs/TUTORIALS_AND_MEETINGS.md) · [`docs/RECENT_HIGH_QUALITY.md`](docs/RECENT_HIGH_QUALITY.md).
 

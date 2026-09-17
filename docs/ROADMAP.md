@@ -76,7 +76,7 @@ Never replace F1 as the gene-centric master without a documented reason.
 | ID | When | Product | Runner |
 |----|------|---------|--------|
 | **F4** | Readable gene names | AHRD names joined | `F4_run_ahrd.md` · `F4_join_ahrd.py` (± PANNZER `F4b`) |
-| **F6** | Plant MapMan BINs | Mercator4 ingest | `F6_ingest_mercator.py` |
+| **F6** | Plant MapMan BINs | Mercator4 ingest | `F6_ingest_mercator.py` — when to use the **web**: [`MERCATOR_WHEN.md`](MERCATOR_WHEN.md) |
 | **F7** | Multi-genome orthologs first | OrthoFinder reps → then F1 | `F7_orthofinder.sh` |
 | **F8** | Plant NLR candidates / screen | IPS filter ± HRP | `F8_run.sh` |
 | **F9** | Plant TF / kinase | iTAK | `F9_itak.sh` |
@@ -129,3 +129,4 @@ Naming quirk (historical): script `F2_eggnog.sh` is the **eggNOG step inside F1*
 | [`POST_STRUCTURE.md`](POST_STRUCTURE.md) | One-page proteins → DB → F1 → release |
 | [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
 | [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md) | Allowlisted FA standards |
+| [`MERCATOR_WHEN.md`](MERCATOR_WHEN.md) | When to use Mercator4 web (F6) |

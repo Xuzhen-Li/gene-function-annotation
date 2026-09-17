@@ -79,6 +79,7 @@
 |------|----------|
 | [DB_INSTALL_CHECKLIST.md](DB_INSTALL_CHECKLIST.md) | F1 装库勾选 |
 | [golden_pack.md](golden_pack.md) | FA 放行包长什么样 |
+| [MERCATOR_WHEN.md](MERCATOR_WHEN.md) | 何时用 Mercator 网页（F6） |
 
 英文一页路径：[`../POST_STRUCTURE.md`](../POST_STRUCTURE.md)。
 

@@ -18,3 +18,5 @@ python3 "$REPO_ROOT/pipeline/F6_ingest_mercator.py" \
 ```
 
 Scenario **F6**. Record job date in METHODS.
+
+**When to open the web vs skip:** [`../MERCATOR_WHEN.md`](../MERCATOR_WHEN.md).

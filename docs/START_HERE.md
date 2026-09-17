@@ -2,6 +2,8 @@
 
 **中文请从这里进：** [`zh/README.md`](zh/README.md)（今天最短路径）
 
+Boundary (function = labels after proteins; no TE/GFF here): [`BOUNDARY.md`](BOUNDARY.md).
+
 **Tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (not in clone) · offline [`CLASSROOM_TONIGHT.md`](CLASSROOM_TONIGHT.md).
 
 **F cheat:** Framework F1 ≠ script `F2_eggnog.sh` ≠ TOOLS F1b ≠ Gate-F* — see root README · FAQ [`zh/FAQ_入门.md`](zh/FAQ_入门.md).

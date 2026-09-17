@@ -14,5 +14,5 @@ RELEASE_TAG="species_ann.v0.1"
 PROTEINS_FA="/path/to/gene-structure-annotation/work/release/${RELEASE_TAG}/proteins.faa"
 ```
 
-Upstream: [structure A6](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/pipeline/A6_functional_optional.md) · this repo [`POST_STRUCTURE.md`](POST_STRUCTURE.md) · [`zh/FAQ_入门.md`](zh/FAQ_入门.md).  
+Upstream: [structure A6](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/pipeline/A6_handoff_to_function.md) · this repo [`POST_STRUCTURE.md`](POST_STRUCTURE.md) · [`zh/FAQ_入门.md`](zh/FAQ_入门.md).  
 中文指针：[`zh/交接_结构到功能.md`](zh/交接_结构到功能.md).

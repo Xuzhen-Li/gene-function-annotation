@@ -15,7 +15,10 @@
 
 ## What this repo is
 
-**Label proteins** — names, GO/KEGG-ish maps, domains — **after** gene models exist.
+**Label proteins** — names, GO/KEGG-ish maps, domains — **after** a structure release exists.
+
+This repo **starts after** structure ships `proteins.faa`.  
+**No** BRAKER / soft-mask / GFF editing / gene finding here.
 
 ```text
 proteins.faa  (from structure release)
@@ -25,8 +28,9 @@ proteins.faa  (from structure release)
   functional_master.tsv  +  release/<TAG>/
 ```
 
-**Not** gene finding / GFF editing — that is upstream  
-[`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation).
+Upstream gene models: [`gene-structure-annotation`](https://github.com/Xuzhen-Li/gene-structure-annotation)  
+(three-layer boundary: [structure `docs/BOUNDARY.md`](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/docs/BOUNDARY.md)).  
+TE soft-mask and TE library build are **not** under function.
 
 ![Beginner spine](docs/figures/functional_spine.png)
 

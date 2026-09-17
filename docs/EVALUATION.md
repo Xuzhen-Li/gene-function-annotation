@@ -25,12 +25,12 @@ CAFA-style GO accuracy is a research benchmark (CAFA4 preprint) — **not** what
 
 ## Two finish grades
 
-| Grade | Label | When |
-|-------|-------|------|
-| **F-L0 Slim** | `status=provisional` or `frame=F2/F3/F5` | Fast frame only; IPS deferred; or incomplete merge |
-| **F-L1 Qualified** | `status=qualified` | Hard gates below — default paper FA |
+| Grade | Label in METHODS | When |
+|-------|------------------|------|
+| **F-L0 Slim** | `grade=F-L0` ; `status=provisional` ; `frame=F2/F3/F5` (or incomplete F1) | Fast frame only; IPS deferred; or incomplete merge |
+| **F-L1 Qualified** | `grade=F-L1` ; `status=qualified` ; `frame=F1` (or written waiver) | Hard gates below — default paper FA |
 
-Write **`grade=F-L0|F-L1`** and **`status=provisional|qualified`** separately. Do **not** write `status=F-L1`.
+Write **`grade=F-L0|F-L1`**, **`status=provisional|qualified`**, and **`frame=`** separately. Do **not** write `status=F-L1`.
 
 Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are METHODS modules on top of F-L1.
 

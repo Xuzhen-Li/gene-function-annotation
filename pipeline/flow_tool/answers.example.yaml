@@ -1,5 +1,8 @@
-# WARNING: proteins_provenance must be a real structure RELEASE_TAG or content hash before F-L1 / METHODS.
-# Leaving the REPLACE_WITH_REAL_* placeholder = fake provenance.
+# !!!!! PROVENANCE / F-L1 HONESTY (read before editing) !!!!!
+# proteins_provenance MUST be a real structure RELEASE_TAG or content hash before F-L1 / METHODS.
+# Leaving REPLACE_WITH_REAL_* (or any placeholder) = fake provenance → flow targets F-L0 / provisional, NOT F-L1.
+# If proteins are not ready → set proteins_ready: false (plan blocks; do not claim Target F-L1).
+# Defaults keep proteins_ready true + REPLACE_* only so classroom can generate a plan; REPLACE is not provenance.
 # prefer_fast: true → framework F2 (usually F-L0). Default false = framework F1.
 # structure_grade is self-declared — flow does not read the structure repo.
 # FA flow answers — python3 pipeline/flow_tool/flow.py --answers ...

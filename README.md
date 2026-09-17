@@ -26,6 +26,8 @@ proteins.faa  (from structure release)
 
 Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
 
+**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone tree).
+
 ## F numbering (one glance)
 
 Four namespaces — do not mix them in speech or METHODS:

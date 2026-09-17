@@ -10,6 +10,25 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 
+
+def _prov_is_placeholder(prov: str) -> bool:
+    p = (prov or "").strip()
+    if not p:
+        return True
+    low = p.lower()
+    markers = (
+        "replace_with_real",
+        "replace_me",
+        "placeholder",
+        "or path/hash",
+        "release_tag or",
+        "(set me)",
+        "your_",
+        "todo",
+    )
+    return any(m in low for m in markers)
+
+
 try:
     import yaml
 except ImportError:
@@ -43,6 +62,7 @@ def choose_frame(a: dict) -> dict:
             "grade": "blocked",
             "reason": "Proteins not ready — finish gene-structure-annotation first.",
             "addons": [],
+            "prov_placeholder": True,
         }
     structure_l0 = str(a.get("structure_grade", "L1")).upper() == "L0"
     if structure_l0:
@@ -63,6 +83,12 @@ def choose_frame(a: dict) -> dict:
     if structure_l0 and "grade capped" not in reason:
         reason = reason.rstrip(".") + "; grade capped at F-L0 (structure L0)."
 
+    prov = str(a.get("proteins_provenance", ""))
+    prov_ph = _prov_is_placeholder(prov)
+    if prov_ph and grade == "F-L1":
+        grade = "F-L0"
+        reason = reason.rstrip(".") + "; proteins_provenance is placeholder → provisional / F-L0 (not F-L1)."
+
     addons = []
     if a.get("want_ahrd"):
         addons.append("F4")
@@ -75,7 +101,13 @@ def choose_frame(a: dict) -> dict:
     if a.get("want_itak"):
         addons.append("F9")
 
-    return {"frame": frame, "grade": grade, "reason": reason, "addons": addons}
+    return {
+        "frame": frame,
+        "grade": grade,
+        "reason": reason,
+        "addons": addons,
+        "prov_placeholder": prov_ph,
+    }
 
 
 def stages_for(choice: dict, a: dict) -> list[dict]:
@@ -207,16 +239,20 @@ def render(a, choice, stages, emit_commands: bool) -> str:
     except ValueError:
         dash = None
     if dash is not None:
-        prov = str(a.get("proteins_provenance", ""))
         warns = []
-        if ("or path/hash" in prov) or ("RELEASE_TAG or" in prov) or ("(set me)" in prov) or (not prov.strip()):
+        if choice.get("prov_placeholder") or _prov_is_placeholder(str(a.get("proteins_provenance", ""))):
             warns.append(
-                "> **Warning:** `proteins_provenance` still looks like a placeholder — "
-                "replace with a real structure RELEASE_TAG or path/sha256 before claiming F-L1."
+                "> **WARN:** `proteins_provenance` is REPLACE/placeholder (or empty) — "
+                "Target is **F-L0 / provisional**, not evidence-based F-L1. "
+                "Replace with a real structure RELEASE_TAG or path/sha256 before claiming F-L1."
+            )
+        if not a.get("proteins_ready", True):
+            warns.append(
+                "> **WARN:** `proteins_ready: false` — plan is blocked; do **not** claim Target F-L1."
             )
         if str(a.get("structure_grade", "")).upper() == "L0" and choice.get("grade") == "F-L1":
             warns.append(
-                "> **Warning:** structure_grade is L0 but target is F-L1 — keep FA provisional / F-L0 until structure is L1."
+                "> **WARN:** structure_grade is L0 but target is F-L1 — keep FA provisional / F-L0 until structure is L1."
             )
         for w in reversed(warns):
             lines.insert(dash, "")

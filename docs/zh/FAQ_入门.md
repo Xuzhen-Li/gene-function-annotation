@@ -32,7 +32,7 @@
 ## 和结构仓怎么接
 
 **Q：结构 `proteins.faa` 填哪？**  
-A：`config/local.env` 的 `PROTEINS_FA=`（先 `cp config/example.env config/local.env`）。首页「Three steps」第 3 步也会提到。
+A：`config/local.env` 的 `PROTEINS_FA=` 指**结构仓放行包全路径**：`<structure-repo>/release/<TAG>/proteins.faa`（稳定别名；不要用结构 `WORK_DIR/proteins.faa` 可能过期的根副本）。先 `cp config/example.env config/local.env`。交接说明见结构仓 [A6](https://github.com/Xuzhen-Li/gene-structure-annotation/blob/main/pipeline/A6_functional_optional.md) / 结构手递（handoff）。首页「Three steps」第 3 步也会提到。
 
 **Q：结构只有 L0，还能冲 F-L1 吗？**  
 A：**不能诚实宣称 F-L1。** 勾 F-L0 / provisional，或先回结构仓升到 L1。`answers.yaml` 里的 `structure_grade` 是**你自己声明**，flow **不会**去读结构仓 release。

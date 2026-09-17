@@ -6,7 +6,7 @@ Print-first. Paste into this repo’s `config/local.env`:
 |------|--------|
 | `RELEASE_TAG` | Same tag as structure `release/<TAG>/` |
 | `PROTEINS_FA` | `…/release/<TAG>/proteins.faa` (stable alias — **not** a stale structure `WORK_DIR/proteins.faa` root copy) |
-| `structure_grade` | Honest L0 / L1 / L2 from structure — do **not** invent F-L1 from a provisional GFF |
+| `structure_grade` | Copy structure `grade=` and `status=` — do **not** invent `grade=F-L1` from a provisional (`grade=L0`) GFF |
 
 ```bash
 # Example shape only — paths are yours

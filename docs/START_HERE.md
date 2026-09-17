@@ -17,6 +17,8 @@ No → [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-a
 
 Chinese FAQ (numbering + install): [`zh/FAQ_入门.md`](zh/FAQ_入门.md).
 
-**Classroom minimum ≠ finish IPS tonight.** Class delivery is often: read the plan + FAQ numbering + list DBs/disk budget. Full InterProScan / eggNOG DB install is optional homework unless the instructor says otherwise.
+**Classroom minimum ≠ finish IPS tonight.** Class delivery is often: read the plan + FAQ numbering + list DBs/disk budget. Write `grade=` and `status=` separately — never `status=F-L1`.
+
+**When ready for `RUN=1`:** tick [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Full InterProScan / eggNOG DB install is optional homework unless the instructor says otherwise.
 
 Back to [`../README.md`](../README.md).

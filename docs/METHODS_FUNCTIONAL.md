@@ -1,12 +1,12 @@
 <!-- Fill: grade=F-L0|F-L1 ; status=provisional|qualified (never status=F-L1) -->
 # METHODS template — functional annotation
 
-Copy into `work/function/release/<TAG>/METHODS.md` and fill FILLs.  
-Cite only venues you actually used ([`CITATIONS.md`](CITATIONS.md); journal allowlist in [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md)).
+Copy into `work/function/release/<TAG>/METHODS.md` and fill FILLs.
 
-Align Gate-F4 (versions) and Gate-F1/F2 (provenance / BUSCO lineage) with [`zh/15_为什么版本和谱系必须写清.md`](zh/15_为什么版本和谱系必须写清.md).
+Cite only venues you actually used ([`CITATIONS.md`](CITATIONS.md); journal allowlist in [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md)). Align Gate-F4 (versions) and Gate-F1/F2 (provenance / BUSCO lineage) with [`zh/15_为什么版本和谱系必须写清.md`](zh/15_为什么版本和谱系必须写清.md).
 
-**Grade / status / frame (fill first):** `grade=F-L0|F-L1` ; `status=provisional|qualified` ; `frame=F1` (or waiver naming frame F2/F3/F5). Never write `status=F-L1`.
+**Fill first:** `grade=F-L0|F-L1` ; `status=provisional|qualified` ; `frame=F1` (or waiver naming frame F2/F3/F5).  
+Never write `status=F-L1`.
 
 ```text
 Functional annotation. Representative protein sequences (one translation per

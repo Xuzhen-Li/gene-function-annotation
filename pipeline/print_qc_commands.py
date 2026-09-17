@@ -90,7 +90,7 @@ def main() -> int:
             print(f"#   - {b}")
         print("# Edit config/local.env to real paths + clade lineage, then re-run this printer.")
         print("# Gate-F1 reminder: PROTEINS_FA must be structure release/<TAG>/proteins.faa (or hash in METHODS)")
-        print("# exit 1: fix local.env before treating this as a runnable QC plan")
+        print("# exit 1: fix local.env and re-run print_qc (not a RUN=1 plan)")
         return 1
 
     print("## Pack smoke")

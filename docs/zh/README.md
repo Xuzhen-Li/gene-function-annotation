@@ -26,20 +26,21 @@
 
 | 步 | 打开 | 做什么 |
 |----|------|--------|
-| 0 | [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts)（可选）或本仓口播三句 | **今晚交卷须含口检：** 结构≠功能；FA 域/GO≠模型正确；F8≠NLR 普查 |
+| 0 | [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) **或** 本仓口播页 | 打开口检页（Wiki 可选） |
 | 1 | [01_什么是功能注释.md](01_什么是功能注释.md) | 给蛋白贴标签，不改 GFF 坐标 |
 | 2 | [03_怎么开始跑.md](03_怎么开始跑.md) | 有 `proteins.faa` → `local.env` → `flow.py` → `my_fa_plan.md` |
 | 3a | 读 plan + [FAQ 编号](FAQ_入门.md) + 磁盘/DB 清单 | **课堂默认可停这里**（无集群/无 IPS 也诚实） |
 | 3b | [`../INSTALL_FUNCTIONAL.md`](../INSTALL_FUNCTIONAL.md) · 勾选 [`DB_INSTALL_CHECKLIST.md`](DB_INSTALL_CHECKLIST.md) | 有盘再装库 |
-| 3c | 按 plan `RUN=1` 跑框架 F1 | diamond → `F2_eggnog.sh`（=F1 内步）→ IPS；见 [编号对照](FAQ_入门.md)。**上集群前必勾：** [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) + `python3 pipeline/print_qc_commands.py` 绿（无 `[STOP]`）；未勾 = **不许** `RUN=1` |
+| 3c | 按 plan `RUN=1` 跑框架 F1 | diamond → `F2_eggnog.sh`（=F1 内步）→ IPS；见 [编号对照](FAQ_入门.md)。<br>上集群前必勾 [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) + `python3 pipeline/print_qc_commands.py` 绿（无 `[STOP]`）；未勾不许 `RUN=1` |
 | 4 | [**验收勾选表**](验收勾选表.md) | 认清 **F-L1** 档位（≠今晚必交满跑） |
 
-**local交卷勾选（与 Wiki Done when 同文，可离线勾）：**
+**今晚交卷勾选（与 Wiki Done when 同文，可离线勾）：**
 - [ ] 已生成并**读过** `my_fa_plan.md`
 - [ ] `local.env` 已列 DB 路径，或今晚诚实留空
 - [ ] 能口头分开写 `grade=` 与 `status=`（**永不** `status=F-L1`）；能说 `frame=F1`（或书面弃权）
+- [ ] **口检三句：** 结构≠功能；FA 域/GO≠模型正确；F8≠NLR 普查
 
-`print_qc --env config/example.env` → 出现 `[STOP]` **属预期**（占位），不是坏了；填好真实 env 后须无 `[STOP]` 才许 `RUN=1`。
+`python3 pipeline/print_qc_commands.py --env config/example.env` → 出现 `[STOP]` **属预期**（占位），不是坏了；填好真实 env 后须无 `[STOP]` 才许 `RUN=1`。
 
 卡住再查：[04_F线怎么选](04_F线怎么选.md) · [12_常见翻车](12_常见翻车.md) · [99_术语表](99_术语表.md) · **[FAQ_入门.md](FAQ_入门.md)**（**先读 F 编号对照**）
 

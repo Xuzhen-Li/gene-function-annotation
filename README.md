@@ -1,7 +1,7 @@
 # gene-function-annotation
 
 > **中文教学：** [`docs/zh/`](docs/zh/)（是什么 / 与结构的关系 / 怎么跑 / F线）  
-> **English ops:** [`docs/BILINGUAL.md`](docs/BILINGUAL.md)
+> **English ops:** [`docs/BILINGUAL.md`](docs/BILINGUAL.md)  
 > **Plant sims (3):** [`examples/plant_sim/`](examples/plant_sim/) — paired with structure (Vitis+NLR / Oryza plain F1 / Solanum+Mercator).
 
 
@@ -61,9 +61,11 @@ python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 
 ### 3. Plan tonight; run when you have DBs + compute
 
-**Classroom / honest stop:** finish `my_fa_plan.md` (± list DB disk paths). That is enough for tonight without InterProScan. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts). Never write `status=F-L1`.
+| | |
+|--|--|
+| **Tonight (classroom)** | Finish `my_fa_plan.md` (± list DB disk paths). No InterProScan required. Oral check: [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts). Write `grade=` and `status=` separately — do **not** write `status=F-L1`. |
+| **Later (cluster)** | Only after [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]`. Otherwise **no** `RUN=1`. Browsing with `--env config/example.env` **will** show `[STOP]` — **expected**. METHODS required fields must be draftable ([Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)). |
 
-**When ready:** only after [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) is ticked **and** `python3 pipeline/print_qc_commands.py` exits 0 with **no** `[STOP]` — otherwise **no** `RUN=1`. Browsing `python3 pipeline/print_qc_commands.py --env config/example.env` **will** show `[STOP]` — **expected**. METHODS required fields must be draftable ([Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)).  
 Then [`docs/INSTALL_FUNCTIONAL.md`](docs/INSTALL_FUNCTIONAL.md) / [`docs/DB_INSTALL_CHECKLIST.md`](docs/DB_INSTALL_CHECKLIST.md) → `RUN=1` framework F1 → tick [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST.md). **F-L1** is the acceptance *bar*, not “must finish IPS tonight.”
 
 ```bash

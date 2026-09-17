@@ -26,13 +26,20 @@ proteins.faa  (from structure release)
 
 Naming note: `pipeline/F2_eggnog.sh` is the **eggNOG step inside default F1**, not the fast-frame branch F2.
 
-**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone tree).
+**One-glance tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki — **not** in the clone) · offline [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).
+
+## F cheat (sticky — do not mix namespaces)
+
+1. **Framework** F1 / F2 / F3 / F5 = which *whole* annotation frame you claim (default **F1** = DIAMOND+eggNOG+IPS).
+2. **Script** `F2_eggnog.sh` = eggNOG *step inside* framework F1 — **not** frame F2.
+3. **TOOLS** F1a / F1b / F1c = literacy cards for those three F1 steps.
+4. **Gates** (`Gate-F1` …) = release hard checks — not a frame choice. Deep dive: [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
 ## Three steps (start here)
 
 ### 1. You already have proteins
 
-If not, finish structure first (its `flow_tool` → GFF + `proteins.faa`).
+If not, finish structure first (its `flow_tool` → GFF + `proteins.faa`). Card: [`docs/HANDOFF_STRUCTURE_TO_FUNCTION.md`](docs/HANDOFF_STRUCTURE_TO_FUNCTION.md).
 
 ### 2. Auto-plan the FA frame
 

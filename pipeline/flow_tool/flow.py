@@ -318,6 +318,8 @@ def render(a, choice, stages, emit_commands: bool) -> str:
         "",
         "See docs/ROADMAP.md · docs/zh/FAQ_入门.md. Step-1 tool = plan + explain only.",
         "",
+        "> 中文：读英文 plan 时看什么 → `docs/zh/读plan.md` · 术语 `docs/zh/99_术语表.md` · 起步 `docs/zh/03_怎么开始跑.md`。",
+        "",
     ]
     return "\n".join(lines)
 

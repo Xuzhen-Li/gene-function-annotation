@@ -13,3 +13,5 @@ Upstream structure chooser: [gene-structure-annotation flow_tool](https://github
 Related: [`../../docs/TOOLS.md`](../../docs/TOOLS.md) · [`../../docs/START_HERE.md`](../../docs/START_HERE.md).
 
 Honesty: this step writes a **plan**; it does not one-click InterProScan on your HPC.
+
+Chinese: when reading the English plan body, see [`docs/zh/读plan.md`](../../docs/zh/读plan.md) · glossary [`docs/zh/99_术语表.md`](../../docs/zh/99_术语表.md) · FAQ [`docs/zh/FAQ_入门.md`](../../docs/zh/FAQ_入门.md).

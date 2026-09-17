@@ -22,6 +22,8 @@
 
 ---
 
+**今晚离线勾选（Wiki 不在 clone）：** [`../CLASSROOM_TONIGHT.md`](../CLASSROOM_TONIGHT.md) · 交接：[`../HANDOFF_STRUCTURE_TO_FUNCTION.md`](../HANDOFF_STRUCTURE_TO_FUNCTION.md) / [`交接_结构到功能.md`](交接_结构到功能.md)
+
 ## 今天最短路径（先做这个）
 
 | 步 | 打开 | 做什么 |

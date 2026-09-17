@@ -2,6 +2,10 @@
 
 **中文请从这里进：** [`zh/README.md`](zh/README.md)（今天最短路径）
 
+**Tonight:** [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (not in clone) · offline [`CLASSROOM_TONIGHT.md`](CLASSROOM_TONIGHT.md).
+
+**F cheat:** Framework F1 ≠ script `F2_eggnog.sh` ≠ TOOLS F1b ≠ Gate-F* — see root README · FAQ [`zh/FAQ_入门.md`](zh/FAQ_入门.md).
+
 You want **protein labels** (names / GO-ish / domains), not new exon coordinates.
 
 1. Confirm you have `proteins.faa` from a structure release (TAG or hash).  

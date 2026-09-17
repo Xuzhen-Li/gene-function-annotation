@@ -8,7 +8,7 @@ proteins in → DB checklist → F1 → merge → release
 
 | Step | Done when | Open |
 |------|-----------|------|
-| **1. Proteins in** | Stable `PROTEINS_FA` from structure `release/<TAG>/` (one rep/gene); provenance recorded | Upstream [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-annotation) · [`START_HERE.md`](START_HERE.md) |
+| **1. Proteins in** | Stable `PROTEINS_FA` from structure `release/<TAG>/` (one rep/gene); provenance recorded | [`HANDOFF_STRUCTURE_TO_FUNCTION.md`](HANDOFF_STRUCTURE_TO_FUNCTION.md) · Upstream [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-annotation) · [`START_HERE.md`](START_HERE.md) |
 | **2. DB checklist** | Swiss-Prot DIAMOND + eggNOG data + InterProScan paths real; disk budget OK | [`DB_INSTALL_CHECKLIST.md`](DB_INSTALL_CHECKLIST.md) · [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) |
 | **3. F0 → F1** | Protein BUSCO sanity → DIAMOND + eggNOG + InterProScan (framework **F1**) | [`ROADMAP.md`](ROADMAP.md) · [`QUICKSTART.md`](QUICKSTART.md) · `pipeline/flow_tool/` |
 | **4. Merge → release** | `functional_master.tsv` + `function/release/<TAG>/` + METHODS; tick F-L* | [`EVALUATION_CHECKLIST.md`](EVALUATION_CHECKLIST.md) · [`EVALUATION.md`](EVALUATION.md) · [`METHODS_FUNCTIONAL.md`](METHODS_FUNCTIONAL.md) |

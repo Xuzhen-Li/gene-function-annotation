@@ -48,9 +48,11 @@ FALLBACK_PARAMS = {
     "param_min_scov": 50.0,
 }
 
-# Repo default DIAMOND outfmt 6 (pipeline/F1_diamond.sh); qlen/slen optional extras.
+# Repo default DIAMOND outfmt 6 (pipeline/F1_diamond.sh). Files with fewer trailing
+# columns (no qcovhsp scovhsp) still parse: coverage is computed from qstart/qend/qlen
+# and sstart/send/slen.
 DEFAULT_DIAMOND_COLS = ("qseqid sseqid pident length mismatch gapopen qstart qend "
-                        "sstart send evalue bitscore stitle qlen slen").split()
+                        "sstart send evalue bitscore stitle qlen slen qcovhsp scovhsp").split()
 
 GO_EVIDENCE = "IEA"
 UNCHARACTERIZED = "uncharacterized protein"
@@ -89,7 +91,7 @@ def fasta_lengths(path: Path) -> tuple[list[str], dict[str, int]]:
                 ids.append(cur)
                 lens.setdefault(cur, 0)
             elif cur is not None:
-                lens[cur] += len(line.strip().rstrip("*"))
+                lens[cur] += len(line.strip().rstrip("*."))
     return ids, lens
 
 
@@ -136,6 +138,30 @@ def parse_db_versions(entries: list[str], files: list[str]) -> list[str]:
             raise SystemExit(f"[ERR] --db-version must look like tool=version@YYYY-MM-DD, got {e!r}")
         out[e.split("=", 1)[0]] = e
     return list(out.values())
+
+
+INPUT_OPTS = (  # (argparse dest, flag, what to drop to skip that tool)
+    ("proteins", "--proteins", None),
+    ("ips", "--ips", "InterProScan"),
+    ("emapper", "--emapper", "eggNOG-mapper"),
+    ("diamond_swissprot", "--diamond-swissprot", "DIAMOND vs Swiss-Prot"),
+    ("diamond_trembl", "--diamond-trembl", "DIAMOND vs TrEMBL"),
+    ("kofam", "--kofam", "KofamScan"),
+    ("db_versions_file", "--db-versions-file", None),
+)
+
+
+def missing_inputs(a: argparse.Namespace, opts=INPUT_OPTS) -> list[str]:
+    """One readable line per input path that does not exist (no traceback later)."""
+    msgs = []
+    for dest, flag, tool in opts:
+        val = getattr(a, dest, None)
+        for p in ([val] if isinstance(val, str) else (val or [])):
+            if not Path(p).is_file():
+                hint = (f"; to run without {tool}, leave out {flag}" if tool
+                        else "")
+                msgs.append(f"[ERR] {flag} file not found: {p}{hint}")
+    return msgs
 
 
 # ---------------------------------------------------------------- parsers
@@ -426,6 +452,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", required=True, help="output gene-level TSV")
     a = ap.parse_args(argv)
 
+    bad = missing_inputs(a)
+    if bad:
+        print("\n".join(bad), file=sys.stderr)
+        return 1
     check_schema(Path(a.schema))
     params = load_params(Path(a.thresholds) if a.thresholds else None)
     for key, val in (("param_max_evalue", a.max_evalue), ("param_min_pident", a.min_pident),

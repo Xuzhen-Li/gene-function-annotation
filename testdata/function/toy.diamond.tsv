@@ -1,1 +1,1 @@
-geneA	sp|P12345|EX_HUMAN	80.0	100	0	0	1	100	1	100	1e-40	200	Example protein OS=Homo sapiens
+geneA	sp|P12345|EX_HUMAN	80.0	9	1	0	1	9	1	9	1e-06	30.0	sp|P12345|EX_HUMAN Example protein OS=Homo sapiens OX=9606 GN=EX PE=1 SV=1	9	10	100	90

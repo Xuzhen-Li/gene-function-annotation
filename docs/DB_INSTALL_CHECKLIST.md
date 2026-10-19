@@ -39,7 +39,7 @@ Offline: mirror Swiss-Prot, eggNOG data dir, InterProScan tree, and any `.sif` i
 
 ```bash
 mkdir -p "$DB_ROOT/swissprot" && cd "$DB_ROOT/swissprot"
-# wget/curl current uniprot_sprot.fasta.gz — URL changes; use UniProt current_release
+curl -LO https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
 gunzip -c uniprot_sprot.fasta.gz > uniprot_sprot.fasta
 diamond makedb --in uniprot_sprot.fasta -d swissprot
 ```

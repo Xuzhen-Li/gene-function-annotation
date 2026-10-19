@@ -74,6 +74,15 @@ Follow [`INSTALL_FUNCTIONAL.md`](INSTALL_FUNCTIONAL.md) for databases.
 
 ### F0 — protein QC
 
+```bash
+python3 "$REPO_ROOT/pipeline/F0_clean_proteins.py" \
+  --in "$PROTEINS_FA" \
+  --out "$FUNCTION_DIR/qc/proteins.clean.faa" \
+  --report "$FUNCTION_DIR/qc/internal_stops.tsv"
+```
+
+[[TODO-TEXT]]
+
 Run BUSCO on `$PROTEINS_FA` (see scenarios).  
 **Produces:** QC under `$FUNCTION_DIR/qc`.  
 **Check:** completeness reported with lineage name.
@@ -109,15 +118,15 @@ RUN=1 bash pipeline/F3_interproscan.sh
 ### Merge
 
 ```bash
-python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
+python3 "$REPO_ROOT/pipeline/F_aggregate.py" \
   --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
   --ips "$FUNCTION_DIR/interpro"/${FUN_PREFIX:-ann}_ips.tsv \
-  --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --diamond-swissprot "$FUNCTION_DIR/diamond/swissprot.tsv" \
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 ```
 
-**Produces:** `$FUNCTION_DIR/merge/functional_master.tsv` — **source of truth**.  
+**Produces:** `$FUNCTION_DIR/merge/merged_function_table.tsv` — **source of truth**.  
 **Check:** one row per gene; columns documented in guide.
 
 ### Release

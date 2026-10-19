@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# InterProScan. Set RUN=1. Needs INTERPROSCAN_HOME pointing at install dir.
+# InterProScan 5. Set RUN=1. Needs INTERPROSCAN_HOME pointing at install dir.
+# -goterms -iprlookup -pa: without them the TSV has no InterPro entries, GO terms or pathways.
 set -euo pipefail
 : "${PROTEINS_FA:?}"
 : "${WORK_DIR:?}"
@@ -14,12 +15,12 @@ FUNCTION_DIR="${FUNCTION_DIR:-$WORK_DIR/function}"
 OUT="$FUNCTION_DIR/interpro"
 FUN_PREFIX="${FUN_PREFIX:-ann}"
 IPS="$INTERPROSCAN_HOME/interproscan.sh"
-CMD=("$IPS" -i "$PROTEINS_FA" -f tsv,gff3 -dp -cpu "$THREADS" -b "$OUT/${FUN_PREFIX}_ips")
+CMD=("$IPS" -i "$PROTEINS_FA" -f tsv,gff3 -dp -goterms -iprlookup -pa -cpu "$THREADS" -b "$OUT/${FUN_PREFIX}_ips")
 printf '[CMD] '; printf '%q ' "${CMD[@]}"; echo
 if [[ "${RUN:-0}" == "1" ]]; then
   mkdir -p "$OUT"
   "${CMD[@]}"
   echo "[OK] InterProScan outputs under $OUT"
 else
-  echo "[DRY] export RUN=1 to execute (no mkdir on DRY)"
+  echo "[DRY] to execute: RUN=1 bash pipeline/F3_interproscan.sh (no mkdir on DRY)"
 fi

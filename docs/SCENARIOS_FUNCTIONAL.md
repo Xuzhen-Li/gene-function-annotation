@@ -227,8 +227,8 @@ python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
   --emapper "$REPO_ROOT/testdata/function/toy.emapper.annotations" \
   --ips "$REPO_ROOT/testdata/function/toy.ips.tsv" \
   --diamond "$REPO_ROOT/testdata/function/toy.diamond.tsv" \
-  --out /tmp/vga_toy_master.tsv
-wc -l /tmp/vga_toy_master.tsv
+  --out /tmp/toy_out/merged_function_table.tsv
+diff /tmp/toy_out/merged_function_table.tsv "$REPO_ROOT/testdata/function/expected/merged_function_table.tsv" && echo "[OK] matches expected"
 ```
 
 ---

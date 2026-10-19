@@ -17,5 +17,5 @@ if [[ "${RUN:-0}" == "1" ]]; then
   "${CMD[@]}"
   echo "[OK] $OUT/kofam.tsv"
 else
-  echo "[DRY] export RUN=1 to execute"
+  echo "[DRY] to execute: RUN=1 bash pipeline/F1b_kofam.sh"
 fi

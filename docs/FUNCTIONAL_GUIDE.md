@@ -15,7 +15,13 @@ mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,kofam,ahrd,mercator,merge,rel
 
 # F0 — Protein QC (always)
 
+[[TODO-TEXT]]
+
 ```bash
+python3 "$REPO_ROOT/pipeline/F0_clean_proteins.py" \
+  --in "$PROTEINS_FA" \
+  --out "$FUNCTION_DIR/qc/proteins.clean.faa" \
+  --report "$FUNCTION_DIR/qc/internal_stops.tsv"
 # set BUSCO_LINEAGE_PROTEIN to your clade (eukaryota / viridiplantae / metazoa / fungi / ...)
 busco -i "$PROTEINS_FA" -l "${BUSCO_LINEAGE_PROTEIN:-eukaryota_odb10}" -m proteins \
   -o prot_busco --out_path "$FUNCTION_DIR/qc" -c "$THREADS"
@@ -34,11 +40,11 @@ seqkit stats "$PROTEINS_FA" | tee "$FUNCTION_DIR/qc/seqkit_stats.txt"
 
 ```bash
 # Needs: DIAMOND_DB from INSTALL_FUNCTIONAL.md
-diamond blastp --threads "$THREADS" \
+diamond blastp --more-sensitive --threads "$THREADS" \
   --query "$PROTEINS_FA" \
   --db "$DIAMOND_DB" \
   --out "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle \
+  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle qlen slen qcovhsp scovhsp \
   --evalue 1e-5 --max-target-seqs 5
 
 # Check
@@ -51,8 +57,8 @@ Or: `bash pipeline/F1_diamond.sh` (prints the same; remove `[STOP]` by exporting
 ## F1.2 eggNOG-mapper
 
 **Canonical runner:** `pipeline/F2_eggnog.sh` (print-first; `RUN=1` to execute).  
-Defaults match the script: `--go_evidence non-electronic` and `--pfam_realign realtime`  
-(`realtime` is slower/heavier — override with `EGGNOG_PFAM_REALIGN=none` if cost-constrained).  
+Defaults match the script: `--go_evidence non-electronic`, `--pfam_realign none` and `--tax_scope Viridiplantae`.  
+[[TODO-TEXT]]  
 Do not drift GUIDE examples away from the script.
 
 **Conda/binary example (same flags as the script; adjust for emapper v3 per your install):**
@@ -62,9 +68,9 @@ emapper.py -i "$PROTEINS_FA" \
   --output ${FUN_PREFIX:-ann}_fun --output_dir "$FUNCTION_DIR/emapper" \
   --cpu "$THREADS" --type proteins -m diamond \
   --data_dir "${EGGNOG_DATA_DIR}" \
-  --tax_scope "${EGGNOG_TAX_SCOPE:-auto}" \
+  --tax_scope "${EGGNOG_TAX_SCOPE:-Viridiplantae}" \
   --go_evidence non-electronic \
-  --pfam_realign realtime
+  --pfam_realign none
 
 ls "$FUNCTION_DIR/emapper"/*.emapper.annotations
 head -20 "$FUNCTION_DIR/emapper"/*.emapper.annotations
@@ -79,16 +85,16 @@ singularity exec "$EGGNOG_SIF" emapper.py -i "$PROTEINS_FA" \
   --output ${FUN_PREFIX:-ann}_fun --output_dir "$FUNCTION_DIR/emapper" \
   --cpu "$THREADS" --type proteins -m diamond \
   --data_dir "$EGGNOG_DATA_DIR" \
-  --tax_scope "${EGGNOG_TAX_SCOPE:-auto}" \
+  --tax_scope "${EGGNOG_TAX_SCOPE:-Viridiplantae}" \
   --go_evidence non-electronic \
-  --pfam_realign realtime
+  --pfam_realign none
 ```
 
 ## F1.3 InterProScan
 
 ```bash
 "$INTERPROSCAN_HOME/interproscan.sh" \
-  -i "$PROTEINS_FA" -f tsv,gff3 -dp \
+  -i "$PROTEINS_FA" -f tsv,gff3 -dp -goterms -iprlookup -pa \
   -cpu "$THREADS" \
   -b "$FUNCTION_DIR/interpro/${FUN_PREFIX:-ann}_ips"
 
@@ -110,19 +116,19 @@ exec_annotation -o "$FUNCTION_DIR/kofam/kofam.tsv" \
 ## F1.5 Merge → master TSV
 
 ```bash
-python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
+python3 "$REPO_ROOT/pipeline/F_aggregate.py" \
   --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
   --ips "$FUNCTION_DIR/interpro"/${FUN_PREFIX:-ann}_ips.tsv \
-  --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --diamond-swissprot "$FUNCTION_DIR/diamond/swissprot.tsv" \
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 
 # Sanity
-wc -l "$FUNCTION_DIR/merge/functional_master.tsv"
+wc -l "$FUNCTION_DIR/merge/merged_function_table.tsv"
 # header + N proteins; N should match protein count
 python3 - <<'PY'
 from pathlib import Path
-p=Path("$FUNCTION_DIR/merge/functional_master.tsv".replace("$FUNCTION_DIR",__import__("os").environ["FUNCTION_DIR"]))
+p=Path("$FUNCTION_DIR/merge/merged_function_table.tsv".replace("$FUNCTION_DIR",__import__("os").environ["FUNCTION_DIR"]))
 lines=p.read_text().splitlines()
 print("rows", len(lines)-1, "cols", len(lines[0].split("\t")))
 print("GO-nonempty", sum(1 for L in lines[1:] if "GO:" in L))
@@ -227,6 +233,12 @@ Curate in GSAman if structure is uncertain; keep functional rows for these IDs e
 ---
 
 # Understand your tables (no external tutorial needed)
+
+[[TODO-TEXT]]
+
+<!-- Facts for writer: the merged table is now merged_function_table.tsv from
+pipeline/F_aggregate.py (24 columns, see docs/steps/functional/F_AGGREGATE.md);
+emapper_* / ips_GOs / diamond_stitle below are the old F_merge_tables.py names. -->
 
 | Column source | Meaning |
 |---------------|---------|

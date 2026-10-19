@@ -109,12 +109,12 @@ def main() -> int:
     print("RUN=1 bash pipeline/F1_diamond.sh")
     print("RUN=1 bash pipeline/F2_eggnog.sh   # F1 inner step, not fast-frame F2")
     print("RUN=1 bash pipeline/F3_interproscan.sh")
-    print('python3 pipeline/F_merge_tables.py \\')
+    print('python3 pipeline/F_aggregate.py \\')
     print(f'  --proteins "{proteins}" \\')
     print(f'  --emapper "{fun}/emapper/${{FUN_PREFIX:-ann}}_fun.emapper.annotations" \\')
     print(f'  --ips "{fun}/interpro/${{FUN_PREFIX:-ann}}_ips.tsv" \\')
-    print(f'  --diamond "{fun}/diamond/swissprot.tsv" \\')
-    print(f'  --out "{fun}/merge/functional_master.tsv"')
+    print(f'  --diamond-swissprot "{fun}/diamond/swissprot.tsv" \\')
+    print(f'  --out "{fun}/merge/merged_function_table.tsv"')
     return 0
 
 

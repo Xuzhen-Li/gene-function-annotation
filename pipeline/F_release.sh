@@ -5,29 +5,39 @@ set -euo pipefail
 : "${WORK_DIR:?}"
 : "${RELEASE_TAG:?}"
 : "${PROTEINS_FA:?set PROTEINS_FA to the structure release proteins.faa}"
+# shellcheck source=pipeline/_env_guards.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/_env_guards.sh"
+_gfa_reject_placeholder_path WORK_DIR "$WORK_DIR" || exit 1
+_gfa_reject_placeholder_path PROTEINS_FA "$PROTEINS_FA" || exit 1
 FUNCTION_DIR="${FUNCTION_DIR:-$WORK_DIR/function}"
+_gfa_reject_placeholder_path FUNCTION_DIR "$FUNCTION_DIR" || exit 1
 REPO_ROOT="${REPO_ROOT:-}"
 REL="$FUNCTION_DIR/release/${RELEASE_TAG}"
-mkdir -p "$REL"
+M="$FUNCTION_DIR/merge"
 
-MASTER="$FUNCTION_DIR/merge/functional_master.tsv"
-# Prefer MapMan/AHRD-enriched masters when present
-[[ -f "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv" ]] && MASTER="$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
-[[ -f "$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv" ]] && MASTER="$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv"
-# If both enriched exist, prefer with_mapman then allow override by copying ahd last — pick mapman if set:
-if [[ -f "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv" ]]; then
-  MASTER="$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
-fi
-if [[ ! -f "$MASTER" ]]; then
-  echo "[ERR] no functional_master*.tsv under $FUNCTION_DIR/merge" >&2
+# Merged table: first existing file wins (enriched tables first). The legacy
+# functional_master*.tsv names are still accepted, with a warning.
+MASTER=""
+for cand in merged_function_table.with_mapman.tsv merged_function_table.with_ahrd.tsv \
+            merged_function_table.tsv \
+            functional_master.with_mapman.tsv functional_master.with_ahrd.tsv functional_master.tsv; do
+  if [[ -f "$M/$cand" ]]; then MASTER="$M/$cand"; break; fi
+done
+if [[ -z "$MASTER" ]]; then
+  echo "[ERR] no merged_function_table*.tsv under $M (run pipeline/F_aggregate.py first)" >&2
   exit 1
 fi
-cp -L "$MASTER" "$REL/functional_master.tsv"
-
+case "$MASTER" in
+  */functional_master*) echo "[WARN] using legacy name $MASTER; new runs write merged_function_table.tsv" >&2 ;;
+esac
+echo "[release] merged table: $MASTER" >&2
 if [[ ! -f "$PROTEINS_FA" ]]; then
   echo "[ERR] PROTEINS_FA missing: $PROTEINS_FA" >&2
   exit 1
 fi
+mkdir -p "$REL"
+cp -L "$MASTER" "$REL/merged_function_table.tsv"
+
 cp -L "$PROTEINS_FA" "$REL/proteins.faa"
 
 [[ -d "$FUNCTION_DIR/qc" ]] && cp -r "$FUNCTION_DIR/qc" "$REL/" || true
@@ -55,7 +65,7 @@ frame=F1
 - eggNOG-mapper version: FILL ; eggNOG database: FILL ; tax_scope: FILL ; GO evidence flags: FILL
 - InterProScan software version: FILL ; InterPro / member-DB data release: FILL
 - Optional: KofamScan (F1+) / Mercator4 / AHRD — FILL or unused
-- Merge: pipeline/F_merge_tables.py → functional_master.tsv
+- Merge: pipeline/F_aggregate.py → merged_function_table.tsv
 - QC (Gate-F2): BUSCO Completeness + lineage FILL
 - Table accounting (Gate-F5): protein_n=FILL; master_rows=FILL; per-source hits FILL; annotated/empty FILL; duplicates/drops FILL
 

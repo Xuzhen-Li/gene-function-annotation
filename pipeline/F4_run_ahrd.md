@@ -10,8 +10,8 @@ After F1.1 DIAMOND (and ideally F1.3 InterProScan):
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F4_join_ahrd.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --ahrd "$FUNCTION_DIR/ahrd/ahrd_output.csv" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_ahrd.tsv"
 bash "$REPO_ROOT/pipeline/F_release.sh"
 ```

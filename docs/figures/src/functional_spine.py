@@ -52,19 +52,19 @@ def box(x, y, w, h, title, lines, stroke, fill='#FFFFFF', dash=False, tcolor=Non
 
 # ---------------------------------------------------------------- layout
 M = 3
-text(M, 6.5, 'gene-function-annotation — beginner spine', 8, True, '#000000', 'start')
+text(M, 6.5, 'gene-function-annotation - beginner spine', 8, True, '#000000', 'start')
 text(M, 10.8, 'Labels on proteins. Not gene finding. Mercator / AHRD / NLR = add-ons after merge.',
      7, False, GREY, 'start')
 
 top, bh = 15, 20
 spec = [  # width, title, lines, stroke, fill, dash, title colour
-    (22, 'proteins.faa', ['structure release'], GREY, PAPER, True, GREY),
-    (19, 'F0 QC', ['protein BUSCO'], ORANGE, '#FFFFFF', False, None),
-    (27, 'Framework F1', ['DIAMOND · eggNOG', 'IPS'], BLUE, BLUE_BG, False, None),
-    (31, 'Integrate', ['IPS · eggNOG', 'DIAMOND · Kofam', '→ gene-level master.tsv'], GREEN, '#FFFFFF', False, None),
-    (21, 'add-ons', ['F4/F6/F8 ingest'], VIOLET, '#FFFFFF', True, None),
-    (24, 'Quality check', ['coverage', 'agreement', '→ QC table'], ORANGE, '#FFFFFF', False, None),
-    (22, 'release', ['+ METHODS', 'F-L1'], INK, LIGHT, False, None),
+    (21.5, 'proteins.faa', ['structure release'], GREY, PAPER, True, GREY),
+    (20, 'F0 QC', ['protein BUSCO'], ORANGE, '#FFFFFF', False, None),
+    (22, 'Framework F1', ['DIAMOND', 'eggNOG · IPS'], BLUE, BLUE_BG, False, None),
+    (35, 'Integrate', ['IPS · eggNOG', 'DIAMOND · Kofam', '→ merged_function_table.tsv'], GREEN, '#FFFFFF', False, None),
+    (20.5, 'add-ons', ['F4/F6/F8 ingest'], VIOLET, '#FFFFFF', True, None),
+    (21.5, 'Quality check', ['coverage', 'agreement', '→ QC table'], ORANGE, '#FFFFFF', False, None),
+    (18, 'release', ['+ METHODS', 'F-L1'], INK, LIGHT, False, None),
 ]
 gap = (W - 2*M - sum(s[0] for s in spec)) / (len(spec) - 1)
 x = M
@@ -79,7 +79,7 @@ for w, t, lines, st, fill, dash, tc in spec:
 cy, ch = top + bh + 5, 18
 card = rect(M, cy, W - 2*M, ch, '#BFBFBF', PAPER)
 text(M + 3, cy + 4.6, 'Remember', 8, True, '#000000', 'start', inside=card)
-text(M + 3, cy + 8.6, '• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons — ingest after merge '
+text(M + 3, cy + 8.6, '• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons - ingest after merge '
      '(web Mercator may submit in parallel with F1).', 7, False, '#000000', 'start', inside=card)
 text(M + 3, cy + 12.0, '• Script F2_eggnog.sh = eggNOG step inside framework F1 (not fast-frame F2). '
      'See README “F numbering”.', 7, False, '#000000', 'start', inside=card)

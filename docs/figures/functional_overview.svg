@@ -2,68 +2,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="183mm" height="86mm" viewBox="0 0 183 86">
 <defs><marker id="arr" viewBox="0 0 6 6" refX="5.5" refY="3" markerWidth="1.8" markerHeight="1.8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.6 L5.5,3 L0,5.4 Z" fill="context-stroke"/></marker></defs>
 <rect width="183" height="86" fill="#FFFFFF"/>
-<text x="3.00" y="6.50" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="start">gene-function-annotation — functional overview</text>
-<rect x="3.00" y="12.00" width="22.00" height="38.00" rx="1.2" fill="#F7F7F7" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
-<text x="14.00" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">Input</text>
-<text x="14.00" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">proteins.faa</text>
-<text x="14.00" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">structure</text>
-<text x="14.00" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">release</text>
-<rect x="29.00" y="12.00" width="20.00" height="38.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
-<text x="39.00" y="28.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">F0 QC</text>
-<text x="39.00" y="32.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">protein</text>
-<text x="39.00" y="35.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">BUSCO</text>
-<rect x="53.00" y="12.00" width="31.00" height="38.00" rx="1.2" fill="#DEE4F0" stroke="#1F72AE" stroke-width="0.176"/>
-<text x="68.50" y="16.20" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#1F72AE" text-anchor="middle">F1 framework</text>
-<rect x="55.00" y="18.60" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176"/>
-<text x="68.50" y="22.60" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">DIAMOND</text>
-<rect x="55.00" y="26.20" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176"/>
-<text x="68.50" y="30.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">eggNOG-mapper</text>
-<rect x="55.00" y="33.80" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176"/>
-<text x="68.50" y="37.80" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">InterProScan</text>
-<rect x="55.00" y="41.40" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
-<text x="68.50" y="45.40" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">KofamScan (opt.)</text>
-<rect x="88.00" y="12.00" width="29.00" height="38.00" rx="1.2" fill="#FFFFFF" stroke="#119B76" stroke-width="0.176"/>
-<text x="102.50" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#119B76" text-anchor="middle">Integrate</text>
-<text x="102.50" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F_merge_tables.py</text>
-<text x="102.50" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">gene-level</text>
-<text x="102.50" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">master table</text>
-<rect x="121.00" y="12.00" width="28.00" height="38.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
-<text x="135.00" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">Quality check</text>
-<text x="135.00" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">coverage</text>
-<text x="135.00" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">agreement rate</text>
-<text x="135.00" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ QC table</text>
-<rect x="153.00" y="12.00" width="27.00" height="38.00" rx="1.2" fill="#F0F0F0" stroke="#333333" stroke-width="0.176"/>
-<text x="166.50" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="middle">Release</text>
-<text x="166.50" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F_release.sh</text>
-<text x="166.50" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">release/&lt;TAG&gt;/</text>
-<text x="166.50" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">METHODS</text>
-<polyline points="25.00,31.00 28.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<polyline points="49.00,31.00 52.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<polyline points="84.00,31.00 87.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<polyline points="117.00,31.00 120.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<polyline points="149.00,31.00 152.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="3.00" y="58.00" width="46.00" height="24.00" rx="1.2" fill="#FFFFFF" stroke="#6B6B6B" stroke-width="0.176"/>
-<text x="26.00" y="66.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">Plan the frame</text>
-<text x="26.00" y="69.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">flow.py → my_fa_plan.md</text>
-<text x="26.00" y="72.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F1 default</text>
-<text x="26.00" y="75.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F2 · F3 · F5</text>
-<polyline points="49.00,70.00 68.50,70.00 68.50,50.30" fill="none" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529" marker-end="url(#arr)"/>
-<rect x="88.00" y="58.00" width="61.00" height="24.00" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
-<text x="118.50" y="62.20" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#595594" text-anchor="middle">Add-ons (optional)</text>
-<rect x="90.00" y="65.20" width="27.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
-<text x="103.75" y="69.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F4 AHRD names</text>
-<rect x="119.50" y="65.20" width="27.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
-<text x="133.25" y="69.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F4b PANNZER</text>
-<rect x="90.00" y="73.20" width="27.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
-<text x="103.75" y="77.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F6 Mercator BINs</text>
-<rect x="119.50" y="73.20" width="27.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
-<text x="133.25" y="77.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F8 NLR families</text>
-<polyline points="102.50,50.00 102.50,57.70" fill="none" stroke="#595594" stroke-width="0.176" marker-end="url(#arr)"/>
-<polyline points="135.00,58.00 135.00,50.30" fill="none" stroke="#595594" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="153.00" y="58.00" width="27.00" height="24.00" rx="1.2" fill="#FFFFFF" stroke="#333333" stroke-width="0.176"/>
-<text x="166.50" y="66.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="middle">Release gates</text>
-<text x="166.50" y="69.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">Gate-F1 – F7</text>
-<text x="166.50" y="72.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">provenance</text>
-<text x="166.50" y="75.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">BUSCO · versions</text>
-<polyline points="166.50,58.00 166.50,50.30" fill="none" stroke="#333333" stroke-width="0.176" marker-end="url(#arr)"/>
+<text x="3.00" y="6.50" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="start">gene-function-annotation - functional overview</text>
+<rect x="3.00" y="12.00" width="20.00" height="38.00" rx="1.2" fill="#F7F7F7" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
+<text x="13.00" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">Input</text>
+<text x="13.00" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">proteins.faa</text>
+<text x="13.00" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">structure</text>
+<text x="13.00" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">release</text>
+<rect x="27.00" y="12.00" width="18.00" height="38.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
+<text x="36.00" y="28.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">F0 QC</text>
+<text x="36.00" y="32.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">protein</text>
+<text x="36.00" y="35.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">BUSCO</text>
+<rect x="49.00" y="12.00" width="31.00" height="38.00" rx="1.2" fill="#DEE4F0" stroke="#1F72AE" stroke-width="0.176"/>
+<text x="64.50" y="16.20" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#1F72AE" text-anchor="middle">F1 framework</text>
+<rect x="51.00" y="18.60" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176"/>
+<text x="64.50" y="22.60" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">DIAMOND</text>
+<rect x="51.00" y="26.20" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176"/>
+<text x="64.50" y="30.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">eggNOG-mapper</text>
+<rect x="51.00" y="33.80" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176"/>
+<text x="64.50" y="37.80" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">InterProScan</text>
+<rect x="51.00" y="41.40" width="27.00" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#1F72AE" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
+<text x="64.50" y="45.40" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">KofamScan (opt.)</text>
+<rect x="84.00" y="12.00" width="35.00" height="38.00" rx="1.2" fill="#FFFFFF" stroke="#119B76" stroke-width="0.176"/>
+<text x="101.50" y="28.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#119B76" text-anchor="middle">Integrate</text>
+<text x="101.50" y="32.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ gene-level table</text>
+<text x="101.50" y="35.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">merged_function_table.tsv</text>
+<rect x="123.00" y="12.00" width="28.00" height="38.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
+<text x="137.00" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">Quality check</text>
+<text x="137.00" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">coverage</text>
+<text x="137.00" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">agreement rate</text>
+<text x="137.00" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ QC table</text>
+<rect x="155.00" y="12.00" width="25.00" height="38.00" rx="1.2" fill="#F0F0F0" stroke="#333333" stroke-width="0.176"/>
+<text x="167.50" y="27.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="middle">Release</text>
+<text x="167.50" y="30.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F_release.sh</text>
+<text x="167.50" y="33.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">release/&lt;TAG&gt;/</text>
+<text x="167.50" y="36.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">METHODS</text>
+<polyline points="23.00,31.00 26.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<polyline points="45.00,31.00 48.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<polyline points="80.00,31.00 83.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<polyline points="119.00,31.00 122.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<polyline points="151.00,31.00 154.70,31.00" fill="none" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="3.00" y="58.00" width="42.00" height="24.00" rx="1.2" fill="#FFFFFF" stroke="#6B6B6B" stroke-width="0.176"/>
+<text x="24.00" y="66.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">Plan the frame</text>
+<text x="24.00" y="69.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">flow.py → my_fa_plan.md</text>
+<text x="24.00" y="72.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F1 default</text>
+<text x="24.00" y="75.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F2 · F3 · F5</text>
+<polyline points="45.00,70.00 64.50,70.00 64.50,50.30" fill="none" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529" marker-end="url(#arr)"/>
+<rect x="84.00" y="58.00" width="67.00" height="24.00" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
+<text x="117.50" y="62.20" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#595594" text-anchor="middle">Add-ons (optional)</text>
+<rect x="86.00" y="65.20" width="30.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
+<text x="101.25" y="69.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F4 AHRD names</text>
+<rect x="118.50" y="65.20" width="30.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
+<text x="133.75" y="69.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F4b PANNZER</text>
+<rect x="86.00" y="73.20" width="30.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
+<text x="101.25" y="77.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F6 Mercator BINs</text>
+<rect x="118.50" y="73.20" width="30.50" height="6.20" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176"/>
+<text x="133.75" y="77.20" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F8 NLR families</text>
+<polyline points="101.50,50.00 101.50,57.70" fill="none" stroke="#595594" stroke-width="0.176" marker-end="url(#arr)"/>
+<polyline points="137.00,58.00 137.00,50.30" fill="none" stroke="#595594" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="155.00" y="58.00" width="25.00" height="24.00" rx="1.2" fill="#FFFFFF" stroke="#333333" stroke-width="0.176"/>
+<text x="167.50" y="66.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="middle">Release gates</text>
+<text x="167.50" y="69.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">Gate-F1 to F7</text>
+<text x="167.50" y="72.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">provenance</text>
+<text x="167.50" y="75.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">BUSCO · versions</text>
+<polyline points="167.50,58.00 167.50,50.30" fill="none" stroke="#333333" stroke-width="0.176" marker-end="url(#arr)"/>
 </svg>

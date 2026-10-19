@@ -58,11 +58,11 @@ def labelled_box(x, y, w, h, title, lines, stroke=INK, fill='#FFFFFF', dash=Fals
 
 # ---------------------------------------------------------------- layout
 M = 3
-text(M, 6.5, 'gene-function-annotation — functional overview', 8, True, INK, 'start')
+text(M, 6.5, 'gene-function-annotation - functional overview', 8, True, INK, 'start')
 
 top, hgt = 12, 38                      # main row
 mid = top + hgt / 2
-cols = [22, 20, 31, 29, 28, 27]        # widths; gaps fill the rest
+cols = [20, 18, 31, 35, 28, 25]        # widths; gaps fill the rest
 gap = (W - 2*M - sum(cols)) / (len(cols) - 1)
 xs = []
 x = M
@@ -85,7 +85,7 @@ for name, dash in tools:
     ty += th + tg
 
 b_int = labelled_box(xs[3], top, cols[3], hgt, 'Integrate',
-                     ['F_merge_tables.py', 'gene-level', 'master table'], GREEN, '#FFFFFF')
+                     ['→ gene-level table', 'merged_function_table.tsv'], GREEN, '#FFFFFF')
 b_qa = labelled_box(xs[4], top, cols[4], hgt, 'Quality check',
                     ['coverage', 'agreement rate', '→ QC table'], ORANGE, '#FFFFFF')
 b_rel = labelled_box(xs[5], top, cols[5], hgt, 'Release',
@@ -121,7 +121,7 @@ arrow([(qcx, bt), (qcx, top + hgt + 0.3)], VIOLET)
 
 # release gates under Release
 b_gate = labelled_box(xs[5], bt, cols[5], bh, 'Release gates',
-                      ['Gate-F1 – F7', 'provenance', 'BUSCO · versions'], INK, '#FFFFFF')
+                      ['Gate-F1 to F7', 'provenance', 'BUSCO · versions'], INK, '#FFFFFF')
 arrow([(xs[5] + cols[5]/2, bt), (xs[5] + cols[5]/2, top + hgt + 0.3)], INK)
 
 # ---------------------------------------------------------------- write

@@ -2,44 +2,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="183mm" height="62mm" viewBox="0 0 183 62">
 <defs><marker id="arr" viewBox="0 0 6 6" refX="5.5" refY="3" markerWidth="1.8" markerHeight="1.8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.6 L5.5,3 L0,5.4 Z" fill="context-stroke"/></marker></defs>
 <rect width="183" height="62" fill="#FFFFFF"/>
-<text x="3.00" y="6.50" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#000000" text-anchor="start">gene-function-annotation — beginner spine</text>
+<text x="3.00" y="6.50" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#000000" text-anchor="start">gene-function-annotation - beginner spine</text>
 <text x="3.00" y="10.80" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#6B6B6B" text-anchor="start">Labels on proteins. Not gene finding. Mercator / AHRD / NLR = add-ons after merge.</text>
-<rect x="3.00" y="15.00" width="22.00" height="20.00" rx="1.2" fill="#F7F7F7" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
-<text x="14.00" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">proteins.faa</text>
-<text x="14.00" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">structure release</text>
-<rect x="26.83" y="15.00" width="19.00" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
-<text x="36.33" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">F0 QC</text>
-<text x="36.33" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">protein BUSCO</text>
-<line x1="25.00" y1="25.00" x2="26.53" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="47.67" y="15.00" width="27.00" height="20.00" rx="1.2" fill="#DEE4F0" stroke="#1F72AE" stroke-width="0.176"/>
-<text x="61.17" y="22.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#1F72AE" text-anchor="middle">Framework F1</text>
-<text x="61.17" y="26.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">DIAMOND · eggNOG</text>
-<text x="61.17" y="29.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">IPS</text>
-<line x1="45.83" y1="25.00" x2="47.37" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="76.50" y="15.00" width="31.00" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#119B76" stroke-width="0.176"/>
-<text x="92.00" y="21.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#119B76" text-anchor="middle">Integrate</text>
-<text x="92.00" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">IPS · eggNOG</text>
-<text x="92.00" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">DIAMOND · Kofam</text>
-<text x="92.00" y="30.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ gene-level master.tsv</text>
-<line x1="74.67" y1="25.00" x2="76.20" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="109.33" y="15.00" width="21.00" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
-<text x="119.83" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#595594" text-anchor="middle">add-ons</text>
-<text x="119.83" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F4/F6/F8 ingest</text>
-<line x1="107.50" y1="25.00" x2="109.03" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="132.17" y="15.00" width="24.00" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
-<text x="144.17" y="21.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">Quality check</text>
-<text x="144.17" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">coverage</text>
-<text x="144.17" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">agreement</text>
-<text x="144.17" y="30.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ QC table</text>
-<line x1="130.33" y1="25.00" x2="131.87" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
-<rect x="158.00" y="15.00" width="22.00" height="20.00" rx="1.2" fill="#F0F0F0" stroke="#333333" stroke-width="0.176"/>
-<text x="169.00" y="22.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="middle">release</text>
-<text x="169.00" y="26.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">+ METHODS</text>
-<text x="169.00" y="29.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F-L1</text>
-<line x1="156.17" y1="25.00" x2="157.70" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="3.00" y="15.00" width="21.50" height="20.00" rx="1.2" fill="#F7F7F7" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
+<text x="13.75" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">proteins.faa</text>
+<text x="13.75" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">structure release</text>
+<rect x="27.58" y="15.00" width="20.00" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
+<text x="37.58" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">F0 QC</text>
+<text x="37.58" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">protein BUSCO</text>
+<line x1="24.50" y1="25.00" x2="27.28" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="50.67" y="15.00" width="22.00" height="20.00" rx="1.2" fill="#DEE4F0" stroke="#1F72AE" stroke-width="0.176"/>
+<text x="61.67" y="22.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#1F72AE" text-anchor="middle">Framework F1</text>
+<text x="61.67" y="26.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">DIAMOND</text>
+<text x="61.67" y="29.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">eggNOG · IPS</text>
+<line x1="47.58" y1="25.00" x2="50.37" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="75.75" y="15.00" width="35.00" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#119B76" stroke-width="0.176"/>
+<text x="93.25" y="21.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#119B76" text-anchor="middle">Integrate</text>
+<text x="93.25" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">IPS · eggNOG</text>
+<text x="93.25" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">DIAMOND · Kofam</text>
+<text x="93.25" y="30.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ merged_function_table.tsv</text>
+<line x1="72.67" y1="25.00" x2="75.45" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="113.83" y="15.00" width="20.50" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#595594" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
+<text x="124.08" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#595594" text-anchor="middle">add-ons</text>
+<text x="124.08" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F4/F6/F8 ingest</text>
+<line x1="110.75" y1="25.00" x2="113.53" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="137.42" y="15.00" width="21.50" height="20.00" rx="1.2" fill="#FFFFFF" stroke="#F77E12" stroke-width="0.176"/>
+<text x="148.17" y="21.05" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#F77E12" text-anchor="middle">Quality check</text>
+<text x="148.17" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">coverage</text>
+<text x="148.17" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">agreement</text>
+<text x="148.17" y="30.95" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">→ QC table</text>
+<line x1="134.33" y1="25.00" x2="137.12" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
+<rect x="162.00" y="15.00" width="18.00" height="20.00" rx="1.2" fill="#F0F0F0" stroke="#333333" stroke-width="0.176"/>
+<text x="171.00" y="22.70" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#333333" text-anchor="middle">release</text>
+<text x="171.00" y="26.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">+ METHODS</text>
+<text x="171.00" y="29.30" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">F-L1</text>
+<line x1="158.92" y1="25.00" x2="161.70" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
 <rect x="3.00" y="40.00" width="177.00" height="18.00" rx="1.2" fill="#F7F7F7" stroke="#BFBFBF" stroke-width="0.176"/>
 <text x="6.00" y="44.60" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#000000" text-anchor="start">Remember</text>
-<text x="6.00" y="48.60" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#000000" text-anchor="start">• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons — ingest after merge (web Mercator may submit in parallel with F1).</text>
+<text x="6.00" y="48.60" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#000000" text-anchor="start">• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons - ingest after merge (web Mercator may submit in parallel with F1).</text>
 <text x="6.00" y="52.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#000000" text-anchor="start">• Script F2_eggnog.sh = eggNOG step inside framework F1 (not fast-frame F2). See README “F numbering”.</text>
 <text x="6.00" y="55.40" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#6B6B6B" text-anchor="start">Advanced playbook figure: functional_overview.png (optional after the spine).</text>
 </svg>

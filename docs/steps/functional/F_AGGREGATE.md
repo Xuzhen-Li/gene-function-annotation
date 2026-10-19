@@ -1,6 +1,6 @@
 # F-aggregate — gene-level merged function table
 
-[[TODO-TEXT]]
+This script merges outputs from InterProScan, eggNOG-mapper, DIAMOND, and KofamScan. The output is one table with 24 columns and one row per protein. The final name uses a passing Swiss-Prot hit first. The script tries an eggNOG-mapper name next and an InterProScan domain last. TrEMBL hits never name a gene. You should run the quality check step after this step finishes.
 
 ## Run
 
@@ -47,4 +47,4 @@ python3 -m pytest -q tests/test_aggregate.py
 | `db_versions` | `tool=version@YYYY-MM-DD;...` from `--db-version` / `--db-versions-file` |
 | Columns | `pipeline/schema/merged_function_table.tsv` + `go_source` after `go_evidence` |
 
-[[TODO-TEXT]]
+Every threshold is a rule of thumb. You should compare the numbers with a close relative species annotated the same way. A homology hit does not prove function. GO terms here are IEA electronic inferences that no person checked.

@@ -1,6 +1,6 @@
 # Simulated inputs for `pipeline/F_aggregate.py`
 
-[[TODO-TEXT]]
+These simulated inputs contain deliberate edge cases to test the naming logic. Some proteins have only TrEMBL hits and remain uncharacterized. You can compare your output table with the expected file using diff. No difference means the script worked correctly. The quality check gives warnings on this small dataset without failing the format checks.
 
 <!-- Facts for writer (not finished prose):
 - 7 genes (FAKE_g0001-FAKE_g0007); 4 are deliberate edge cases:

@@ -1,0 +1,6 @@
+FAKE_g0001	md5fake01	300	Pfam	PF08240	Alcohol dehydrogenase GroES-like domain	30	150	2.1e-30	T	19-10-2026	IPR013154	Alcohol dehydrogenase-like, N-terminal	GO:0016491(InterPro)|GO:0055114(InterPro)
+FAKE_g0001	md5fake01	300	Pfam	PF00107	Zinc-binding dehydrogenase	190	290	4.0e-20	T	19-10-2026	IPR013149	Alcohol dehydrogenase-like, C-terminal	GO:0016491(InterPro)
+FAKE_g0002	md5fake02	250	Pfam	PF03106	WRKY domain	120	180	1.5e-25	T	19-10-2026	IPR003657	WRKY domain	GO:0003700(InterPro)|GO:0006355(InterPro)|GO:0043565(InterPro)
+FAKE_g0002	md5fake02	250	MobiDBLite	mobidb-lite	consensus disorder prediction	1	40	-	T	19-10-2026	-	-	-
+FAKE_g0001	md5fake01	300	PANTHER	PTHR11695	ALCOHOL DEHYDROGENASE RELATED	1	300	1.0e-150	T	19-10-2026	-	-	GO:0016491(PANTHER)|GO:0016491(InterPro)|GO:0008270(PANTHER)
+FAKE_g0007	md5fake07	200	Pfam	PF00069	Protein kinase domain	20	190	3.2e-40	T	19-10-2026	IPR000719	Protein kinase domain	GO:0004672(InterPro)|GO:0005524(InterPro)|GO:0006468(InterPro)

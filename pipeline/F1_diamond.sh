@@ -14,7 +14,7 @@ FUNCTION_DIR="${FUNCTION_DIR:-$WORK_DIR/function}"
 OUT="$FUNCTION_DIR/diamond"
 CMD=(diamond blastp --threads "$THREADS" --query "$PROTEINS_FA" --db "$DIAMOND_DB"
   --out "$OUT/swissprot.tsv"
-  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle
+  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle qlen slen
   --evalue 1e-5 --max-target-seqs 5)
 printf '[CMD] '; printf '%q ' "${CMD[@]}"; echo
 if [[ "${RUN:-0}" == "1" ]]; then

@@ -1,6 +1,6 @@
 # F10 quality assessment
 
-This script reads the merged gene table to check the annotation quality. It calculates metrics for InterProScan, eggNOG-mapper, DIAMOND, and KofamScan results. Every threshold is a rule of thumb. You should compare the numbers with a close relative species annotated the same way. A homology hit does not prove function. A warn status means you should look closer.
+The script reads the merged gene table to report metrics for InterProScan, eggNOG, DIAMOND, and KofamScan. Every threshold is a rule of thumb. Compare the numbers with a close relative species annotated the same way. A homology hit does not prove function. A warn status means you should look closer. The name source check accepts both the Swiss-Prot name and the next source for a rounded DIAMOND boundary case. The DIAMOND pass share uses a strict comparison instead. Rows with only InterPro IDs and no useful domain description can have a source of none or interproscan_domain.
 
 ## Input
 
@@ -19,7 +19,7 @@ python3 pipeline/F10_function_qc.py \
 
 ## Output
 
-- `results/F10/function_qc_summary.tsv`: [[TODO-TEXT]]
+- `results/F10/function_qc_summary.tsv`: The summary file has columns for metric, value, threshold, status, threshold_label, and k_n. The k_n column shows the raw count behind a share to explain the status. This column is empty for metrics that are not shares. The status column shows pass, warn, na, or info. The script judges the status on the raw value instead of the rounded number.
 - `results/F10/function_qc_summary.conflicts.tsv`: This file lists the gene_id, conflict, side_a, and side_b columns. It flags genes where the eggNOG KO and KofamScan KO share no KO, or where the eggNOG name shares no word with the Pfam domain text.
 
 ## Test

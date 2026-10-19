@@ -1,0 +1,7 @@
+# gene name           KO     thrshld  score   E-value KO definition
+#-------------------- ------ ------- ------ --------- ---------------------
+* FAKE_g0001           K00001  152.30  410.5   2.1e-123 alcohol dehydrogenase [EC:1.1.1.1]
+  FAKE_g0001           K13951  380.00  290.1   1.0e-86 alcohol dehydrogenase 1/7 [EC:1.1.1.1]
+  FAKE_g0002           K18835  210.00  150.2   3.0e-45 WRKY transcription factor 2
+  FAKE_g0003           K00599       -   80.0   1.0e-20 methyltransferase
+* FAKE_g0004           K17964  120.00  200.0   1.0e-60 pentatricopeptide repeat protein

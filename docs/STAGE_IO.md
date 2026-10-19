@@ -20,6 +20,7 @@ Upstream structure products: [gene-structure-annotation STAGE_IO](https://github
 | **F1 eggNOG** | proteins | `F2_eggnog.sh` | `emapper/*` | Names/GO for controls |
 | **F1 InterPro** | proteins | `F3_interproscan.sh` | `interpro/*` | Domains for controls |
 | **Merge** | the three TSVs | `F_merge_tables.py` | `merge/functional_master.tsv` | One row/gene |
+| **Aggregate** | IPS + eggNOG + DIAMOND (Swiss-Prot/TrEMBL) + KofamScan | `F_aggregate.py` | `merge/merged_function_table.tsv` | [[TODO-TEXT]] |
 | **F4** optional | master + BLAST-ish | AHRD helpers | master + readable names | Names improved, not hallucinated |
 | **F6/F8/F9** optional | proteins / master | Mercator / NLR / iTAK | side tables | Plant METHODS only when needed |
 | **Release** | master + proteins | `F_release.sh` | `release/<TAG>/` | METHODS versions filled |

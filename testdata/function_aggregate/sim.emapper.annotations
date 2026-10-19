@@ -1,0 +1,7 @@
+## emapper-2.1.12 (simulated)
+## Tue Oct 19 14:00:00 2026
+#query	seed_ortholog	evalue	score	eggNOG_OGs	max_annot_lvl	COG_category	Description	Preferred_name	GOs	EC	KEGG_ko	KEGG_Pathway	KEGG_Module	KEGG_Reaction	KEGG_rclass	BRITE	KEGG_TC	CAZy	BiGG_Reaction	PFAMs
+FAKE_g0001	99999.FAKE1	1e-150	450	COG1064@1|root,KOG0023@2759|Eukaryota,37HFAKE@33090|Viridiplantae	33090|Viridiplantae	C	Alcohol dehydrogenase	ADH1	GO:0016491,GO:0004022	1.1.1.1	ko:K00001	map00010	-	-	-	-	-	-	-	ADH_N,ADH_zinc_N
+FAKE_g0002	99999.FAKE2	1e-60	210	KOG0001@2759|Eukaryota,3FAKE2@33090|Viridiplantae	33090|Viridiplantae	K	WRKY transcription factor	WRKY33	GO:0003700,GO:0006355	-	ko:K18835	-	-	-	-	-	-	-	-	WRKY
+FAKE_g0003	99999.FAKE3	1e-30	120	COG0500@1|root,2FAKE3@2759|Eukaryota	2759|Eukaryota	Q	Methyltransferase domain	-	GO:0008168	-	ko:K00599	-	-	-	-	-	-	-	-	Methyltransf_11
+## 3 queries scanned

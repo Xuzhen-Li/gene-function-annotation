@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""F10: quality assessment of the gene-level merged function table. [[TODO-TEXT]]"""
+"""F10: quality assessment of the gene-level merged function table. The script calculates metrics and checks the merged table for missing columns."""
 from __future__ import annotations
 
 import argparse

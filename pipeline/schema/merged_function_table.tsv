@@ -1,25 +1,25 @@
 column	type	required	source	description
-gene_id	string	yes	all	[[TODO-TEXT]]
-ips_domains	list(;)	yes	InterProScan	[[TODO-TEXT]]
-ips_domain_desc	list(;)	yes	InterProScan	[[TODO-TEXT]]
-ips_ipr	list(;)	yes	InterProScan	[[TODO-TEXT]]
-ips_go	list(;)	yes	InterProScan	[[TODO-TEXT]]
-eggnog_og	string	yes	eggNOG-mapper	[[TODO-TEXT]]
-eggnog_name	string	yes	eggNOG-mapper	[[TODO-TEXT]]
-eggnog_description	string	yes	eggNOG-mapper	[[TODO-TEXT]]
-eggnog_go	list(;)	yes	eggNOG-mapper	[[TODO-TEXT]]
-eggnog_ko	list(;)	yes	eggNOG-mapper	[[TODO-TEXT]]
-diamond_db	enum(swissprot|trembl|)	yes	DIAMOND	[[TODO-TEXT]]
-diamond_hit	string	yes	DIAMOND	[[TODO-TEXT]]
-diamond_name	string	yes	DIAMOND	[[TODO-TEXT]]
-diamond_evalue	float	yes	DIAMOND	[[TODO-TEXT]]
-diamond_pident	float	yes	DIAMOND	[[TODO-TEXT]]
-diamond_qcov	float	yes	DIAMOND	[[TODO-TEXT]]
-diamond_scov	float	yes	DIAMOND	[[TODO-TEXT]]
-kofam_ko	list(;)	yes	KofamScan	[[TODO-TEXT]]
-final_name	string	yes	merge	[[TODO-TEXT]]
-final_name_source	string	yes	merge	[[TODO-TEXT]]
-go_terms	list(;)	yes	merge	[[TODO-TEXT]]
-go_evidence	string	yes	merge	[[TODO-TEXT]]
-go_source	list(;) of GO:xxxxxxx=tool[,tool]	yes	merge	[[TODO-TEXT]]
-db_versions	list(;) of tool=version@YYYY-MM-DD	yes	merge	[[TODO-TEXT]]
+gene_id	string	yes	all	This is the protein ID for one representative protein per gene.
+ips_domains	list(;)	yes	InterProScan	This lists InterProScan member database accessions like Pfam:PF00005 separated by semicolons.
+ips_domain_desc	list(;)	yes	InterProScan	This lists the text description for each InterProScan domain in the same order.
+ips_ipr	list(;)	yes	InterProScan	This lists the InterPro accessions like IPR000001 from InterProScan.
+ips_go	list(;)	yes	InterProScan	This lists InterProScan GO IDs which are IEA electronic inferences that no person checked.
+eggnog_og	string	yes	eggNOG-mapper	This is the orthologous group at the annotation level representing an orthology call from eggNOG-mapper.
+eggnog_name	string	yes	eggNOG-mapper	This is the preferred name assigned by eggNOG-mapper.
+eggnog_description	string	yes	eggNOG-mapper	This is the description text assigned by eggNOG-mapper.
+eggnog_go	list(;)	yes	eggNOG-mapper	This lists eggNOG-mapper GO IDs which are IEA electronic inferences that no person checked.
+eggnog_ko	list(;)	yes	eggNOG-mapper	This lists reported KEGG KO IDs from eggNOG-mapper but this is never the final KO.
+diamond_db	enum(swissprot|trembl|)	yes	DIAMOND	This shows swissprot, trembl or empty for the DIAMOND database hit.
+diamond_hit	string	yes	DIAMOND	This is the DIAMOND subject ID but remember a homology hit does not prove function.
+diamond_name	string	yes	DIAMOND	This is the protein name taken from the DIAMOND hit title.
+diamond_evalue	float	yes	DIAMOND	This is the DIAMOND e value where the threshold is a rule of thumb so compare the numbers with a close relative species annotated the same way.
+diamond_pident	float	yes	DIAMOND	This is the DIAMOND percent identity where the threshold is a rule of thumb so compare the numbers with a close relative species annotated the same way.
+diamond_qcov	float	yes	DIAMOND	This is the DIAMOND query coverage where the threshold is a rule of thumb so compare the numbers with a close relative species annotated the same way.
+diamond_scov	float	yes	DIAMOND	This is the DIAMOND subject coverage where the threshold is a rule of thumb so compare the numbers with a close relative species annotated the same way.
+kofam_ko	list(;)	yes	KofamScan	This lists the final KEGG KO IDs from KofamScan rows that pass the KO threshold.
+final_name	string	yes	merge	This is the gene name: a passing Swiss-Prot name, else eggNOG "similar to X", else an InterProScan domain name, else "uncharacterized protein".
+final_name_source	string	yes	merge	This records the final name source as swissprot or eggnog or interproscan_domain or none.
+go_terms	list(;)	yes	merge	This lists sorted GO terms which are IEA electronic inferences that no person checked.
+go_evidence	string	yes	merge	This says IEA whenever go_terms is not empty, because GO terms here are electronic inferences that no person checked.
+go_source	list(;) of GO:xxxxxxx=tool[,tool]	yes	merge	This lists which tools gave each GO term like GO:0016491=interproscan,eggnog.
+db_versions	list(;) of tool=version@YYYY-MM-DD	yes	merge	This records the exact tool versions and dates like interproscan=5.72-103.0@2026-09-01.

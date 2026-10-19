@@ -26,7 +26,7 @@ FULL = dict(ips_domains="Pfam:PF00069", ips_domain_desc="Protein kinase domain",
             diamond_hit="sp|P1|X", diamond_name="Serine/threonine-protein kinase", diamond_evalue="1e-50",
             diamond_pident="80", diamond_qcov="90", diamond_scov="90",
             final_name="Serine/threonine-protein kinase", final_name_source="swissprot",
-            go_terms="GO:0004672", go_evidence="IEA", go_source="interproscan;eggnog")
+            go_terms="GO:0004672", go_evidence="IEA", go_source="GO:0004672=interproscan,eggnog")
 
 
 def write(path, rows):
@@ -97,23 +97,51 @@ class TestFunctionQC(unittest.TestCase):
 
     def _expected(self, **kw):
         p = {k: v[1] for k, v in qc.load_thresholds(qc.DEFAULT_THRESHOLDS).items() if v[0] == "param"}
-        return qc.expected_name_source(row("g", **{**FULL, **kw}), p)
+        return qc.expected_name_sources(row("g", **{**FULL, **kw}), p)
 
     def test_name_source_uninformative_swissprot_falls_through(self):
-        self.assertEqual(self._expected(diamond_name="Uncharacterized protein At1g01010"), "eggnog")
+        self.assertEqual(self._expected(diamond_name="Uncharacterized protein At1g01010"), {"eggnog"})
         self.assertEqual(self._expected(diamond_name="Uncharacterized protein At1g01010",
-                                        eggnog_name=""), "interproscan_domain")
+                                        eggnog_name=""), {"interproscan_domain"})
 
     def test_name_source_non_domain_ips_rows_do_not_name(self):
         nd = dict(eggnog_name="", diamond_db="trembl", ips_ipr="",
                   ips_domains="MobiDBLite:mobidb-lite;PANTHER:PTHR11695;Coils:Coil",
                   ips_domain_desc="consensus disorder prediction;ALCOHOL DEHYDROGENASE;-")
-        self.assertEqual(self._expected(**nd), "none")
-        self.assertEqual(self._expected(**{**nd, "ips_ipr": "IPR002085"}), "interproscan_domain")
+        self.assertEqual(self._expected(**nd), {"none"})
+        # IPR ID without an informative domain signature: both outcomes accepted
+        self.assertEqual(self._expected(**{**nd, "ips_ipr": "IPR002085"}), {"interproscan_domain", "none"})
+
+    def test_name_source_count_mismatch_lenient(self):
+        self.assertEqual(self._expected(diamond_db="trembl", eggnog_name="", ips_ipr="",
+                                        ips_domains="Pfam:PF1;Pfam:PF2", ips_domain_desc="A; B; C"),
+                         {"interproscan_domain", "none"})
+
+    def test_name_source_lenient_cases_pass(self):
+        g2 = dict(diamond_db="trembl", eggnog_name="", ips_domains="PANTHER:PTHR11695",
+                  ips_domain_desc="-", ips_ipr="IPR002085")
+        g3 = dict(diamond_name="Uncharacterized protein", final_name="similar to kinase",
+                  final_name_source="eggnog")
+        rows = [row("g1", **FULL),
+                row("g2", **{**FULL, **g2, "final_name": "uncharacterized protein", "final_name_source": "none"}),
+                row("g2b", **{**FULL, **g2, "final_name": "Alcohol dehydrogenase domain-containing protein",
+                              "final_name_source": "interproscan_domain"}),
+                row("g3", **{**FULL, **g3})]
+        s, _ = run(rows)
+        self.assertEqual(float(s["share_name_source_consistent"]["value"]), 1.0)
+        self.assertEqual(s["share_name_source_consistent"]["status"], "pass")
+        # g3 is not accepted as swissprot
+        s, _ = run([row("g3", **{**FULL, **g3, "final_name_source": "swissprot"})])
+        self.assertEqual(s["share_name_source_consistent"]["status"], "warn")
+
+    def test_status_uses_rounded_value(self):
+        thr = {"share_go_evidence_iea": ("min", 1.0, "rule_of_thumb")}
+        self.assertEqual(qc.status("share_go_evidence_iea", 0.99996, thr)[0], "pass")
+        self.assertEqual(qc.status("share_go_evidence_iea", 0.9996, thr)[0], "warn")
 
     def test_name_source_hypothetical_eggnog_name_skipped(self):
         for name in ("hypothetical protein", "-", "Uncharacterized protein"):
-            self.assertEqual(self._expected(diamond_db="trembl", eggnog_name=name), "interproscan_domain", name)
+            self.assertEqual(self._expected(diamond_db="trembl", eggnog_name=name), {"interproscan_domain"}, name)
 
     def test_example_name_sources_consistent(self):
         ex = ROOT / "testdata" / "function_qc"
@@ -121,7 +149,7 @@ class TestFunctionQC(unittest.TestCase):
         for f in ("merged.sim.tsv", "relative.sim.tsv"):
             for r in qc.read_tsv(ex / f):
                 self.assertIn(r["final_name_source"], qc.NAME_SOURCES)
-                self.assertEqual(r["final_name_source"], qc.expected_name_source(r, p), r["gene_id"])
+                self.assertIn(r["final_name_source"], qc.expected_name_sources(r, p), r["gene_id"])
 
     def test_go_source(self):
         s, _ = run([row("g1", **FULL), row("g2", **{**FULL, "go_source": ""}), row("g3")])

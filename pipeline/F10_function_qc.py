@@ -130,31 +130,37 @@ def informative(name: str) -> bool:
     return not UNINFORMATIVE_RE.match(name or "")
 
 
-def has_domain_name(r: dict) -> bool:
-    """As F_aggregate: a domain-only name needs a Pfam/SMART/ProSiteProfiles/CDD signature
-    with an informative description, else an InterPro entry (ips_ipr). Rows only from
-    e.g. MobiDBLite / PANTHER / Coils without an IPR entry do not name a gene."""
+def domain_tier(r: dict) -> set[str]:
+    """Accepted sources at the InterProScan tier.
+    {"interproscan_domain"}: a Pfam/SMART/ProSiteProfiles/CDD signature with an informative
+    description (F_aggregate names such genes from it).
+    {"interproscan_domain", "none"}: only InterPro IDs (ips_ipr) without such a signature, or
+    ips_domains / ips_domain_desc counts differ on ';' -- F_aggregate's choice there depends on
+    InterPro entry descriptions, which this table does not carry, so both are accepted.
+    {"none"}: no domain evidence, e.g. rows only from MobiDBLite / PANTHER / Coils."""
     doms = (r.get("ips_domains") or "").split(";")
     descs = (r.get("ips_domain_desc") or "").split(";")
-    if len(doms) == len(descs):
-        for dom, desc in zip(doms, descs):
-            if dom.split(":", 1)[0].strip() in DOMAIN_ANALYSES and informative(desc.strip()):
-                return True
-    return bool(split_list(r.get("ips_ipr", "")))
+    if len(doms) != len(descs):
+        return {"interproscan_domain", "none"}
+    for dom, desc in zip(doms, descs):
+        if dom.split(":", 1)[0].strip() in DOMAIN_ANALYSES and informative(desc.strip()):
+            return {"interproscan_domain"}
+    if split_list(r.get("ips_ipr", "")):
+        return {"interproscan_domain", "none"}
+    return {"none"}
 
 
-def expected_name_source(r: dict, p: dict) -> str:
-    """Naming rule (same as F_aggregate): Swiss-Prot hit passing all filters with an
-    informative name > informative eggNOG preferred name > InterProScan domain > none.
-    TrEMBL never names."""
+def expected_name_sources(r: dict, p: dict) -> set[str]:
+    """Accepted final_name_source values. Naming rule (word lists mirror F_aggregate):
+    Swiss-Prot hit passing all filters with an informative name > informative eggNOG
+    preferred name > InterProScan domain > none. TrEMBL never names. At the InterProScan
+    tier IPR-only / count-mismatch rows accept both interproscan_domain and none."""
     if r["diamond_db"].strip().lower() == "swissprot" and diamond_pass(r, p) \
             and informative(r["diamond_name"]):
-        return "swissprot"
+        return {"swissprot"}
     if informative(r["eggnog_name"].strip()):
-        return "eggnog"
-    if has_domain_name(r):
-        return "interproscan_domain"
-    return "none"
+        return {"eggnog"}
+    return domain_tier(r)
 
 
 def db_versions_ok(r: dict) -> bool:
@@ -220,7 +226,7 @@ def compute(rows: list[dict], thr: dict, relative: list[dict] | None):
     m.update(dist)
 
     m["share_name_source_consistent"] = frac(
-        sum(r["final_name_source"].strip() == expected_name_source(r, params) for r in rows), n)
+        sum(r["final_name_source"].strip() in expected_name_sources(r, params) for r in rows), n)
     for src in NAME_SOURCES:
         m[f"share_name_source_{src}"] = frac(sum(r["final_name_source"].strip() == src for r in rows), n)
 
@@ -249,6 +255,9 @@ def status(key: str, value, thr: dict) -> tuple[str, str, str]:
     d, t, label = thr[key]
     if value is None:
         return "na", f"{d} {t:g}", label
+    # Compare the rounded value as written in the table (fmt), so the status always
+    # agrees with the printed number (e.g. 0.99996 prints as 1 and passes min 1).
+    value = float(fmt(value))
     ok = {"min": value >= t, "max": value <= t, "maxabs": abs(value) <= t}[d]
     return ("pass" if ok else "warn"), f"{d} {t:g}", label
 

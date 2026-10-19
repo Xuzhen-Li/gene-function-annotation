@@ -83,6 +83,26 @@ class TestFunctionQC(unittest.TestCase):
         self.assertEqual(s["share_go_evidence_iea"]["status"], "warn")
         self.assertEqual(float(s["share_genes_db_versions_complete"]["value"]), 0.5)
 
+    def test_name_source_rule(self):
+        trembl = {**FULL, "diamond_db": "trembl"}
+        rows = [row("g1", **FULL),
+                row("g2", **{**trembl, "final_name": "similar to kinase", "final_name_source": "eggnog"}),
+                row("g3", **{**trembl, "eggnog_name": "", "final_name_source": "interproscan_domain"}),
+                row("g4", final_name="uncharacterized protein", final_name_source="none"),
+                row("g5", **{**trembl, "final_name_source": "swissprot"})]
+        s, _ = run(rows)
+        self.assertEqual(float(s["share_name_source_consistent"]["value"]), 0.8)
+        self.assertEqual(s["share_name_source_consistent"]["status"], "warn")
+        self.assertEqual(float(s["share_name_source_interproscan_domain"]["value"]), 0.2)
+
+    def test_example_name_sources_consistent(self):
+        ex = ROOT / "testdata" / "function_qc"
+        p = {k: v[1] for k, v in qc.load_thresholds(qc.DEFAULT_THRESHOLDS).items() if v[0] == "param"}
+        for f in ("merged.sim.tsv", "relative.sim.tsv"):
+            for r in qc.read_tsv(ex / f):
+                self.assertIn(r["final_name_source"], qc.NAME_SOURCES)
+                self.assertEqual(r["final_name_source"], qc.expected_name_source(r, p), r["gene_id"])
+
     def test_go_source(self):
         s, _ = run([row("g1", **FULL), row("g2", **{**FULL, "go_source": ""}), row("g3")])
         self.assertEqual(float(s["share_go_with_source"]["value"]), 0.5)

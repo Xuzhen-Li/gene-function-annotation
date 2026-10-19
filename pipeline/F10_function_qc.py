@@ -117,6 +117,21 @@ def diamond_pass(r: dict, p: dict) -> bool | None:
         and qc >= p["param_min_qcov"] and sc >= p["param_min_scov"]
 
 
+NAME_SOURCES = ("swissprot", "eggnog", "interproscan_domain", "none")
+
+
+def expected_name_source(r: dict, p: dict) -> str:
+    """Naming rule: Swiss-Prot hit passing all filters > eggNOG preferred name >
+    InterProScan domain > none. TrEMBL never names."""
+    if r["diamond_db"].strip().lower() == "swissprot" and diamond_pass(r, p):
+        return "swissprot"
+    if r["eggnog_name"].strip():
+        return "eggnog"
+    if split_list(r["ips_domain_desc"]):
+        return "interproscan_domain"
+    return "none"
+
+
 def db_versions_ok(r: dict) -> bool:
     entries = split_list(r["db_versions"])
     if not entries or not all(DB_VER_RE.match(e) for e in entries):
@@ -178,6 +193,11 @@ def compute(rows: list[dict], thr: dict, relative: list[dict] | None):
         for q, lab in ((0.1, "p10"), (0.5, "median"), (0.9, "p90")):
             dist[f"{col}_{lab}"] = quantile(vals, q)
     m.update(dist)
+
+    m["share_name_source_consistent"] = frac(
+        sum(r["final_name_source"].strip() == expected_name_source(r, params) for r in rows), n)
+    for src in NAME_SOURCES:
+        m[f"share_name_source_{src}"] = frac(sum(r["final_name_source"].strip() == src for r in rows), n)
 
     with_go = [r for r in rows if split_list(r["go_terms"])]
     m["share_go_evidence_iea"] = frac(sum(r["go_evidence"].strip().upper() == "IEA" for r in with_go), len(with_go))

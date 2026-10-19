@@ -18,7 +18,7 @@ M="$FUNCTION_DIR/merge"
 # Merged table: first existing file wins (enriched tables first). The legacy
 # functional_master*.tsv names are still accepted, with a warning.
 MASTER=""
-for cand in merged_function_table.with_mapman.tsv merged_function_table.with_ahrd.tsv \
+for cand in merged_function_table.with_mapman.tsv merged_function_table.with_ahrd.tsv merged_function_table.with_pannzer.tsv \
             merged_function_table.tsv \
             functional_master.with_mapman.tsv functional_master.with_ahrd.tsv functional_master.tsv; do
   if [[ -f "$M/$cand" ]]; then MASTER="$M/$cand"; break; fi

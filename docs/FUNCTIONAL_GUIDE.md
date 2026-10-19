@@ -167,13 +167,13 @@ After F1.1 (and ideally F1.3):
 1. Configure AHRD YAML to read `$FUNCTION_DIR/diamond/swissprot.tsv` (+ InterPro if available).  
 2. Run AHRD jar (see [`tools/ahrd.md`](tools/ahrd.md)).  
 3. Save `ahrd_output.csv` under `$FUNCTION_DIR/ahrd/`.  
-4. Join `Human-Readable-Description` onto `functional_master.tsv` by gene id:
+4. Join `Human-Readable-Description` onto `merged_function_table.tsv` by gene id:
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F4_join_ahrd.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --ahrd "$FUNCTION_DIR/ahrd/ahrd_output.csv" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_ahrd.tsv"
 ```
 
 HPC wrapper alternative: [eifunannot](https://github.com/EI-CoreBioinformatics/eifunannot).
@@ -201,8 +201,8 @@ Mercator4 has **no public CLI**. Do this once in a browser; then stay in-repo.
 ```bash
 python3 "$REPO_ROOT/pipeline/F6_ingest_mercator.py" \
   --mercator-dir "$FUNCTION_DIR/mercator" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_mapman.tsv"
 ```
 
 8. Optional: load the mapping file into MapMan desktop for figures (local app from plabipd.de).
@@ -268,9 +268,9 @@ Run PANNZER2 on `$PROTEINS_FA` → `$FUNCTION_DIR/pannzer/` · [`tools/pannzer2.
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F4b_join_pannzer.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --pannzer "$FUNCTION_DIR/pannzer/pannzer.out" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_pannzer.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_pannzer.tsv"
 ```
 
 ## Mercator4

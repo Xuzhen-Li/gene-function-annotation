@@ -36,13 +36,15 @@ python3 -m pytest -q tests/test_aggregate.py
 
 | Item | Rule |
 |------|------|
-| `final_name` | Swiss-Prot (passing filters) → `similar to <X>`, X from InterProScan → eggNOG → TrEMBL (passing) → `uncharacterized protein` |
-| `final_name_source` | `swissprot` / `interproscan` / `eggnog` / `trembl` / `none` |
+| `final_name` | Swiss-Prot hit passing all DIAMOND filters (e-value, identity, query **and** subject coverage) → `<domain> domain-containing protein` from InterProScan (Pfam → SMART → ProSiteProfiles → CDD signature, else InterPro entry) → `uncharacterized protein` |
+| `final_name_source` | `swissprot` / `interproscan_domain` / `none` |
 | DIAMOND filters | `param_max_evalue`, `param_min_pident`, `param_min_qcov`, `param_min_scov` from `config/function_qc_thresholds.tsv`; `--max-evalue` / `--min-pident` / `--min-qcov` / `--min-scov` override |
 | `diamond_*` | Swiss-Prot passing → TrEMBL passing → best failing hit (kept for QC) |
 | `kofam_ko` | KofamScan rows marked `*` or score ≥ threshold; `eggnog_ko` is reported, not used as final KO |
-| `go_terms` | union of `ips_go` + `eggnog_go`, deduplicated, sorted; `go_evidence` = `IEA` |
+| `go_terms` | union of `ips_go` + `eggnog_go` (suffixes such as `(InterPro)` / `(PANTHER)` stripped), deduplicated, sorted; `go_evidence` = `IEA` |
+| `go_source` | `GO:xxxxxxx=interproscan,eggnog;...` — one entry per term in `go_terms` order |
+| DIAMOND input | needs `qlen` (or `--proteins`) and `slen`; otherwise the step stops with an error |
 | `db_versions` | `tool=version@YYYY-MM-DD;...` from `--db-version` / `--db-versions-file` |
-| Columns | `pipeline/schema/merged_function_table.tsv` |
+| Columns | `pipeline/schema/merged_function_table.tsv` + `go_source` after `go_evidence` |
 
 [[TODO-TEXT]]

@@ -2,12 +2,15 @@
 """F-aggregate: merge InterProScan / eggNOG-mapper / DIAMOND (Swiss-Prot, TrEMBL) /
 KofamScan outputs into one gene-level table (one row per protein = one gene).
 
-Name rule:   Swiss-Prot hit passing DIAMOND filters -> its name;
-             else "similar to <X>" with X from InterPro -> eggNOG -> TrEMBL (passing);
+Name rule:   Swiss-Prot hit passing DIAMOND filters (e-value, identity, query AND
+             subject coverage) -> its name;
+             else "<domain> domain-containing protein" when InterProScan found a domain;
              else "uncharacterized protein".
 KEGG KO:     final KO is kofam_ko only (KofamScan rows marked '*' or score >= threshold).
-GO:          union of InterProScan + eggNOG GO, deduplicated and sorted; evidence code IEA.
-Columns:     exactly pipeline/schema/merged_function_table.tsv (checked when that file exists).
+GO:          union of InterProScan + eggNOG GO (suffixes like "(InterPro)" stripped),
+             deduplicated and sorted; go_evidence = IEA; go_source = GO:x=tool[,tool];...
+Columns:     pipeline/schema/merged_function_table.tsv + go_source after go_evidence
+             (checked when that file exists).
 Stdlib only.
 """
 from __future__ import annotations
@@ -31,7 +34,7 @@ COLUMNS = [
     "diamond_pident", "diamond_qcov", "diamond_scov",
     "kofam_ko",
     "final_name", "final_name_source",
-    "go_terms", "go_evidence",
+    "go_terms", "go_evidence", "go_source",
     "db_versions",
 ]
 
@@ -50,6 +53,10 @@ DEFAULT_DIAMOND_COLS = ("qseqid sseqid pident length mismatch gapopen qstart qen
 
 GO_EVIDENCE = "IEA"
 UNCHARACTERIZED = "uncharacterized protein"
+DOMAIN_NAME = "{} domain-containing protein"
+GO_SOURCE_ORDER = ("interproscan", "eggnog")
+# analyses whose signature descriptions can name a domain-only protein, in preference order
+DOMAIN_ANALYSES = ("Pfam", "SMART", "ProSiteProfiles", "CDD")
 UNINFORMATIVE_RE = re.compile(
     r"^\s*(-|uncharacteri[sz]ed protein.*|hypothetical protein.*|predicted protein.*|"
     r"unknown( protein)?|protein of unknown function.*)?\s*$", re.I)
@@ -103,8 +110,10 @@ def check_schema(path: Path) -> None:
         return
     with open(path, newline="") as f:
         cols = [r["column"] for r in csv.DictReader(f, delimiter="\t")]
+    if "go_source" not in cols and "go_evidence" in cols:
+        cols.insert(cols.index("go_evidence") + 1, "go_source")
     if cols != COLUMNS:
-        raise SystemExit(f"[ERR] output columns differ from schema {path}:\n"
+        raise SystemExit(f"[ERR] output columns differ from schema {path} (+go_source):\n"
                          f"  schema: {cols}\n  script: {COLUMNS}")
 
 
@@ -144,17 +153,21 @@ def parse_interproscan(path: Path) -> dict[str, dict]:
                 continue
             g = out.setdefault(c[0], {"domains": {}, "ipr": {}, "go": set()})
             dom = f"{c[3]}:{c[4]}"
-            g["domains"].setdefault(dom, c[5] if not empty(c[5]) else "")
             try:
                 ev = float(c[8])
             except ValueError:
                 ev = float("inf")
+            desc5 = c[5] if not empty(c[5]) else ""
+            prevd = g["domains"].get(dom)
+            if prevd is None or ev < prevd[1]:
+                g["domains"][dom] = (desc5, ev)
             if len(c) > 11 and c[11].startswith("IPR"):
                 desc = c[12] if len(c) > 12 and not empty(c[12]) else ""
                 prev = g["ipr"].get(c[11])
                 if prev is None or ev < prev[1]:
                     g["ipr"][c[11]] = (desc, ev)
             if len(c) > 13:
+                # 'GO:0005524(InterPro)|GO:0005524(PANTHER)' -> {'GO:0005524'}
                 g["go"].update(GO_RE.findall(c[13]))
     return out
 
@@ -215,7 +228,7 @@ def parse_diamond(path: Path, cols: list[str], qlens: dict[str, int], db: str,
                   params: dict[str, float]) -> dict[str, dict]:
     """Best hit per query: best passing hit (bitscore), else best failing hit (kept for QC)."""
     best: dict[str, dict] = {}
-    warned = False
+    checked = False
     with open(path) as f:
         for line in f:
             if not line.strip() or line.startswith("#"):
@@ -230,12 +243,24 @@ def parse_diamond(path: Path, cols: list[str], qlens: dict[str, int], db: str,
                 continue
             qlen = _int(r.get("qlen")) or qlens.get(q)
             slen = _int(r.get("slen"))
+            if not checked:
+                missing = []
+                if not qlen:
+                    missing.append("qlen (or --proteins FASTA)")
+                if not slen:
+                    missing.append("slen")
+                if missing:
+                    raise SystemExit(
+                        f"[ERR] {path}: cannot compute DIAMOND query/subject coverage; missing "
+                        f"{', '.join(missing)}.\n"
+                        f"  Fix: rerun pipeline/F1_diamond.sh (its --outfmt 6 now ends with "
+                        f"'stitle qlen slen'),\n"
+                        f"  or pass --diamond-columns with the real column order of this file "
+                        f"(current: {' '.join(cols)}),\n"
+                        f"  and/or --proteins so qlen can be taken from the FASTA.")
+                checked = True
             qcov = 100.0 * (abs(qe - qs) + 1) / qlen if qlen else None
             scov = 100.0 * (abs(se - ss) + 1) / slen if slen else None
-            if scov is None and not warned:
-                print(f"[aggregate] {path}: no slen column -> subject coverage unknown, "
-                      f"hits fail the scov filter (add 'qlen slen' to --outfmt 6)", file=sys.stderr)
-                warned = True
             passed = (evalue <= params["param_max_evalue"] and pident >= params["param_min_pident"]
                       and qcov is not None and qcov >= params["param_min_qcov"]
                       and scov is not None and scov >= params["param_min_scov"])
@@ -301,35 +326,43 @@ def informative(name: str) -> bool:
     return not UNINFORMATIVE_RE.match(name or "")
 
 
-def ips_best_desc(ips: dict) -> str:
-    ranked = sorted(((ev, acc, d) for acc, (d, ev) in ips["ipr"].items() if informative(d)))
-    if ranked:
-        return ranked[0][2]
-    for d in ips["domains"].values():
-        if informative(d):
-            return d
-    return ""
+def ips_domain_label(ips: dict) -> str:
+    """Domain for a domain-only name: best Pfam/SMART/PROSITE-profile/CDD signature,
+    else best InterPro entry; trailing ' domain' dropped (avoids 'domain domain-...')."""
+    cands = []
+    for dom, (d, ev) in ips["domains"].items():
+        an = dom.split(":", 1)[0]
+        if an in DOMAIN_ANALYSES and informative(d):
+            cands.append((DOMAIN_ANALYSES.index(an), ev, dom, d))
+    if not cands:
+        cands = [(len(DOMAIN_ANALYSES), ev, acc, d) for acc, (d, ev) in ips["ipr"].items() if informative(d)]
+    if not cands:
+        return ""
+    label = sorted(cands)[0][3].strip()
+    return re.sub(r"[\s-]+domains?$", "", label, flags=re.I).strip() or label
 
 
 def build_row(gid: str, ips: dict | None, em: dict | None, sp: dict | None,
               tr: dict | None, ko: list | None, db_versions: str) -> dict:
     row = {c: "" for c in COLUMNS}
     row["gene_id"] = gid
-    go_all: set[str] = set()
+    go_src: dict[str, set[str]] = {}
     if ips:
         doms = sorted(ips["domains"])
         row["ips_domains"] = join(doms)
-        row["ips_domain_desc"] = join(ips["domains"][d] or "-" for d in doms)
+        row["ips_domain_desc"] = join(ips["domains"][d][0] or "-" for d in doms)
         row["ips_ipr"] = join(sorted(ips["ipr"]))
         row["ips_go"] = join(sorted(ips["go"]))
-        go_all |= ips["go"]
+        for t in ips["go"]:
+            go_src.setdefault(t, set()).add("interproscan")
     if em:
         row["eggnog_og"] = em["og"]
         row["eggnog_name"] = em["name"]
         row["eggnog_description"] = em["desc"]
         row["eggnog_go"] = join(sorted(em["go"]))
         row["eggnog_ko"] = join(em["ko"])      # reported only; final KO = kofam_ko
-        go_all |= em["go"]
+        for t in em["go"]:
+            go_src.setdefault(t, set()).add("eggnog")
     # DIAMOND: Swiss-Prot passing > TrEMBL passing > best failing (SP first) for QC
     hit = None
     for cand in (sp, tr):
@@ -346,21 +379,19 @@ def build_row(gid: str, ips: dict | None, em: dict | None, sp: dict | None,
         })
     if ko:
         row["kofam_ko"] = join(k for k, _ in ko)
-    # name: Swiss-Prot > similar to (InterPro > eggNOG > TrEMBL) > uncharacterized
+    # name: passing Swiss-Prot > InterProScan domain-only > uncharacterized
     name, src = UNCHARACTERIZED, "none"
     if sp and sp["passed"] and informative(sp["name"]):
         name, src = sp["name"], "swissprot"
-    else:
-        for s, cand in (("interproscan", ips_best_desc(ips) if ips else ""),
-                        ("eggnog", em["desc"] if em else ""),
-                        ("trembl", tr["name"] if tr and tr["passed"] else "")):
-            if informative(cand):
-                name, src = f"similar to {cand}", s
-                break
+    elif ips and (dom := ips_domain_label(ips)):
+        name, src = DOMAIN_NAME.format(dom), "interproscan_domain"
     row["final_name"], row["final_name_source"] = name, src
-    if go_all:
-        row["go_terms"] = join(sorted(go_all))
+    if go_src:
+        terms = sorted(go_src)
+        row["go_terms"] = join(terms)
         row["go_evidence"] = GO_EVIDENCE
+        row["go_source"] = join(
+            f"{t}=" + ",".join(x for x in GO_SOURCE_ORDER if x in go_src[t]) for t in terms)
     row["db_versions"] = db_versions
     return row
 

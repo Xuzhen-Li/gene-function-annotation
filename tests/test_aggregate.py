@@ -17,7 +17,7 @@ EXPECTED_HEADER = [
     "eggnog_og", "eggnog_name", "eggnog_description", "eggnog_go", "eggnog_ko",
     "diamond_db", "diamond_hit", "diamond_name", "diamond_evalue", "diamond_pident",
     "diamond_qcov", "diamond_scov", "kofam_ko", "final_name", "final_name_source",
-    "go_terms", "go_evidence", "db_versions",
+    "go_terms", "go_evidence", "go_source", "db_versions",
 ]
 FULL_ARGS = [
     "--proteins", str(D / "sim.faa"),
@@ -59,7 +59,18 @@ class TestHeaderAndExample(unittest.TestCase):
             self.skipTest("pipeline/schema/merged_function_table.tsv not on this branch")
         with open(agg.DEFAULT_SCHEMA, newline="") as f:
             cols = [r["column"] for r in csv.DictReader(f, delimiter="\t")]
+        if "go_source" not in cols:  # PR #1 schema without go_source: script adds it
+            cols.insert(cols.index("go_evidence") + 1, "go_source")
         self.assertEqual(cols, EXPECTED_HEADER)
+
+    def test_schema_check_strict(self):
+        with tempfile.TemporaryDirectory() as t:
+            base = [c for c in EXPECTED_HEADER if c != "go_source"]
+            ok = write(t, "ok.tsv", "column\trequired\n" + "".join(f"{c}\tyes\n" for c in base))
+            agg.check_schema(Path(ok))  # schema without go_source is accepted
+            bad = write(t, "bad.tsv", "column\trequired\n" + "".join(f"{c}\tyes\n" for c in base[:-1]))
+            with self.assertRaises(SystemExit):
+                agg.check_schema(Path(bad))
 
     def test_matches_expected_output(self):
         out = Path(tempfile.mkdtemp()) / "m.tsv"
@@ -77,33 +88,32 @@ class TestNamePriority(unittest.TestCase):
         self.assertEqual((r["final_name"], r["final_name_source"]), ("Alcohol dehydrogenase 1", "swissprot"))
         self.assertEqual(r["diamond_db"], "swissprot")
 
-    def test_interpro_before_eggnog_and_trembl_when_swissprot_fails(self):
-        r = self.rows["FAKE_g0002"]  # SP hit pident 25 < 30
-        self.assertEqual(r["final_name"], "similar to WRKY domain")
-        self.assertEqual(r["final_name_source"], "interproscan")
-        self.assertEqual(r["diamond_db"], "trembl")  # passing TrEMBL shown over failing SP
+    def test_domain_only_when_swissprot_fails(self):
+        r = self.rows["FAKE_g0002"]  # SP hit pident 25 < 30; Pfam WRKY domain present
+        self.assertEqual(r["final_name"], "WRKY domain-containing protein")
+        self.assertEqual(r["final_name_source"], "interproscan_domain")
+        self.assertEqual(r["diamond_db"], "trembl")  # passing TrEMBL shown, never names
 
-    def test_eggnog_before_trembl(self):
+    def test_eggnog_only_is_uncharacterized(self):
         r = self.rows["FAKE_g0003"]
-        self.assertEqual((r["final_name"], r["final_name_source"]),
-                         ("similar to Methyltransferase domain", "eggnog"))
-
-    def test_trembl_last(self):
-        r = self.rows["FAKE_g0004"]
-        self.assertEqual(r["final_name_source"], "trembl")
-        self.assertTrue(r["final_name"].startswith("similar to Pentatricopeptide"))
-
-    def test_uninformative_trembl_gives_uncharacterized(self):
-        r = self.rows["FAKE_g0005"]
         self.assertEqual((r["final_name"], r["final_name_source"]), ("uncharacterized protein", "none"))
+        self.assertEqual(r["eggnog_description"], "Methyltransferase domain")
 
-    def test_without_interpro_eggnog_takes_over(self):
-        base = [a for a in FULL_ARGS]
-        i = base.index("--ips")
-        del base[i:i + 2]
-        _, rows = run([], base=base)
-        self.assertEqual(rows["FAKE_g0002"]["final_name"], "similar to WRKY transcription factor")
-        self.assertEqual(rows["FAKE_g0002"]["final_name_source"], "eggnog")
+    def test_trembl_only_is_uncharacterized(self):
+        for g in ("FAKE_g0004", "FAKE_g0005"):
+            r = self.rows[g]
+            self.assertEqual(r["diamond_db"], "trembl")
+            self.assertEqual((r["final_name"], r["final_name_source"]), ("uncharacterized protein", "none"))
+
+    def test_domain_label_prefers_pfam_and_drops_trailing_domain(self):
+        ips = {"domains": {"PANTHER:PTHR1": ("SOME FAMILY", 1e-100),
+                           "Pfam:PF2": ("Zinc finger domain", 1e-5),
+                           "Pfam:PF1": ("Kinase domain", 1e-20),
+                           "MobiDBLite:mobidb-lite": ("consensus disorder prediction", float("inf"))},
+               "ipr": {"IPR1": ("Protein kinase-like", 1e-30)}, "go": set()}
+        self.assertEqual(agg.ips_domain_label(ips), "Kinase")
+        ips2 = {"domains": {"MobiDBLite:m": ("disorder", 1.0)}, "ipr": {"IPR9": ("NB-ARC", 1e-9)}, "go": set()}
+        self.assertEqual(agg.ips_domain_label(ips2), "NB-ARC")
 
 
 class TestDiamondFilters(unittest.TestCase):
@@ -118,11 +128,13 @@ class TestDiamondFilters(unittest.TestCase):
         _, rows = run(["--min-scov", "30", "--min-pident", "20"])
         self.assertEqual(rows["FAKE_g0007"]["final_name"], "Serine/threonine-protein kinase 1")
         self.assertEqual(rows["FAKE_g0002"]["final_name"], "WRKY transcription factor 1")
+        self.assertEqual(rows["FAKE_g0002"]["final_name_source"], "swissprot")
         self.assertEqual(rows["FAKE_g0002"]["diamond_db"], "swissprot")
 
     def test_cli_override_tightens_filters(self):
         _, rows = run(["--max-evalue", "1e-130"])
-        self.assertEqual(rows["FAKE_g0001"]["final_name_source"], "interproscan")
+        self.assertEqual(rows["FAKE_g0001"]["final_name"], "Alcohol dehydrogenase GroES-like domain-containing protein")
+        self.assertEqual(rows["FAKE_g0001"]["final_name_source"], "interproscan_domain")
 
     def test_thresholds_file(self):
         with tempfile.TemporaryDirectory() as t:
@@ -130,18 +142,44 @@ class TestDiamondFilters(unittest.TestCase):
                                       "param_min_qcov\tparam\t95\trule_of_thumb\n")
             _, rows = run(["--thresholds", thr])
         self.assertEqual(rows["FAKE_g0001"]["final_name_source"], "swissprot")  # qcov 96.7
-        self.assertEqual(rows["FAKE_g0004"]["final_name_source"], "none")       # qcov 90.9
+        self.assertEqual(rows["FAKE_g0002"]["diamond_db"], "swissprot")         # nothing passes -> best failing
 
     def test_qcov_from_fasta_when_no_qlen(self):
         with tempfile.TemporaryDirectory() as t:
             dm = write(t, "sp.tsv", "FAKE_g0006\tsp|Q0|X_FAKE\t80\t100\t0\t0\t1\t100\t1\t100\t1e-50\t200\t"
-                                    "sp|Q0|X_FAKE Test protein OS=Fakeus OX=1 GN=TP PE=1 SV=1\n")
-            cols = "qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle"
+                                    "sp|Q0|X_FAKE Test protein OS=Fakeus OX=1 GN=TP PE=1 SV=1\t110\n")
+            cols = "qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle slen"
             _, rows = run(["--diamond-swissprot", dm, "--diamond-columns", cols])
-        r = rows["FAKE_g0006"]  # qlen 120 from FASTA, no slen -> scov unknown -> fails
-        self.assertEqual(r["diamond_qcov"], "83.3")
-        self.assertEqual(r["diamond_scov"], "")
-        self.assertEqual(r["final_name"], "uncharacterized protein")
+        r = rows["FAKE_g0006"]  # qlen 120 from FASTA
+        self.assertEqual((r["diamond_qcov"], r["diamond_scov"]), ("83.3", "90.9"))
+        self.assertEqual(r["final_name"], "Test protein")
+
+    def _err(self, args):
+        buf = io.StringIO()
+        with self.assertRaises(SystemExit) as cm, redirect_stderr(buf), redirect_stdout(io.StringIO()):
+            agg.main(args)
+        return str(cm.exception.code)
+
+    def test_missing_slen_is_friendly_error(self):
+        line = ("g1\tsp|Q0|X\t80\t100\t0\t0\t1\t100\t1\t100\t1e-50\t200\t"
+                "sp|Q0|X Test protein OS=F OX=1\n")
+        with tempfile.TemporaryDirectory() as t:
+            dm = write(t, "sp.tsv", line)
+            fa = write(t, "p.faa", ">g1\n" + "M" * 100 + "\n")
+            msg = self._err(["--proteins", fa, "--diamond-swissprot", dm, "--out", str(Path(t) / "o.tsv")])
+        self.assertIn("missing slen", msg)
+        self.assertNotIn("qlen", msg.split("missing", 1)[1].split(".", 1)[0])
+        self.assertIn("F1_diamond.sh", msg)
+        self.assertIn("--diamond-columns", msg)
+
+    def test_missing_qlen_and_slen_without_fasta(self):
+        line = ("g1\tsp|Q0|X\t80\t100\t0\t0\t1\t100\t1\t100\t1e-50\t200\t"
+                "sp|Q0|X Test protein OS=F OX=1\n")
+        with tempfile.TemporaryDirectory() as t:
+            dm = write(t, "sp.tsv", line)
+            msg = self._err(["--diamond-trembl", dm, "--out", str(Path(t) / "o.tsv")])
+        self.assertIn("qlen (or --proteins FASTA), slen", msg)
+        self.assertIn("--proteins", msg)
 
 
 class TestKofam(unittest.TestCase):
@@ -170,19 +208,34 @@ class TestKofam(unittest.TestCase):
 
 
 class TestGo(unittest.TestCase):
-    def test_union_dedup_sorted_iea(self):
+    def test_union_dedup_sorted_iea_source(self):
         _, rows = run([])
         r = rows["FAKE_g0001"]
-        self.assertEqual(r["go_terms"], "GO:0004022;GO:0016491;GO:0055114")
-        self.assertEqual(r["ips_go"], "GO:0016491;GO:0055114")
+        self.assertEqual(r["ips_go"], "GO:0008270;GO:0016491;GO:0055114")
         self.assertEqual(r["eggnog_go"], "GO:0004022;GO:0016491")
+        self.assertEqual(r["go_terms"], "GO:0004022;GO:0008270;GO:0016491;GO:0055114")
         self.assertEqual(r["go_evidence"], "IEA")
+        self.assertEqual(r["go_source"], "GO:0004022=eggnog;GO:0008270=interproscan;"
+                                         "GO:0016491=interproscan,eggnog;GO:0055114=interproscan")
 
-    def test_all_go_rows_iea_and_empty_without_go(self):
+    def test_ips_go_suffixes_stripped_and_deduplicated(self):
+        rows = [
+            "p1\tm\t9\tPfam\tPF1\tA domain\t1\t9\t1e-9\tT\td\tIPR1\tA\tGO:0005524(InterPro)|GO:0016887(PANTHER)\n",
+            "p1\tm\t9\tPANTHER\tPTHR1\tFAM\t1\t9\t1e-9\tT\td\t-\t-\tGO:0005524(PANTHER)|GO:0005524(InterPro),GO:0016887\n",
+            "p1\tm\t9\tSMART\tSM1\tB\t1\t9\t1e-9\tT\td\tIPR1\tA\tGO:0005524\n",
+        ]
+        with tempfile.TemporaryDirectory() as t:
+            p = write(t, "i.tsv", "".join(rows))
+            g = agg.parse_interproscan(Path(p))["p1"]["go"]
+        self.assertEqual(sorted(g), ["GO:0005524", "GO:0016887"])
+
+    def test_go_columns_aligned_and_empty_without_go(self):
         _, rows = run([])
         for r in rows.values():
-            self.assertEqual(r["go_evidence"], "IEA" if r["go_terms"] else "")
-        self.assertEqual(rows["FAKE_g0006"]["go_terms"], "")
+            terms = r["go_terms"].split(";") if r["go_terms"] else []
+            self.assertEqual(r["go_evidence"], "IEA" if terms else "")
+            self.assertEqual([x.split("=")[0] for x in r["go_source"].split(";")] if terms else [], terms)
+        self.assertEqual(rows["FAKE_g0006"]["go_source"], "")
 
 
 class TestMissingSources(unittest.TestCase):

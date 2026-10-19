@@ -134,10 +134,46 @@ class TestFunctionQC(unittest.TestCase):
         s, _ = run([row("g3", **{**FULL, **g3, "final_name_source": "swissprot"})])
         self.assertEqual(s["share_name_source_consistent"]["status"], "warn")
 
-    def test_status_uses_rounded_value(self):
+    def test_status_compares_raw_value(self):
         thr = {"share_go_evidence_iea": ("min", 1.0, "rule_of_thumb")}
-        self.assertEqual(qc.status("share_go_evidence_iea", 0.99996, thr)[0], "pass")
-        self.assertEqual(qc.status("share_go_evidence_iea", 0.9996, thr)[0], "warn")
+        self.assertEqual(qc.status("share_go_evidence_iea", 0.99995, thr)[0], "warn")
+        self.assertEqual(qc.fmt(qc.Share(19999, 20000)), "1")  # prints as 1 ...
+        self.assertEqual(qc.status("share_go_evidence_iea", qc.Share(19999, 20000), thr)[0], "warn")  # ... fails
+        self.assertEqual(qc.status("share_go_evidence_iea", qc.Share(20000, 20000), thr)[0], "pass")
+
+    def test_report_has_k_n(self):
+        s, _ = run([row("g1", **FULL), row("g2", **{**FULL, "go_source": ""}), row("g3")])
+        self.assertEqual(s["share_go_with_source"]["k_n"], "1/2")
+        self.assertEqual(s["n_genes"]["k_n"], "")
+
+    def _dc(self, **kw):
+        p = {k: v[1] for k, v in qc.load_thresholds(qc.DEFAULT_THRESHOLDS).items() if v[0] == "param"}
+        return qc.diamond_check(row("g", **{**FULL, **kw}), p)
+
+    def test_diamond_edge_qcov(self):
+        self.assertEqual(self._dc(diamond_qcov="50.0"), "edge")   # raw could be 49.96 or 50.04
+        self.assertEqual(self._dc(diamond_qcov="49.95"), "fail")  # 2 decimals: +-0.005, clearly below
+        self.assertEqual(self._dc(diamond_qcov="50"), "edge")     # integer display: +-0.5
+        self.assertEqual(self._dc(diamond_qcov="49.5"), "fail")   # 1 decimal: +-0.05, clearly below
+        self.assertEqual(self._dc(diamond_qcov="50.1"), "pass")
+
+    def test_diamond_edge_evalue(self):
+        self.assertEqual(self._dc(diamond_evalue="1e-05"), "edge")   # 1e-05 printed with 1 sig digit
+        self.assertEqual(self._dc(diamond_evalue="1.0e-05"), "edge")
+        self.assertEqual(self._dc(diamond_evalue="1.2e-05"), "fail")  # clearly above 1e-5
+        self.assertEqual(self._dc(diamond_evalue="9e-06"), "pass")
+
+    def test_diamond_edge_name_source_and_clear_miss(self):
+        p = {k: v[1] for k, v in qc.load_thresholds(qc.DEFAULT_THRESHOLDS).items() if v[0] == "param"}
+        edge = row("g", **{**FULL, "diamond_scov": "50.0"})
+        self.assertEqual(qc.expected_name_sources(edge, p), {"swissprot", "eggnog"})
+        miss = row("g", **{**FULL, "diamond_scov": "49.0"})
+        self.assertEqual(qc.expected_name_sources(miss, p), {"eggnog"})
+        s, _ = run([row("g1", **{**FULL, "diamond_qcov": "50.0", "final_name_source": "eggnog"}),
+                    row("g2", **{**FULL, "diamond_qcov": "50.0"}),
+                    row("g3", **{**FULL, "diamond_qcov": "45.0"})])  # clear miss named swissprot
+        self.assertEqual(s["share_name_source_consistent"]["k_n"], "2/3")
+        self.assertEqual(s["share_name_source_consistent"]["status"], "warn")
 
     def test_name_source_hypothetical_eggnog_name_skipped(self):
         for name in ("hypothetical protein", "-", "Uncharacterized protein"):

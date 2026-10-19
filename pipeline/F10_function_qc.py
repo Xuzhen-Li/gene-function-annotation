@@ -68,8 +68,17 @@ def fnum(v: str) -> float | None:
         return None
 
 
-def frac(n: int, d: int) -> float | None:
-    return None if d == 0 else n / d
+class Share(float):
+    """A share k/n that remembers its counts, so the report can show k/n next to the value."""
+
+    def __new__(cls, k: int, n: int):
+        obj = super().__new__(cls, k / n)
+        obj.k, obj.n = k, n
+        return obj
+
+
+def frac(n: int, d: int) -> "Share | None":
+    return None if d == 0 else Share(n, d)
 
 
 def quantile(xs: list[float], q: float) -> float | None:
@@ -106,7 +115,40 @@ def conflicts(r: dict) -> list[tuple[str, str, str]]:
     return found
 
 
+def half_display_unit(text: str) -> float:
+    """Half of the last printed digit: '50.0' -> 0.05, '50' -> 0.5, '1.2e-28' -> 0.05e-28."""
+    t = (text or "").strip().lower()
+    mant, _, exp = t.partition("e")
+    dec = len(mant.split(".", 1)[1]) if "." in mant else 0
+    return 0.5 * 10 ** ((int(exp) if exp else 0) - dec)
+
+
+def diamond_check(r: dict, p: dict) -> str | None:
+    """Re-check the DIAMOND filters on the printed table values.
+    Returns None (no hit), "pass", "fail", or "edge". The table stores rounded values
+    (e.g. qcov 50.0, evalue 1e-05) and has no column with the raw numbers, so a value
+    within half a display unit of its threshold could round either way: such a row is
+    "edge" and both pass and fail are accepted as consistent. A clear miss on any filter
+    is "fail"."""
+    if not split_list(r["diamond_hit"]):
+        return None
+    checks = (("diamond_evalue", "param_max_evalue", "max"), ("diamond_pident", "param_min_pident", "min"),
+              ("diamond_qcov", "param_min_qcov", "min"), ("diamond_scov", "param_min_scov", "min"))
+    edge = False
+    for col, key, d in checks:
+        v = fnum(r[col])
+        if v is None:
+            return "fail"
+        t = p[key]
+        if abs(v - t) <= half_display_unit(r[col]) * (1 + 1e-9):
+            edge = True
+        elif (v > t) if d == "max" else (v < t):
+            return "fail"
+    return "edge" if edge else "pass"
+
+
 def diamond_pass(r: dict, p: dict) -> bool | None:
+    """Strict pass on the printed values (used for share_diamond_hits_pass_filters)."""
     if not split_list(r["diamond_hit"]):
         return None
     ev, pi, qc, sc = (fnum(r[k]) for k in ("diamond_evalue", "diamond_pident",
@@ -155,12 +197,14 @@ def expected_name_sources(r: dict, p: dict) -> set[str]:
     Swiss-Prot hit passing all filters with an informative name > informative eggNOG
     preferred name > InterProScan domain > none. TrEMBL never names. At the InterProScan
     tier IPR-only / count-mismatch rows accept both interproscan_domain and none."""
-    if r["diamond_db"].strip().lower() == "swissprot" and diamond_pass(r, p) \
-            and informative(r["diamond_name"]):
-        return {"swissprot"}
-    if informative(r["eggnog_name"].strip()):
-        return {"eggnog"}
-    return domain_tier(r)
+    rest = {"eggnog"} if informative(r["eggnog_name"].strip()) else domain_tier(r)
+    if r["diamond_db"].strip().lower() == "swissprot" and informative(r["diamond_name"]):
+        dc = diamond_check(r, p)
+        if dc == "pass":
+            return {"swissprot"}
+        if dc == "edge":  # rounded values at a threshold: either outcome is consistent
+            return {"swissprot"} | rest
+    return rest
 
 
 def db_versions_ok(r: dict) -> bool:
@@ -255,9 +299,8 @@ def status(key: str, value, thr: dict) -> tuple[str, str, str]:
     d, t, label = thr[key]
     if value is None:
         return "na", f"{d} {t:g}", label
-    # Compare the rounded value as written in the table (fmt), so the status always
-    # agrees with the printed number (e.g. 0.99996 prints as 1 and passes min 1).
-    value = float(fmt(value))
+    # Compare the RAW value (for shares the exact k/n), not the 4-digit display:
+    # 19999/20000 prints as 1 but fails min 1; the k_n column shows why.
     ok = {"min": value >= t, "max": value <= t, "maxabs": abs(value) <= t}[d]
     return ("pass" if ok else "warn"), f"{d} {t:g}", label
 
@@ -294,10 +337,11 @@ def main(argv: list[str] | None = None) -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", newline="") as f:
         w = csv.writer(f, delimiter="\t", lineterminator="\n")
-        w.writerow(["metric", "value", "threshold", "status", "threshold_label"])
+        w.writerow(["metric", "value", "threshold", "status", "threshold_label", "k_n"])
         for k, v in m.items():
             st, th, lab = status(k, v, thr)
-            w.writerow([k, fmt(v), th, st, lab])
+            kn = f"{v.k}/{v.n}" if isinstance(v, Share) else ""
+            w.writerow([k, fmt(v), th, st, lab, kn])
     cpath = Path(a.conflicts) if a.conflicts else out.with_suffix(".conflicts.tsv")
     with open(cpath, "w", newline="") as f:
         w = csv.DictWriter(f, ["gene_id", "conflict", "side_a", "side_b"], delimiter="\t", lineterminator="\n")

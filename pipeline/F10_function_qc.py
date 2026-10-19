@@ -118,16 +118,41 @@ def diamond_pass(r: dict, p: dict) -> bool | None:
 
 
 NAME_SOURCES = ("swissprot", "eggnog", "interproscan_domain", "none")
+# The next two constants mirror pipeline/F_aggregate.py (UNINFORMATIVE_RE, DOMAIN_ANALYSES);
+# keep them in sync so this check and the merge step apply the same naming rule.
+UNINFORMATIVE_RE = re.compile(
+    r"^\s*(-|uncharacteri[sz]ed protein.*|hypothetical protein.*|predicted protein.*|"
+    r"unknown( protein)?|protein of unknown function.*)?\s*$", re.I)
+DOMAIN_ANALYSES = ("Pfam", "SMART", "ProSiteProfiles", "CDD")
+
+
+def informative(name: str) -> bool:
+    return not UNINFORMATIVE_RE.match(name or "")
+
+
+def has_domain_name(r: dict) -> bool:
+    """As F_aggregate: a domain-only name needs a Pfam/SMART/ProSiteProfiles/CDD signature
+    with an informative description, else an InterPro entry (ips_ipr). Rows only from
+    e.g. MobiDBLite / PANTHER / Coils without an IPR entry do not name a gene."""
+    doms = (r.get("ips_domains") or "").split(";")
+    descs = (r.get("ips_domain_desc") or "").split(";")
+    if len(doms) == len(descs):
+        for dom, desc in zip(doms, descs):
+            if dom.split(":", 1)[0].strip() in DOMAIN_ANALYSES and informative(desc.strip()):
+                return True
+    return bool(split_list(r.get("ips_ipr", "")))
 
 
 def expected_name_source(r: dict, p: dict) -> str:
-    """Naming rule: Swiss-Prot hit passing all filters > eggNOG preferred name >
-    InterProScan domain > none. TrEMBL never names."""
-    if r["diamond_db"].strip().lower() == "swissprot" and diamond_pass(r, p):
+    """Naming rule (same as F_aggregate): Swiss-Prot hit passing all filters with an
+    informative name > informative eggNOG preferred name > InterProScan domain > none.
+    TrEMBL never names."""
+    if r["diamond_db"].strip().lower() == "swissprot" and diamond_pass(r, p) \
+            and informative(r["diamond_name"]):
         return "swissprot"
-    if r["eggnog_name"].strip():
+    if informative(r["eggnog_name"].strip()):
         return "eggnog"
-    if split_list(r["ips_domain_desc"]):
+    if has_domain_name(r):
         return "interproscan_domain"
     return "none"
 

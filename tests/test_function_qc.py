@@ -95,6 +95,26 @@ class TestFunctionQC(unittest.TestCase):
         self.assertEqual(s["share_name_source_consistent"]["status"], "warn")
         self.assertEqual(float(s["share_name_source_interproscan_domain"]["value"]), 0.2)
 
+    def _expected(self, **kw):
+        p = {k: v[1] for k, v in qc.load_thresholds(qc.DEFAULT_THRESHOLDS).items() if v[0] == "param"}
+        return qc.expected_name_source(row("g", **{**FULL, **kw}), p)
+
+    def test_name_source_uninformative_swissprot_falls_through(self):
+        self.assertEqual(self._expected(diamond_name="Uncharacterized protein At1g01010"), "eggnog")
+        self.assertEqual(self._expected(diamond_name="Uncharacterized protein At1g01010",
+                                        eggnog_name=""), "interproscan_domain")
+
+    def test_name_source_non_domain_ips_rows_do_not_name(self):
+        nd = dict(eggnog_name="", diamond_db="trembl", ips_ipr="",
+                  ips_domains="MobiDBLite:mobidb-lite;PANTHER:PTHR11695;Coils:Coil",
+                  ips_domain_desc="consensus disorder prediction;ALCOHOL DEHYDROGENASE;-")
+        self.assertEqual(self._expected(**nd), "none")
+        self.assertEqual(self._expected(**{**nd, "ips_ipr": "IPR002085"}), "interproscan_domain")
+
+    def test_name_source_hypothetical_eggnog_name_skipped(self):
+        for name in ("hypothetical protein", "-", "Uncharacterized protein"):
+            self.assertEqual(self._expected(diamond_db="trembl", eggnog_name=name), "interproscan_domain", name)
+
     def test_example_name_sources_consistent(self):
         ex = ROOT / "testdata" / "function_qc"
         p = {k: v[1] for k, v in qc.load_thresholds(qc.DEFAULT_THRESHOLDS).items() if v[0] == "param"}

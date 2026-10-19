@@ -2,6 +2,19 @@
 
 [[TODO-TEXT]]
 
+<!-- Facts for writer (not finished prose):
+- 7 genes (FAKE_g0001-FAKE_g0007); 4 are deliberate edge cases:
+  FAKE_g0006 no source at all; FAKE_g0004 and FAKE_g0005 TrEMBL-only (never named by TrEMBL);
+  FAKE_g0003 eggNOG without a preferred name.
+- Naming branches shown: swissprot (g0001), eggnog "similar to" (g0002),
+  interproscan_domain (g0007), none (g0003-g0006).
+- Under F10 (pipeline/F10_function_qc.py) the expected output intentionally shows 5 warns
+  alongside passes: coverage_interproscan, coverage_eggnog, coverage_kofam,
+  share_hypothetical, share_ge2_tools_agree.
+- The warns are dataset-level coverage / naming shares, not format errors; all format checks
+  (GO IEA, go_source, db_versions, name-source consistency) pass.
+-->
+
 | File | Format |
 |------|--------|
 | `sim.faa` | proteins FASTA (fake IDs `FAKE_g0001`–`FAKE_g0007`) |

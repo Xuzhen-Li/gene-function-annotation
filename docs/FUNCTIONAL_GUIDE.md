@@ -286,7 +286,7 @@ Allowlisted journal sources only: [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY
 # Release checklist (copy)
 
 - [ ] `function/qc/` BUSCO (+ seqkit)  
-- [ ] `functional_master.tsv` row count = protein count  
+- [ ] `merged_function_table.tsv` row count = protein count  
 - [ ] Versions: diamond, emapper+DB, InterProScan, SwissProt release, optional Kofam/Mercator date  
 - [ ] METHODS paragraph (template below)  
 - [ ] No FASTQ/BAM in git; only TSVs/GFF attributes  
@@ -301,5 +301,5 @@ bash "$REPO_ROOT/pipeline/F_release.sh"
 Representative proteins were functionally annotated with DIAMOND blastp against UniProt Swiss-Prot (release DATE),
 eggNOG-mapper (version, database eggNOG X, tax scope …), and InterProScan (version).
 Optional: KofamScan (KEGG KO); Mercator4 (MapMan4 BINs, web job DATE); AHRD descriptions.
-Results were merged per gene into functional_master.tsv (gene-function-annotation pipeline).
+Results were merged per gene into merged_function_table.tsv (gene-function-annotation pipeline).
 ```

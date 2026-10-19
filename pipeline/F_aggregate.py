@@ -4,8 +4,9 @@ KofamScan outputs into one gene-level table (one row per protein = one gene).
 
 Name rule:   Swiss-Prot hit passing DIAMOND filters (e-value, identity, query AND
              subject coverage) -> its name;
+             else "similar to <eggNOG Preferred_name>" (orthology call);
              else "<domain> domain-containing protein" when InterProScan found a domain;
-             else "uncharacterized protein".
+             else "uncharacterized protein".  TrEMBL never names a gene.
 KEGG KO:     final KO is kofam_ko only (KofamScan rows marked '*' or score >= threshold).
 GO:          union of InterProScan + eggNOG GO (suffixes like "(InterPro)" stripped),
              deduplicated and sorted; go_evidence = IEA; go_source = GO:x=tool[,tool];...
@@ -379,10 +380,13 @@ def build_row(gid: str, ips: dict | None, em: dict | None, sp: dict | None,
         })
     if ko:
         row["kofam_ko"] = join(k for k, _ in ko)
-    # name: passing Swiss-Prot > InterProScan domain-only > uncharacterized
+    # name: passing Swiss-Prot > eggNOG preferred name > InterProScan domain-only >
+    # uncharacterized; TrEMBL never names a gene
     name, src = UNCHARACTERIZED, "none"
     if sp and sp["passed"] and informative(sp["name"]):
         name, src = sp["name"], "swissprot"
+    elif em and informative(em["name"]):
+        name, src = f"similar to {em['name']}", "eggnog"
     elif ips and (dom := ips_domain_label(ips)):
         name, src = DOMAIN_NAME.format(dom), "interproscan_domain"
     row["final_name"], row["final_name_source"] = name, src

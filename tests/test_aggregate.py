@@ -80,30 +80,54 @@ class TestHeaderAndExample(unittest.TestCase):
 
 
 class TestNamePriority(unittest.TestCase):
+    """Order: passing Swiss-Prot > eggNOG preferred name > InterProScan domain > uncharacterized."""
+
     def setUp(self):
         _, self.rows = run([])
 
-    def test_swissprot_wins(self):
-        r = self.rows["FAKE_g0001"]
+    def test_1_swissprot_wins(self):
+        r = self.rows["FAKE_g0001"]  # also has eggNOG ADH1 and Pfam domains
         self.assertEqual((r["final_name"], r["final_name_source"]), ("Alcohol dehydrogenase 1", "swissprot"))
         self.assertEqual(r["diamond_db"], "swissprot")
 
-    def test_domain_only_when_swissprot_fails(self):
-        r = self.rows["FAKE_g0002"]  # SP hit pident 25 < 30; Pfam WRKY domain present
-        self.assertEqual(r["final_name"], "WRKY domain-containing protein")
-        self.assertEqual(r["final_name_source"], "interproscan_domain")
-        self.assertEqual(r["diamond_db"], "trembl")  # passing TrEMBL shown, never names
+    def test_2_eggnog_preferred_name_when_swissprot_fails(self):
+        r = self.rows["FAKE_g0002"]  # SP pident 25 < 30; eggNOG WRKY33; Pfam WRKY; passing TrEMBL
+        self.assertEqual((r["final_name"], r["final_name_source"]), ("similar to WRKY33", "eggnog"))
+        self.assertEqual(r["diamond_db"], "trembl")  # TrEMBL shown in diamond_* but does not name
 
-    def test_eggnog_only_is_uncharacterized(self):
-        r = self.rows["FAKE_g0003"]
+    def test_3_domain_only_when_no_swissprot_or_eggnog_name(self):
+        r = self.rows["FAKE_g0007"]  # SP scov 40 < 50; no eggNOG; Pfam protein kinase
+        self.assertEqual((r["final_name"], r["final_name_source"]),
+                         ("Protein kinase domain-containing protein", "interproscan_domain"))
+
+    def test_3b_eggnog_without_preferred_name_falls_through_to_domain(self):
+        base = list(FULL_ARGS)
+        i = base.index("--emapper")
+        with tempfile.TemporaryDirectory() as t:
+            em = write(t, "e.annotations",
+                       "#query\teggNOG_OGs\tmax_annot_lvl\tDescription\tPreferred_name\tGOs\tKEGG_ko\n"
+                       "FAKE_g0002\tKOG1@2759|Eukaryota\t2759|Eukaryota\tWRKY transcription factor\t-\t-\t-\n")
+            base[i + 1] = em
+            _, rows = run([], base=base)
+        self.assertEqual((rows["FAKE_g0002"]["final_name"], rows["FAKE_g0002"]["final_name_source"]),
+                         ("WRKY domain-containing protein", "interproscan_domain"))
+
+    def test_4_eggnog_description_only_is_uncharacterized(self):
+        r = self.rows["FAKE_g0003"]  # eggNOG Preferred_name '-'
         self.assertEqual((r["final_name"], r["final_name_source"]), ("uncharacterized protein", "none"))
         self.assertEqual(r["eggnog_description"], "Methyltransferase domain")
 
-    def test_trembl_only_is_uncharacterized(self):
-        for g in ("FAKE_g0004", "FAKE_g0005"):
+    def test_4_trembl_only_never_names(self):
+        for g in ("FAKE_g0004", "FAKE_g0005"):  # passing TrEMBL hits, informative and not
             r = self.rows[g]
             self.assertEqual(r["diamond_db"], "trembl")
             self.assertEqual((r["final_name"], r["final_name_source"]), ("uncharacterized protein", "none"))
+        for r in self.rows.values():
+            self.assertNotEqual(r["final_name_source"], "trembl")
+
+    def test_4_no_source_is_uncharacterized(self):
+        r = self.rows["FAKE_g0006"]
+        self.assertEqual((r["final_name"], r["final_name_source"]), ("uncharacterized protein", "none"))
 
     def test_domain_label_prefers_pfam_and_drops_trailing_domain(self):
         ips = {"domains": {"PANTHER:PTHR1": ("SOME FAMILY", 1e-100),
@@ -122,7 +146,7 @@ class TestDiamondFilters(unittest.TestCase):
         r = rows["FAKE_g0007"]  # scov 40 < 50
         self.assertEqual(r["diamond_hit"], "sp|Q9FAK4|PK1_FAKE")
         self.assertEqual(r["diamond_scov"], "40.0")
-        self.assertEqual(r["final_name"], "uncharacterized protein")
+        self.assertNotEqual(r["final_name_source"], "swissprot")
 
     def test_cli_override_relaxes_filters(self):
         _, rows = run(["--min-scov", "30", "--min-pident", "20"])
@@ -133,8 +157,8 @@ class TestDiamondFilters(unittest.TestCase):
 
     def test_cli_override_tightens_filters(self):
         _, rows = run(["--max-evalue", "1e-130"])
-        self.assertEqual(rows["FAKE_g0001"]["final_name"], "Alcohol dehydrogenase GroES-like domain-containing protein")
-        self.assertEqual(rows["FAKE_g0001"]["final_name_source"], "interproscan_domain")
+        self.assertEqual(rows["FAKE_g0001"]["final_name"], "similar to ADH1")
+        self.assertEqual(rows["FAKE_g0001"]["final_name_source"], "eggnog")
 
     def test_thresholds_file(self):
         with tempfile.TemporaryDirectory() as t:
@@ -236,6 +260,8 @@ class TestGo(unittest.TestCase):
             self.assertEqual(r["go_evidence"], "IEA" if terms else "")
             self.assertEqual([x.split("=")[0] for x in r["go_source"].split(";")] if terms else [], terms)
         self.assertEqual(rows["FAKE_g0006"]["go_source"], "")
+        self.assertEqual(rows["FAKE_g0007"]["go_source"],
+                         "GO:0004672=interproscan;GO:0005524=interproscan;GO:0006468=interproscan")
 
 
 class TestMissingSources(unittest.TestCase):

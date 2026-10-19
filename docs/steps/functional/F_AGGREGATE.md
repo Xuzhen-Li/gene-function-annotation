@@ -36,8 +36,8 @@ python3 -m pytest -q tests/test_aggregate.py
 
 | Item | Rule |
 |------|------|
-| `final_name` | Swiss-Prot hit passing all DIAMOND filters (e-value, identity, query **and** subject coverage) → `<domain> domain-containing protein` from InterProScan (Pfam → SMART → ProSiteProfiles → CDD signature, else InterPro entry) → `uncharacterized protein` |
-| `final_name_source` | `swissprot` / `interproscan_domain` / `none` |
+| `final_name` | 1. Swiss-Prot hit passing all DIAMOND filters (e-value, identity, query **and** subject coverage) → its name; 2. eggNOG `Preferred_name` → `similar to <name>`; 3. InterProScan domain (Pfam → SMART → ProSiteProfiles → CDD signature, else InterPro entry) → `<domain> domain-containing protein`; 4. `uncharacterized protein`. TrEMBL never names a gene |
+| `final_name_source` | `swissprot` / `eggnog` / `interproscan_domain` / `none` |
 | DIAMOND filters | `param_max_evalue`, `param_min_pident`, `param_min_qcov`, `param_min_scov` from `config/function_qc_thresholds.tsv`; `--max-evalue` / `--min-pident` / `--min-qcov` / `--min-scov` override |
 | `diamond_*` | Swiss-Prot passing → TrEMBL passing → best failing hit (kept for QC) |
 | `kofam_ko` | KofamScan rows marked `*` or score ≥ threshold; `eggnog_ko` is reported, not used as final KO |

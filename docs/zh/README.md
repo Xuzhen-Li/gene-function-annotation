@@ -52,7 +52,7 @@
 
 **没有稳定 proteins？** 先回结构仓放行，再来本仓。
 
-验收命令打印：`python3 pipeline/print_qc_commands.py`（需先 `source config/local.env`）。
+验收命令打印：`python3 pipeline/print_qc_commands.py --env config/local.env`。
 
 <details>
 <summary>英文操作入口（折叠）</summary>

@@ -26,7 +26,7 @@ FULL = dict(ips_domains="Pfam:PF00069", ips_domain_desc="Protein kinase domain",
             diamond_hit="sp|P1|X", diamond_name="Serine/threonine-protein kinase", diamond_evalue="1e-50",
             diamond_pident="80", diamond_qcov="90", diamond_scov="90",
             final_name="Serine/threonine-protein kinase", final_name_source="swissprot",
-            go_terms="GO:0004672", go_evidence="IEA")
+            go_terms="GO:0004672", go_evidence="IEA", go_source="interproscan;eggnog")
 
 
 def write(path, rows):
@@ -82,6 +82,15 @@ class TestFunctionQC(unittest.TestCase):
         self.assertEqual(float(s["share_go_evidence_iea"]["value"]), 0.5)
         self.assertEqual(s["share_go_evidence_iea"]["status"], "warn")
         self.assertEqual(float(s["share_genes_db_versions_complete"]["value"]), 0.5)
+
+    def test_go_source(self):
+        s, _ = run([row("g1", **FULL), row("g2", **{**FULL, "go_source": ""}), row("g3")])
+        self.assertEqual(float(s["share_go_with_source"]["value"]), 0.5)
+        self.assertEqual(s["share_go_with_source"]["status"], "warn")
+
+    def test_schema_has_go_source(self):
+        self.assertEqual(len(COLS), 24)
+        self.assertEqual(COLS[COLS.index("go_evidence") + 1], "go_source")
 
     def test_relative(self):
         rel = [row("r1", **FULL), row("r2", final_name="uncharacterized protein")]

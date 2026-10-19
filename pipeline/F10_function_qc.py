@@ -181,6 +181,7 @@ def compute(rows: list[dict], thr: dict, relative: list[dict] | None):
 
     with_go = [r for r in rows if split_list(r["go_terms"])]
     m["share_go_evidence_iea"] = frac(sum(r["go_evidence"].strip().upper() == "IEA" for r in with_go), len(with_go))
+    m["share_go_with_source"] = frac(sum(bool(split_list(r["go_source"])) for r in with_go), len(with_go))
     m["share_genes_db_versions_complete"] = frac(sum(db_versions_ok(r) for r in rows), n)
 
     if relative is not None:

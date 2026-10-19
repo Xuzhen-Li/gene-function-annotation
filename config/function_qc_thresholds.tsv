@@ -12,6 +12,7 @@ share_conflict	max	0.10	rule_of_thumb
 share_hypothetical	max	0.35	rule_of_thumb
 share_diamond_hits_pass_filters	min	0.70	rule_of_thumb
 share_go_evidence_iea	min	1.00	rule_of_thumb
+share_go_with_source	min	1.00	rule_of_thumb
 share_genes_db_versions_complete	min	1.00	rule_of_thumb
 delta_coverage_any_vs_relative	maxabs	0.10	rule_of_thumb
 delta_hypothetical_vs_relative	maxabs	0.10	rule_of_thumb

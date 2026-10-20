@@ -1,6 +1,6 @@
 # Toy functional inputs (no databases required)
 
-[[TODO-TEXT]]
+This toy data contains two genes. A toy dataset is a small example used only for testing. The first gene, geneA, has an InterProScan NB-ARC hit for Pfam PF00931, one eggNOG-mapper annotation, and one DIAMOND hit against Swiss-Prot. The second gene, geneB, has no hits at all.
 
 <!-- Facts for writer (not finished prose):
 - 2 genes: geneA (InterProScan NB-ARC, eggNOG, passing Swiss-Prot DIAMOND hit) and geneB (no hits).

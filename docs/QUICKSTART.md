@@ -87,7 +87,7 @@ python3 "$REPO_ROOT/pipeline/F0_clean_proteins.py" \
   --report "$FUNCTION_DIR/qc/internal_stops.tsv"
 ```
 
-[[TODO-TEXT]]
+The pipeline does not use the cleaned file automatically. The next steps will read your original file instead. You must change the file path to use the cleaned version. Run `export PROTEINS_FA="$FUNCTION_DIR/qc/proteins.clean.faa"` to use it.
 
 Run BUSCO on `$PROTEINS_FA` (see scenarios).  
 **Produces:** QC under `$FUNCTION_DIR/qc`.  

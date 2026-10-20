@@ -72,7 +72,7 @@ Offline nodes: on a login/data node download Swiss-Prot, eggNOG data dir, InterP
 
 Pinned versions (checked 2026-10-19): DIAMOND 2.2.8, eggNOG-mapper 2.1.14 (eggNOG 5.0.2 data), InterProScan 5.78-109.0.
 
-[[TODO-TEXT]]
+This guide covers three installation options, including a package setup for DIAMOND and eggNOG-mapper, a setup for InterProScan, and an offline option where you copy `$DB_ROOT`. The total installation and F1 data require about 80 to 150 GB of disk space. Plan to run the downloads overnight. Record the exact software versions you use in your methods file.
 
 ### Lane A — conda/mamba (laptop / shared node)
 
@@ -96,7 +96,7 @@ export PATH="$DB_ROOT/bin:$PATH"
 
 ### Lane B — InterProScan 5 (any lane; needs Java 11+)
 
-[[TODO-TEXT]]
+InterProScan requires Java version 11 or newer to run. After downloading, verify the archive file, unpack it, and run `setup.py`. Link the unpacked folder to `$DB_ROOT/interproscan` so the pipeline can find it. The bundled member databases often take more than 50 GB of disk space.
 
 ```bash
 # Java check (InterProScan 5.78-109.0 needs Java 11 or newer)
@@ -137,7 +137,7 @@ diamond makedb --in uniprot_sprot.fasta -d swissprot
 
 ### 2.2 eggNOG data
 
-[[TODO-TEXT]]
+The script `download_eggnog_data.py` downloads `eggnog.db`, `eggnog.taxa`, and `eggnog_proteins.dmnd` for eggNOG-mapper. These database files require tens of GB of disk space. You can run `emapper.py --data_dir "$DB_ROOT/eggnog" --version` to print the software and database versions. Set `EGGNOG_DATA_DIR` in `local.env` when the download finishes.
 
 ```bash
 mkdir -p "$DB_ROOT/eggnog"
@@ -152,7 +152,7 @@ emapper.py --data_dir "$DB_ROOT/eggnog" --version        # prints emapper and eg
 
 Installed by Lane B above: `$DB_ROOT/interproscan/interproscan.sh` must exist and `-version` must print 5.78-109.0.
 
-[[TODO-TEXT]]
+The script `F3_interproscan.sh` requires the `INTERPROSCAN_HOME` variable and runs when you set `RUN=1`. It runs InterProScan with the flags `-goterms -iprlookup -pa` and `-f tsv,gff3`. Without those lookup flags, the output table will have no InterPro entries, GO terms, or pathways. A pathway is a series of chemical reactions in a cell.
 
 In `config/local.env` set:
 

@@ -15,7 +15,7 @@ mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,kofam,ahrd,mercator,merge,rel
 
 # F0 — Protein QC (always)
 
-[[TODO-TEXT]]
+The F0 step removes stop symbols at the end of each protein. A stop symbol is an asterisk or a period. Software like InterProScan will reject sequences with these characters. By default, the script keeps proteins with a stop codon in the middle of the sequence and lists them in the report written by `--report`. You can pass `--drop-internal` to remove those proteins instead.
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F0_clean_proteins.py" \
@@ -58,7 +58,7 @@ Or: `bash pipeline/F1_diamond.sh` (prints the same; remove `[STOP]` by exporting
 
 **Canonical runner:** `pipeline/F2_eggnog.sh` (print-first; `RUN=1` to execute).  
 Defaults match the script: `--go_evidence non-electronic`, `--pfam_realign none` and `--tax_scope Viridiplantae`.  
-[[TODO-TEXT]]  
+The non electronic setting means eggNOG-mapper only transfers terms with non electronic evidence from orthologs. An ortholog is a related gene in another species. These transferred terms are still electronic predictions for your genes. The merged table marks all of these terms as IEA. IEA means an electronic prediction.  
 Do not drift GUIDE examples away from the script.
 
 **Conda/binary example (same flags as the script; adjust for emapper v3 per your install):**
@@ -234,7 +234,7 @@ Curate in GSAman if structure is uncertain; keep functional rows for these IDs e
 
 # Understand your tables (no external tutorial needed)
 
-[[TODO-TEXT]]
+The script `pipeline/F_aggregate.py` writes the merged table to `merge/merged_function_table.tsv` with 24 columns. All GO terms here are electronic predictions, and a homology hit does not prove function. Homology means two genes share a common ancestor. Many genes normally lack GO terms, while having almost no annotation despite a good BUSCO score usually means a wrong database path or mismatched IDs. A hit from the InterProScan Coils analysis alone marks a gene as CC, so review permissive CNL calls by hand.
 
 <!-- Facts for writer: the merged table is now merged_function_table.tsv from
 pipeline/F_aggregate.py (24 columns, see docs/steps/functional/F_AGGREGATE.md);

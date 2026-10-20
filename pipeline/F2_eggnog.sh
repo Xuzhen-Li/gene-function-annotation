@@ -3,7 +3,8 @@
 # Needs emapper.py on PATH or EGGNOG_SIF.
 # Canonical flags (also documented in docs/FUNCTIONAL_GUIDE.md F1.2):
 #   --go_evidence non-electronic
-#   --pfam_realign realtime   # slower/heavier; override with EGGNOG_PFAM_REALIGN=none if cost-constrained
+#   --pfam_realign none       # emapper accepts none|realign|denovo; override with EGGNOG_PFAM_REALIGN
+#   --tax_scope Viridiplantae # plant default; override with EGGNOG_TAX_SCOPE (auto, Metazoa, Fungi, ...)
 set -euo pipefail
 : "${PROTEINS_FA:?}"
 : "${WORK_DIR:?}"
@@ -14,10 +15,14 @@ _gfa_reject_placeholder_path PROTEINS_FA "$PROTEINS_FA" || exit 1
 THREADS="${THREADS:-32}"
 FUNCTION_DIR="${FUNCTION_DIR:-$WORK_DIR/function}"
 OUT="$FUNCTION_DIR/emapper"
-TAX="${EGGNOG_TAX_SCOPE:-auto}"
+TAX="${EGGNOG_TAX_SCOPE:-Viridiplantae}"
 FUN_PREFIX="${FUN_PREFIX:-ann}"
 GO_EVIDENCE="${EGGNOG_GO_EVIDENCE:-non-electronic}"
-PFAM_REALIGN="${EGGNOG_PFAM_REALIGN:-realtime}"
+PFAM_REALIGN="${EGGNOG_PFAM_REALIGN:-none}"
+case "$PFAM_REALIGN" in
+  none|realign|denovo) ;;
+  *) echo "[ERR] EGGNOG_PFAM_REALIGN=$PFAM_REALIGN is not valid; emapper accepts none, realign or denovo" >&2; exit 1 ;;
+esac
 DATA_ARGS=()
 [[ -n "${EGGNOG_DATA_DIR:-}" ]] && DATA_ARGS=(--data_dir "$EGGNOG_DATA_DIR")
 
@@ -37,5 +42,5 @@ if [[ "${RUN:-0}" == "1" ]]; then
   "${CMD[@]}"
   ls -1 "$OUT"/*.emapper.annotations
 else
-  echo "[DRY] export RUN=1 to execute (no mkdir on DRY)"
+  echo "[DRY] to execute: RUN=1 bash pipeline/F2_eggnog.sh (no mkdir on DRY)"
 fi

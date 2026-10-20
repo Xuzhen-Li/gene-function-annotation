@@ -15,7 +15,13 @@ mkdir -p "$FUNCTION_DIR"/{diamond,emapper,interpro,kofam,ahrd,mercator,merge,rel
 
 # F0 — Protein QC (always)
 
+The F0 step removes stop symbols at the end of each protein. A stop symbol is an asterisk or a period. Software like InterProScan will reject sequences with these characters. By default, the script keeps proteins with a stop codon in the middle of the sequence and lists them in the report written by `--report`. You can pass `--drop-internal` to remove those proteins instead.
+
 ```bash
+python3 "$REPO_ROOT/pipeline/F0_clean_proteins.py" \
+  --in "$PROTEINS_FA" \
+  --out "$FUNCTION_DIR/qc/proteins.clean.faa" \
+  --report "$FUNCTION_DIR/qc/internal_stops.tsv"
 # set BUSCO_LINEAGE_PROTEIN to your clade (eukaryota / viridiplantae / metazoa / fungi / ...)
 busco -i "$PROTEINS_FA" -l "${BUSCO_LINEAGE_PROTEIN:-eukaryota_odb10}" -m proteins \
   -o prot_busco --out_path "$FUNCTION_DIR/qc" -c "$THREADS"
@@ -34,11 +40,11 @@ seqkit stats "$PROTEINS_FA" | tee "$FUNCTION_DIR/qc/seqkit_stats.txt"
 
 ```bash
 # Needs: DIAMOND_DB from INSTALL_FUNCTIONAL.md
-diamond blastp --threads "$THREADS" \
+diamond blastp --more-sensitive --threads "$THREADS" \
   --query "$PROTEINS_FA" \
   --db "$DIAMOND_DB" \
   --out "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle \
+  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle qlen slen qcovhsp scovhsp \
   --evalue 1e-5 --max-target-seqs 5
 
 # Check
@@ -51,8 +57,8 @@ Or: `bash pipeline/F1_diamond.sh` (prints the same; remove `[STOP]` by exporting
 ## F1.2 eggNOG-mapper
 
 **Canonical runner:** `pipeline/F2_eggnog.sh` (print-first; `RUN=1` to execute).  
-Defaults match the script: `--go_evidence non-electronic` and `--pfam_realign realtime`  
-(`realtime` is slower/heavier — override with `EGGNOG_PFAM_REALIGN=none` if cost-constrained).  
+Defaults match the script: `--go_evidence non-electronic`, `--pfam_realign none` and `--tax_scope Viridiplantae`.  
+The non electronic setting means eggNOG-mapper only transfers terms with non electronic evidence from orthologs. An ortholog is a related gene in another species. These transferred terms are still electronic predictions for your genes. The merged table marks all of these terms as IEA. IEA means an electronic prediction.  
 Do not drift GUIDE examples away from the script.
 
 **Conda/binary example (same flags as the script; adjust for emapper v3 per your install):**
@@ -62,9 +68,9 @@ emapper.py -i "$PROTEINS_FA" \
   --output ${FUN_PREFIX:-ann}_fun --output_dir "$FUNCTION_DIR/emapper" \
   --cpu "$THREADS" --type proteins -m diamond \
   --data_dir "${EGGNOG_DATA_DIR}" \
-  --tax_scope "${EGGNOG_TAX_SCOPE:-auto}" \
+  --tax_scope "${EGGNOG_TAX_SCOPE:-Viridiplantae}" \
   --go_evidence non-electronic \
-  --pfam_realign realtime
+  --pfam_realign none
 
 ls "$FUNCTION_DIR/emapper"/*.emapper.annotations
 head -20 "$FUNCTION_DIR/emapper"/*.emapper.annotations
@@ -79,16 +85,16 @@ singularity exec "$EGGNOG_SIF" emapper.py -i "$PROTEINS_FA" \
   --output ${FUN_PREFIX:-ann}_fun --output_dir "$FUNCTION_DIR/emapper" \
   --cpu "$THREADS" --type proteins -m diamond \
   --data_dir "$EGGNOG_DATA_DIR" \
-  --tax_scope "${EGGNOG_TAX_SCOPE:-auto}" \
+  --tax_scope "${EGGNOG_TAX_SCOPE:-Viridiplantae}" \
   --go_evidence non-electronic \
-  --pfam_realign realtime
+  --pfam_realign none
 ```
 
 ## F1.3 InterProScan
 
 ```bash
 "$INTERPROSCAN_HOME/interproscan.sh" \
-  -i "$PROTEINS_FA" -f tsv,gff3 -dp \
+  -i "$PROTEINS_FA" -f tsv,gff3 -dp -goterms -iprlookup -pa \
   -cpu "$THREADS" \
   -b "$FUNCTION_DIR/interpro/${FUN_PREFIX:-ann}_ips"
 
@@ -110,19 +116,19 @@ exec_annotation -o "$FUNCTION_DIR/kofam/kofam.tsv" \
 ## F1.5 Merge → master TSV
 
 ```bash
-python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
+python3 "$REPO_ROOT/pipeline/F_aggregate.py" \
   --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
   --ips "$FUNCTION_DIR/interpro"/${FUN_PREFIX:-ann}_ips.tsv \
-  --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --diamond-swissprot "$FUNCTION_DIR/diamond/swissprot.tsv" \
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 
 # Sanity
-wc -l "$FUNCTION_DIR/merge/functional_master.tsv"
+wc -l "$FUNCTION_DIR/merge/merged_function_table.tsv"
 # header + N proteins; N should match protein count
 python3 - <<'PY'
 from pathlib import Path
-p=Path("$FUNCTION_DIR/merge/functional_master.tsv".replace("$FUNCTION_DIR",__import__("os").environ["FUNCTION_DIR"]))
+p=Path("$FUNCTION_DIR/merge/merged_function_table.tsv".replace("$FUNCTION_DIR",__import__("os").environ["FUNCTION_DIR"]))
 lines=p.read_text().splitlines()
 print("rows", len(lines)-1, "cols", len(lines[0].split("\t")))
 print("GO-nonempty", sum(1 for L in lines[1:] if "GO:" in L))
@@ -161,13 +167,13 @@ After F1.1 (and ideally F1.3):
 1. Configure AHRD YAML to read `$FUNCTION_DIR/diamond/swissprot.tsv` (+ InterPro if available).  
 2. Run AHRD jar (see [`tools/ahrd.md`](tools/ahrd.md)).  
 3. Save `ahrd_output.csv` under `$FUNCTION_DIR/ahrd/`.  
-4. Join `Human-Readable-Description` onto `functional_master.tsv` by gene id:
+4. Join `Human-Readable-Description` onto `merged_function_table.tsv` by gene id:
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F4_join_ahrd.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --ahrd "$FUNCTION_DIR/ahrd/ahrd_output.csv" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_ahrd.tsv"
 ```
 
 HPC wrapper alternative: [eifunannot](https://github.com/EI-CoreBioinformatics/eifunannot).
@@ -195,8 +201,8 @@ Mercator4 has **no public CLI**. Do this once in a browser; then stay in-repo.
 ```bash
 python3 "$REPO_ROOT/pipeline/F6_ingest_mercator.py" \
   --mercator-dir "$FUNCTION_DIR/mercator" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_mapman.tsv"
 ```
 
 8. Optional: load the mapping file into MapMan desktop for figures (local app from plabipd.de).
@@ -228,6 +234,12 @@ Curate in GSAman if structure is uncertain; keep functional rows for these IDs e
 
 # Understand your tables (no external tutorial needed)
 
+The script `pipeline/F_aggregate.py` writes the merged table to `merge/merged_function_table.tsv` with 24 columns. All GO terms here are electronic predictions, and a homology hit does not prove function. Homology means two genes share a common ancestor. Many genes normally lack GO terms, while having almost no annotation despite a good BUSCO score usually means a wrong database path or mismatched IDs. A hit from the InterProScan Coils analysis alone marks a gene as CC, so review permissive CNL calls by hand.
+
+<!-- Facts for writer: the merged table is now merged_function_table.tsv from
+pipeline/F_aggregate.py (24 columns, see docs/steps/functional/F_AGGREGATE.md);
+emapper_* / ips_GOs / diamond_stitle below are the old F_merge_tables.py names. -->
+
 | Column source | Meaning |
 |---------------|---------|
 | `emapper_GOs` | GO terms via eggNOG orthologs |
@@ -256,9 +268,9 @@ Run PANNZER2 on `$PROTEINS_FA` → `$FUNCTION_DIR/pannzer/` · [`tools/pannzer2.
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F4b_join_pannzer.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --pannzer "$FUNCTION_DIR/pannzer/pannzer.out" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_pannzer.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_pannzer.tsv"
 ```
 
 ## Mercator4
@@ -274,7 +286,7 @@ Allowlisted journal sources only: [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY
 # Release checklist (copy)
 
 - [ ] `function/qc/` BUSCO (+ seqkit)  
-- [ ] `functional_master.tsv` row count = protein count  
+- [ ] `merged_function_table.tsv` row count = protein count  
 - [ ] Versions: diamond, emapper+DB, InterProScan, SwissProt release, optional Kofam/Mercator date  
 - [ ] METHODS paragraph (template below)  
 - [ ] No FASTQ/BAM in git; only TSVs/GFF attributes  
@@ -289,5 +301,5 @@ bash "$REPO_ROOT/pipeline/F_release.sh"
 Representative proteins were functionally annotated with DIAMOND blastp against UniProt Swiss-Prot (release DATE),
 eggNOG-mapper (version, database eggNOG X, tax scope …), and InterProScan (version).
 Optional: KofamScan (KEGG KO); Mercator4 (MapMan4 BINs, web job DATE); AHRD descriptions.
-Results were merged per gene into functional_master.tsv (gene-function-annotation pipeline).
+Results were merged per gene into merged_function_table.tsv (gene-function-annotation pipeline).
 ```

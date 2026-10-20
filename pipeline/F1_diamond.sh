@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# DIAMOND blastp vs SwissProt. Set RUN=1 to execute.
+# DIAMOND blastp (--more-sensitive) vs Swiss-Prot. Set RUN=1 to execute.
+# outfmt 6 ends with qlen slen qcovhsp scovhsp so F_aggregate.py can apply the
+# query AND subject coverage filters (>=50%) before a hit may name a gene.
 set -euo pipefail
 : "${PROTEINS_FA:?}"
 : "${WORK_DIR:?}"
@@ -12,9 +14,9 @@ _gfa_reject_placeholder_path DIAMOND_DB "$DIAMOND_DB" || exit 1
 THREADS="${THREADS:-32}"
 FUNCTION_DIR="${FUNCTION_DIR:-$WORK_DIR/function}"
 OUT="$FUNCTION_DIR/diamond"
-CMD=(diamond blastp --threads "$THREADS" --query "$PROTEINS_FA" --db "$DIAMOND_DB"
+CMD=(diamond blastp --more-sensitive --threads "$THREADS" --query "$PROTEINS_FA" --db "$DIAMOND_DB"
   --out "$OUT/swissprot.tsv"
-  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle qlen slen
+  --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore stitle qlen slen qcovhsp scovhsp
   --evalue 1e-5 --max-target-seqs 5)
 printf '[CMD] '; printf '%q ' "${CMD[@]}"; echo
 if [[ "${RUN:-0}" == "1" ]]; then
@@ -22,5 +24,5 @@ if [[ "${RUN:-0}" == "1" ]]; then
   "${CMD[@]}"
   echo "[OK] $OUT/swissprot.tsv ($(wc -l <"$OUT/swissprot.tsv") lines)"
 else
-  echo "[DRY] export RUN=1 to execute (no mkdir on DRY)"
+  echo "[DRY] to execute: RUN=1 bash pipeline/F1_diamond.sh (no mkdir on DRY)"
 fi

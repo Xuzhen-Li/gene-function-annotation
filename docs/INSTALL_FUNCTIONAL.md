@@ -64,29 +64,57 @@ Disk budget (rough, plus workdir):
 | Component | Download / unpack (order of magnitude) | Typical wall-clock (once) |
 |-----------|------------------------------------------|---------------------------|
 | Swiss-Prot FASTA + DIAMOND DB | ~0.5–1 GB | minutes |
-| eggNOG-mapper data (v7 pack) | tens of GB | tens of min–hours (I/O) |
+| eggNOG-mapper 2.1.x data (eggNOG 5.0.2) | tens of GB | tens of min–hours (I/O) |
 | InterProScan distribution + member DBs | often **>50 GB** | hours first run / fetch |
 | **Total F1 data+install** | **~80–150 GB** | plan overnight on shared FS |
 
 Offline nodes: on a login/data node download Swiss-Prot, eggNOG data dir, InterProScan tree, and any `.sif`, then copy the whole `$DB_ROOT` to the compute filesystem.
 
+Pinned versions (checked 2026-10-19): DIAMOND 2.2.8, eggNOG-mapper 2.1.14 (eggNOG 5.0.2 data), InterProScan 5.78-109.0.
+
+This guide covers three installation options, including a package setup for DIAMOND and eggNOG-mapper, a setup for InterProScan, and an offline option where you copy `$DB_ROOT`. The total installation and F1 data require about 80 to 150 GB of disk space. Plan to run the downloads overnight. Record the exact software versions you use in your methods file.
+
 ### Lane A — conda/mamba (laptop / shared node)
 
 ```bash
-mamba create -n gene_ann -c bioconda -c conda-forge \
-  diamond busco seqkit gffread agat parallel pigz python=3.11 -y
+mamba create -n gene_ann -c conda-forge -c bioconda \
+  diamond=2.2.8 eggnog-mapper=2.1.14 busco seqkit gffread agat parallel pigz python=3.11 -y
 mamba activate gene_ann
-# eggNOG-mapper and InterProScan are LARGE — often better as containers (Lane B)
+diamond version          # expect: diamond version 2.2.8
+emapper.py --version     # expect: emapper-2.1.14
 ```
 
-### Lane B — Singularity/Apptainer (recommended on HPC)
+DIAMOND without conda (static Linux binary):
 
 ```bash
-# eggNOG-mapper v3 image + data: follow https://data.cgmlab.org/eggnog-mapper/
-# (download .sif + eggNOG7 data into $DB_ROOT/eggnog)
-# InterProScan: download tarball from EBI FTP into $DB_ROOT/interproscan
-# KofamScan: https://www.genome.jp/tools/kofamkoala/ → kofamscan + profiles + ko_list
+mkdir -p "$DB_ROOT/bin" && cd "$DB_ROOT/bin"
+curl -LO https://github.com/bbuchfink/diamond/releases/download/v2.2.8/diamond-linux64.tar.gz
+tar -xzf diamond-linux64.tar.gz
+./diamond version
+export PATH="$DB_ROOT/bin:$PATH"
 ```
+
+### Lane B — InterProScan 5 (any lane; needs Java 11+)
+
+InterProScan requires Java version 11 or newer to run. After downloading, verify the archive file, unpack it, and run `setup.py`. Link the unpacked folder to `$DB_ROOT/interproscan` so the pipeline can find it. The bundled member databases often take more than 50 GB of disk space.
+
+```bash
+# Java check (InterProScan 5.78-109.0 needs Java 11 or newer)
+JAVA_MAJOR="$(java -version 2>&1 | sed -nE 's/.*version "([0-9]+).*/\1/p' | head -n1)"
+if [ "${JAVA_MAJOR:-0}" -ge 11 ]; then echo "[OK] Java $JAVA_MAJOR"; else echo "[ERR] need Java 11+ (found: ${JAVA_MAJOR:-none}); install a JDK before continuing"; fi
+
+IPS_V=5.78-109.0
+mkdir -p "$DB_ROOT" && cd "$DB_ROOT"
+curl -LO "https://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/${IPS_V}/interproscan-${IPS_V}-64-bit.tar.gz"
+curl -LO "https://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/${IPS_V}/interproscan-${IPS_V}-64-bit.tar.gz.md5"
+md5sum -c "interproscan-${IPS_V}-64-bit.tar.gz.md5"      # expect: OK
+tar -pxzf "interproscan-${IPS_V}-64-bit.tar.gz"
+(cd "interproscan-${IPS_V}" && python3 setup.py -f interproscan.properties)
+ln -sfn "$DB_ROOT/interproscan-${IPS_V}" "$DB_ROOT/interproscan"
+"$DB_ROOT/interproscan/interproscan.sh" -version         # expect: InterProScan version 5.78-109.0
+```
+
+KofamScan (optional): https://www.genome.jp/tools/kofamkoala/ → kofamscan + profiles + ko_list (see 2.4).
 
 Record exact versions in METHODS when you install.
 
@@ -98,9 +126,9 @@ Record exact versions in METHODS when you install.
 
 ```bash
 mkdir -p "$DB_ROOT/swissprot" && cd "$DB_ROOT/swissprot"
-# UniProt Swiss-Prot FASTA (release URL changes — use current uniprot.org download)
-# Example pattern:
-# wget https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+curl -LO https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+curl -L https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/reldate.txt -o reldate.txt
+cat reldate.txt          # Swiss-Prot release for METHODS (e.g. 2026_03)
 gunzip -c uniprot_sprot.fasta.gz > uniprot_sprot.fasta
 diamond makedb --in uniprot_sprot.fasta -d swissprot
 # then in local.env:
@@ -109,14 +137,22 @@ diamond makedb --in uniprot_sprot.fasta -d swissprot
 
 ### 2.2 eggNOG data
 
-Download the **eggNOG-mapper data pack matching your emapper major version** into `$DB_ROOT/eggnog`  
-(official: eggnog-mapper docs / data.cgmlab.org).  
-Set `EGGNOG_DATA_DIR="$DB_ROOT/eggnog"`.
+The script `download_eggnog_data.py` downloads `eggnog.db`, `eggnog.taxa`, and `eggnog_proteins.dmnd` for eggNOG-mapper. These database files require tens of GB of disk space. You can run `emapper.py --data_dir "$DB_ROOT/eggnog" --version` to print the software and database versions. Set `EGGNOG_DATA_DIR` in `local.env` when the download finishes.
+
+```bash
+mkdir -p "$DB_ROOT/eggnog"
+download_eggnog_data.py --data_dir "$DB_ROOT/eggnog" -y   # eggnog.db, eggnog.taxa, eggnog_proteins.dmnd
+ls -lh "$DB_ROOT/eggnog"
+emapper.py --data_dir "$DB_ROOT/eggnog" --version        # prints emapper and eggNOG DB versions
+# then in local.env:
+# EGGNOG_DATA_DIR="$DB_ROOT/eggnog"
+```
 
 ### 2.3 InterProScan data
 
-Unpack InterProScan distribution under `$DB_ROOT/interproscan` so `interproscan.sh` exists.  
-First run may download member DBs; keep disk quota large (tens of GB).
+Installed by Lane B above: `$DB_ROOT/interproscan/interproscan.sh` must exist and `-version` must print 5.78-109.0.
+
+The script `F3_interproscan.sh` requires the `INTERPROSCAN_HOME` variable and runs when you set `RUN=1`. It runs InterProScan with the flags `-goterms -iprlookup -pa` and `-f tsv,gff3`. Without those lookup flags, the output table will have no InterPro entries, GO terms, or pathways. A pathway is a series of chemical reactions in a cell.
 
 In `config/local.env` set:
 
@@ -140,11 +176,11 @@ mkdir -p "$DB_ROOT/kofam" && cd "$DB_ROOT/kofam"
 ## 3. Verify installs
 
 ```bash
-diamond version
+diamond version                                   # 2.2.8
 busco -v || true
-python3 "$REPO_ROOT/pipeline/F_merge_tables.py" -h
-# emapper.py --version   OR singularity exec eggnog.sif emapper.py --version
-# "$DB_ROOT/interproscan/interproscan.sh" -version
+emapper.py --data_dir "$DB_ROOT/eggnog" --version # emapper-2.1.14
+"$DB_ROOT/interproscan/interproscan.sh" -version  # 5.78-109.0
+python3 "$REPO_ROOT/pipeline/F_aggregate.py" -h
 ```
 
 ---

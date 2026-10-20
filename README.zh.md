@@ -11,14 +11,6 @@
 
 ![Beginner spine](docs/figures/functional_spine.png)
 
-```text
-proteins.faa  (from structure release)
-        ↓
- F0 QC → F1 (DIAMOND + eggNOG + InterProScan) → merge
-        ↓
-  functional_master.tsv  +  release/<TAG>/
-```
-
 命名说明：文件 `pipeline/F2_eggnog.sh` 是默认 F1 框架内的 eggNOG 步骤，而不是快速框架分支 F2。
 今晚入门：[Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight)（GitHub Wiki，不在克隆仓库中）。
 离线课堂：[`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md)。

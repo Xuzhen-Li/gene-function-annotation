@@ -11,14 +11,6 @@ Plant sims (3): [`examples/plant_sim/`](examples/plant_sim/) (paired with struct
 
 ![Beginner spine](docs/figures/functional_spine.png)
 
-```text
-proteins.faa  (from structure release)
-        ↓
- F0 QC → F1 (DIAMOND + eggNOG + InterProScan) → merge
-        ↓
-  functional_master.tsv  +  release/<TAG>/
-```
-
 The file `pipeline/F2_eggnog.sh` is the eggNOG step inside the default F1 framework, not the fast-frame branch F2.
 Wiki Start-tonight: [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki, not in the clone).
 Offline classroom: [`docs/CLASSROOM_TONIGHT.md`](docs/CLASSROOM_TONIGHT.md).

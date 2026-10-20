@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Print recommended function QC / F0–F1 commands (print-first)."""
+"""Print recommended function QC / F0–F1 commands (print-first).
+
+This is a printer only. The check before RUN=1 is pipeline/preflight.py.
+"""
 from __future__ import annotations
 
 import argparse
@@ -82,15 +85,17 @@ def main() -> int:
     print("# Function QC — print-first")
     print(f"# Target: {args.grade}  ·  docs/EVALUATION_CHECKLIST.md")
     print("# Bare bash pipeline/F*.sh without RUN=1 is DRY (may still refuse placeholders).")
+    print("# Before each RUN=1 block: python3 pipeline/preflight.py --env config/local.env --step <step>")
     print()
 
     if bad:
-        print("# [STOP] Placeholders / unset — do NOT paste mkdir/busco/F* RUN=1 yet:")
+        print("# [STOP] Placeholders / unset — commands below are not printed:")
         for b in bad:
             print(f"#   - {b}")
         print("# Edit config/local.env to real paths + clade lineage, then re-run this printer.")
         print("# Gate-F1 reminder: PROTEINS_FA must be structure release/<TAG>/proteins.faa (or hash in METHODS)")
-        print("# exit 1: fix local.env and re-run print_qc (not a RUN=1 plan)")
+        print("# exit 1: placeholders found. Before any RUN=1, check the step with:")
+        print("#   python3 pipeline/preflight.py --env config/local.env --step <step>   (--list for steps)")
         return 1
 
     print("## Pack smoke")

@@ -53,7 +53,7 @@ def box(x, y, w, h, title, lines, stroke, fill='#FFFFFF', dash=False, tcolor=Non
 # ---------------------------------------------------------------- layout
 M = 3
 text(M, 6.5, 'gene-function-annotation - beginner spine', 8, True, '#000000', 'start')
-text(M, 10.8, 'Labels on proteins. Not gene finding. Mercator / AHRD / NLR = add-ons after merge.',
+text(M, 10.8, 'Labels on proteins. Not gene finding. Add-ons come after Integrate, before Quality check.',
      7, False, GREY, 'start')
 
 top, bh = 15, 20
@@ -79,7 +79,7 @@ for w, t, lines, st, fill, dash, tc in spec:
 cy, ch = top + bh + 5, 18
 card = rect(M, cy, W - 2*M, ch, '#BFBFBF', PAPER)
 text(M + 3, cy + 4.6, 'Remember', 8, True, '#000000', 'start', inside=card)
-text(M + 3, cy + 8.6, '• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons - ingest after merge '
+text(M + 3, cy + 8.6, '• Mercator (F6) / AHRD (F4) / NLR (F8): ingest after Integrate, before Quality check '
      '(web Mercator may submit in parallel with F1).', 7, False, '#000000', 'start', inside=card)
 text(M + 3, cy + 12.0, '• Script F2_eggnog.sh = eggNOG step inside framework F1 (not fast-frame F2). '
      'See README “F numbering”.', 7, False, '#000000', 'start', inside=card)

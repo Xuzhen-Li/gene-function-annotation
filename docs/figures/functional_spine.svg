@@ -3,7 +3,7 @@
 <defs><marker id="arr" viewBox="0 0 6 6" refX="5.5" refY="3" markerWidth="1.8" markerHeight="1.8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.6 L5.5,3 L0,5.4 Z" fill="context-stroke"/></marker></defs>
 <rect width="183" height="62" fill="#FFFFFF"/>
 <text x="3.00" y="6.50" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#000000" text-anchor="start">gene-function-annotation - beginner spine</text>
-<text x="3.00" y="10.80" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#6B6B6B" text-anchor="start">Labels on proteins. Not gene finding. Mercator / AHRD / NLR = add-ons after merge.</text>
+<text x="3.00" y="10.80" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#6B6B6B" text-anchor="start">Labels on proteins. Not gene finding. Add-ons come after Integrate, before Quality check.</text>
 <rect x="3.00" y="15.00" width="21.50" height="20.00" rx="1.2" fill="#F7F7F7" stroke="#6B6B6B" stroke-width="0.176" stroke-dasharray="0.706 0.529"/>
 <text x="13.75" y="24.35" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#6B6B6B" text-anchor="middle">proteins.faa</text>
 <text x="13.75" y="27.65" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#333333" text-anchor="middle">structure release</text>
@@ -39,7 +39,7 @@
 <line x1="158.92" y1="25.00" x2="161.70" y2="25.00" stroke="#6B6B6B" stroke-width="0.176" marker-end="url(#arr)"/>
 <rect x="3.00" y="40.00" width="177.00" height="18.00" rx="1.2" fill="#F7F7F7" stroke="#BFBFBF" stroke-width="0.176"/>
 <text x="6.00" y="44.60" font-family="Arial, Helvetica, sans-serif" font-size="2.822" font-weight="bold" fill="#000000" text-anchor="start">Remember</text>
-<text x="6.00" y="48.60" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#000000" text-anchor="start">• Mercator (F6) / AHRD (F4) / NLR (F8): add-ons - ingest after merge (web Mercator may submit in parallel with F1).</text>
+<text x="6.00" y="48.60" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#000000" text-anchor="start">• Mercator (F6) / AHRD (F4) / NLR (F8): ingest after Integrate, before Quality check (web Mercator may submit in parallel with F1).</text>
 <text x="6.00" y="52.00" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#000000" text-anchor="start">• Script F2_eggnog.sh = eggNOG step inside framework F1 (not fast-frame F2). See README “F numbering”.</text>
 <text x="6.00" y="55.40" font-family="Arial, Helvetica, sans-serif" font-size="2.469" fill="#6B6B6B" text-anchor="start">Advanced playbook figure: functional_overview.png (optional after the spine).</text>
 </svg>

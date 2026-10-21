@@ -227,6 +227,14 @@ class FunctionStepTests(Base):
         self.assertEqual(res.returncode, 0, res.stdout)
         self.assertIn("F_release.sh", res.stdout)
 
+    def test_release_accepts_legacy_master(self):
+        p = self.base_env()
+        self.touch("work/function/merge/functional_master.tsv")
+        res = self.run_pf("--env", str(p), "--step", "release")
+        self.assertEqual(res.returncode, 0, res.stdout)
+        self.assertIn("legacy name", res.stdout)
+        self.assertIn("new runs write merged_function_table.tsv", res.stdout)
+
     def test_function_dir_defaults_to_work(self):
         self.touch("struct/release/sp.v1/proteins.faa")
         p = self.env_file('WORK_DIR="@T/work"\nPROTEINS_FA="@T/struct/release/sp.v1/proteins.faa"\n'

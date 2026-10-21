@@ -419,8 +419,11 @@ def _master_table(env, r: Report):
         r.stop("WORK_DIR / FUNCTION_DIR not set -> edit config/local.env")
         return
     hits = sorted((Path(fd) / "merge").glob("merged_function_table*.tsv"))
+    legacy = [] if hits else sorted((Path(fd) / "merge").glob("functional_master*.tsv"))
     if hits:
         r.ok(f"master table exists: {hits[0]}")
+    elif legacy:
+        r.warn(f"legacy name {legacy[0]}; new runs write merged_function_table.tsv")
     else:
         r.stop(f"no merged_function_table*.tsv under {fd}/merge -> run step 'merge' first")
 

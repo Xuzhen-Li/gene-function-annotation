@@ -29,7 +29,7 @@ Expected product: `$FUNCTION_DIR/emapper/${FUN_PREFIX}_fun.emapper.annotations` 
 
 ## Outputs → merge
 
-`F_merge_tables.py --emapper …annotations` pulls description / GOs / KEGG / PFAMs into `functional_master.tsv`.  
+`F_merge_tables.py --emapper …annotations` pulls description / GOs / KEGG / PFAMs into `merged_function_table.tsv`.  
 Do not treat emapper GO as CAFA-grade accuracy.
 
 ## Pitfalls

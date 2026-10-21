@@ -34,7 +34,7 @@ python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
   --ips "$FUNCTION_DIR/interpro"/${FUN_PREFIX:-ann}_ips.tsv \
   --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 
 bash "$REPO_ROOT/pipeline/F_release.sh"
 
@@ -56,7 +56,7 @@ RUN=1 bash "$REPO_ROOT/pipeline/F2_eggnog.sh"
 python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
   --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 bash "$REPO_ROOT/pipeline/F_release.sh"
 ```
 
@@ -94,20 +94,20 @@ cp "$REPO_ROOT/docs/METHODS_FUNCTIONAL.md" "$FUNCTION_DIR/release/${RELEASE_TAG}
 
 ```bash
 # Requires F1 merge already at:
-#   $FUNCTION_DIR/merge/functional_master.tsv
+#   $FUNCTION_DIR/merge/merged_function_table.tsv
 # and DIAMOND (+ ideally IPS) outputs.
 
 # 1) Run AHRD using DIAMOND (+ IPS) — see docs/tools/ahrd.md
 #    Write: $FUNCTION_DIR/ahrd/ahrd_output.csv
 
 python3 "$REPO_ROOT/pipeline/F4_join_ahrd.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --ahrd "$FUNCTION_DIR/ahrd/ahrd_output.csv" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_ahrd.tsv"
 
 # F_release prefers *.with_ahrd.tsv when master is absent; or:
-cp "$FUNCTION_DIR/merge/functional_master.with_ahrd.tsv" \
-   "$FUNCTION_DIR/merge/functional_master.tsv"
+cp "$FUNCTION_DIR/merge/merged_function_table.with_ahrd.tsv" \
+   "$FUNCTION_DIR/merge/merged_function_table.tsv"
 bash "$REPO_ROOT/pipeline/F_release.sh"
 ```
 
@@ -137,9 +137,9 @@ python3 "$REPO_ROOT/pipeline/F_merge_tables.py" \
   --emapper "$FUNCTION_DIR/emapper"/${FUN_PREFIX:-ann}_fun.emapper.annotations \
   --ips "$FUNCTION_DIR/interpro"/${FUN_PREFIX:-ann}_ips.tsv \
   --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 bash "$REPO_ROOT/pipeline/F_release.sh"
-echo "Keep Trinotate_report.tsv beside functional_master in the release folder."
+echo "Keep Trinotate_report.tsv beside merged_function_table in the release folder."
 ```
 
 ---
@@ -152,12 +152,12 @@ echo "Keep Trinotate_report.tsv beside functional_master in the release folder."
 #    $FUNCTION_DIR/mercator/mercator_results.txt  (or .tsv)
 
 python3 "$REPO_ROOT/pipeline/F6_ingest_mercator.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --mercator-dir "$FUNCTION_DIR/mercator" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_mapman.tsv"
 
-cp "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv" \
-   "$FUNCTION_DIR/merge/functional_master.tsv"
+cp "$FUNCTION_DIR/merge/merged_function_table.with_mapman.tsv" \
+   "$FUNCTION_DIR/merge/merged_function_table.tsv"
 bash "$REPO_ROOT/pipeline/F_release.sh"
 # Cite: Schwacke et al. Molecular Plant 2019 (MapMan4 / Mercator4)
 ```

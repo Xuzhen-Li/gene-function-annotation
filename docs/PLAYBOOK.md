@@ -16,7 +16,7 @@ PROTEINS_FA
   → F0 protein BUSCO
   → F1 DIAMOND + eggNOG + InterProScan   (or alternate frame F2/F3/F5)
   → optional F4 / F6 / F7 / F8 / F9
-  → merge → functional_master.tsv
+  → merge → merged_function_table.tsv
   → F_release.sh → release/<TAG>/
 ```
 
@@ -33,7 +33,7 @@ A functional release is **qualified** (F-L1) here when:
 - [ ] `PROTEINS_FA` source named (structure `RELEASE_TAG` or external) in METHODS
 - [ ] F0 protein BUSCO lineage + Completeness recorded (or explicitly skipped with reason)
 - [ ] F1 (or documented alternate frame) versions in METHODS
-- [ ] `functional_master.tsv` gene count ≈ input protein count (document drops)
+- [ ] `merged_function_table.tsv` gene count ≈ input protein count (document drops)
 - [ ] Optional add-ons listed (F4/F6/F8/F9) or marked unused
 - [ ] Packaged with `pipeline/F_release.sh` under `RELEASE_TAG`
 - [ ] No private BAM/FASTQ / huge DBs committed

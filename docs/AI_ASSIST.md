@@ -16,7 +16,7 @@ Related: [`FUNCTIONAL_GUIDE.md`](FUNCTIONAL_GUIDE.md) · [`SCENARIOS_FUNCTIONAL.
 |------|---------------------------|
 | Choosing F1–F9 from your evidence / goals | Inventing GO/KEGG counts or domain hits |
 | Drafting `diamond` / emapper / InterProScan lines from this repo | Claiming "publication ready" without your QC files |
-| Explaining emapper / IPS column meanings | Silent overwrites of `functional_master.tsv` |
+| Explaining emapper / IPS column meanings | Silent overwrites of `merged_function_table.tsv` |
 | Drafting METHODS from **your** version list | Hallucinating DB paths or tool flags |
 
 **Rule:** AI proposes; **you** run tools and keep the files. Every numeric claim must come from a file on disk.

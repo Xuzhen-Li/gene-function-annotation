@@ -2,7 +2,7 @@
 
 Biology-general. **Goal:** attach function to a stable gene set.  
 **Input:** representative `PROTEINS_FA` (+ optional `CURATED_GFF`).  
-**Output:** `$WORK_DIR/function/merge/functional_master.tsv` (+ optional AHRD/MapMan/NLR/iTAK tables), then `$WORK_DIR/function/release/<TAG>/`.
+**Output:** `$WORK_DIR/function/merge/merged_function_table.tsv` (+ optional AHRD/MapMan/NLR/iTAK tables), then `$WORK_DIR/function/release/<TAG>/`.
 
 **Branch map (trunk / alternates / add-ons):** [`../ROADMAP.md`](../ROADMAP.md).
 

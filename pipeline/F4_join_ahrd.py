@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Join AHRD CSV/TSV descriptions onto functional_master.tsv."""
+"""Join AHRD CSV/TSV descriptions onto merged_function_table.tsv."""
 from __future__ import annotations
 import argparse, csv
 from pathlib import Path

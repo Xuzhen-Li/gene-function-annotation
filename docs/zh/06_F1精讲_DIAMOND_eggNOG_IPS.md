@@ -22,7 +22,7 @@
 | F1b | **eggNOG-mapper** | 偏直系同源的功能转移（GO/KEGG-ish/COG…） | `eggnog/*` 或 `emapper/*` |
 | F1c | **InterProScan** | 有哪些结构域/签名？ | `interpro/*.tsv` |
 
-然后 `F_merge_tables.py` → **`functional_master.tsv`**（基因一行；本仓真相来源）。
+然后 `F_merge_tables.py` → **`merged_function_table.tsv`**（基因一行；本仓真相来源）。
 
 ```text
 F0 通过

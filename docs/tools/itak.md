@@ -10,4 +10,4 @@
 RUN=1 bash "$REPO_ROOT/pipeline/F9_itak.sh"
 ```
 
-Outputs under `$FUNCTION_DIR/itak/`. Keep beside `functional_master.tsv` in the release; cite in METHODS.
+Outputs under `$FUNCTION_DIR/itak/`. Keep beside `merged_function_table.tsv` in the release; cite in METHODS.

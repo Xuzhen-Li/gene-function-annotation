@@ -418,11 +418,14 @@ def _master_table(env, r: Report):
     if not fd:
         r.stop("WORK_DIR / FUNCTION_DIR not set -> edit config/local.env")
         return
-    hits = sorted((Path(fd) / "merge").glob("functional_master*.tsv"))
+    hits = sorted((Path(fd) / "merge").glob("merged_function_table*.tsv"))
+    legacy = [] if hits else sorted((Path(fd) / "merge").glob("functional_master*.tsv"))
     if hits:
         r.ok(f"master table exists: {hits[0]}")
+    elif legacy:
+        r.warn(f"legacy name {legacy[0]}; new runs write merged_function_table.tsv")
     else:
-        r.stop(f"no functional_master*.tsv under {fd}/merge -> run step 'merge' first")
+        r.stop(f"no merged_function_table*.tsv under {fd}/merge -> run step 'merge' first")
 
 
 def _ips_tsv(env, r: Report):
@@ -450,7 +453,7 @@ _MERGE_RUN = ('python3 pipeline/F_merge_tables.py --proteins "$PROTEINS_FA" '
               '--emapper "$FUNCTION_DIR/emapper/${FUN_PREFIX}_fun.emapper.annotations" '
               '--ips "$FUNCTION_DIR/interpro/${FUN_PREFIX}_ips.tsv" '
               '--diamond "$FUNCTION_DIR/diamond/swissprot.tsv" '
-              '--out "$FUNCTION_DIR/merge/functional_master.tsv"')
+              '--out "$FUNCTION_DIR/merge/merged_function_table.tsv"')
 
 STEPS: dict[str, Step] = {s.name: s for s in [
     Step("diamond", "F1_diamond.sh", files=["PROTEINS_FA", "DIAMOND_DB"], outputs=["WORK_DIR"],

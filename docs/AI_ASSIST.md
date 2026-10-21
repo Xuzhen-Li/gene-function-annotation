@@ -1,6 +1,6 @@
 # AI-assisted functional annotation — prompts, data, order, checks
 
-Use an AI assistant (Cursor / chat agent / lab bot) as a **runbook co-pilot**, not as a replacement for BUSCO, InterProScan, or METHODS. This page is the contract for the **function layer**.
+Use an AI assistant (chat agent / lab bot) as a **runbook co-pilot**, not as a replacement for BUSCO, InterProScan, or METHODS. This page is the contract for the **function layer**.
 
 Related: [`FUNCTIONAL_GUIDE.md`](FUNCTIONAL_GUIDE.md) · [`SCENARIOS_FUNCTIONAL.md`](SCENARIOS_FUNCTIONAL.md) · [`TOOLS.md`](TOOLS.md) · [`steps/FUNCTIONAL_MAIN.md`](steps/FUNCTIONAL_MAIN.md)
 

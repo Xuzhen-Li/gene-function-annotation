@@ -83,7 +83,7 @@ Plant add-ons (F4/F6/F8/F9) are **not** a higher grade by themselves; they are M
 
 | | |
 |--|--|
-| **Pass** | `functional_master.tsv` gene count ≈ input proteins; drops documented |
+| **Pass** | `merged_function_table.tsv` gene count ≈ input proteins; drops documented |
 | **Fail** | Silent row loss; unexplained duplicate gene IDs |
 
 **Background:** The master TSV is the lab’s source of truth (GFF column-9 write-back is explicitly **not** claimed yet — [`SELF_AUDIT.md`](SELF_AUDIT.md)). Count drift means join bugs or ID mismaps — the same class of error as stale proteins in structure G5.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Join PANNZER2 tabular output onto functional_master.tsv (best-effort columns)."""
+"""Join PANNZER2 tabular output onto merged_function_table.tsv (best-effort columns)."""
 from __future__ import annotations
 import argparse, csv
 from pathlib import Path

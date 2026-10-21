@@ -222,7 +222,7 @@ class FunctionStepTests(Base):
     def test_release_needs_master(self):
         p = self.base_env()
         self.assertEqual(self.run_pf("--env", str(p), "--step", "release").returncode, 1)
-        self.touch("work/function/merge/functional_master.tsv")
+        self.touch("work/function/merge/merged_function_table.tsv")
         res = self.run_pf("--env", str(p), "--step", "release")
         self.assertEqual(res.returncode, 0, res.stdout)
         self.assertIn("F_release.sh", res.stdout)
@@ -231,7 +231,7 @@ class FunctionStepTests(Base):
         self.touch("struct/release/sp.v1/proteins.faa")
         p = self.env_file('WORK_DIR="@T/work"\nPROTEINS_FA="@T/struct/release/sp.v1/proteins.faa"\n'
                           'RELEASE_TAG="t"\n')
-        self.touch("work/function/merge/functional_master.tsv")
+        self.touch("work/function/merge/merged_function_table.tsv")
         self.assertEqual(self.run_pf("--env", str(p), "--step", "release").returncode, 0)
 
     def test_orthofinder_needs_two_proteomes(self):

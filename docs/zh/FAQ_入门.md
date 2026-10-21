@@ -25,7 +25,7 @@
 
 **反例（F1b ≠ `F1b_kofam.sh`）：** TOOLS **F1b** = eggNOG（框架 F1 第二步）。`F1b_kofam.sh` 只是历史文件名，指可选 **F1+** Kofam——口播说「F1+ Kofam」，别说「Kofam F1b」。
 
-**报告推荐口播：** 「功能注释采用框架 F1（DIAMOND + eggNOG-mapper + InterProScan），合并为 functional_master.tsv；脚本 F2_eggnog.sh 只是 F1 内第二步的历史文件名。验收按 F-L1 勾选表记录。」
+**报告推荐口播：** 「功能注释采用框架 F1（DIAMOND + eggNOG-mapper + InterProScan），合并为 merged_function_table.tsv；脚本 F2_eggnog.sh 只是 F1 内第二步的历史文件名。验收按 F-L1 勾选表记录。」
 
 ---
 
@@ -49,7 +49,7 @@ seqkit fx2tab "$PROTEINS_MULTI" | awk -F '\t' '{
 ```
 
 **Q：GO 不写回 GFF 第 9 列，下游怎么用？**  
-A：本仓真相是 **`functional_master.tsv`**。浏览器/投稿需要列 9 时，**另做一步**（本仓暂不自动宣称）。METHODS 写「功能以 master TSV 为准」。
+A：本仓真相是 **`merged_function_table.tsv`**。浏览器/投稿需要列 9 时，**另做一步**（本仓暂不自动宣称）。METHODS 写「功能以 master TSV 为准」。
 
 ---
 
@@ -123,7 +123,7 @@ A：目标与蛋白条数一致；差几条须在 METHODS/`merge` 日志说明�
 | `FUNCTION_DIR/diamond/` | Swiss-Prot TSV |
 | `FUNCTION_DIR/emapper/${FUN_PREFIX}_fun.emapper.annotations` | eggNOG |
 | `FUNCTION_DIR/interpro/${FUN_PREFIX}_ips.tsv` | InterProScan |
-| `FUNCTION_DIR/merge/functional_master.tsv` | 总表 |
+| `FUNCTION_DIR/merge/merged_function_table.tsv` | 总表 |
 
 ## 执行顺序（默认 F1）
 
@@ -143,7 +143,7 @@ python3 pipeline/F_merge_tables.py --proteins "$PROTEINS_FA" \
   --emapper "$FUNCTION_DIR/emapper/${FUN_PREFIX}_fun.emapper.annotations" \
   --ips "$FUNCTION_DIR/interpro/${FUN_PREFIX}_ips.tsv" \
   --diamond "$FUNCTION_DIR/diamond/swissprot.tsv" \
-  --out "$FUNCTION_DIR/merge/functional_master.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.tsv"
 python3 pipeline/print_qc_commands.py   # 对照验收门
 # 勾 docs/zh/验收勾选表.md
 ```

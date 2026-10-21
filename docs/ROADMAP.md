@@ -17,7 +17,7 @@ qualified proteins.faa  (+ optional curated GFF)
 │  gene-function-annotation     │  ← this repo
 │  F0 → F1 (default)            │
 │  → optional add-ons           │
-│  → functional_master.tsv      │
+│  → merged_function_table.tsv      │
 │  → release/<TAG>/             │
 └───────────────────────────────┘
 ```
@@ -38,7 +38,7 @@ F1    DIAMOND Swiss-Prot  +  eggNOG-mapper  +  InterProScan
   │
       optional add-ons (F4 / F6 / F7 / F8 / F9) — see below
   │
-merge F_merge_tables.py  →  function/merge/functional_master.tsv
+merge F_merge_tables.py  →  function/merge/merged_function_table.tsv
   │
 pack  F_release.sh       →  function/release/<TAG>/
 ```

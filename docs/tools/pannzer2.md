@@ -16,9 +16,9 @@
 
 ```bash
 python3 "$REPO_ROOT/pipeline/F4b_join_pannzer.py" \
-  --master "$FUNCTION_DIR/merge/functional_master.tsv" \
+  --master "$FUNCTION_DIR/merge/merged_function_table.tsv" \
   --pannzer "$FUNCTION_DIR/pannzer/pannzer.out" \
-  --out "$FUNCTION_DIR/merge/functional_master.with_pannzer.tsv"
+  --out "$FUNCTION_DIR/merge/merged_function_table.with_pannzer.tsv"
 ```
 
 Prefer PANNZER descriptions when AHRD not run; do not overwrite emapper GO blindly — keep both columns.

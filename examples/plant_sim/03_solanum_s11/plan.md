@@ -90,17 +90,17 @@ bash pipeline/F3_interproscan.sh
 
 **Process:** Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.
 
-**Output:** function/merge/functional_master.tsv
+**Output:** function/merge/merged_function_table.tsv
 
 **Helper:** `pipeline/F_merge_tables.py`
 
 ### 6. F6 — Mercator4 MapMan BINs (ingest)
 
-**Input:** functional_master.tsv + Mercator result dir
+**Input:** merged_function_table.tsv + Mercator result dir
 
 **Software & purpose:** Mercator4 web job can run in parallel with F1; ingest must be AFTER merge.
 
-**Process:** Unpack results under $FUNCTION_DIR/mercator/; then python3 pipeline/F6_ingest_mercator.py --mercator-dir $FUNCTION_DIR/mercator --master $FUNCTION_DIR/merge/functional_master.tsv --out …
+**Process:** Unpack results under $FUNCTION_DIR/mercator/; then python3 pipeline/F6_ingest_mercator.py --mercator-dir $FUNCTION_DIR/mercator --master $FUNCTION_DIR/merge/merged_function_table.tsv --out …
 
 **Output:** master + mapman_bin (or with_mapman table)
 
@@ -110,7 +110,7 @@ bash pipeline/F3_interproscan.sh
 
 ```bash
 # Print-first: review before running on cluster.
-python3 pipeline/F6_ingest_mercator.py --mercator-dir "$FUNCTION_DIR/mercator" --master "$FUNCTION_DIR/merge/functional_master.tsv" --out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"
+python3 pipeline/F6_ingest_mercator.py --mercator-dir "$FUNCTION_DIR/mercator" --master "$FUNCTION_DIR/merge/merged_function_table.tsv" --out "$FUNCTION_DIR/merge/merged_function_table.with_mapman.tsv"
 ```
 
 ### 7. release — Package FA release

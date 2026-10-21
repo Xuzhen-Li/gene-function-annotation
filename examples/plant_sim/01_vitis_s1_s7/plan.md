@@ -90,7 +90,7 @@ bash pipeline/F3_interproscan.sh
 
 **Process:** Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.
 
-**Output:** function/merge/functional_master.tsv
+**Output:** function/merge/merged_function_table.tsv
 
 **Helper:** `pipeline/F_merge_tables.py`
 

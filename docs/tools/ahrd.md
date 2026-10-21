@@ -12,7 +12,7 @@
 ## Outputs
 
 - `$FUNCTION_DIR/ahrd/ahrd_output.csv` (or TSV with description column)
-- Join: `pipeline/F4_join_ahrd.py` → `functional_master.with_ahrd.tsv`
+- Join: `pipeline/F4_join_ahrd.py` → `merged_function_table.with_ahrd.tsv`
 
 ## Notes
 

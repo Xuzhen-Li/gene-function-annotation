@@ -21,7 +21,7 @@ human-readable descriptions were assigned with AHRD (FILL). When applicable
 Schwacke et al. Mol. Plant 2019); optional transcription-factor / kinase families
 with iTAK (Zheng et al. Mol. Plant 2016); optional NLR candidates from
 InterProScan domain hits and/or HRP (FILL). Per-gene tables were merged with this
-repository’s functional-annotation pipeline (functional_master.tsv). Protein-set
+repository’s functional-annotation pipeline (merged_function_table.tsv). Protein-set
 completeness was summarized with BUSCO (lineage FILL; mode proteins).
 ```
 
@@ -34,7 +34,7 @@ tools and papers above.
 Record numbers from `F_merge_tables.py` stderr / summary (do not invent):
 
 - Input protein count (from `PROTEINS_FA`): FILL
-- Master row count (`functional_master.tsv`): FILL
+- Master row count (`merged_function_table.tsv`): FILL
 - Per-source hit counts (DIAMOND / eggNOG / IPS / …): FILL
 - Genes with ≥1 annotation vs all-empty: FILL / FILL
 - Rows dropped or duplicate `gene_id` rejected: FILL (must be 0 duplicates)

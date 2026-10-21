@@ -21,7 +21,7 @@
 - homology hits (Swiss-Prot via DIAMOND),  
 - orthology / COG / KEGG-ish maps (eggNOG-mapper),  
 - domains (InterProScan),  
-- merged into one **gene-centric** table: `functional_master.tsv`.
+- merged into one **gene-centric** table: `merged_function_table.tsv`.
 
 Plant extras (AHRD names, Mercator, NLR, iTAK) are **optional add-ons after F1**.
 

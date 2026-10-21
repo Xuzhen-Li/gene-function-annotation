@@ -157,7 +157,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
         "Per-tool F1 tables (DIAMOND / eggNOG / IPS)",
         "F_merge_tables.py — gene-centric join.",
         "Require row count ≈ proteins; document drops. Run this before Mercator ingest / AHRD join.",
-        "function/merge/functional_master.tsv",
+        "function/merge/merged_function_table.tsv",
         "pipeline/F_merge_tables.py",
     )
 
@@ -167,7 +167,7 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             add(
                 "F4",
                 "AHRD readable names",
-                "functional_master.tsv + DIAMOND/blast tables",
+                "merged_function_table.tsv + DIAMOND/blast tables",
                 "AHRD — human-readable gene names for papers.",
                 "Join into master via F4_join_ahrd.py (after merge).",
                 "AHRD-enriched table",
@@ -177,17 +177,17 @@ def stages_for(choice: dict, a: dict) -> list[dict]:
             add(
                 "F6",
                 "Mercator4 MapMan BINs (ingest)",
-                "functional_master.tsv + Mercator result dir",
+                "merged_function_table.tsv + Mercator result dir",
                 "Mercator4 web job can run in parallel with F1; ingest must be AFTER merge.",
                 "Unpack results under $FUNCTION_DIR/mercator/; then "
                 "python3 pipeline/F6_ingest_mercator.py --mercator-dir $FUNCTION_DIR/mercator "
-                "--master $FUNCTION_DIR/merge/functional_master.tsv --out …",
+                "--master $FUNCTION_DIR/merge/merged_function_table.tsv --out …",
                 "master + mapman_bin (or with_mapman table)",
                 "pipeline/F6_ingest_mercator.py",
                 "docs/tools/mercator.md · docs/FUNCTIONAL_GUIDE.md F6",
                 'python3 pipeline/F6_ingest_mercator.py --mercator-dir "$FUNCTION_DIR/mercator" '
-                '--master "$FUNCTION_DIR/merge/functional_master.tsv" '
-                '--out "$FUNCTION_DIR/merge/functional_master.with_mapman.tsv"',
+                '--master "$FUNCTION_DIR/merge/merged_function_table.tsv" '
+                '--out "$FUNCTION_DIR/merge/merged_function_table.with_mapman.tsv"',
             )
         elif ad == "F7":
             add("F7", "OrthoFinder then FA on reps", "Multi-genome proteins", "OrthoFinder", "Pick representatives; re-enter F1 on reps.", "orthogroups + reps", "pipeline/F7_orthofinder.sh")

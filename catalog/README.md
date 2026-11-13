@@ -21,7 +21,7 @@ Entry cards for software, databases and ideas found in the 2026-11 survey, filed
 | Release (`F_release.sh`, Gate-F1–F7) | 1 | [`Frelease/`](Frelease/README.md) |
 | Cross-stage — whole pipelines, non-protein resources, downstream pointers, ideas | 18 | [`X_cross_stage/`](X_cross_stage/README.md) |
 
-Total entries: 68.
+Stage-folder cards in this directory: 68 (first pass; table above). Combined inventory with the type catalog ([`docs/CATALOG_BY_TYPE_2026-11.md`](../docs/CATALOG_BY_TYPE_2026-11.md)): **129**. The repository homepage ([`README.md`](../README.md)) lists all 129 by type. Framework / step order stays in this folder and in [`docs/ROADMAP.md`](../docs/ROADMAP.md).
 
 **Card fields:** entry_id (`GFA-<stage>-NNN`), type, stage, script, tools_card, gates, what it does, url, doi, venue / year, venue_label (Allowlisted / Below allowlist / Preprint per [`docs/RECENT_HIGH_QUALITY.md`](../docs/RECENT_HIGH_QUALITY.md)), latest release, license, plant_evidence, existing_doc, io, db_version_field, verdict (include / needs evidence / exclude), checked_at_CST, checked_by.
 

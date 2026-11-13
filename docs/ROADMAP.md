@@ -130,3 +130,27 @@ Naming quirk (historical): script `F2_eggnog.sh` is the **eggNOG step inside F1*
 | [`SELF_AUDIT.md`](SELF_AUDIT.md) | 2026-09-14 lit/peer gap table |
 | [`RECENT_HIGH_QUALITY.md`](RECENT_HIGH_QUALITY.md) | Allowlisted FA standards |
 | [`MERCATOR_WHEN.md`](MERCATOR_WHEN.md) | When to use Mercator4 web (F6) |
+| [`CATALOG_BY_TYPE_2026-11.md`](CATALOG_BY_TYPE_2026-11.md) | 2026-11 type catalog (combined inventory 129) |
+| [`CATALOG_NEW_TOOLS_2026-11.md`](CATALOG_NEW_TOOLS_2026-11.md) | 2026-11 first-pass list (68 cards in `catalog/`) |
+| [`../catalog/README.md`](../catalog/README.md) | Stage-folder cards, in framework / step order |
+| [`../README.md`](../README.md) | Homepage catalog by type, Needs lines, data-needs summary |
+| [`SCENARIOS_FUNCTIONAL.md#data-needs-details`](SCENARIOS_FUNCTIONAL.md#data-needs-details) | Data needed alongside the proteins (appended 2026-11-13) |
+
+## Status 2026-11-13 / 已完成 · 仍待做
+
+Documentation status as of 2026-11-13 (Asia/Shanghai). The trunk (F0 → F1 → merge → `merged_function_table.tsv` → release), the meaning of frames F2/F3/F5, and the script-versus-frame warning for `F2_eggnog.sh` are unchanged.
+
+### 已完成 / Done (in open PR #9, not merged yet)
+
+- A 2026-11 methods catalog, in two passes: 68 entries filed by framework / step in `catalog/` and `docs/CATALOG_NEW_TOOLS_2026-11.md`, then 61 further entries in `docs/CATALOG_BY_TYPE_2026-11.md`. Combined inventory: 129. Reading list only; default frame F1 in `docs/TOOLS.md` is unchanged.
+- The repository homepage (`README.md` / `README.zh.md`) is now the catalog by type (15 sections, jump links, counts, a **Needs:** line, a data-needs summary, and credited figures). Long data-needs text is appended to the existing `SCENARIOS_FUNCTIONAL.md`.
+- Two errata files travelled with that PR. The GSAman DOI erratum concerns the structure repo's boundary; it is kept here but does not add GSAman to this pipeline.
+- The GSAman tool paper is Chen, Wu et al. 2026 (doi:10.1016/j.xinn.2026.101471); the last-mile opinion article is Chen, Chen and Xia 2026 (doi:10.1016/j.xinn.2026.101537).
+
+### 仍待做 / Still to do
+
+- Review the homepage and data-needs text; merge PR #9 only when the owner asks.
+- Some first-pass folders are still thin or empty (`catalog/F0_protein_qc`, `frame_F2`, `frame_F3`, `Fmerge_aggregate`). The type catalog already lists related tools. Fill those existing cards rather than adding new markdown files.
+- Re-check catalog rows still marked `[待确认]` (HMMER 3, eggNOG 6, PANNZER2, MetaCyc, PRGdb 4.0, psRobot, DALI, ShinyGO) by opening the sites, not by guessing.
+- Optional add-ons (F4 / F6 / F8 / F9) remain optional. New ML-GO or protein-3D tools stay off the default F1 path until tested.
+- Figure licence rule is the same as the structure repo (CC BY or OSI; no NC/ND).

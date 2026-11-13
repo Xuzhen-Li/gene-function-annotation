@@ -24,7 +24,7 @@
 4. 门控 `Gate-F1` 等是发布的硬性检查点，不是框架选择。深入说明见 [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md)。
 
 
-本页同时也是 2026-11 方法目录：15 个类型分节，共 129 条工具、数据库和想法。默认框架 F1 不变（见 Usage 和 `docs/ROADMAP.md`）。框架 / 步骤顺序仍在路线图和 `catalog/` 中。
+本页同时也是 2026-11 方法目录，分 15 个类型小节，共收录 129 条工具、数据库与思路。默认框架 F1 不变（见 Usage 和 `docs/ROADMAP.md`）。框架与步骤顺序仍以路线图和 `catalog/` 为准。
 
 ## Usage
 
@@ -101,7 +101,7 @@ Mercator4 网页版：[`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md)
 
 ## 方法目录
 
-本页按类型列出 2026-11 调查中的 129 条方法、工具、数据库和想法（类型目录 61 条，`catalog/` 中第一轮卡片 68 条）。默认框架仍是 F1（DIAMOND + eggNOG + InterProScan），本目录不改变该框架。框架 / 步骤顺序仍在 `docs/ROADMAP.md` 和 `catalog/` 中。完整表格和勘误见 `docs/CATALOG_BY_TYPE_2026-11.md` 与 `docs/CATALOG_NEW_TOOLS_2026-11.md`。
+本页按类型列出 2026-11 调研整理的 129 条方法、工具、数据库与思路（类型目录 61 条，`catalog/` 首轮卡片 68 条）。默认框架仍为 F1（DIAMOND + eggNOG + InterProScan），本目录不作改动。框架与步骤顺序仍见 `docs/ROADMAP.md` 和 `catalog/`。完整表格与勘误见 `docs/CATALOG_BY_TYPE_2026-11.md` 和 `docs/CATALOG_NEW_TOOLS_2026-11.md`。
 
 ## 目录
 
@@ -124,343 +124,343 @@ Mercator4 网页版：[`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md)
 - [蛋白序列之外还需要的数据](#data-needs)
 - [图注与许可](#figure-credits)
 
-与本库框架的对应：输入质控（F0）在数据需求一节，不是类型分节 → 默认框架 F1（同源、结构域、直系同源/GO）→ 可选附加（通路、多基因组、定位、植物家族）→ 合并 `merged_function_table.tsv` → 发布。框架编号仍在 `docs/ROADMAP.md` 和 `catalog/`。
+各节与本库框架的对应关系：输入质控（F0）归在数据需求一节，不单列类型小节 → 默认框架 F1（同源、结构域、直系同源/GO）→ 可选附加项（通路、多基因组、定位、植物家族）→ 合并生成 `merged_function_table.tsv` → 发布。框架编号仍见 `docs/ROADMAP.md` 和 `catalog/`。
 
 <a id="section-1"></a>
 ## 1. 同源搜索
 
-框架 F1 同源搜索步骤所用的序列相似性引擎。
+框架 F1 同源搜索步骤所用的序列相似性比对工具。
 
-**需要：** 本地 DIAMOND（或 BLAST）库，一般为 Swiss-Prot 或书面指定的等效库，版本写入 METHODS。[按场景列出的数据需求](#data-needs)
+**需要：** 本地 DIAMOND（或 BLAST）数据库，一般选用 Swiss-Prot 或有书面说明的同等级库，并将版本号记入 METHODS。[按场景列出的数据需求](#data-needs)
 
-各条目的一句介绍目前保持英文原句，供后续中文润色。
+各条目的单句简介译自英文目录，英文原句见英文版 README。
 
 
-- **BLAST+** (tool) — NCBI BLAST command-line suite (blastp, makeblastdb). [doi:10.1186/1471-2105-10-421](https://doi.org/10.1186/1471-2105-10-421) · [link](https://blast.ncbi.nlm.nih.gov/)
-- **DIAMOND (v2)** (tool) — Fast protein aligner with BLAST-like sensitivity modes (--ultra-sensitive). [doi:10.1038/s41592-021-01101-x](https://doi.org/10.1038/s41592-021-01101-x) · [link](https://github.com/bbuchfink/diamond)
-- **MMseqs2** (tool) — Sensitive fast protein search and clustering. [doi:10.1038/nbt.3988](https://doi.org/10.1038/nbt.3988) · [link](https://github.com/soedinglab/MMseqs2)
-- **HMMER 3** (tool) — Profile HMM search (hmmscan, hmmsearch, jackhmmer). [doi:10.1371/journal.pcbi.1002195](https://doi.org/10.1371/journal.pcbi.1002195) · [link](https://github.com/EddyRivasLab/hmmer) [待确认]
-- **HH-suite3** (tool) — HMM-HMM comparison for remote homology (HHblits, HHsearch). [doi:10.1186/s12859-019-3019-7](https://doi.org/10.1186/s12859-019-3019-7) · [link](https://github.com/soedinglab/hh-suite)
-- **MMseqs2-GPU** (tool) — GPU-accelerated MMseqs2 sequence search (also speeds ColabFold MSAs). [doi:10.1038/s41592-025-02819-8](https://doi.org/10.1038/s41592-025-02819-8) · [link](https://github.com/soedinglab/MMseqs2)
+- **BLAST+** (tool) — NCBI BLAST 命令行工具集（含 blastp、makeblastdb）。 [doi:10.1186/1471-2105-10-421](https://doi.org/10.1186/1471-2105-10-421) · [link](https://blast.ncbi.nlm.nih.gov/)
+- **DIAMOND (v2)** (tool) — 高速蛋白序列比对工具，支持类 BLAST 的高灵敏度模式（`--ultra-sensitive`）。 [doi:10.1038/s41592-021-01101-x](https://doi.org/10.1038/s41592-021-01101-x) · [link](https://github.com/bbuchfink/diamond)
+- **MMseqs2** (tool) — 高灵敏度的快速蛋白序列搜索与聚类工具。 [doi:10.1038/nbt.3988](https://doi.org/10.1038/nbt.3988) · [link](https://github.com/soedinglab/MMseqs2)
+- **HMMER 3** (tool) — 基于 profile HMM 的同源搜索工具（含 hmmscan、hmmsearch、jackhmmer）。 [doi:10.1371/journal.pcbi.1002195](https://doi.org/10.1371/journal.pcbi.1002195) · [link](https://github.com/EddyRivasLab/hmmer) [待确认]
+- **HH-suite3** (tool) — 用于远缘同源检测的 HMM-HMM 比对工具（含 HHblits、HHsearch）。 [doi:10.1186/s12859-019-3019-7](https://doi.org/10.1186/s12859-019-3019-7) · [link](https://github.com/soedinglab/hh-suite)
+- **MMseqs2-GPU** (tool) — GPU 加速的 MMseqs2 序列搜索工具（亦可加速 ColabFold 的多序列比对）。 [doi:10.1038/s41592-025-02819-8](https://doi.org/10.1038/s41592-025-02819-8) · [link](https://github.com/soedinglab/MMseqs2)
 
 <a id="section-2"></a>
 ## 2. 参考序列与本体数据库
 
-搜索和命名步骤需要的参考序列与本体数据库。
+序列搜索和基因命名步骤所需的参考序列与本体数据库。
 
-**需要：** 数据库文件本身（UniProt、GO、eggNOG、InterPro 成员数据等）及其版本。这些不能只从蛋白序列算出来。[按场景列出的数据需求](#data-needs)
+**需要：** 数据库文件本体（UniProt、GO、eggNOG、InterPro 成员库等）及对应版本号。这些内容无法仅凭待测蛋白序列推算出来。[按场景列出的数据需求](#data-needs)
 
 
-- **UniRef** (resource) — Clustered UniProt sets (UniRef100/90/50). [doi:10.1093/bioinformatics/btu739](https://doi.org/10.1093/bioinformatics/btu739) · [link](https://www.uniprot.org/help/uniref)
-- **Pfam (2021)** (resource) — Protein family HMM library (now hosted in InterPro). [doi:10.1093/nar/gkaa913](https://doi.org/10.1093/nar/gkaa913) · [link](https://www.ebi.ac.uk/interpro/entry/pfam/)
-- **TAIR** (resource) — The Arabidopsis Information Resource: curated Arabidopsis gene function and nomenclature. [doi:10.1002/dvg.22877](https://doi.org/10.1002/dvg.22877) · [link](https://www.arabidopsis.org/)
-- **eggNOG 6** (resource) — Hierarchical orthology database behind eggNOG-mapper. [doi:10.1093/nar/gkac1022](https://doi.org/10.1093/nar/gkac1022) · [link](http://eggnog6.embl.de/) [待确认]
-- **UniProt 2025** (resource) — Swiss-Prot/TrEMBL reference; cite the current NAR update for METHODS. [doi:10.1093/nar/gkae1010](https://doi.org/10.1093/nar/gkae1010) · [link](https://www.uniprot.org)
-- **Carbon Annotation Database (CADB)** (resource) — Predicted protein-coding loci and proteins for ~48k GenBank eukaryote assemblies (Carbon-A). [doi:10.64898/2026.10.20.760448](https://doi.org/10.64898/2026.10.20.760448) · [link](https://huggingface.co/blog/HuggingFaceBio/carbon-annotator-genbank-genome-annotation)
-- **Gene Ontology knowledgebase (2026)** (resource) — Current GO release paper (NAR, issue 2026; a correction notice exists, doi 10.1093/nar/gkag678). [doi:10.1093/nar/gkaf1292](https://doi.org/10.1093/nar/gkaf1292) · [link](https://geneontology.org)
-- **Ensembl Plants** (resource) — Plant genomes with gene trees and projected annotation. [link](https://plants.ensembl.org)
+- **UniRef** (resource) — 按序列相似性聚类的 UniProt 数据集（UniRef100/90/50）。 [doi:10.1093/bioinformatics/btu739](https://doi.org/10.1093/bioinformatics/btu739) · [link](https://www.uniprot.org/help/uniref)
+- **Pfam (2021)** (resource) — 蛋白家族 HMM 模型库（现已并入 InterPro）。 [doi:10.1093/nar/gkaa913](https://doi.org/10.1093/nar/gkaa913) · [link](https://www.ebi.ac.uk/interpro/entry/pfam/)
+- **TAIR** (resource) — 拟南芥信息资源库（TAIR）：人工审定的拟南芥基因功能与命名数据库。 [doi:10.1002/dvg.22877](https://doi.org/10.1002/dvg.22877) · [link](https://www.arabidopsis.org/)
+- **eggNOG 6** (resource) — 支撑 eggNOG-mapper 的层级直系同源数据库。 [doi:10.1093/nar/gkac1022](https://doi.org/10.1093/nar/gkac1022) · [link](http://eggnog6.embl.de/) [待确认]
+- **UniProt 2025** (resource) — Swiss-Prot/TrEMBL 参考数据库；撰写 METHODS 时请引用最新的 NAR 年度更新论文。 [doi:10.1093/nar/gkae1010](https://doi.org/10.1093/nar/gkae1010) · [link](https://www.uniprot.org)
+- **Carbon Annotation Database (CADB)** (resource) — 使用 Carbon-A 预测的约 48k 个 GenBank 真核组装的蛋白编码位点与蛋白序列库。 [doi:10.64898/2026.10.20.760448](https://doi.org/10.64898/2026.10.20.760448) · [link](https://huggingface.co/blog/HuggingFaceBio/carbon-annotator-genbank-genome-annotation)
+- **Gene Ontology knowledgebase (2026)** (resource) — 当前 GO 知识库发布论文（发表于 2026 年 NAR；附有一篇更正声明，doi 10.1093/nar/gkag678）。 [doi:10.1093/nar/gkaf1292](https://doi.org/10.1093/nar/gkaf1292) · [link](https://geneontology.org)
+- **Ensembl Plants** (resource) — 收录植物基因组、基因树与投射注释的综合数据库。 [link](https://plants.ensembl.org)
 
 <a id="section-3"></a>
 ## 3. 结构域与家族注释
 
-框架 F1 结构域步骤中的结构域与家族注释（InterProScan 及相关数据）。
+框架 F1 结构域步骤中的蛋白结构域与家族注释（InterProScan 及配套数据）。
 
-**需要：** 可用的 InterProScan 安装及其数据；此步较慢，属于默认框架 F1，但 F-L1 并不要求当天做完 IPS。[按场景列出的数据需求](#data-needs)
+**需要：** 正常可用的 InterProScan 程序及配套数据库；这一步耗时较长，虽属默认框架 F1，但 F-L1 并不要求当天跑完 IPS。[按场景列出的数据需求](#data-needs)
 
 ![InterPro PIK3CA domains](docs/figures/catalog/04_interpro_pik3ca_domains.jpg)
 
-*InterPro 对 PIK3CA 的结构域注释（图 4）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 4，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。*
+*InterPro 对 PIK3CA 蛋白的结构域注释展示（图 4）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 4，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。*
 
 ![InterProScan human runtime](docs/figures/catalog/05_interproscan_human_runtime.jpg)
 
-*InterProScan 在人类蛋白组上的运行时间（图 6）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 6，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。*
+*InterProScan 在人类蛋白组上的运行耗时表现（图 6）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 6，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。*
 
-- **InterProScan 5** (tool) — Runs member databases (Pfam, PANTHER, SMART, CDD, Gene3D…) and maps InterPro2GO. [doi:10.1093/bioinformatics/btu031](https://doi.org/10.1093/bioinformatics/btu031) · [link](https://github.com/ebi-pf-team/interproscan)
-- **SMART (2021 update)** (resource) — Signalling/extracellular domain resource (member DB of InterPro). [doi:10.1093/nar/gkaa937](https://doi.org/10.1093/nar/gkaa937) · [link](https://smart.embl.de)
-- **CDD / CD-Search (2023)** (resource) — NCBI conserved-domain models and SPARCLE architectures. [doi:10.1093/nar/gkac1096](https://doi.org/10.1093/nar/gkac1096) · [link](https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd.shtml)
-- **Merizo** (tool) — Domain segmentation of predicted 3D structures. [doi:10.1038/s41467-023-43934-4](https://doi.org/10.1038/s41467-023-43934-4) · [link](https://github.com/psipred/Merizo)
-- **DPFunc** (tool) — Deep learning GO prediction guided by domain + 3D-structure information. [doi:10.1038/s41467-024-54816-8](https://doi.org/10.1038/s41467-024-54816-8) · [link](https://github.com/CSUBioGroup/DPFunc)
+- **InterProScan 5** (tool) — 调用各成员数据库（Pfam、PANTHER、SMART、CDD、Gene3D 等）并映射 InterPro2GO 标签。 [doi:10.1093/bioinformatics/btu031](https://doi.org/10.1093/bioinformatics/btu031) · [link](https://github.com/ebi-pf-team/interproscan)
+- **SMART (2021 update)** (resource) — 信号转导与胞外结构域资源库（InterPro 成员数据库）。 [doi:10.1093/nar/gkaa937](https://doi.org/10.1093/nar/gkaa937) · [link](https://smart.embl.de)
+- **CDD / CD-Search (2023)** (resource) — NCBI 保守结构域模型与 SPARCLE 结构域架构数据库。 [doi:10.1093/nar/gkac1096](https://doi.org/10.1093/nar/gkac1096) · [link](https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd.shtml)
+- **Merizo** (tool) — 对预测的蛋白三维结构做结构域切分的工具。 [doi:10.1038/s41467-023-43934-4](https://doi.org/10.1038/s41467-023-43934-4) · [link](https://github.com/psipred/Merizo)
+- **DPFunc** (tool) — 结合结构域与三维结构信息的深度学习 GO 预测工具。 [doi:10.1038/s41467-024-54816-8](https://doi.org/10.1038/s41467-024-54816-8) · [link](https://github.com/CSUBioGroup/DPFunc)
 
 <a id="section-4"></a>
 ## 4. 基于直系同源的名称、GO 与 KEGG
 
-基于直系同源或相似性的名称、GO 和 KEGG，也包括整套框架（F1 直系同源步骤、快速框架 F2、EnTAP 框架 F3、F4 可读名称）。
+基于直系同源或序列相似性的基因名称、GO 与 KEGG 注释，亦涵盖完整注释框架（F1 直系同源步骤、快速框架 F2、EnTAP 框架 F3、F4 可读名称）。
 
-**需要：** eggNOG-mapper 数据库（若做可读名称，再加可选的 AHRD / PANNZER 输入）。机器给出的 GO 仍是电子证据（IEA）。[按场景列出的数据需求](#data-needs)
+**需要：** eggNOG-mapper 数据库（若需生成可读名称，再补充可选的 AHRD / PANNZER 输入）。机器自动分配的 GO 仍归为电子注释证据（IEA）。[按场景列出的数据需求](#data-needs)
 
 ![eggNOG-mapper v2 runtime](docs/figures/catalog/01_eggnogmapper_v2_runtime.jpg)
 
-*eggNOG-mapper v2 与其他注释工具的运行时间比较（图 2）。 Cantalapiedra 等 2021，《Molecular Biology and Evolution》图 2，doi:10.1093/molbev/msab293，PMC8662613，CC BY。*
+*eggNOG-mapper v2 与其他功能注释工具的运行耗时对比（图 2）。 Cantalapiedra 等 2021，《Molecular Biology and Evolution》图 2，doi:10.1093/molbev/msab293，PMC8662613，CC BY。*
 
 ![eggNOG-mapper versus InterProScan](docs/figures/catalog/02_eggnogmapper_vs_interproscan.jpg)
 
-*eggNOG-mapper 与 InterProScan 的比较（图 3）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 3，doi:10.1093/molbev/msx148，PMC5850834，CC BY。*
+*eggNOG-mapper 与 InterProScan 的注释结果对比（图 3）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 3，doi:10.1093/molbev/msx148，PMC5850834，CC BY。*
 
 ![eggNOG-mapper GO example](docs/figures/catalog/03_eggnogmapper_rhogap1_go.jpg)
 
-*eggNOG-mapper 在一个示例上的 GO 分配（图 4）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 4，doi:10.1093/molbev/msx148，PMC5850834，CC BY。*
+*eggNOG-mapper 在具体实例上的 GO 分配过程（图 4）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 4，doi:10.1093/molbev/msx148，PMC5850834，CC BY。*
 
-- **eggNOG-mapper v2** (tool) — Orthology-based functional annotation: names, GO, KEGG, EC, COG. [doi:10.1093/molbev/msab293](https://doi.org/10.1093/molbev/msab293) · [link](https://github.com/eggnogdb/eggnog-mapper)
-- **PANNZER2** (tool) — Fast web/standalone GO and free-text description prediction. [doi:10.1093/nar/gky350](https://doi.org/10.1093/nar/gky350) · [link](http://ekhidna2.biocenter.helsinki.fi/sanspanz/) [待确认]
-- **Blast2GO** (tool) — BLAST-based GO annotation and visualisation (now in commercial OmicsBox). [doi:10.1093/bioinformatics/bti610](https://doi.org/10.1093/bioinformatics/bti610) · [link](https://www.biobam.com/omicsbox/)
-- **EnTAP** (tool) — Eukaryotic non-model annotation pipeline: filtering, similarity search, contaminant flags, eggNOG and InterPro. [doi:10.1111/1755-0998.13106](https://doi.org/10.1111/1755-0998.13106) · [link](https://github.com/harta55/EnTAP)
-- **FA-nf** (tool) — Nextflow functional annotation pipeline for non-model proteins (BLAST, InterProScan, KEGG, signal peptides). [doi:10.3390/genes12101645](https://doi.org/10.3390/genes12101645) · [link](https://github.com/guigolab/FA-nf)
-- **Sma3s v2** (tool) — Functional annotation of proteomes/transcriptomes against UniProt (GO, keywords, pathways). [doi:10.1002/pmic.201700071](https://doi.org/10.1002/pmic.201700071) · [link](https://github.com/UPOBioinfo/sma3s)
-- **AHRD** (tool) — Automated assignment of Human Readable Descriptions from BLAST results. [link](https://github.com/groupschoof/AHRD)
-- **GOMAP** (tool) — Gene Ontology Meta Annotator for Plants: combines sequence similarity, domains and mixed-method predictors into plant GO sets. [doi:10.1186/s13007-021-00754-1](https://doi.org/10.1186/s13007-021-00754-1) · [link](https://github.com/Dill-PICL/GOMAP)
-- **TRAPID 2.0** (tool) — Web app for taxonomic and functional analysis of de novo plant transcriptomes using PLAZA references. [doi:10.1093/nar/gkab565](https://doi.org/10.1093/nar/gkab565) · [link](https://bioinformatics.psb.ugent.be/trapid_02/) [待确认]
+- **eggNOG-mapper v2** (tool) — 基于直系同源的功能注释工具：分配基因名称、GO、KEGG、EC 与 COG。 [doi:10.1093/molbev/msab293](https://doi.org/10.1093/molbev/msab293) · [link](https://github.com/eggnogdb/eggnog-mapper)
+- **PANNZER2** (tool) — 快速的网页端及本地端 GO 与自由文本功能描述预测工具。 [doi:10.1093/nar/gky350](https://doi.org/10.1093/nar/gky350) · [link](http://ekhidna2.biocenter.helsinki.fi/sanspanz/) [待确认]
+- **Blast2GO** (tool) — 基于 BLAST 的 GO 注释与可视化工具（现已并入商业软件 OmicsBox）。 [doi:10.1093/bioinformatics/bti610](https://doi.org/10.1093/bioinformatics/bti610) · [link](https://www.biobam.com/omicsbox/)
+- **EnTAP** (tool) — 非模式真核生物注释流程：整合序列过滤、相似性搜索、污染标记、eggNOG 与 InterPro。 [doi:10.1111/1755-0998.13106](https://doi.org/10.1111/1755-0998.13106) · [link](https://github.com/harta55/EnTAP)
+- **FA-nf** (tool) — 面向非模式生物蛋白的 Nextflow 功能注释流程（串联 BLAST、InterProScan、KEGG 与信号肽预测）。 [doi:10.3390/genes12101645](https://doi.org/10.3390/genes12101645) · [link](https://github.com/guigolab/FA-nf)
+- **Sma3s v2** (tool) — 比对 UniProt 为蛋白组或转录组分配 GO、关键词与代谢通路的功能注释工具。 [doi:10.1002/pmic.201700071](https://doi.org/10.1002/pmic.201700071) · [link](https://github.com/UPOBioinfo/sma3s)
+- **AHRD** (tool) — 根据 BLAST 比对结果自动分配可读基因功能描述（Human Readable Descriptions）的工具。 [link](https://github.com/groupschoof/AHRD)
+- **GOMAP** (tool) — 面向植物的 GO 元注释工具（GOMAP）：整合序列相似性、结构域与混合方法预测结果以生成植物 GO 集。 [doi:10.1186/s13007-021-00754-1](https://doi.org/10.1186/s13007-021-00754-1) · [link](https://github.com/Dill-PICL/GOMAP)
+- **TRAPID 2.0** (tool) — 基于 PLAZA 参考库对从头组装的植物转录组做分类学与功能分析的网页工具。 [doi:10.1093/nar/gkab565](https://doi.org/10.1093/nar/gkab565) · [link](https://bioinformatics.psb.ugent.be/trapid_02/) [待确认]
 
 <a id="section-5"></a>
 ## 5. 机器学习 GO 预测
 
-机器学习 GO 预测。是框架 F1 之后的可选附加，不是 F1 的替代。
+基于机器学习的 GO 预测。属于框架 F1 之后的可选附加项，不能替代 F1。
 
-**需要：** 通常只需蛋白，外加工具自带的模型。这是框架 F1 之后的可选附加，不是 F1 的替代。[按场景列出的数据需求](#data-needs)
+**需要：** 通常只需输入蛋白序列，配合工具自带的模型。这些工具是框架 F1 之后的可选附加项，不能替代 F1。[按场景列出的数据需求](#data-needs)
 
 
-- **DeepGOPlus** (tool) — CNN + DIAMOND GO prediction from sequence. [doi:10.1093/bioinformatics/btz595](https://doi.org/10.1093/bioinformatics/btz595) · [link](https://github.com/bio-ontology-research-group/deepgoplus)
-- **NetGO 3.0** (tool) — Protein-language-model GO prediction server (CAFA top performer). [doi:10.1016/j.gpb.2023.04.001](https://doi.org/10.1016/j.gpb.2023.04.001)
-- **DeepFRI** (tool) — Graph-convolution function prediction from 3D structure and sequence. [doi:10.1038/s41467-021-23303-9](https://doi.org/10.1038/s41467-021-23303-9) · [link](https://github.com/flatironinstitute/DeepFRI)
-- **GoPredSim** (tool) — GO transfer by embedding similarity (SeqVec/ProtT5). [doi:10.1038/s41598-020-80786-0](https://doi.org/10.1038/s41598-020-80786-0) · [link](https://github.com/Rostlab/goPredSim)
-- **DeepGO-SE** (tool) — GO prediction as approximate semantic entailment over ESM2 embeddings and GO axioms. [doi:10.1038/s42256-024-00795-w](https://doi.org/10.1038/s42256-024-00795-w) · [link](https://github.com/bio-ontology-research-group/deepgo2)
-- **ProtGO** (tool) — Multi-modal GO prediction (PLM + text + taxonomy + GO graph). [doi:10.1093/bioinformatics/btaf390](https://doi.org/10.1093/bioinformatics/btaf390) · [link](https://github.com/sunyatawang/ProtGO)
-- **AltereGO** (tool) — Score-level fusion of ESM2, ProtT5, Ankh and ProstT5-3Di predictors for GO molecular function (preprint 2026). [doi:10.64898/2026.10.23.761425](https://doi.org/10.64898/2026.10.23.761425)
+- **DeepGOPlus** (tool) — 结合 CNN 与 DIAMOND 从序列预测 GO 的工具。 [doi:10.1093/bioinformatics/btz595](https://doi.org/10.1093/bioinformatics/btz595) · [link](https://github.com/bio-ontology-research-group/deepgoplus)
+- **NetGO 3.0** (tool) — 基于蛋白语言模型的 GO 预测在线服务（CAFA 评测名列前茅）。 [doi:10.1016/j.gpb.2023.04.001](https://doi.org/10.1016/j.gpb.2023.04.001)
+- **DeepFRI** (tool) — 结合三维结构与蛋白序列的图卷积网络功能预测工具。 [doi:10.1038/s41467-021-23303-9](https://doi.org/10.1038/s41467-021-23303-9) · [link](https://github.com/flatironinstitute/DeepFRI)
+- **GoPredSim** (tool) — 基于序列嵌入向量（SeqVec/ProtT5）相似性转移 GO 标签的工具。 [doi:10.1038/s41598-020-80786-0](https://doi.org/10.1038/s41598-020-80786-0) · [link](https://github.com/Rostlab/goPredSim)
+- **DeepGO-SE** (tool) — 基于 ESM2 嵌入向量与 GO 公理、通过近似语义蕴涵预测 GO 的工具。 [doi:10.1038/s42256-024-00795-w](https://doi.org/10.1038/s42256-024-00795-w) · [link](https://github.com/bio-ontology-research-group/deepgo2)
+- **ProtGO** (tool) — 多模态 GO 预测工具（整合蛋白语言模型、文本、分类学信息与 GO 图结构）。 [doi:10.1093/bioinformatics/btaf390](https://doi.org/10.1093/bioinformatics/btaf390) · [link](https://github.com/sunyatawang/ProtGO)
+- **AltereGO** (tool) — 在打分层面融合 ESM2、ProtT5、Ankh 与 ProstT5-3Di 预测器以预测 GO 分子功能的工具（2026 预印本）。 [doi:10.64898/2026.10.23.761425](https://doi.org/10.64898/2026.10.23.761425)
 
 <a id="section-6"></a>
 ## 6. 通路、KO 与 EC
 
-通路、KO 和 EC（F1+ Kofam、框架 F6 MapMan 及相关附加）。
+代谢通路、KO 与 EC 注释（F1+ Kofam、框架 F6 MapMan 及相关附加项）。
 
-**需要：** Kofam / KO 需要 HMM 库和分数阈值；MapMan（F6）需要 Mercator4 结果（网页或本地，见 `docs/MERCATOR_WHEN.md`）。KEGG 再分发规则标为 `[待确认]`，这里不作假定。[按场景列出的数据需求](#data-needs)
+**需要：** 跑 Kofam / KO 需准备 HMM 模型库及打分阈值；跑 MapMan（F6）需准备 Mercator4 结果（网页版或本地版，见 `docs/MERCATOR_WHEN.md`）。KEGG 的再分发规定目前标为 `[待确认]`，此处不作预设。[按场景列出的数据需求](#data-needs)
 
 
-- **MapMan4 / Mercator4** (tool / resource) — Plant-specific functional bins (MapMan4) assigned by Mercator4. [doi:10.1016/j.molp.2019.01.003](https://doi.org/10.1016/j.molp.2019.01.003) · [link](https://www.plabipd.de/mercator_main.html)
-- **KofamKOALA / KofamScan** (tool) — KEGG Orthology assignment with adaptive-threshold profile HMMs. [doi:10.1093/bioinformatics/btz859](https://doi.org/10.1093/bioinformatics/btz859) · [link](https://www.genome.jp/tools/kofamkoala/)
-- **BlastKOALA / GhostKOALA** (tool) — KEGG web servers assigning KO numbers by sequence similarity. [doi:10.1016/j.jmb.2015.11.006](https://doi.org/10.1016/j.jmb.2015.11.006) · [link](https://www.kegg.jp/blastkoala/)
-- **KEGG Mapper** (tool) — Maps KO lists onto KEGG pathways, BRITE and modules. [doi:10.1002/pro.3711](https://doi.org/10.1002/pro.3711) · [link](https://www.kegg.jp/kegg/mapper/)
-- **kegg-pathways-completeness** (tool) — Computes KEGG module completeness from a KO list. [link](https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool)
-- **MetaCyc** (resource) — Curated metabolic pathways and enzymes across life. [doi:10.1093/nar/gkz862](https://doi.org/10.1093/nar/gkz862) · [link](https://metacyc.org/) [待确认]
-- **BRENDA** (resource) — Comprehensive enzyme function database (EC). [doi:10.1093/nar/gkaa1025](https://doi.org/10.1093/nar/gkaa1025) · [link](https://www.brenda-enzymes.org/)
-- **DeepEC** (tool) — Deep-learning EC number prediction. [doi:10.1073/pnas.1821905116](https://doi.org/10.1073/pnas.1821905116)
-- **KEGG (2025 NAR)** (resource) — Current KEGG citation for KO/pathway mapping. [doi:10.1093/nar/gkae909](https://doi.org/10.1093/nar/gkae909) · [link](https://www.kegg.jp)
-- **Plant Reactome (2024)** (resource) — Curated plant pathways (rice reference, projected to other plants). [doi:10.1093/nar/gkad1052](https://doi.org/10.1093/nar/gkad1052) · [link](https://plantreactome.gramene.org) [待确认]
-- **Plant Metabolic Network / E2P2** (tool / resource) — PlantCyc and species pathway DBs built with the E2P2 enzyme predictor. [link](https://plantcyc.org) [待确认]
-- **CLEAN** (tool) — Contrastive-learning EC number prediction. [doi:10.1126/science.adf2465](https://doi.org/10.1126/science.adf2465) · [link](https://github.com/tttianhao/CLEAN)
-- **EZpred** (tool) — EC prediction using unlabeled sequence homologs (Advanced Science 2026). [doi:10.1002/advs.78703](https://doi.org/10.1002/advs.78703) [待确认]
-- **ProteEC-CLA** (tool) — EC prediction with contrastive learning + agent attention on ESM2. [doi:10.1002/prot.26822](https://doi.org/10.1002/prot.26822)
-- **plantiSMASH 2.0** (tool) — Plant biosynthetic gene cluster detection, substrate prediction for some enzyme families, promoter TF sites; DB of ~30k BGCs over 430 genomes. [doi:10.1016/j.jmb.2026.169798](https://doi.org/10.1016/j.jmb.2026.169798) · [link](https://github.com/plantismash/plantismash)
-- **dbCAN3** (tool) — CAZyme and substrate annotation. [doi:10.1093/nar/gkad328](https://doi.org/10.1093/nar/gkad328) · [link](https://github.com/linnabrown/run_dbcan)
+- **MapMan4 / Mercator4** (tool / resource) — 由 Mercator4 分配的植物专用功能分类体系（MapMan4）。 [doi:10.1016/j.molp.2019.01.003](https://doi.org/10.1016/j.molp.2019.01.003) · [link](https://www.plabipd.de/mercator_main.html)
+- **KofamKOALA / KofamScan** (tool) — 利用自适应阈值 profile HMM 分配 KEGG Orthology（KO）的工具。 [doi:10.1093/bioinformatics/btz859](https://doi.org/10.1093/bioinformatics/btz859) · [link](https://www.genome.jp/tools/kofamkoala/)
+- **BlastKOALA / GhostKOALA** (tool) — 基于序列相似性分配 KO 编号的 KEGG 在线服务。 [doi:10.1016/j.jmb.2015.11.006](https://doi.org/10.1016/j.jmb.2015.11.006) · [link](https://www.kegg.jp/blastkoala/)
+- **KEGG Mapper** (tool) — 将 KO 列表映射至 KEGG 代谢通路、BRITE 层级与功能模块的工具。 [doi:10.1002/pro.3711](https://doi.org/10.1002/pro.3711) · [link](https://www.kegg.jp/kegg/mapper/)
+- **kegg-pathways-completeness** (tool) — 根据 KO 列表计算 KEGG 功能模块完整度的工具。 [link](https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool)
+- **MetaCyc** (resource) — 跨物种的人工审定代谢通路与酶数据库。 [doi:10.1093/nar/gkz862](https://doi.org/10.1093/nar/gkz862) · [link](https://metacyc.org/) [待确认]
+- **BRENDA** (resource) — 综合性的酶功能与 EC 编号数据库。 [doi:10.1093/nar/gkaa1025](https://doi.org/10.1093/nar/gkaa1025) · [link](https://www.brenda-enzymes.org/)
+- **DeepEC** (tool) — 基于深度学习预测 EC 编号的工具。 [doi:10.1073/pnas.1821905116](https://doi.org/10.1073/pnas.1821905116)
+- **KEGG (2025 NAR)** (resource) — 用于 KO 与代谢通路映射的当前 KEGG 引用文献（2025 NAR）。 [doi:10.1093/nar/gkae909](https://doi.org/10.1093/nar/gkae909) · [link](https://www.kegg.jp)
+- **Plant Reactome (2024)** (resource) — 人工审定的植物代谢通路数据库（以水稻为参考并投射至其他植物）。 [doi:10.1093/nar/gkad1052](https://doi.org/10.1093/nar/gkad1052) · [link](https://plantreactome.gramene.org) [待确认]
+- **Plant Metabolic Network / E2P2** (tool / resource) — 利用 E2P2 酶预测工具构建的 PlantCyc 及各物种代谢通路数据库。 [link](https://plantcyc.org) [待确认]
+- **CLEAN** (tool) — 基于对比学习预测 EC 编号的工具。 [doi:10.1126/science.adf2465](https://doi.org/10.1126/science.adf2465) · [link](https://github.com/tttianhao/CLEAN)
+- **EZpred** (tool) — 利用无标签同源序列预测 EC 编号的工具（发表于 Advanced Science 2026）。 [doi:10.1002/advs.78703](https://doi.org/10.1002/advs.78703) [待确认]
+- **ProteEC-CLA** (tool) — 在 ESM2 基础上结合对比学习与代理注意力机制（agent attention）预测 EC 编号的工具。 [doi:10.1002/prot.26822](https://doi.org/10.1002/prot.26822)
+- **plantiSMASH 2.0** (tool) — 植物生物合成基因簇（BGC）检测工具，支持部分酶家族底物预测与启动子 TF 结合位点分析；内置覆盖 430 个基因组约 30k 个 BGC 的数据库。 [doi:10.1016/j.jmb.2026.169798](https://doi.org/10.1016/j.jmb.2026.169798) · [link](https://github.com/plantismash/plantismash)
+- **dbCAN3** (tool) — 碳水化合物活性酶（CAZyme）及其底物注释工具。 [doi:10.1093/nar/gkad328](https://doi.org/10.1093/nar/gkad328) · [link](https://github.com/linnabrown/run_dbcan)
 
 <a id="section-7"></a>
 ## 7. 多基因组直系同源
 
-跨基因组的直系同源组。框架 F7 注释的是直系同源组代表序列，不是每个基因。
+跨基因组的直系同源基因群划分。框架 F7 仅对直系同源群的代表序列做功能注释，而非逐个基因注释。
 
-**需要：** 面板中每个基因组的蛋白 FASTA。框架 F7 注释的是直系同源组代表序列，不是每个基因。[按场景列出的数据需求](#data-needs)
+**需要：** 数据集中各个基因组的蛋白 FASTA。框架 F7 仅注释直系同源群的代表序列，而非每个基因。[按场景列出的数据需求](#data-needs)
 
 ![OrthoFinder Chordata](docs/figures/catalog/06_orthofinder_chordata_summary.jpg)
 
-*OrthoFinder 在一个脊索动物示例上的摘要（图 3）。 Emms 与 Kelly 2019，《Genome Biology》图 3，doi:10.1186/s13059-019-1832-y，PMC6857279，CC BY。*
+*OrthoFinder 在脊索动物数据集上的分析结果概览（图 3）。 Emms 与 Kelly 2019，《Genome Biology》图 3，doi:10.1186/s13059-019-1832-y，PMC6857279，CC BY。*
 
-- **Broccoli** (tool) — Orthology via phylogeny and network label propagation. [doi:10.1093/molbev/msaa159](https://doi.org/10.1093/molbev/msaa159) · [link](https://github.com/rderelle/Broccoli)
-- **Proteinortho6** (tool) — Graph-based (co-)orthology detection at scale. [doi:10.3389/fbinf.2023.1322477](https://doi.org/10.3389/fbinf.2023.1322477) · [link](https://gitlab.com/paulklemm_PHD/proteinortho)
-- **CAFE 5** (tool) — Gene family expansion/contraction under rate variation. [doi:10.1093/bioinformatics/btaa1022](https://doi.org/10.1093/bioinformatics/btaa1022) · [link](https://github.com/hahnlab/CAFE5)
-- **PLAZA 5.0** (resource) — Plant comparative genomics: gene families, orthologs, GO/InterPro projections. [doi:10.1093/nar/gkab1024](https://doi.org/10.1093/nar/gkab1024) · [link](https://bioinformatics.psb.ugent.be/plaza/) [待确认]
-- **OrthoFinder 3** (tool) — Scalable phylogenetic orthology (v3.x, FAMSA alignment). [doi:10.1101/2025.07.15.664860](https://doi.org/10.1101/2025.07.15.664860) · [link](https://github.com/OrthoFinder/OrthoFinder)
-- **FastOMA** (tool) — Linear-scaling orthology inference (OMAmer placement). [doi:10.1038/s41592-024-02552-8](https://doi.org/10.1038/s41592-024-02552-8) · [link](https://github.com/DessimozLab/FastOMA)
-- **SonicParanoid2** (tool) — Fast orthology with ML and language models. [doi:10.1186/s13059-024-03298-4](https://doi.org/10.1186/s13059-024-03298-4) · [link](https://gitlab.com/salvo981/sonicparanoid2)
-- **OrthoDB v12** (resource) — Hierarchical orthologs with functional descriptors (OrthoDB + BUSCO update paper). [doi:10.1093/nar/gkae987](https://doi.org/10.1093/nar/gkae987) · [link](https://www.orthodb.org)
-- **OMA browser 2024** (resource) — OMA orthology resource update. [doi:10.1093/nar/gkad1020](https://doi.org/10.1093/nar/gkad1020) · [link](https://omabrowser.org)
+- **Broccoli** (tool) — 结合系统发育树与网络标签传播推断直系同源关系的工具。 [doi:10.1093/molbev/msaa159](https://doi.org/10.1093/molbev/msaa159) · [link](https://github.com/rderelle/Broccoli)
+- **Proteinortho6** (tool) — 面向大规模数据的图算法（共）直系同源检测工具。 [doi:10.3389/fbinf.2023.1322477](https://doi.org/10.3389/fbinf.2023.1322477) · [link](https://gitlab.com/paulklemm_PHD/proteinortho)
+- **CAFE 5** (tool) — 在演化速率变异模型下分析基因家族扩张与收缩的工具。 [doi:10.1093/bioinformatics/btaa1022](https://doi.org/10.1093/bioinformatics/btaa1022) · [link](https://github.com/hahnlab/CAFE5)
+- **PLAZA 5.0** (resource) — 植物比较基因组学平台：涵盖基因家族、直系同源与 GO/InterPro 注释投射。 [doi:10.1093/nar/gkab1024](https://doi.org/10.1093/nar/gkab1024) · [link](https://bioinformatics.psb.ugent.be/plaza/) [待确认]
+- **OrthoFinder 3** (tool) — 可扩展的系统发育直系同源推断工具（v3.x 版本采用 FAMSA 比对）。 [doi:10.1101/2025.07.15.664860](https://doi.org/10.1101/2025.07.15.664860) · [link](https://github.com/OrthoFinder/OrthoFinder)
+- **FastOMA** (tool) — 呈线性扩展的快速直系同源推断工具（基于 OMAmer 归置）。 [doi:10.1038/s41592-024-02552-8](https://doi.org/10.1038/s41592-024-02552-8) · [link](https://github.com/DessimozLab/FastOMA)
+- **SonicParanoid2** (tool) — 结合机器学习与语言模型的快速直系同源推断工具。 [doi:10.1186/s13059-024-03298-4](https://doi.org/10.1186/s13059-024-03298-4) · [link](https://gitlab.com/salvo981/sonicparanoid2)
+- **OrthoDB v12** (resource) — 附带功能描述的层级直系同源数据库（见 OrthoDB 与 BUSCO 联合更新论文）。 [doi:10.1093/nar/gkae987](https://doi.org/10.1093/nar/gkae987) · [link](https://www.orthodb.org)
+- **OMA browser 2024** (resource) — OMA 直系同源数据库 2024 更新版。 [doi:10.1093/nar/gkad1020](https://doi.org/10.1093/nar/gkad1020) · [link](https://omabrowser.org)
 
 <a id="section-8"></a>
 ## 8. 定位与拓扑
 
-信号肽、拓扑和亚细胞定位（F1+ 附加）。
+信号肽、跨膜拓扑结构与亚细胞定位预测（F1+ 附加项）。
 
-**需要：** 通常只需蛋白（SignalP、TargetP 等）。作为 F1+ 附加列，不要另做一张主表。[按场景列出的数据需求](#data-needs)
+**需要：** 通常只需蛋白序列（用于 SignalP、TargetP 等工具）。结果应作为 F1+ 的附加列并入总表，不要另建第二张主表。[按场景列出的数据需求](#data-needs)
 
 
-- **SignalP 6.0** (tool) — Signal peptide prediction (all five types) with protein language model. [doi:10.1038/s41587-021-01156-3](https://doi.org/10.1038/s41587-021-01156-3) · [link](https://services.healthtech.dtu.dk/services/SignalP-6.0/)
-- **TMHMM 2.0** (tool) — Transmembrane helix prediction (HMM). [doi:10.1006/jmbi.2000.4315](https://doi.org/10.1006/jmbi.2000.4315) · [link](https://services.healthtech.dtu.dk/services/TMHMM-2.0/)
-- **Phobius** (tool) — Combined transmembrane topology and signal peptide predictor. [doi:10.1016/j.jmb.2004.03.016](https://doi.org/10.1016/j.jmb.2004.03.016) · [link](https://phobius.sbc.su.se/)
-- **WoLF PSORT** (tool) — Subcellular localization prediction with a plant model. [doi:10.1093/nar/gkm259](https://doi.org/10.1093/nar/gkm259) · [link](https://wolfpsort.hgc.jp/)
-- **LOCALIZER** (tool) — Predicts chloroplast, mitochondrial and nuclear localization of plant and effector proteins. [doi:10.1038/srep44598](https://doi.org/10.1038/srep44598) · [link](https://localizer.csiro.au/)
-- **DeepLoc 2.1** (tool) — Subcellular localization + membrane protein type from PLMs. [doi:10.1093/nar/gkae237](https://doi.org/10.1093/nar/gkae237) · [link](https://services.healthtech.dtu.dk/services/DeepLoc-2.1/)
-- **TargetP 2.0** (tool) — N-terminal targeting peptides (signal, mitochondrial, chloroplast, thylakoid). [doi:10.26508/lsa.201900429](https://doi.org/10.26508/lsa.201900429) · [link](https://services.healthtech.dtu.dk/services/TargetP-2.0/)
-- **DeepTMHMM** (tool) — Transmembrane topology prediction (preprint). [doi:10.1101/2022.04.08.487609](https://doi.org/10.1101/2022.04.08.487609) · [link](https://dtu.biolib.com/DeepTMHMM)
+- **SignalP 6.0** (tool) — 基于蛋白语言模型预测全部五类信号肽的工具。 [doi:10.1038/s41587-021-01156-3](https://doi.org/10.1038/s41587-021-01156-3) · [link](https://services.healthtech.dtu.dk/services/SignalP-6.0/)
+- **TMHMM 2.0** (tool) — 基于 HMM 预测跨膜螺旋的工具。 [doi:10.1006/jmbi.2000.4315](https://doi.org/10.1006/jmbi.2000.4315) · [link](https://services.healthtech.dtu.dk/services/TMHMM-2.0/)
+- **Phobius** (tool) — 联合预测跨膜拓扑结构与信号肽的工具。 [doi:10.1016/j.jmb.2004.03.016](https://doi.org/10.1016/j.jmb.2004.03.016) · [link](https://phobius.sbc.su.se/)
+- **WoLF PSORT** (tool) — 内置植物模型的亚细胞定位预测工具。 [doi:10.1093/nar/gkm259](https://doi.org/10.1093/nar/gkm259) · [link](https://wolfpsort.hgc.jp/)
+- **LOCALIZER** (tool) — 预测植物蛋白与病原效应蛋白在叶绿体、线粒体及细胞核定位的工具。 [doi:10.1038/srep44598](https://doi.org/10.1038/srep44598) · [link](https://localizer.csiro.au/)
+- **DeepLoc 2.1** (tool) — 基于蛋白语言模型预测亚细胞定位与膜蛋白类型的工具。 [doi:10.1093/nar/gkae237](https://doi.org/10.1093/nar/gkae237) · [link](https://services.healthtech.dtu.dk/services/DeepLoc-2.1/)
+- **TargetP 2.0** (tool) — 预测 N 端靶向肽（信号肽、线粒体、叶绿体与类囊体转运肽）的工具。 [doi:10.26508/lsa.201900429](https://doi.org/10.26508/lsa.201900429) · [link](https://services.healthtech.dtu.dk/services/TargetP-2.0/)
+- **DeepTMHMM** (tool) — 跨膜拓扑结构预测工具（预印本）。 [doi:10.1101/2022.04.08.487609](https://doi.org/10.1101/2022.04.08.487609) · [link](https://dtu.biolib.com/DeepTMHMM)
 
 <a id="section-9"></a>
 ## 9. 植物基因家族
 
-植物基因家族分类（框架 F8 NLR、框架 F9 TF/激酶）。
+植物特定基因家族分类工具（框架 F8 NLR、框架 F9 TF/激酶）。
 
-**需要：** NLR（F8）需要 InterProScan 输出，可选 HRP 窗口列表；TF / 激酶（F9）需要 iTAK（或书面指定的等效工具）。没有病害 / NLR 故事就跳过 F8。[按场景列出的数据需求](#data-needs)
+**需要：** NLR（F8）需输入 InterProScan 结果，并可附上可选的 HRP 窗口列表；TF / 激酶（F9）需使用 iTAK（或有书面说明的同等级工具）。若课题不涉及抗病或 NLR 分析，可直接跳过 F8。[按场景列出的数据需求](#data-needs)
 
 
-- **iTAK** (tool) — Plant transcription factor and protein kinase identification and classification. [doi:10.1016/j.molp.2016.09.014](https://doi.org/10.1016/j.molp.2016.09.014) · [link](https://github.com/kentnf/iTAK)
-- **TAPscan v4** (tool / resource) — Detects transcription-associated proteins with family rules; streptophyte-wide database. [doi:10.1111/tpj.17184](https://doi.org/10.1111/tpj.17184) · [link](https://tapscan.plantcode.cup.uni-freiburg.de/)
-- **PRGdb 4.0** (tool / resource) — Plant resistance gene database with DRAGO annotation pipeline. [doi:10.1093/nar/gkab1087](https://doi.org/10.1093/nar/gkab1087) · [link](http://prgdb.org/) [待确认]
-- **RGAugury** (tool) — Pipeline identifying resistance gene analogs (NBS, RLK, RLP). [doi:10.1186/s12864-016-3197-x](https://doi.org/10.1186/s12864-016-3197-x) · [link](https://bitbucket.org/yaanlpc/rgaugury)
-- **Resistify** (tool) — Fast NLR identification/classification from proteins using NLRexpress motifs. [doi:10.1177/11779322241308944](https://doi.org/10.1177/11779322241308944) · [link](https://github.com/SwiftSeal/resistify)
-- **NLRtracker + RefPlantNLR** (tool / resource) — Extracts and classifies NLRs from proteomes/transcripts using features of RefPlantNLR. [doi:10.1371/journal.pbio.3001124](https://doi.org/10.1371/journal.pbio.3001124) · [link](https://github.com/slt666666/NLRtracker)
-- **NLR-Annotator** (tool) — Annotation-independent NLR locus finder on genomic sequence. [doi:10.1104/pp.19.01273](https://doi.org/10.1104/pp.19.01273) · [link](https://github.com/steuernb/NLR-Annotator)
-- **NLRexpress** (tool) — ML motif predictors for CC/TIR/NB-ARC/LRR motifs. [doi:10.3389/fpls.2022.975888](https://doi.org/10.3389/fpls.2022.975888) · [link](https://github.com/eliza-m/NLRexpress)
-- **NLRSeek** (tool) — Combines NLR-Annotator loci, targeted re-annotation and NLRtracker to recover NLRs missing from proteomes. [doi:10.1016/j.abiote.2025.100001](https://doi.org/10.1016/j.abiote.2025.100001) · [link](https://github.com/Wang-Mengda/NLRSeek)
-- **PlantTFDB / PlantRegMap** (resource) — Plant TF families, binding motifs and regulatory map. [doi:10.1093/nar/gkz1020](https://doi.org/10.1093/nar/gkz1020) · [link](http://planttfdb.gao-lab.org) [待确认]
-- **PlantPAN (latest)** (resource) — Plant promoter / TF-binding analysis navigator. [doi:10.1093/nar/gkad945](https://doi.org/10.1093/nar/gkad945) · [link](https://plantpan.itps.ncku.edu.tw)
+- **iTAK** (tool) — 植物转录因子与蛋白激酶识别及分类工具。 [doi:10.1016/j.molp.2016.09.014](https://doi.org/10.1016/j.molp.2016.09.014) · [link](https://github.com/kentnf/iTAK)
+- **TAPscan v4** (tool / resource) — 基于家族规则检测转录相关蛋白的工具，配套链型植物（streptophyte）范围的数据库。 [doi:10.1111/tpj.17184](https://doi.org/10.1111/tpj.17184) · [link](https://tapscan.plantcode.cup.uni-freiburg.de/)
+- **PRGdb 4.0** (tool / resource) — 附带 DRAGO 注释流程的植物抗病基因数据库。 [doi:10.1093/nar/gkab1087](https://doi.org/10.1093/nar/gkab1087) · [link](http://prgdb.org/) [待确认]
+- **RGAugury** (tool) — 识别抗病基因类似物（NBS、RLK、RLP）的分析流程。 [doi:10.1186/s12864-016-3197-x](https://doi.org/10.1186/s12864-016-3197-x) · [link](https://bitbucket.org/yaanlpc/rgaugury)
+- **Resistify** (tool) — 利用 NLRexpress 基序从蛋白序列中快速识别并分类 NLR 的工具。 [doi:10.1177/11779322241308944](https://doi.org/10.1177/11779322241308944) · [link](https://github.com/SwiftSeal/resistify)
+- **NLRtracker + RefPlantNLR** (tool / resource) — 利用 RefPlantNLR 特征从蛋白组或转录本中提取并分类 NLR 的工具与参考集。 [doi:10.1371/journal.pbio.3001124](https://doi.org/10.1371/journal.pbio.3001124) · [link](https://github.com/slt666666/NLRtracker)
+- **NLR-Annotator** (tool) — 不依赖已有基因注释、直接在基因组序列上定位 NLR 位点的工具。 [doi:10.1104/pp.19.01273](https://doi.org/10.1104/pp.19.01273) · [link](https://github.com/steuernb/NLR-Annotator)
+- **NLRexpress** (tool) — 基于机器学习预测 CC/TIR/NB-ARC/LRR 基序的工具。 [doi:10.3389/fpls.2022.975888](https://doi.org/10.3389/fpls.2022.975888) · [link](https://github.com/eliza-m/NLRexpress)
+- **NLRSeek** (tool) — 结合 NLR-Annotator 位点、靶向重注释与 NLRtracker 以找回蛋白组中遗漏 NLR 的流程。 [doi:10.1016/j.abiote.2025.100001](https://doi.org/10.1016/j.abiote.2025.100001) · [link](https://github.com/Wang-Mengda/NLRSeek)
+- **PlantTFDB / PlantRegMap** (resource) — 植物转录因子家族、结合基序与调控网络数据库。 [doi:10.1093/nar/gkz1020](https://doi.org/10.1093/nar/gkz1020) · [link](http://planttfdb.gao-lab.org) [待确认]
+- **PlantPAN (latest)** (resource) — 植物启动子与转录因子结合位点分析平台。 [doi:10.1093/nar/gkad945](https://doi.org/10.1093/nar/gkad945) · [link](https://plantpan.itps.ncku.edu.tw)
 
 <a id="section-10"></a>
 ## 10. 非编码 RNA 功能资源
 
-非编码 RNA 功能资源。通常需要转录组或已知 ncRNA 位点，不能只用蛋白表。
+非编码 RNA 功能注释资源。通常需要转录组或已知的 ncRNA 位点，不能单靠蛋白表。
 
-**需要：** 转录组或已知 ncRNA 位点，不能只用蛋白表。基因预测和 TE 库仍归结构库 / vitis-te。[按场景列出的数据需求](#data-needs)
+**需要：** 转录组数据或已知的 ncRNA 位点——不能只靠蛋白表。基因结构预测与 TE 库构建仍分别归属结构注释库和 vitis-te。[按场景列出的数据需求](#data-needs)
 
 
-- **miRBase** (resource) — Reference microRNA sequence and nomenclature database. [doi:10.1093/nar/gky1141](https://doi.org/10.1093/nar/gky1141) · [link](https://www.mirbase.org/)
-- **psRobot** (tool) — Plant small-RNA meta-analysis and target prediction. [doi:10.1093/nar/gks554](https://doi.org/10.1093/nar/gks554) · [link](http://omicslab.genetics.ac.cn/psRobot/) [待确认]
-- **ncPlantDB** (resource) — Plant ncRNAs with potential ncRNA-encoded peptides and cell-type interactions (43 species). [doi:10.1093/nar/gkae1017](https://doi.org/10.1093/nar/gkae1017) · [link](https://bis.zju.edu.cn/ncPlantDB)
-- **PLncDB V2.0** (resource) — Plant lncRNA encyclopedia. [doi:10.1093/nar/gkaa910](https://doi.org/10.1093/nar/gkaa910) · [link](https://www.tobaccodb.org/plncdb/) [待确认]
-- **GreeNC 2.0** (resource) — Plant lncRNA catalog. [doi:10.1093/nar/gkab1014](https://doi.org/10.1093/nar/gkab1014) · [link](http://greenc.sequentiabiotech.com) [待确认]
-- **CANTATAdb 3.0** (resource) — Updated plant lncRNA repository. [doi:10.1093/pcp/pcae081](https://doi.org/10.1093/pcp/pcae081) · [link](http://cantata.amu.edu.pl) [待确认]
-- **PlantCircRNA** (resource) — Plant circular RNA database. [doi:10.1093/nar/gkae709](https://doi.org/10.1093/nar/gkae709) · [link](https://plant.deepbiology.cn/PlantCircRNA/)
-- **psRNATarget (2017 release)** (tool) — Plant small-RNA target prediction server. [doi:10.1093/nar/gky316](https://doi.org/10.1093/nar/gky316) · [link](https://www.zhaolab.org/psRNATarget/) [待确认]
-- **PmiREN 2.0** (resource) — Plant miRNA encyclopedia. [doi:10.1093/nar/gkab811](https://doi.org/10.1093/nar/gkab811) · [link](https://pmiren.com)
+- **miRBase** (resource) — microRNA 参考序列与命名数据库。 [doi:10.1093/nar/gky1141](https://doi.org/10.1093/nar/gky1141) · [link](https://www.mirbase.org/)
+- **psRobot** (tool) — 植物小 RNA 荟萃分析与靶基因预测工具。 [doi:10.1093/nar/gks554](https://doi.org/10.1093/nar/gks554) · [link](http://omicslab.genetics.ac.cn/psRobot/) [待确认]
+- **ncPlantDB** (resource) — 涵盖 43 个物种的植物 ncRNA 数据库，包含潜在 ncRNA 编码小肽与细胞类型互作信息。 [doi:10.1093/nar/gkae1017](https://doi.org/10.1093/nar/gkae1017) · [link](https://bis.zju.edu.cn/ncPlantDB)
+- **PLncDB V2.0** (resource) — 植物 lncRNA 百科数据库。 [doi:10.1093/nar/gkaa910](https://doi.org/10.1093/nar/gkaa910) · [link](https://www.tobaccodb.org/plncdb/) [待确认]
+- **GreeNC 2.0** (resource) — 植物 lncRNA 目录数据库。 [doi:10.1093/nar/gkab1014](https://doi.org/10.1093/nar/gkab1014) · [link](http://greenc.sequentiabiotech.com) [待确认]
+- **CANTATAdb 3.0** (resource) — 更新版植物 lncRNA 数据库。 [doi:10.1093/pcp/pcae081](https://doi.org/10.1093/pcp/pcae081) · [link](http://cantata.amu.edu.pl) [待确认]
+- **PlantCircRNA** (resource) — 植物环状 RNA（circRNA）数据库。 [doi:10.1093/nar/gkae709](https://doi.org/10.1093/nar/gkae709) · [link](https://plant.deepbiology.cn/PlantCircRNA/)
+- **psRNATarget (2017 release)** (tool) — 植物小 RNA 靶基因预测在线服务。 [doi:10.1093/nar/gky316](https://doi.org/10.1093/nar/gky316) · [link](https://www.zhaolab.org/psRNATarget/) [待确认]
+- **PmiREN 2.0** (resource) — 植物 miRNA 百科数据库。 [doi:10.1093/nar/gkab811](https://doi.org/10.1093/nar/gkab811) · [link](https://pmiren.com)
 
 <a id="section-11"></a>
 ## 11. 表达支持的功能
 
-用表达或共表达支持功能假说，而不是作为实验 GO。
+利用基因表达或共表达数据佐证功能假说，但不作为实验级 GO 证据。
 
-**需要：** 若用表达来支持功能判断，需要 RNA-seq（最好来自同一基因型）。[按场景列出的数据需求](#data-needs)
+**需要：** 若要用表达数据佐证基因功能，需准备 RNA-seq 数据（最好来自同一基因型）。[按场景列出的数据需求](#data-needs)
 
 
-- **Grapevine Expression Atlas** (resource) — Organ/stage expression atlas of V. vinifera Corvina. [doi:10.1105/tpc.112.100230](https://doi.org/10.1105/tpc.112.100230)
-- **ATTED-II v11** (resource) — Plant gene coexpression database. [doi:10.1093/pcp/pcac041](https://doi.org/10.1093/pcp/pcac041) · [link](https://atted.jp/)
-- **scPlantDB** (resource) — Plant single-cell atlas: cell types and markers. [doi:10.1093/nar/gkad706](https://doi.org/10.1093/nar/gkad706) · [link](https://biobigdata.nju.edu.cn/scplantdb/) [待确认]
-- **hdWGCNA** (tool) — Co-expression networks in single-cell/spatial data. [doi:10.1016/j.crmeth.2023.100498](https://doi.org/10.1016/j.crmeth.2023.100498) · [link](https://github.com/smorabit/hdWGCNA)
-- **CoNekT** (tool / resource) — Co-expression network toolkit/framework for plants. [doi:10.1101/255075](https://doi.org/10.1101/255075) · [link](https://conekt.sbs.ntu.edu.sg) [待确认]
+- **Grapevine Expression Atlas** (resource) — 欧亚葡萄（V. vinifera Corvina）多器官与发育时期表达图谱。 [doi:10.1105/tpc.112.100230](https://doi.org/10.1105/tpc.112.100230)
+- **ATTED-II v11** (resource) — 植物基因共表达数据库。 [doi:10.1093/pcp/pcac041](https://doi.org/10.1093/pcp/pcac041) · [link](https://atted.jp/)
+- **scPlantDB** (resource) — 植物单细胞图谱数据库：收录细胞类型与标记基因。 [doi:10.1093/nar/gkad706](https://doi.org/10.1093/nar/gkad706) · [link](https://biobigdata.nju.edu.cn/scplantdb/) [待确认]
+- **hdWGCNA** (tool) — 面向单细胞与空间转录组数据的共表达网络分析工具。 [doi:10.1016/j.crmeth.2023.100498](https://doi.org/10.1016/j.crmeth.2023.100498) · [link](https://github.com/smorabit/hdWGCNA)
+- **CoNekT** (tool / resource) — 面向植物的共表达网络分析工具包与平台。 [doi:10.1101/255075](https://doi.org/10.1101/255075) · [link](https://conekt.sbs.ntu.edu.sg) [待确认]
 
 <a id="section-12"></a>
 ## 12. 社区目录与命名
 
-经过整理的社区目录和命名来源。
+经整理的社区目录与命名参考源。
 
-**需要：** 能访问所点名的社区目录（及其版本或日期）。[按场景列出的数据需求](#data-needs)
+**需要：** 能够访问指定的社区目录（并记录其版本号或访问日期）。[按场景列出的数据需求](#data-needs)
 
 
-- **The grapevine gene nomenclature system** (idea) — Proposed rules for naming grapevine genes. [doi:10.1186/1471-2164-15-1077](https://doi.org/10.1186/1471-2164-15-1077)
-- **Grapedia Grapevine Reference Gene Catalogue** (resource) — Curated V. vinifera gene ID/symbol pairs with function, literature and confidence; v3.1 (Nov 2025) aligned to T2T v5.1 annotation. [link](https://grapedia.org/genes/)
-- **Grape Gene Reference Catalogue (paper)** (resource) — Describes the catalogue as a standard for gene selection. [doi:10.3389/fpls.2021.803977](https://doi.org/10.3389/fpls.2021.803977)
+- **The grapevine gene nomenclature system** (idea) — 葡萄基因命名规则建议。 [doi:10.1186/1471-2164-15-1077](https://doi.org/10.1186/1471-2164-15-1077)
+- **Grapedia Grapevine Reference Gene Catalogue** (resource) — 人工审定的欧亚葡萄（V. vinifera）基因 ID/符号对照目录，附带功能、文献与置信度；v3.1 版（2025 年 11 月）已对齐至 T2T v5.1 注释。 [link](https://grapedia.org/genes/)
+- **Grape Gene Reference Catalogue (paper)** (resource) — 阐述将该基因参考目录作为葡萄基因筛选标准的论文。 [doi:10.3389/fpls.2021.803977](https://doi.org/10.3389/fpls.2021.803977)
 
 <a id="section-13"></a>
 ## 13. 蛋白三维结构
 
-蛋白三维结构的预测、搜索和结构域。这里的 structure 指三维结构，不是基因模型。
+蛋白三维结构预测、搜索与结构域划分。此处的 structure 指蛋白三维空间结构，而非基因模型。
 
-**需要：** 蛋白；有的工具还需要 AlphaFold / PDB 一类库。这里的 “structure” 指蛋白三维结构，不是基因模型。[按场景列出的数据需求](#data-needs)
+**需要：** 蛋白序列；部分工具还需搭配 AlphaFold / PDB 类结构库。此处的 “structure” 指蛋白三维结构，不是基因模型。[按场景列出的数据需求](#data-needs)
 
 
-- **AlphaFold2** (tool) — Protein 3D structure prediction. [doi:10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2) · [link](https://github.com/google-deepmind/alphafold)
-- **ColabFold** (tool) — Fast AlphaFold2 with MMseqs2 MSAs. [doi:10.1038/s41592-022-01488-1](https://doi.org/10.1038/s41592-022-01488-1) · [link](https://github.com/sokrypton/ColabFold)
-- **ESMFold / ESM-2** (tool) — Single-sequence 3D structure prediction from a protein language model. [doi:10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574) · [link](https://github.com/facebookresearch/esm)
-- **AlphaFold 3** (tool) — Joint structure prediction of complexes with nucleic acids, ligands and ions. [doi:10.1038/s41586-024-07487-w](https://doi.org/10.1038/s41586-024-07487-w) · [link](https://github.com/google-deepmind/alphafold3)
-- **TED (The Encyclopedia of Domains)** (resource) — Structure-based domain segmentation of AlphaFold DB. [doi:10.1126/science.adq4946](https://doi.org/10.1126/science.adq4946) · [link](https://ted.cathdb.info/)
-- **CATH (2021)** (resource) — Hierarchical classification of protein 3D domains. [doi:10.1093/nar/gkaa1079](https://doi.org/10.1093/nar/gkaa1079) · [link](https://www.cathdb.info/)
-- **TM-align** (tool) — Structure alignment with TM-score. [doi:10.1093/nar/gki524](https://doi.org/10.1093/nar/gki524) · [link](https://zhanggroup.org/TM-align/)
-- **US-align** (tool) — Universal structure alignment for proteins and nucleic acids. [doi:10.1038/s41592-022-01585-1](https://doi.org/10.1038/s41592-022-01585-1) · [link](https://github.com/pylelab/USalign)
-- **DALI** (tool) — Structure comparison server against PDB/AlphaFold DB. [doi:10.1002/pro.3749](https://doi.org/10.1002/pro.3749) · [link](http://ekhidna2.biocenter.helsinki.fi/dali/) [待确认]
-- **Foldseek** (tool) — Protein 3D-structure search via 3Di alphabet; finds remote homologs missed by sequence search. [doi:10.1038/s41587-023-01773-0](https://doi.org/10.1038/s41587-023-01773-0) · [link](https://github.com/steineggerlab/foldseek)
-- **ProstT5** (tool) — Protein language model translating sequence to 3Di tokens so Foldseek can run without predicted structures. [doi:10.1093/nargab/lqae150](https://doi.org/10.1093/nargab/lqae150) · [link](https://github.com/mheinzinger/ProstT5)
-- **TM-Vec 2s** (tool) — Embedding-based remote homology / TM-score prediction (preprint 2026). [doi:10.64898/2026.02.05.704073](https://doi.org/10.64898/2026.02.05.704073)
-- **AlphaFold Protein Structure Database (2024)** (resource) — Predicted protein 3D structures for UniProt; target for Foldseek searches. [doi:10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011) · [link](https://alphafold.ebi.ac.uk)
-- **AlphaFind v2** (tool) — Similarity search over AlphaFold DB and TED domains. [doi:10.1093/nar/gkag372](https://doi.org/10.1093/nar/gkag372) · [link](https://alphafind.fi.muni.cz)
-- **WASP** (tool) — Whole-proteome annotation via Foldseek against AlphaFold DB (GO, Pfam, PANTHER, CATH, Rhea, EC). [link](https://github.com/gioodm/wasp-proteins-annotation)
-- **PARSE** (tool) — Functional site annotation from local 3D-structure embeddings. [doi:10.1073/pnas.2513219122](https://doi.org/10.1073/pnas.2513219122)
-- **metagenomic-DeepFRI** (tool) — Scaled DeepFRI (GO from protein 3D-structure graphs) (preprint 2026). [doi:10.64898/2026.04.27.720983](https://doi.org/10.64898/2026.04.27.720983)
+- **AlphaFold2** (tool) — 蛋白三维结构预测工具。 [doi:10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2) · [link](https://github.com/google-deepmind/alphafold)
+- **ColabFold** (tool) — 采用 MMseqs2 生成多序列比对的快速 AlphaFold2 流程。 [doi:10.1038/s41592-022-01488-1](https://doi.org/10.1038/s41592-022-01488-1) · [link](https://github.com/sokrypton/ColabFold)
+- **ESMFold / ESM-2** (tool) — 基于蛋白语言模型的单序列三维结构预测工具。 [doi:10.1126/science.ade2574](https://doi.org/10.1126/science.ade2574) · [link](https://github.com/facebookresearch/esm)
+- **AlphaFold 3** (tool) — 联合预测蛋白与核酸、配体及离子复合物三维结构的工具。 [doi:10.1038/s41586-024-07487-w](https://doi.org/10.1038/s41586-024-07487-w) · [link](https://github.com/google-deepmind/alphafold3)
+- **TED (The Encyclopedia of Domains)** (resource) — 对 AlphaFold DB 做基于三维结构的结构域切分数据库（TED）。 [doi:10.1126/science.adq4946](https://doi.org/10.1126/science.adq4946) · [link](https://ted.cathdb.info/)
+- **CATH (2021)** (resource) — 蛋白三维结构域层级分类数据库。 [doi:10.1093/nar/gkaa1079](https://doi.org/10.1093/nar/gkaa1079) · [link](https://www.cathdb.info/)
+- **TM-align** (tool) — 基于 TM-score 的蛋白三维结构比对工具。 [doi:10.1093/nar/gki524](https://doi.org/10.1093/nar/gki524) · [link](https://zhanggroup.org/TM-align/)
+- **US-align** (tool) — 通用于蛋白与核酸的三维结构比对工具。 [doi:10.1038/s41592-022-01585-1](https://doi.org/10.1038/s41592-022-01585-1) · [link](https://github.com/pylelab/USalign)
+- **DALI** (tool) — 比对 PDB 或 AlphaFold DB 的三维结构比较在线服务。 [doi:10.1002/pro.3749](https://doi.org/10.1002/pro.3749) · [link](http://ekhidna2.biocenter.helsinki.fi/dali/) [待确认]
+- **Foldseek** (tool) — 基于 3Di 字母表的蛋白三维结构搜索工具，可检出序列搜索遗漏的远缘同源蛋白。 [doi:10.1038/s41587-023-01773-0](https://doi.org/10.1038/s41587-023-01773-0) · [link](https://github.com/steineggerlab/foldseek)
+- **ProstT5** (tool) — 将氨基酸序列直接翻译为 3Di 符号的蛋白语言模型，使 Foldseek 无需预先预测三维结构即可运行。 [doi:10.1093/nargab/lqae150](https://doi.org/10.1093/nargab/lqae150) · [link](https://github.com/mheinzinger/ProstT5)
+- **TM-Vec 2s** (tool) — 基于嵌入向量做远缘同源检测与 TM-score 预测的工具（2026 预印本）。 [doi:10.64898/2026.02.05.704073](https://doi.org/10.64898/2026.02.05.704073)
+- **AlphaFold Protein Structure Database (2024)** (resource) — 覆盖 UniProt 的预测蛋白三维结构数据库；常作为 Foldseek 的搜索目标库。 [doi:10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011) · [link](https://alphafold.ebi.ac.uk)
+- **AlphaFind v2** (tool) — 在 AlphaFold DB 与 TED 结构域上做三维结构相似性搜索的工具。 [doi:10.1093/nar/gkag372](https://doi.org/10.1093/nar/gkag372) · [link](https://alphafind.fi.muni.cz)
+- **WASP** (tool) — 通过 Foldseek 比对 AlphaFold DB 完成全蛋白组注释（涵盖 GO、Pfam、PANTHER、CATH、Rhea、EC）的工具。 [link](https://github.com/gioodm/wasp-proteins-annotation)
+- **PARSE** (tool) — 利用局部三维结构嵌入向量注释蛋白功能位点的工具。 [doi:10.1073/pnas.2513219122](https://doi.org/10.1073/pnas.2513219122)
+- **metagenomic-DeepFRI** (tool) — 大规模扩展版 DeepFRI（基于蛋白三维结构图预测 GO，2026 预印本）。 [doi:10.64898/2026.04.27.720983](https://doi.org/10.64898/2026.04.27.720983)
 
 <a id="section-14"></a>
 ## 14. 下游富集
 
-下游 GO/KEGG 富集。使用已完成的功能表，不是标签来源。
+下游 GO/KEGG 富集分析。直接读取已生成的注释总表，本身不产出新的功能标签。
 
-**需要：** 已完成的功能表，以及定义清楚的基因集背景（通常是该次发布的全部基因）。这是合并之后的下游分析，不是标签来源。[按场景列出的数据需求](#data-needs)
+**需要：** 已完成的功能注释表，外加界定清晰的背景基因集（通常取当次发布的全部基因）。这属于合并总表之后的下游分析，并非功能标签的来源。[按场景列出的数据需求](#data-needs)
 
 
-- **topGO** (tool) — GO enrichment accounting for GO graph topology. [doi:10.18129/B9.bioc.topGO](https://doi.org/10.18129/B9.bioc.topGO) · [link](https://bioconductor.org/packages/topGO/)
-- **GOATOOLS** (tool) — Python GO library: DAG propagation, slims, enrichment. [doi:10.1038/s41598-018-28948-z](https://doi.org/10.1038/s41598-018-28948-z) · [link](https://github.com/tanghaibao/goatools)
-- **GOseq** (tool) — GO enrichment correcting for length bias in RNA-seq. [doi:10.1186/gb-2010-11-2-r14](https://doi.org/10.1186/gb-2010-11-2-r14) · [link](https://bioconductor.org/packages/goseq/)
-- **ShinyGO** (tool) — Web enrichment with plant species from Ensembl/STRING. [doi:10.1093/bioinformatics/btz931](https://doi.org/10.1093/bioinformatics/btz931) · [link](http://bioinformatics.sdstate.edu/go/) [待确认]
-- **DAVID (2025 update)** (tool) — Enrichment server; adds DAVID Ortholog for cross-species analysis. [doi:10.1093/nar/gkag470](https://doi.org/10.1093/nar/gkag470) · [link](https://davidbioinformatics.nih.gov)
-- **g:Profiler (2023)** (tool) — Enrichment and ID conversion. [doi:10.1093/nar/gkad347](https://doi.org/10.1093/nar/gkad347) · [link](https://biit.cs.ut.ee/gprofiler)
-- **agriGO v2.0** (tool) — GO enrichment for agricultural species. [doi:10.1093/nar/gkx382](https://doi.org/10.1093/nar/gkx382) · [link](http://systemsbiology.cau.edu.cn/agriGOv2/) [待确认]
-- **clusterProfiler 4.0** (tool) — R enrichment with custom TERM2GENE from merged_function_table.tsv. [doi:10.1016/j.xinn.2021.100141](https://doi.org/10.1016/j.xinn.2021.100141) · [link](https://github.com/YuLab-SMU/clusterProfiler)
+- **topGO** (tool) — 兼顾 GO 图拓扑结构的 GO 富集分析工具。 [doi:10.18129/B9.bioc.topGO](https://doi.org/10.18129/B9.bioc.topGO) · [link](https://bioconductor.org/packages/topGO/)
+- **GOATOOLS** (tool) — Python GO 分析库：支持有向无环图（DAG）向上传播、GO slim 提取与富集分析。 [doi:10.1038/s41598-018-28948-z](https://doi.org/10.1038/s41598-018-28948-z) · [link](https://github.com/tanghaibao/goatools)
+- **GOseq** (tool) — 校正 RNA-seq 基因长度偏好性的 GO 富集分析工具。 [doi:10.1186/gb-2010-11-2-r14](https://doi.org/10.1186/gb-2010-11-2-r14) · [link](https://bioconductor.org/packages/goseq/)
+- **ShinyGO** (tool) — 收录 Ensembl/STRING 植物物种的在线富集分析工具。 [doi:10.1093/bioinformatics/btz931](https://doi.org/10.1093/bioinformatics/btz931) · [link](http://bioinformatics.sdstate.edu/go/) [待确认]
+- **DAVID (2025 update)** (tool) — 在线富集分析服务；2025 更新版新增用于跨物种分析的 DAVID Ortholog。 [doi:10.1093/nar/gkag470](https://doi.org/10.1093/nar/gkag470) · [link](https://davidbioinformatics.nih.gov)
+- **g:Profiler (2023)** (tool) — 功能富集分析与基因 ID 转换工具。 [doi:10.1093/nar/gkad347](https://doi.org/10.1093/nar/gkad347) · [link](https://biit.cs.ut.ee/gprofiler)
+- **agriGO v2.0** (tool) — 面向农业物种的 GO 富集分析平台。 [doi:10.1093/nar/gkx382](https://doi.org/10.1093/nar/gkx382) · [link](http://systemsbiology.cau.edu.cn/agriGOv2/) [待确认]
+- **clusterProfiler 4.0** (tool) — R 语言富集分析包，支持直接读取 `merged_function_table.tsv` 构建自定义 TERM2GENE。 [doi:10.1016/j.xinn.2021.100141](https://doi.org/10.1016/j.xinn.2021.100141) · [link](https://github.com/YuLab-SMU/clusterProfiler)
 
 <a id="section-15"></a>
 ## 15. 想法、格式与合并规则
 
-想法、格式和合并规则。合并产物仍是 `merged_function_table.tsv`。未实测前不改变框架 F1。
+相关思路、文件格式与总表合并规则。最终合并产物仍为 `merged_function_table.tsv`。在完成实测前，不改变框架 F1。
 
-**需要：** 视具体想法而定；合并产物仍是 `merged_function_table.tsv`。未实测前不改变框架 F1。[按场景列出的数据需求](#data-needs)
+**需要：** 视具体思路而定；合并产物仍为 `merged_function_table.tsv`。在完成实测前，不改变框架 F1。[按场景列出的数据需求](#data-needs)
 
 
-- **Evidence & Conclusion Ontology (ECO, 2022)** (idea) — Ontology of evidence types behind annotations (maps to GO evidence codes). [doi:10.1093/nar/gkab1025](https://doi.org/10.1093/nar/gkab1025) · [link](https://evidenceontology.org/)
-- **GO Annotation File (GAF 2.2) format** (idea) — Standard tab format for gene–GO associations with evidence codes. [link](https://geneontology.org/docs/go-annotation-file-gaf-format-2.2/)
-- **GO specificity balance (Genome Res 2026)** (idea) — Balancing GO term specificity in sequence-language-model predictions. [doi:10.1101/gr.280816.125](https://doi.org/10.1101/gr.280816.125) [待确认]
-- **CAFA lessons (idea)** (idea) — Community assessments keep showing GO prediction is hard for proteins with partial knowledge; publish ML GO as electronic evidence (IEA) only. [link](https://biofunctionprediction.org/cafa/) [待确认]
-- **GeneAgent** (idea) — Self-verifying LLM agent for gene-set analysis using domain databases. [doi:10.1038/s41592-025-02748-6](https://doi.org/10.1038/s41592-025-02748-6)
-- **LLM-assisted Reactome annotation** (idea) — LLM/RAG proposals of pathway annotations for curator review (preprint). [doi:10.64898/2025.12.20.695723](https://doi.org/10.64898/2025.12.20.695723)
-- **Agentic AI for gene function across genomes** (idea) — GO curators' agent workflow with constrained schemas and validators (Zenodo record). [doi:10.5281/zenodo.18904049](https://doi.org/10.5281/zenodo.18904049)
-- **ProtNLM (UniProt names)** (idea) — UniProt uses a Google protein-naming model to propose names for unreviewed entries; names carry an automatic evidence tag. [link](https://www.uniprot.org/help/ProtNLM)
+- **Evidence & Conclusion Ontology (ECO, 2022)** (idea) — 描述注释背后证据类型的标准本体（可映射至 GO 证据代码）。 [doi:10.1093/nar/gkab1025](https://doi.org/10.1093/nar/gkab1025) · [link](https://evidenceontology.org/)
+- **GO Annotation File (GAF 2.2) format** (idea) — 记录基因与 GO 关联及证据代码的标准制表符分隔格式（GAF 2.2）。 [link](https://geneontology.org/docs/go-annotation-file-gaf-format-2.2/)
+- **GO specificity balance (Genome Res 2026)** (idea) — 探讨如何在序列语言模型预测中平衡 GO 条目特异度的论文（Genome Res 2026）。 [doi:10.1101/gr.280816.125](https://doi.org/10.1101/gr.280816.125) [待确认]
+- **CAFA lessons (idea)** (idea) — 社区评测（CAFA）持续表明，对背景知识有限的蛋白做 GO 预测依然困难；机器学习给出的 GO 仅可作为电子注释证据（IEA）发布。 [link](https://biofunctionprediction.org/cafa/) [待确认]
+- **GeneAgent** (idea) — 结合领域数据库做基因集分析并支持自我核验的大语言模型智能体（LLM agent）。 [doi:10.1038/s41592-025-02748-6](https://doi.org/10.1038/s41592-025-02748-6)
+- **LLM-assisted Reactome annotation** (idea) — 利用 LLM/RAG 生成代谢通路注释草稿供审定员复核的方法（预印本）。 [doi:10.64898/2025.12.20.695723](https://doi.org/10.64898/2025.12.20.695723)
+- **Agentic AI for gene function across genomes** (idea) — GO 审定团队采用受控模式（schema）与校验器构建的跨基因组基因功能智能体工作流（Zenodo 记录）。 [doi:10.5281/zenodo.18904049](https://doi.org/10.5281/zenodo.18904049)
+- **ProtNLM (UniProt names)** (idea) — UniProt 采用 Google 蛋白命名模型为未审定条目提供推荐名称，并附带自动注释证据标签。 [link](https://www.uniprot.org/help/ProtNLM)
 
 <a id="data-needs"></a>
 ## 蛋白序列之外还需要的数据
 
-主输入是结构库发布的 `proteins.faa`（每个基因一条代表序列）。下表说明各步骤通常还要什么。未实测前不改变默认框架 F1。
+主要输入是结构注释库发布的 `proteins.faa`（每个基因保留一条代表序列）。下文说明各个步骤通常还需补充哪些数据。在改动经过实测验证前，默认框架 F1 保持不变。
 
 | 场景 | 最低要求 | 建议再加 | 本库常用工具 | 常见陷阱 |
 |---|---|---|---|---|
-| 输入质控（F0） | `PROTEINS_FA` + 蛋白模式 BUSCO lineage | 再用 OMArk 做一致性检查 | BUSCO 蛋白模式、OMArk（可选） | 把 F0 当成功能标签来源；想在这里“修好”差的蛋白组，而不是回到结构库 |
-| 默认框架 F1 | 本地 DIAMOND 库、eggNOG-mapper 数据、InterProScan 数据（版本写入 METHODS） | DIAMOND 用 Swiss-Prot（或书面指定的等效库） | `F1_diamond.sh`、`F2_eggnog.sh`、`F3_interproscan.sh` | 把脚本 `F2_eggnog.sh` 和备用框架 F2 搞混 |
-| 快速框架 F2 | 只需 eggNOG-mapper 数据 | 随后把 Kofam 并入合并表 | eggNOG-mapper ± Kofam | 把 F2 结果当成已经跑过 IPS 来发布 |
-| 名称（F4，可选） | AHRD 所需的 Blast/DIAMOND 类输出 | 书面指定的名称来源 | AHRD，可选 PANNZER（2026-11 目录中网站检查为 `[待确认]`） | 仅凭名称就当作更高的 F-L 等级 |
-| MapMan（F6，可选） | Mercator4 结果（网页或本地） | 按 `docs/MERCATOR_WHEN.md` 操作 | `F6_ingest_mercator.py` | 只因为“这是植物”就跑 Mercator，并无 MapMan 图计划 |
-| 多基因组（F7） | 面板中每个基因组的蛋白 | 注释直系同源组代表序列，再合并 | OrthoFinder，然后对代表序列跑 F1 | 写成好像每个基因都跑过 F1 |
-| NLR（F8，可选） | InterProScan 输出；可选结构叠加层给出的 HRP 窗口 | 仅在有病害 / NLR 故事时使用 | `F8_run.sh` | 把 IPS+HRP 筛查当成已审定的 NLR 集 |
-| TF / 激酶（F9，可选） | iTAK（或书面指定的等效工具） | 仅在需要该家族时使用 | `F9_itak.sh` | 把 F9 当成植物基因组的检查清单项目 |
-| 富集（下游） | `merged_function_table.tsv` + 定义清楚的背景 | 以该次发布的全部基因为背景 | 目录收录了 clusterProfiler 等；部分许可为 NC/ND，不用于配图 | 用方便的子集当背景却不说明 |
-| 通路 / KO | Kofam HMM 库和阈值，或 eggNOG 的 KO 字段 | 记录库版本 | KofamScan、eggNOG | 假定 KEGG 数据可以再分发（`[待确认]`） |
+| 输入质控（F0） | `PROTEINS_FA` + 蛋白模式的 BUSCO lineage | 补充 OMArk 做一致性检查 | BUSCO 蛋白模式、OMArk（可选） | 把 F0 当作功能标签的来源；试图在这一步“修补”质量欠佳的蛋白组，而不是退回结构注释库处理 |
+| 默认框架 F1 | 本地 DIAMOND 库、eggNOG-mapper 数据、InterProScan 数据（版本号记入 METHODS） | DIAMOND 选用 Swiss-Prot（或有书面说明的同等级库） | `F1_diamond.sh`、`F2_eggnog.sh`、`F3_interproscan.sh` | 把步骤脚本 `F2_eggnog.sh` 与备选框架 F2 混为一谈 |
+| 快速框架 F2 | 仅需 eggNOG-mapper 数据 | 后续将 Kofam 结果并入合并总表 | eggNOG-mapper ± Kofam | 将仅跑完 F2 的结果当作已跑过 IPS 的完整版发布 |
+| 名称（F4，可选） | AHRD 所需的 Blast/DIAMOND 格式比对结果 | 有书面说明的命名参考源 | AHRD，可选 PANNZER（2026-11 目录中其网站状态标为 `[待确认]`） | 以为加上可读名称就能直接提升 F-L 质量等级 |
+| MapMan（F6，可选） | Mercator4 运行结果（网页版或本地版） | 参照 `docs/MERCATOR_WHEN.md` 执行 | `F6_ingest_mercator.py` | 仅因研究对象是植物就去跑 Mercator，手头却并无绘制 MapMan 图的计划 |
+| 多基因组（F7） | 数据集中各个基因组的蛋白序列 | 先注释直系同源群的代表序列，随后合并 | OrthoFinder，再对代表序列跑 F1 | 在说明中写得像每个基因都单独跑过全套 F1 |
+| NLR（F8，可选） | InterProScan 输出；可附上结构注释叠加层提供的 HRP 窗口 | 仅在课题涉及抗病 / NLR 分析时启用 | `F8_run.sh` | 将 IPS+HRP 初步筛查结果直接称作已审定的 NLR 集 |
+| TF / 激酶（F9，可选） | iTAK（或有书面说明的同等级工具） | 仅在需要分析该基因家族时启用 | `F9_itak.sh` | 把 F9 当作植物基因组注释的必跑清单项 |
+| 富集（下游） | `merged_function_table.tsv` + 界定清晰的背景集 | 以当次发布的全部基因作为背景集 | 目录已收录 clusterProfiler 等工具；部分工具含 NC/ND 许可限制，不用于配图 | 图省事拿局部子集当背景，却未在文中如实说明 |
+| 通路 / KO | Kofam HMM 库与阈值文件，或直接用 eggNOG 的 KO 字段 | 记录所用数据库版本 | KofamScan、eggNOG | 默认 KEGG 数据可以再分发（`[待确认]`） |
 
 ### 跨切陷阱
 
-- 这里不做基因预测、soft-mask、TE 库或 GFF 编辑。那些在结构库或 vitis-te。
-- METHODS 里四套编号不要混：框架（F1/F2/F3/F5）、脚本（`F2_eggnog.sh` 是框架 F1 里的一步）、工具卡片（F1a/F1b/F1c）、门控（Gate-F1…F7）。
-- 合并产物是 `merged_function_table.tsv`。机器预测的 GO/EC 仍是 IEA。
-- 框架 F7 注释直系同源组代表序列，不是每个基因。
-- Foldseek、DeepFRI、AlphaFold DB 里的 “structure” 指蛋白三维结构。
-- InterProScan 属于默认 F1，但很慢；F-L1 是验收标准，不是今晚必须做完 IPS。
-- F4/F6/F8/F9 这些植物可选步骤本身不会提高等级。
+- 本库不负责基因结构预测、soft-mask、构建 TE 库或编辑 GFF。这些任务归属结构注释库或 vitis-te。
+- 在撰写 METHODS 时，务必区分四套编号：注释框架（F1/F2/F3/F5）、执行脚本（如 `F2_eggnog.sh` 只是框架 F1 中的一步）、工具卡片（F1a/F1b/F1c）与质控门控（Gate-F1…F7）。
+- 最终合并产物是 `merged_function_table.tsv`。由机器预测出的 GO/EC 仍带 IEA 证据代码。
+- 框架 F7 仅对直系同源群的代表序列做注释，并非逐一注释每个基因。
+- Foldseek、DeepFRI 与 AlphaFold DB 中提到的 “structure” 均指蛋白三维结构。
+- InterProScan 属于默认框架 F1 的一环，但耗时较长；F-L1 是交付验收标准，并不意味着今晚就得跑完 IPS。
+- F4/F6/F8/F9 等面向植物的可选附加步骤，本身并不会提高注释产物的质量等级。
 
-目录中仍标 `[待确认]` 的条目（HMMER 3、eggNOG 6、PANNZER2、MetaCyc、PRGdb 4.0、psRobot、DALI、ShinyGO — 2026-11-13 网站检查）保持原标记，直到有人打开页面。本文未重新检查那些网站。
+目录中仍标有 `[待确认]` 的条目（HMMER 3、eggNOG 6、PANNZER2、MetaCyc、PRGdb 4.0、psRobot、DALI、ShinyGO — 2026-11-13 网站核查）保留原标记，直至有人实际打开对应网页核实。本文未重新核查这些网站。
 
-更详细的说明（含英文表）见 [`docs/SCENARIOS_FUNCTIONAL.md#data-needs-zh`](docs/SCENARIOS_FUNCTIONAL.md#data-needs-zh)。
+更详细的说明（含英文表格）见 [`docs/SCENARIOS_FUNCTIONAL.md#data-needs-zh`](docs/SCENARIOS_FUNCTIONAL.md#data-needs-zh)。
 
 ![OMArk versus BUSCO proteomes](docs/figures/catalog/07_omark_vs_busco_proteomes.jpg)
 
-*OMArk 与 BUSCO 在 1,805 个真核 UniProt 参考蛋白组上的完整性比较（图 5）。放在这里是因为 F0 输入质控不是类型分节。 Nevers 等 2025，《Nature Biotechnology》43(1):124-133，图 5，doi:10.1038/s41587-024-02147-w（线上 2024-02-21），PMC11738984，CC BY。*
+*OMArk 与 BUSCO 在 1,805 个真核生物 UniProt 参考蛋白组上的完整性评估对比（图 5）。因 F0 输入质控未单列为类型小节，故置于此处。 Nevers 等 2025，《Nature Biotechnology》43(1):124-133，图 5，doi:10.1038/s41587-024-02147-w（线上发表于 2024-02-21），PMC11738984，CC BY。*
 
 <a id="figure-credits"></a>
 ## 图注与许可
 
-`docs/figures/` 中的自绘总图属于本仓库。下面目录配图是 CC BY 论文中的原始 JPEG（Europe PMC 许可字段为 `cc by`，2026-11-13 核实）。未使用 NC/ND 材料。
+`docs/figures/` 中的自绘概览图归本仓库所有。下方的目录配图均为取自 CC BY 论文的原始未修改 JPEG（Europe PMC 许可字段为 `cc by`，于 2026-11-13 核实），未包含任何 NC/ND 限制素材。
 
 | 文件 | 图注与出处 |
 |---|---|
-| [`docs/figures/catalog/01_eggnogmapper_v2_runtime.jpg`](docs/figures/catalog/01_eggnogmapper_v2_runtime.jpg) | eggNOG-mapper v2 与其他注释工具的运行时间比较（图 2）。 Cantalapiedra 等 2021，《Molecular Biology and Evolution》图 2，doi:10.1093/molbev/msab293，PMC8662613，CC BY。 |
-| [`docs/figures/catalog/02_eggnogmapper_vs_interproscan.jpg`](docs/figures/catalog/02_eggnogmapper_vs_interproscan.jpg) | eggNOG-mapper 与 InterProScan 的比较（图 3）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 3，doi:10.1093/molbev/msx148，PMC5850834，CC BY。 |
-| [`docs/figures/catalog/03_eggnogmapper_rhogap1_go.jpg`](docs/figures/catalog/03_eggnogmapper_rhogap1_go.jpg) | eggNOG-mapper 在一个示例上的 GO 分配（图 4）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 4，doi:10.1093/molbev/msx148，PMC5850834，CC BY。 |
-| [`docs/figures/catalog/04_interpro_pik3ca_domains.jpg`](docs/figures/catalog/04_interpro_pik3ca_domains.jpg) | InterPro 对 PIK3CA 的结构域注释（图 4）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 4，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。 |
-| [`docs/figures/catalog/05_interproscan_human_runtime.jpg`](docs/figures/catalog/05_interproscan_human_runtime.jpg) | InterProScan 在人类蛋白组上的运行时间（图 6）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 6，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。 |
-| [`docs/figures/catalog/06_orthofinder_chordata_summary.jpg`](docs/figures/catalog/06_orthofinder_chordata_summary.jpg) | OrthoFinder 在一个脊索动物示例上的摘要（图 3）。 Emms 与 Kelly 2019，《Genome Biology》图 3，doi:10.1186/s13059-019-1832-y，PMC6857279，CC BY。 |
-| [`docs/figures/catalog/07_omark_vs_busco_proteomes.jpg`](docs/figures/catalog/07_omark_vs_busco_proteomes.jpg) | OMArk 与 BUSCO 在 1,805 个真核 UniProt 参考蛋白组上的完整性比较（图 5）。放在这里是因为 F0 输入质控不是类型分节。 Nevers 等 2025，《Nature Biotechnology》43(1):124-133，图 5，doi:10.1038/s41587-024-02147-w（线上 2024-02-21），PMC11738984，CC BY。 |
+| [`docs/figures/catalog/01_eggnogmapper_v2_runtime.jpg`](docs/figures/catalog/01_eggnogmapper_v2_runtime.jpg) | eggNOG-mapper v2 与其他功能注释工具的运行耗时对比（图 2）。 Cantalapiedra 等 2021，《Molecular Biology and Evolution》图 2，doi:10.1093/molbev/msab293，PMC8662613，CC BY。 |
+| [`docs/figures/catalog/02_eggnogmapper_vs_interproscan.jpg`](docs/figures/catalog/02_eggnogmapper_vs_interproscan.jpg) | eggNOG-mapper 与 InterProScan 的注释结果对比（图 3）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 3，doi:10.1093/molbev/msx148，PMC5850834，CC BY。 |
+| [`docs/figures/catalog/03_eggnogmapper_rhogap1_go.jpg`](docs/figures/catalog/03_eggnogmapper_rhogap1_go.jpg) | eggNOG-mapper 在具体实例上的 GO 分配过程（图 4）。 Huerta-Cepas 等 2017，《Molecular Biology and Evolution》图 4，doi:10.1093/molbev/msx148，PMC5850834，CC BY。 |
+| [`docs/figures/catalog/04_interpro_pik3ca_domains.jpg`](docs/figures/catalog/04_interpro_pik3ca_domains.jpg) | InterPro 对 PIK3CA 蛋白的结构域注释展示（图 4）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 4，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。 |
+| [`docs/figures/catalog/05_interproscan_human_runtime.jpg`](docs/figures/catalog/05_interproscan_human_runtime.jpg) | InterProScan 在人类蛋白组上的运行耗时表现（图 6）。 Blum、Andreeva、Florentino 等 2025，《Nucleic Acids Research》图 6，doi:10.1093/nar/gkae1082，PMC11701551，CC BY。 |
+| [`docs/figures/catalog/06_orthofinder_chordata_summary.jpg`](docs/figures/catalog/06_orthofinder_chordata_summary.jpg) | OrthoFinder 在脊索动物数据集上的分析结果概览（图 3）。 Emms 与 Kelly 2019，《Genome Biology》图 3，doi:10.1186/s13059-019-1832-y，PMC6857279，CC BY。 |
+| [`docs/figures/catalog/07_omark_vs_busco_proteomes.jpg`](docs/figures/catalog/07_omark_vs_busco_proteomes.jpg) | OMArk 与 BUSCO 在 1,805 个真核生物 UniProt 参考蛋白组上的完整性评估对比（图 5）。因 F0 输入质控未单列为类型小节，故置于此处。 Nevers 等 2025，《Nature Biotechnology》43(1):124-133，图 5，doi:10.1038/s41587-024-02147-w（线上发表于 2024-02-21），PMC11738984，CC BY。 |
 

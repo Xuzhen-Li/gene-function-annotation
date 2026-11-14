@@ -154,3 +154,72 @@ Documentation status as of 2026-11-13 (Asia/Shanghai). The trunk (F0 → F1 → 
 - Re-check catalog rows still marked `[待确认]` (HMMER 3, eggNOG 6, PANNZER2, MetaCyc, PRGdb 4.0, psRobot, DALI, ShinyGO) by opening the sites, not by guessing.
 - Optional add-ons (F4 / F6 / F8 / F9) remain optional. New ML-GO or protein-3D tools stay off the default F1 path until tested.
 - Figure licence rule is the same as the structure repo (CC BY or OSI; no NC/ND).
+
+<a id="workflow-2026-11-14"></a>
+## Workflow chart (2026-11-14) / 流程图
+
+The same trunk, frames and add-ons as above, drawn as a single chart showing the choice at each decision point. Solid arrows mark the default path; dotted arrows mark optional side steps whose outputs stay in separate columns. Every tool named in the chart appears in the homepage catalog ([`../README.md`](../README.md)); the chart introduces no new defaults.
+
+将上文的主干、框架与附加项绘成一张流程图，并标出各判断节点的选择。实线表示默认路径；虚线表示可选的旁支步骤，其输出结果单独成列。图中列出的工具均已收录于主页目录（[`../README.md`](../README.md)），本图不新增默认工具。
+
+```mermaid
+flowchart TD
+  P["qualified proteins.faa from the structure release, A6"] --> F0["F0: protein BUSCO sanity check"]
+  F0 --> FR{"Which frame?"}
+  FR -->|"genome proteins, paper"| F1["F1: DIAMOND vs Swiss-Prot, eggNOG-mapper v2, InterProScan"]
+  FR -->|"answers today"| F2["F2: eggNOG-mapper first, InterProScan later"]
+  FR -->|"lab uses EnTAP"| F3["F3: EnTAP"]
+  FR -->|"transcriptome only"| F5["F5: Trinotate"]
+  F1 --> ADD{"Add-ons needed for the paper?"}
+  F2 --> ADD
+  F3 --> ADD
+  F5 --> ADD
+  ADD -->|"readable names"| F4["F4: AHRD, compare PANNZER2"]
+  ADD -->|"plant BINs"| F6["F6: Mercator4 and MapMan4"]
+  ADD -->|"KO and pathways"| KO["KofamScan, then KEGG Mapper, or E2P2"]
+  ADD -->|"several genomes"| F7["F7: OrthoFinder 3, annotate representatives"]
+  ADD -->|"NLR story"| F8["F8: NLRtracker on InterProScan output, or Resistify on proteins<br/>plus NLR-Annotator on the genome for unannotated loci"]
+  ADD -->|"TF and kinases"| F9["F9: iTAK or TAPscan v4"]
+  ADD -->|none| MERGE
+  F4 --> MERGE
+  F6 --> MERGE
+  KO --> MERGE
+  F7 --> MERGE
+  F8 --> MERGE
+  F9 --> MERGE
+  MERGE["merge: merged_function_table.tsv"] --> GAP{"Many proteins still without GO?"}
+  GAP -.->|"yes, side column only"| ML["DeepGO-SE or GoPredSim, FANTASIA, PLMSearch"]
+  ML -.-> DARK{"Still unknown but important?"}
+  DARK -.->|yes| S3D["ColabFold or ESMFold, then Foldseek vs AFDB, confirm with TM-align"]
+  GAP -->|no| RELF
+  S3D -.-> RELF
+  ML -.-> RELF
+  RELF["release: master TSV, GAF 2.2 with ECO codes, ML calls kept apart"] --> ENR["enrichment: topGO or clusterProfiler with a matched background, then Revigo or simplifyEnrichment"]
+```
+
+**Decision notes / 判断说明**
+
+- Frame: Use F1 for genome proteins and publications; F2 when results are needed today (merge InterProScan later); F3 if the lab already standardises on EnTAP; F5 for transcriptome peptides only. / 框架：基因组蛋白注释与发表论文用 F1；当天急需结果用 F2（后续再将 InterProScan 结果并入合并表）；实验室已统一使用 EnTAP 时选 F3；仅有转录组肽段时用 F5。
+- Run add-ons only when required for a specific figure or species; do not treat them as a checklist. / 附加项仅在特定图表或所研究物种确有需求时运行，并非必做清单。
+- NLR (F8): protein-side calls (NLRtracker on InterProScan output, or Resistify on proteins) miss NLRs that were never annotated as genes, so add NLR-Annotator on the genome. / NLR（F8）：蛋白侧的识别（NLRtracker 基于 InterProScan 输出，或 Resistify 直接读蛋白）会漏掉没被注释成基因的 NLR，所以要在基因组上补跑 NLR-Annotator。
+- Machine-learning GO and structure search fill gaps for proteins still lacking GO after F1. Keep their predictions in a separate column with their own evidence codes; do not merge them into the F1 GO set. / 机器学习 GO 预测与结构检索仅用于补齐 F1 之后仍无 GO 注释的蛋白。结果须单独成列并标注各自的证据代码，切勿混入 F1 的 GO 集合。
+- Enrichment needs a background matched to the annotated gene set (the same F1 run), then Revigo or simplifyEnrichment to reduce redundant terms. / 富集分析的背景基因集要与注释基因集匹配（同一次 F1 结果），之后再用 Revigo 或 simplifyEnrichment 去掉冗余条目。
+
+## Status 2026-11-14 / 已完成 · 仍待做
+
+Documentation status as of 2026-11-14 (Asia/Shanghai). The trunk (F0 → F1 → merge → release), frames F2/F3/F5 and optional add-ons remain unchanged.
+
+### 已完成 / Done (prepared 2026-11-14, not committed yet)
+
+- Homepage catalog: 41 new entries, each with a checked DOI or project link and a one-line English and Chinese intro. Total entries 129 → 167.
+- Version merges and renames (one entry per program, named for the latest version; older versions only in the entry note): InterProScan 5 → InterProScan 6, MMseqs2-GPU → MMseqs2, Pfam (2021) → Pfam (2025), metagenomic-DeepFRI → DeepFRI, Grape Gene Reference Catalogue (paper) → Grapedia Grapevine Reference Gene Catalogue.
+- Moved entries to better-fitting sections: Merizo (section 3 → 13), DPFunc (section 3 → 5), dbCAN3 (section 6 → 9), ProtNLM (UniProt names) (section 15 → 12). Section anchors are unchanged.
+- Added a **Clusters:** list (alternatives / complementary / in order) at the start of each of the 15 sections, with notes on when to use each tool.
+- Added the workflow chart above.
+
+### 仍待做 / Still to do
+
+- Verify that the mermaid chart renders properly on GitHub (only a static syntax check has been run).
+- The homepage entry now points to InterProScan 6, whereas the F1 runner was written for InterProScan 5; test the v6 output columns before updating the runner.
+- New entries still marked [待确认]:
+- PhylomeDB V5

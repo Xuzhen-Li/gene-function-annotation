@@ -24,7 +24,7 @@ Track work: [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/p
 4. Gates such as `Gate-F1` are release hard checks, not a frame choice. Deep dive is at [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
 
-This page is also the 2026-11 methods catalog: 167 tools, databases and ideas in 15 type sections (updated 2026-11-14). Default frame F1 is unchanged (see Usage and `docs/ROADMAP.md`). Framework / step order stays in the roadmap and in `catalog/`.
+This page is also the 2026-11 methods catalog: 194 tools, databases and ideas in 15 type sections (updated 2026-11-14). Default frame F1 is unchanged (see Usage and `docs/ROADMAP.md`). Framework / step order stays in the roadmap and in `catalog/`.
 
 ## Usage
 
@@ -102,7 +102,7 @@ Author: Xuzhen Li, [ORCID](https://orcid.org/0000-0003-3670-6657)
 
 ## Methods catalog
 
-This page lists, by type, the 167 methods, tools, databases and ideas from the 2026-11 survey (61 in the type catalog, 68 first-pass cards in `catalog/`) and the 2026-11-14 update (3 older-version entries merged, 41 added). The default frame is still F1 (DIAMOND + eggNOG + InterProScan); the catalog does not change it. Framework / step order stays in `docs/ROADMAP.md` and in `catalog/`. Full tables and errata are in `docs/CATALOG_BY_TYPE_2026-11.md` and `docs/CATALOG_NEW_TOOLS_2026-11.md`.
+This page lists, by type, the 194 methods, tools, databases and ideas from the 2026-11 survey (61 in the type catalog, 68 first-pass cards in `catalog/`) and the 2026-11-14 update (3 older-version entries merged, 41 added). The default frame is still F1 (DIAMOND + eggNOG + InterProScan); the catalog does not change it. Framework / step order stays in `docs/ROADMAP.md` and in `catalog/`. Full tables and errata are in `docs/CATALOG_BY_TYPE_2026-11.md` and `docs/CATALOG_NEW_TOOLS_2026-11.md`.
 
 **2026-11-14 update.** Each section now opens with a **Clusters:** list. It groups the entries as alternatives (pick one), complementary (use together) or in order (run in sequence), with a note on when to pick which. Inside a list, “A or B” means pick one of the two and “A → B” is one fixed route. Different versions of one program are now one entry named for the latest version; older versions are only mentioned in that entry's note. A workflow chart with frame choices and decision points is in [`docs/ROADMAP.md`](docs/ROADMAP.md#workflow-2026-11-14).
 

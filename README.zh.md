@@ -24,7 +24,7 @@
 4. 门控 `Gate-F1` 等是发布的硬性检查点，不是框架选择。深入说明见 [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md)。
 
 
-本页同时也是 2026-11 方法目录，分 15 个类型小节，共收录 167 条工具、数据库与思路（2026-11-14 更新）。默认框架 F1 不变（见 Usage 和 `docs/ROADMAP.md`）。框架与步骤顺序仍以路线图和 `catalog/` 为准。
+本页同时也是 2026-11 方法目录，分 15 个类型小节，共收录 194 条工具、数据库与思路（2026-11-14 更新）。默认框架 F1 不变（见 Usage 和 `docs/ROADMAP.md`）。框架与步骤顺序仍以路线图和 `catalog/` 为准。
 
 ## Usage
 
@@ -102,7 +102,7 @@ Mercator4 网页版：[`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md)
 
 ## 方法目录
 
-本页按类型列出 2026-11 调研整理及 2026-11-14 更新后的 167 条方法、工具、数据库与思路（类型目录 61 条，`catalog/` 首轮卡片 68 条；2026-11-14 合并旧版本条目 3 条，新增 41 条）。默认框架仍为 F1（DIAMOND + eggNOG + InterProScan），本目录不作改动。框架与步骤顺序仍见 `docs/ROADMAP.md` 和 `catalog/`。完整表格与勘误见 `docs/CATALOG_BY_TYPE_2026-11.md` 和 `docs/CATALOG_NEW_TOOLS_2026-11.md`。
+本页按类型列出 2026-11 调研整理及 2026-11-14 更新后的 194 条方法、工具、数据库与思路（类型目录 61 条，`catalog/` 首轮卡片 68 条；2026-11-14 合并旧版本条目 3 条，新增 41 条）。默认框架仍为 F1（DIAMOND + eggNOG + InterProScan），本目录不作改动。框架与步骤顺序仍见 `docs/ROADMAP.md` 和 `catalog/`。完整表格与勘误见 `docs/CATALOG_BY_TYPE_2026-11.md` 和 `docs/CATALOG_NEW_TOOLS_2026-11.md`。
 
 **2026-11-14 更新。** 每节开头新增 **分组：** 列表，把本节条目分为可替代（选一个）、互补（一起用）或按顺序（依次运行），并说明什么情况下选哪个。列表中的「A 或 B」表示二选一，「A → B」表示一条固定路线。同一软件的不同版本现在合并为一条，以最新版本命名；旧版本只在该条的说明里提及。带框架选择和判断节点的流程图见 [`docs/ROADMAP.md`](docs/ROADMAP.md#workflow-2026-11-14)。
 

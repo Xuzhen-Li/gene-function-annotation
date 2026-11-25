@@ -24,7 +24,7 @@ Track work: [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/p
 4. Gates such as `Gate-F1` are release hard checks, not a frame choice. Deep dive is at [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
 
-This page is also the 2026-11 methods catalog: 167 tools, databases and ideas in 15 type sections (updated 2026-11-14). Default frame F1 is unchanged (see Usage and `docs/ROADMAP.md`). Framework / step order stays in the roadmap and in `catalog/`.
+This page is also the 2026-11 methods catalog: 194 tools, databases and ideas in 15 type sections (updated 2026-11-14). Default frame F1 is unchanged (see Usage and `docs/ROADMAP.md`). Framework / step order stays in the roadmap and in `catalog/`.
 
 ## Usage
 

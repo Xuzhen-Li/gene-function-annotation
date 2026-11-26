@@ -33,3 +33,21 @@ Words count English word tokens; 汉字 counts CJK characters; DOI is the number
 |---|---|---:|---:|
 | [`BOOK_full.md`](BOOK_full.md) | `365b4e1562428d350e7e5d4096117968b3c7d0cc6044a89d685864bd3cb0e139` | 16400 | 196 |
 | [`BOOK_full.zh.md`](BOOK_full.zh.md) | `f177e7c07e5f90c58cf26c0b10fe9b85873c58c59a72c1808d7d30e55e5d0090` | 14579 | 196 |
+
+The tables above are unchanged. On 2026-11-26 13:31 CST figures with captions were inserted into the files below (no text removed), so their sha256 values changed; the current values are listed here. Word counts above are from before the figures were added.
+上表未改。2026-11-26 13:31 CST 在下列文件中插入了配图和图注（正文未删改），sha256 因此变化，现值如下；上表字数为插图前的值。
+
+- [`BOOK_full.md`](BOOK_full.md) `5df2a69746d610e3d455860ac3b6d02403fdf10a20460bfc97f0b84a751e88d1`
+- [`BOOK_full.zh.md`](BOOK_full.zh.md) `57971740c6b21167a7f01e21344ee7a142d5b97fadd0ac96443bc3500e123810`
+- [`chapters/00-preface.md`](chapters/00-preface.md) `7a943a7ff6d9fe096d9133cef7d279e0fd4585939238dc79e7d4800781ccf21d`
+- [`chapters/00-preface.zh.md`](chapters/00-preface.zh.md) `6076199fba43fe77d6e273b4b95a20ccaf10de687aceede7c6d4b6de652d6e95`
+- [`chapters/01-concepts.md`](chapters/01-concepts.md) `c491059951b8c24dbed719c470f167df312362e19bba17a31145101df612af55`
+- [`chapters/01-concepts.zh.md`](chapters/01-concepts.zh.md) `3f199e13c04ecac015dbb60212e68dd3ec5b26af4cfdba60b5ea2e1ed7140d04`
+- [`chapters/02-homology-search.md`](chapters/02-homology-search.md) `4e047d594d2d5bd567fd22037060acecc736af52f6f082c737f12d878e5987d2`
+- [`chapters/02-homology-search.zh.md`](chapters/02-homology-search.zh.md) `db5c728afcc5bbc96010f09c6d7c8e34552bf90e2642aded8be55fb87c2ac527`
+- [`chapters/14-protein-3d-structure.md`](chapters/14-protein-3d-structure.md) `fd6b214a6969dcd527b3f002f9bb6a16f50781018b39328bcd93a87ec33708f4`
+- [`chapters/14-protein-3d-structure.zh.md`](chapters/14-protein-3d-structure.zh.md) `6d49f8deb044e1fa368970fe71b833bb64d88ea15ab009d579232ff71b961d4f`
+- [`chapters/16-ideas-formats-and-merge-rules.md`](chapters/16-ideas-formats-and-merge-rules.md) `8516f63d306397b89ad486e6304554caf5d801f828867538fc4cd9d40b83b2a1`
+- [`chapters/16-ideas-formats-and-merge-rules.zh.md`](chapters/16-ideas-formats-and-merge-rules.zh.md) `8e88f6385db662ee543b1b1c444ea10efbcbb257a0bd9dce4c23b50e5dba6f40`
+- [`chapters/18-choosing-tools.md`](chapters/18-choosing-tools.md) `f01539bcf3a179cc1e71e80cad5e79c60b32023aa3011d05fba9b9311e91c8b7`
+- [`chapters/18-choosing-tools.zh.md`](chapters/18-choosing-tools.zh.md) `adb4ea4835ed67617f7b78faccfe4889d1df831ec17c3936dcfd5c2f6d67d37c`

@@ -12,6 +12,10 @@
 
 较新的方法加入了蛋白语言模型和三维结构。FANTASIA 用于约 1,000 个动物蛋白组，为同源方法未能注释的蛋白中最多 50% 预测了功能（[doi:10.1038/s42003-025-08651-2](https://doi.org/10.1038/s42003-025-08651-2)）。AlphaFold DB 收录超过 2.14 亿个预测结构（[doi:10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011)），Foldseek 搜索结构比旧的结构比对工具快四到五个数量级（[doi:10.1038/s41587-023-01773-0](https://doi.org/10.1038/s41587-023-01773-0)）。
 
+![Three F1 evidence lines merged into one row](../../docs/figures/guide/function_evidence_merge.png)
+
+*图：一条蛋白的三条 F1 证据如何合成 `merged_function_table.tsv` 中的一行：每个 GO 词条都保留给出它的来源，机器预测一律标 IEA。数值取自 `testdata/function_aggregate/expected/merged_function_table.tsv` 中的模拟测试行 FAKE_g0001，不是真实基因；示意图，为本仓库绘制。*
+
 ## 1.3 词表与证据
 
 - **GO** 是描述基因功能的资源，定期更新（[doi:10.1093/nar/gkaf1292](https://doi.org/10.1093/nar/gkaf1292)）；预测按分子功能、生物过程、细胞组分三个方面分别评测（[doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)）。

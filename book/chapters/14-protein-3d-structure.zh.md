@@ -6,6 +6,10 @@
 
 **需要：** 蛋白序列；部分工具还需搭配 AlphaFold / PDB 类结构库。此处的 “structure” 指蛋白三维结构，不是基因模型。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
+![Foldseek workflow](../../docs/figures/guide/published/foldseek_2024_fig1.png)
+
+*图：Foldseek：查询和目标结构先转成 3Di 序列，以同一对角线上的两个 k-mer 命中预筛，再做无空位和有空位比对（a）；每个残基的 3Di 状态由该残基及其空间最近邻残基的特征学习得到（b）。原图未修改，引自 van Kempen M、Kim SS、Tumescheit C、Mirdita M、Lee J、Gilchrist CLM、Söding J、Steinegger M（2024），Fast and accurate protein structure search with Foldseek，Nature Biotechnology 42:243-246，Fig. 1，doi:10.1038/s41587-023-01773-0，PMC10869269，许可 CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)。*
+
 **分组：**
 - *整组蛋白单体预测*（可替代）：ColabFold、ESMFold / ESM-2、AlphaFold2。整个蛋白组用 ColabFold（带快速多序列比对的 AlphaFold2）或 ESMFold；AlphaFold2 本身的代码和权重都是开放的。
 - *复合物预测*（可替代）：AlphaFold 3、RoseTTAFold All-Atom、Boltz-1。只用于蛋白与蛋白、核酸或配体的复合物；AlphaFold 3 的权重仅限非商业用途，需申请获取。

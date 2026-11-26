@@ -6,6 +6,10 @@
 
 **需要：** 本地 DIAMOND（或 BLAST）数据库，一般选用 Swiss-Prot 或有书面说明的同等级库，并将版本号记入 METHODS。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
+![DIAMOND speed and sensitivity](../../docs/figures/guide/published/diamond_2021_fig1.png)
+
+*图：DIAMOND、MMseqs2 等各搜索模式相对 BLASTP 的加速倍数与比对灵敏度（a），以及每条查询的错误数与蛋白家族覆盖度的关系（b）。原图未修改，引自 Buchfink B、Reuter K、Drost H-G（2021），Sensitive protein alignments at tree-of-life scale using DIAMOND，Nature Methods 18:366-368，Fig. 1，doi:10.1038/s41592-021-01101-x，PMC8026399，许可 CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)。*
+
 **分组：**
 - *快速两两搜索*（可替代）：DIAMOND (v2)、MMseqs2、BLAST+。F1 默认用 DIAMOND；聚类和超大数据集用 MMseqs2（CPU 或 GPU）；小规模参考核对用 BLAST+。
 - *谱搜索*（互补）：HMMER 3、HH-suite3。Pfam 式 HMM 搜索用 HMMER；疑难蛋白用 HH-suite3 做谱对谱比对。

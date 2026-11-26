@@ -13,15 +13,15 @@ The repository names one whole annotation frame per release and keeps add-ons se
 | Disease or NLR story | F8 add-on | InterProScan filter, NLR-Annotator, NLRtracker | NLR-Annotator was built because low expression and high similarity make NLRs hard to annotate ([doi:10.1104/pp.19.01273](https://doi.org/10.1104/pp.19.01273)); NLRtracker comes with a reference set of validated plant NLRs ([doi:10.1371/journal.pbio.3001124](https://doi.org/10.1371/journal.pbio.3001124)) | An InterProScan screen is not a curated NLR set |
 | Transcription factors or kinases | F9 add-on | iTAK | Plant TF and kinase classification ([doi:10.1016/j.molp.2016.09.014](https://doi.org/10.1016/j.molp.2016.09.014)) | Only when that family is needed |
 
-![Which frame to use](../../docs/figures/guide/function_frame_decision.png)
+![Which frame to use](../../docs/figures/guide/function_frame_decision_v2.png)
 
-*Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: [`function_frame_decision.svg`](../../docs/figures/guide/function_frame_decision.svg).*
+*Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: [`function_frame_decision_v2.svg`](../../docs/figures/guide/function_frame_decision_v2.svg).*
 
 ## How to read the tiers
 
 The tier in every table (standard 500 or more citations, established 100 to 499, newer under 100 and published 2023 or later, niche under 100 and older) measures how widely a paper is cited. It says nothing about accuracy on your proteome. Databases and general tools (UniProt, InterPro, KEGG, Cytoscape) collect citations from every field. Community assessments are the better guide to accuracy: CAFA3 found top methods clearly better than baselines but with considerable room for improvement ([doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)).
 
-![Publication year against citations](../../docs/figures/guide/function_catalog_year_citations.png)
+![Publication year against citations](../../docs/figures/guide/function_catalog_year_citations_v2.png)
 
 *Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. Databases and general tools collect citations from every field; a count is not a measure of accuracy on your proteome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.*
 

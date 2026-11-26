@@ -16,9 +16,9 @@
 每个说法都引用带 DOI 的论文或本仓库中的文件。标为“作者摘要原句”的引文是工具作者在自己摘要中的说法，不是独立结果；独立结果来自 CAFA3（[doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)）和 Quest for Orthologs（[doi:10.1038/nmeth.3830](https://doi.org/10.1038/nmeth.3830)）这类社区评测。权威度和被引次数取自 OpenAlex（2026-11-25 取数）；被引多说明用的人多，不等于最准确。更细的仓库流程中文讲解见 [`docs/zh/`](../docs/zh/README.md)。
 
 
-![Functional annotation route](../docs/figures/guide/function_route_map.png)
+![Functional annotation route](../docs/figures/guide/function_route_map_v2.png)
 
-*图：本仓库的功能注释路线：F0 蛋白质控、框架 F1（DIAMOND 比对 Swiss-Prot、eggNOG-mapper、InterProScan）、合并成 `merged_function_table.tsv`、功能质控与发布。可选加件（F4、F6、F8、F9）在合并时并入；其他框架（F2、F3、F5）和多基因组入口 F7 也在合并处汇合。示意图，据 `docs/ROADMAP.md` 与 README 为本仓库绘制；可编辑 SVG：[`function_route_map.svg`](../docs/figures/guide/function_route_map.svg)。*
+*图：本仓库的功能注释路线：F0 蛋白质控、框架 F1（DIAMOND 比对 Swiss-Prot、eggNOG-mapper、InterProScan）、合并成 `merged_function_table.tsv`、功能质控与发布。可选加件（F4、F6、F8、F9）在合并时并入；其他框架（F2、F3、F5）和多基因组入口 F7 也在合并处汇合。示意图，据 `docs/ROADMAP.md` 与 README 为本仓库绘制；可编辑 SVG：[`function_route_map_v2.svg`](../docs/figures/guide/function_route_map_v2.svg)。*
 
 # 第 1 章 概念与原理
 
@@ -34,7 +34,7 @@
 
 较新的方法加入了蛋白语言模型和三维结构。FANTASIA 用于约 1,000 个动物蛋白组，为同源方法未能注释的蛋白中最多 50% 预测了功能（[doi:10.1038/s42003-025-08651-2](https://doi.org/10.1038/s42003-025-08651-2)）。AlphaFold DB 收录超过 2.14 亿个预测结构（[doi:10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011)），Foldseek 搜索结构比旧的结构比对工具快四到五个数量级（[doi:10.1038/s41587-023-01773-0](https://doi.org/10.1038/s41587-023-01773-0)）。
 
-![Three F1 evidence lines merged into one row](../docs/figures/guide/function_evidence_merge.png)
+![Three F1 evidence lines merged into one row](../docs/figures/guide/function_evidence_merge_v2.png)
 
 *图：一条蛋白的三条 F1 证据如何合成 `merged_function_table.tsv` 中的一行：每个 GO 词条都保留给出它的来源，机器预测一律标 IEA。数值取自 `testdata/function_aggregate/expected/merged_function_table.tsv` 中的模拟测试行 FAKE_g0001，不是真实基因；示意图，为本仓库绘制。*
 
@@ -538,7 +538,7 @@ SignalP 6.0 能识别全部五类信号肽（[doi:10.1038/s41587-021-01156-3](ht
 
 **需要：** 视具体思路而定；合并产物仍为 `merged_function_table.tsv`。在完成实测前，不改变框架 F1。[按场景列出的数据需求](../README.zh.md#data-needs)
 
-![Three F1 evidence lines merged into one row](../docs/figures/guide/function_evidence_merge.png)
+![Three F1 evidence lines merged into one row](../docs/figures/guide/function_evidence_merge_v2.png)
 
 *图：一条蛋白的三条 F1 证据如何合成 `merged_function_table.tsv` 中的一行：每个 GO 词条都保留给出它的来源，机器预测一律标 IEA。数值取自 `testdata/function_aggregate/expected/merged_function_table.tsv` 中的模拟测试行 FAKE_g0001，不是真实基因；示意图，为本仓库绘制。*
 
@@ -629,15 +629,15 @@ SignalP 6.0 能识别全部五类信号肽（[doi:10.1038/s41587-021-01156-3](ht
 | 有抗病或 NLR 研究主线 | F8 加件 | InterProScan 过滤、NLR-Annotator、NLRtracker | NLR 表达低、家族内序列相似度高，难以注释，NLR-Annotator 为此而建（[doi:10.1104/pp.19.01273](https://doi.org/10.1104/pp.19.01273)）；NLRtracker 附带经实验验证的植物 NLR 参考集（[doi:10.1371/journal.pbio.3001124](https://doi.org/10.1371/journal.pbio.3001124)） | InterProScan 初筛不等于人工校对的 NLR 集 |
 | 转录因子或激酶 | F9 加件 | iTAK | 植物转录因子和激酶分类（[doi:10.1016/j.molp.2016.09.014](https://doi.org/10.1016/j.molp.2016.09.014)） | 只在需要该家族时使用 |
 
-![Which frame to use](../docs/figures/guide/function_frame_decision.png)
+![Which frame to use](../docs/figures/guide/function_frame_decision_v2.png)
 
-*图：按数据与时间选择框架，再只加论文需要的加件（与第 18 章表格及 `docs/ROADMAP.md` 一致）。示意图，为本仓库绘制；可编辑 SVG：[`function_frame_decision.svg`](../docs/figures/guide/function_frame_decision.svg)。*
+*图：按数据与时间选择框架，再只加论文需要的加件（与第 18 章表格及 `docs/ROADMAP.md` 一致）。示意图，为本仓库绘制；可编辑 SVG：[`function_frame_decision_v2.svg`](../docs/figures/guide/function_frame_decision_v2.svg)。*
 
 ## 权威度怎么看
 
 各表的权威度（标准：被引 500 及以上；成熟：100 至 499；新近：不足 100 且 2023 年及以后发表；小众：不足 100 且更早）衡量论文被引的广度，不代表在你的蛋白组上更准。数据库和通用工具（UniProt、InterPro、KEGG、Cytoscape）会从所有领域获得引用。准确度更应看社区评测：CAFA3 发现最好的方法明显优于基线，但仍有很大改进空间（[doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)）。
 
-![Publication year against citations](../docs/figures/guide/function_catalog_year_citations.png)
+![Publication year against citations](../docs/figures/guide/function_catalog_year_citations_v2.png)
 
 *图：184 条有论文的目录条目的发表年份与 OpenAlex 被引数；菱形为本仓库默认工具。数据库和通用工具会从各个领域获得引用；被引数不代表在你的蛋白组上的准确度。数据：`catalog/SOFTWARE_AUTHORITY.tsv`；脚本 `docs/figures/guide/src/make_catalog_charts.py`。*
 

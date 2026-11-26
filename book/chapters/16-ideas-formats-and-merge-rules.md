@@ -6,7 +6,7 @@ Ideas, formats and merge rules. The merge product remains `merged_function_table
 
 **Needs:** depends on the idea; the merge product remains `merged_function_table.tsv`. Nothing here changes frame F1 until tested. [Data needs by scenario](../../README.md#data-needs)
 
-![Three F1 evidence lines merged into one row](../../docs/figures/guide/function_evidence_merge.png)
+![Three F1 evidence lines merged into one row](../../docs/figures/guide/function_evidence_merge_v2.png)
 
 *Figure. How the three F1 evidence lines for one protein become one row of `merged_function_table.tsv`: each GO term keeps the source that gave it, and machine predictions stay IEA. Values are the simulated test row FAKE_g0001 in `testdata/function_aggregate/expected/merged_function_table.tsv`, not a real gene; schematic drawn for this repository.*
 

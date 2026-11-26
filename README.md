@@ -11,9 +11,9 @@ Plant sims (3): [`examples/plant_sim/`](examples/plant_sim/) (paired with struct
 
 ![Beginner spine](docs/figures/functional_spine.png)
 
-![Functional annotation route](docs/figures/guide/function_route_map.png)
+![Functional annotation route](docs/figures/guide/function_route_map_v2.png)
 
-*Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: [`function_route_map.svg`](docs/figures/guide/function_route_map.svg).*
+*Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: [`function_route_map_v2.svg`](docs/figures/guide/function_route_map_v2.svg).*
 
 The file `pipeline/F2_eggnog.sh` is the eggNOG step inside the default F1 framework, not the fast-frame branch F2.
 Wiki Start-tonight: [Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight) (GitHub Wiki, not in the clone).
@@ -27,9 +27,9 @@ Track work: [Annotation board (Project #2)](https://github.com/users/Xuzhen-Li/p
 3. TOOLS F1a / F1b / F1c are literacy cards for the three F1 steps.
 4. Gates such as `Gate-F1` are release hard checks, not a frame choice. Deep dive is at [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md).
 
-![Which frame to use](docs/figures/guide/function_frame_decision.png)
+![Which frame to use](docs/figures/guide/function_frame_decision_v2.png)
 
-*Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: [`function_frame_decision.svg`](docs/figures/guide/function_frame_decision.svg).*
+*Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: [`function_frame_decision_v2.svg`](docs/figures/guide/function_frame_decision_v2.svg).*
 
 
 This page is also the 2026-11 methods catalog: 194 tools, databases and ideas in 15 type sections (updated 2026-11-14). Default frame F1 is unchanged (see Usage and `docs/ROADMAP.md`). Framework / step order stays in the roadmap and in `catalog/`.
@@ -157,11 +157,11 @@ The default frame is F1: DIAMOND (v2), eggNOG-mapper v2 and InterProScan 6 on `p
 
 > **Tier rule (stated once):** the indicator is the OpenAlex citation count of the paper (retrieved 2026-11-25). standard: 500 or more; established: 100–499; newer: fewer than 100 and the paper is from 2023 or later; niche: fewer than 100 and from before 2023; no paper: no title-matched paper. General-purpose tools have counts from every field. Lab is the corresponding author in the paper metadata with the first institution (+N for further corresponding authors; the last author when none is flagged). Evaluation quotes the paper abstract (“Authors:” marks a claim made by the tool authors), a benchmark paper with its DOI, or the GitHub repository (description and last push date). This catalog has 194 entries: standard 90, established 51, newer 30, niche 13, no paper 10.
 
-![Catalog entries per section by tier](docs/figures/guide/function_catalog_by_step.png)
+![Catalog entries per section by tier](docs/figures/guide/function_catalog_by_step_v2.png)
 
 *Figure. Catalog entries per type section, coloured by citation tier (tier rule above). Counts computed from `catalog/SOFTWARE_AUTHORITY.tsv` (194 entries; OpenAlex counts retrieved 2026-11-25) by `docs/figures/guide/src/make_catalog_charts.py`.*
 
-![Publication year against citations](docs/figures/guide/function_catalog_year_citations.png)
+![Publication year against citations](docs/figures/guide/function_catalog_year_citations_v2.png)
 
 *Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. Databases and general tools collect citations from every field; a count is not a measure of accuracy on your proteome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.*
 

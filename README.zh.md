@@ -11,9 +11,9 @@
 
 ![Beginner spine](docs/figures/functional_spine.png)
 
-![Functional annotation route](docs/figures/guide/function_route_map.png)
+![Functional annotation route](docs/figures/guide/function_route_map_v2.png)
 
-*图：本仓库的功能注释路线：F0 蛋白质控、框架 F1（DIAMOND 比对 Swiss-Prot、eggNOG-mapper、InterProScan）、合并成 `merged_function_table.tsv`、功能质控与发布。可选加件（F4、F6、F8、F9）在合并时并入；其他框架（F2、F3、F5）和多基因组入口 F7 也在合并处汇合。示意图，据 `docs/ROADMAP.md` 与 README 为本仓库绘制；可编辑 SVG：[`function_route_map.svg`](docs/figures/guide/function_route_map.svg)。*
+*图：本仓库的功能注释路线：F0 蛋白质控、框架 F1（DIAMOND 比对 Swiss-Prot、eggNOG-mapper、InterProScan）、合并成 `merged_function_table.tsv`、功能质控与发布。可选加件（F4、F6、F8、F9）在合并时并入；其他框架（F2、F3、F5）和多基因组入口 F7 也在合并处汇合。示意图，据 `docs/ROADMAP.md` 与 README 为本仓库绘制；可编辑 SVG：[`function_route_map_v2.svg`](docs/figures/guide/function_route_map_v2.svg)。*
 
 命名说明：文件 `pipeline/F2_eggnog.sh` 是默认 F1 框架内的 eggNOG 步骤，而不是快速框架分支 F2。
 今晚入门：[Wiki Start-tonight](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight)（GitHub Wiki，不在克隆仓库中）。
@@ -27,9 +27,9 @@
 3. 工具卡片 F1a / F1b / F1c 对应上述 F1 的三个步骤的知识页面。
 4. 门控 `Gate-F1` 等是发布的硬性检查点，不是框架选择。深入说明见 [`docs/zh/FAQ_入门.md`](docs/zh/FAQ_入门.md)。
 
-![Which frame to use](docs/figures/guide/function_frame_decision.png)
+![Which frame to use](docs/figures/guide/function_frame_decision_v2.png)
 
-*图：按数据与时间选择框架，再只加论文需要的加件（与第 18 章表格及 `docs/ROADMAP.md` 一致）。示意图，为本仓库绘制；可编辑 SVG：[`function_frame_decision.svg`](docs/figures/guide/function_frame_decision.svg)。*
+*图：按数据与时间选择框架，再只加论文需要的加件（与第 18 章表格及 `docs/ROADMAP.md` 一致）。示意图，为本仓库绘制；可编辑 SVG：[`function_frame_decision_v2.svg`](docs/figures/guide/function_frame_decision_v2.svg)。*
 
 
 本页同时也是 2026-11 方法目录，分 15 个类型小节，共收录 194 条工具、数据库与思路（2026-11-14 更新）。默认框架 F1 不变（见 Usage 和 `docs/ROADMAP.md`）。框架与步骤顺序仍以路线图和 `catalog/` 为准。
@@ -157,11 +157,11 @@ Mercator4 网页版：[`docs/MERCATOR_WHEN.md`](docs/MERCATOR_WHEN.md)
 
 > **权威度规则（只在此处说明一次）：** 权威度取 OpenAlex 的论文被引次数（2026-11-25 取数）。标准：500 次及以上；成熟：100–499 次；较新：少于 100 次且论文发表于 2023 年或之后；小众：少于 100 次且发表于 2023 年之前；无论文：没有题名匹配的论文。通用工具的引用数来自所有学科。实验室取论文元数据中的通讯作者及其第一机构（多个通讯作者时写第一位并以 +N 表示其余人数；没有标注时写末位作者）。评价引自论文摘要（“作者摘要原句”表示工具作者自己的说法）、带 DOI 的评测论文，或 GitHub 仓库（简介与最后提交日期）。本目录共 194 条：标准 90、成熟 51、较新 30、小众 13、无论文 10。
 
-![Catalog entries per section by tier](docs/figures/guide/function_catalog_by_step.png)
+![Catalog entries per section by tier](docs/figures/guide/function_catalog_by_step_v2.png)
 
 *图：各类型小节的目录条目数，按权威度着色（规则见上）。数字由 `docs/figures/guide/src/make_catalog_charts.py` 从 `catalog/SOFTWARE_AUTHORITY.tsv` 计算（194 条；OpenAlex 被引数于 2026-11-25 取得）。*
 
-![Publication year against citations](docs/figures/guide/function_catalog_year_citations.png)
+![Publication year against citations](docs/figures/guide/function_catalog_year_citations_v2.png)
 
 *图：184 条有论文的目录条目的发表年份与 OpenAlex 被引数；菱形为本仓库默认工具。数据库和通用工具会从各个领域获得引用；被引数不代表在你的蛋白组上的准确度。数据：`catalog/SOFTWARE_AUTHORITY.tsv`；脚本 `docs/figures/guide/src/make_catalog_charts.py`。*
 

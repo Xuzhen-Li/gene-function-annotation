@@ -21,25 +21,25 @@ bash docs/figures/guide/src/render_svg.sh new_figs/NAME.svg new_figs/NAME.png WI
 
 ### Functional annotation route
 
-![Functional annotation route](function_route_map.png)
+![Functional annotation route](function_route_map_v2.png)
 
-File: `function_route_map.png`
+File: `function_route_map_v2.png`
 
-Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: `function_route_map.svg`.
+Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: `function_route_map_v2.svg`.
 
 ### Which frame to use
 
-![Which frame to use](function_frame_decision.png)
+![Which frame to use](function_frame_decision_v2.png)
 
-File: `function_frame_decision.png`
+File: `function_frame_decision_v2.png`
 
-Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: `function_frame_decision.svg`.
+Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: `function_frame_decision_v2.svg`.
 
 ### Three F1 evidence lines merged into one row
 
-![Three F1 evidence lines merged into one row](function_evidence_merge.png)
+![Three F1 evidence lines merged into one row](function_evidence_merge_v2.png)
 
-File: `function_evidence_merge.png`
+File: `function_evidence_merge_v2.png`
 
 Figure. How the three F1 evidence lines for one protein become one row of `merged_function_table.tsv`: each GO term keeps the source that gave it, and machine predictions stay IEA. Values are the simulated test row FAKE_g0001 in `testdata/function_aggregate/expected/merged_function_table.tsv`, not a real gene; schematic drawn for this repository.
 
@@ -61,16 +61,16 @@ Figure. Foldseek: query and target structures are turned into 3Di sequences, pre
 
 ### Catalog entries per section by tier
 
-![Catalog entries per section by tier](function_catalog_by_step.png)
+![Catalog entries per section by tier](function_catalog_by_step_v2.png)
 
-File: `function_catalog_by_step.png`
+File: `function_catalog_by_step_v2.png`
 
 Figure. Catalog entries per type section, coloured by citation tier (tier rule above). Counts computed from `catalog/SOFTWARE_AUTHORITY.tsv` (194 entries; OpenAlex counts retrieved 2026-11-25) by `docs/figures/guide/src/make_catalog_charts.py`.
 
 ### Publication year against citations
 
-![Publication year against citations](function_catalog_year_citations.png)
+![Publication year against citations](function_catalog_year_citations_v2.png)
 
-File: `function_catalog_year_citations.png`
+File: `function_catalog_year_citations_v2.png`
 
 Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. Databases and general tools collect citations from every field; a count is not a measure of accuracy on your proteome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.

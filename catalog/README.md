@@ -26,3 +26,7 @@ Stage-folder cards in this directory: 68 (first pass; table above). Combined inv
 **Card fields:** entry_id (`GFA-<stage>-NNN`), type, stage, script, tools_card, gates, what it does, url, doi, venue / year, venue_label (Allowlisted / Below allowlist / Preprint per [`docs/RECENT_HIGH_QUALITY.md`](../docs/RECENT_HIGH_QUALITY.md)), latest release, license, plant_evidence, existing_doc, io, db_version_field, verdict (include / needs evidence / exclude), checked_at_CST, checked_by.
 
 **How checked:** each DOI was resolved in Crossref (DataCite for Zenodo) and the title matched to the entry; GitHub repos, latest release and licence were read from the GitHub API on 2026-11-12 (CST). `[待确认]` = not verified. Website links that block automated checks are kept but not marked as verified. No entry was added from memory without a resolved record or official page. Machine-predicted GO/EC stays electronic evidence (IEA). Proposals only; framework F1 does not change until tested.
+
+---
+
+**Counts updated (2026-11-26, CST).** The numbers above are kept as written. The catalogue now has 194 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 129 was the total of the 2026-11 survey and 167 the total after the 2026-11-14 update. Command and breakdown: [`catalog/COUNTS.md`](COUNTS.md).

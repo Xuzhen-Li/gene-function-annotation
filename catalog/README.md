@@ -2,7 +2,7 @@
 
 Entry cards for software, databases and ideas found in the 2026-11 survey, filed by **framework / stage + step name** (see [`_namespaces.md`](_namespaces.md) for the four numbering systems; script names, TOOLS cards and gates are separate fields in each card). Input: released `proteins.faa`; product: `merged_function_table.tsv`. Databases across stages: [`_databases.md`](_databases.md). Flat one-page list of the same survey: [`../docs/CATALOG_NEW_TOOLS_2026-11.md`](../docs/CATALOG_NEW_TOOLS_2026-11.md).
 
-**Repo-wide boundary:** no gene finders, soft-masking, TE library construction or TE libraries, GFF editing (pointers go to gene-structure-annotation or vitis-te). The structure repo's A5c `pfam_scan` is structure QC, not a functional tool. F0 BUSCO is input QC. F7 annotates orthogroup representatives, not each gene. "Structure" in protein tools (Foldseek, DeepFRI, AlphaFold DB …) means protein 3D structure.
+**Repo-wide boundary:** no gene finders, soft-masking, TE library construction or TE libraries, GFF editing (pointers go to gene-structure-annotation or TE-Lib). The structure repo's A5c `pfam_scan` is structure QC, not a functional tool. F0 BUSCO is input QC. F7 annotates orthogroup representatives, not each gene. "Structure" in protein tools (Foldseek, DeepFRI, AlphaFold DB …) means protein 3D structure.
 
 | Stage | Entries | Folder |
 |---|---|---|

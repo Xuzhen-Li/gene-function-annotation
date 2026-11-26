@@ -4,7 +4,7 @@
 
 来自主页“蛋白之外还需要的数据”一节和 `docs/EVALUATION.md`。
 
-- 这里不找基因、不做 soft-mask、不建 TE 库、不改 GFF；这些属于 gene-structure-annotation 或 vitis-te。
+- 这里不找基因、不做 soft-mask、不建 TE 库、不改 GFF；这些属于 gene-structure-annotation 或 TE-Lib。
 - METHODS 中四套编号要分清：框架（F1、F2、F3、F5）、脚本文件（`F2_eggnog.sh` 是 F1 框架里的一步）、工具卡（F1a、F1b、F1c）和门槛（Gate-F1 至 F7）。
 - 合并产物是 `merged_function_table.tsv`；机器预测的 GO 和 EC 保持 IEA。
 - F7 框架注释的是直系同源组代表序列，不是每个基因。

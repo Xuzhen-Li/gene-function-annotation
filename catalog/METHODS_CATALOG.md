@@ -369,7 +369,7 @@ Plant gene-family classifiers (frame F8 NLR, frame F9 TF/kinase).
 
 Resources for non-coding RNA function. These usually need transcriptome or known ncRNA loci, not the protein table alone.
 
-**Needs:** transcriptome or known ncRNA loci — not the protein table alone. Gene finders and TE libraries stay in the structure / vitis-te repos. [Data needs by scenario](#data-needs)
+**Needs:** transcriptome or known ncRNA loci — not the protein table alone. Gene finders and TE libraries stay in the structure / TE-Lib repos. [Data needs by scenario](#data-needs)
 
 **Clusters:**
 - *miRNA references* (complementary): miRBase, PmiREN 2.0, sRNAanno. Name miRNAs against miRBase and PmiREN; use sRNAanno for phasiRNA loci.
@@ -604,7 +604,7 @@ The main input is `proteins.faa` from a structure release (one representative se
 
 ### Cross-cutting pitfalls
 
-- No gene finding, soft-mask, TE library, or GFF editing happens here. Those belong to gene-structure-annotation or vitis-te.
+- No gene finding, soft-mask, TE library, or GFF editing happens here. Those belong to gene-structure-annotation or TE-Lib.
 - Four ID sets must stay distinct in METHODS: frame (F1/F2/F3/F5), script file (`F2_eggnog.sh` is a step inside frame F1), tool card (F1a/F1b/F1c), and gate (Gate-F1…F7).
 - The merge product is `merged_function_table.tsv`. Machine-predicted GO/EC stays IEA.
 - Frame F7 annotates orthogroup representatives, not each gene.

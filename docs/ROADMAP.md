@@ -98,7 +98,7 @@ Do **not** treat AHRD+Mercator+NLR+iTAK as a plant-genome checklist. `cases/` an
 | Need | Where |
 |------|--------|
 | Soft-mask / BRAKER / liftover / GSAman | [gene-structure-annotation](https://github.com/Xuzhen-Li/gene-structure-annotation) |
-| TE curatedlib | structure `TE_LIBRARY` · [vitis-te](https://github.com/Xuzhen-Li/vitis-te) |
+| TE curatedlib | structure `TE_LIBRARY` · [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib) |
 | Writing GO into GFF column 9 | Not claimed yet — master TSV is source of truth |
 
 ---

@@ -378,7 +378,7 @@ SignalP 6.0 能识别全部五类信号肽（[doi:10.1038/s41587-021-01156-3](ht
 
 非编码 RNA 功能注释资源。通常需要转录组或已知的 ncRNA 位点，不能单靠蛋白表。
 
-**需要：** 转录组数据或已知的 ncRNA 位点——不能只靠蛋白表。基因结构预测与 TE 库构建仍分别归属结构注释库和 vitis-te。[按场景列出的数据需求](../README.zh.md#data-needs)
+**需要：** 转录组数据或已知的 ncRNA 位点——不能只靠蛋白表。基因结构预测与 TE 库构建仍分别归属结构注释库和 TE-Lib。[按场景列出的数据需求](../README.zh.md#data-needs)
 
 **分组：**
 - *miRNA 参考*（互补）：miRBase、PmiREN 2.0、sRNAanno。对照 miRBase 和 PmiREN 为 miRNA 命名；phasiRNA 位点注释用 sRNAanno。
@@ -655,7 +655,7 @@ SignalP 6.0 能识别全部五类信号肽（[doi:10.1038/s41587-021-01156-3](ht
 
 来自主页“蛋白之外还需要的数据”一节和 `docs/EVALUATION.md`。
 
-- 这里不找基因、不做 soft-mask、不建 TE 库、不改 GFF；这些属于 gene-structure-annotation 或 vitis-te。
+- 这里不找基因、不做 soft-mask、不建 TE 库、不改 GFF；这些属于 gene-structure-annotation 或 TE-Lib。
 - METHODS 中四套编号要分清：框架（F1、F2、F3、F5）、脚本文件（`F2_eggnog.sh` 是 F1 框架里的一步）、工具卡（F1a、F1b、F1c）和门槛（Gate-F1 至 F7）。
 - 合并产物是 `merged_function_table.tsv`；机器预测的 GO 和 EC 保持 IEA。
 - F7 框架注释的是直系同源组代表序列，不是每个基因。

@@ -4,7 +4,7 @@
 
 These come from the README section Data needed alongside the proteins and from `docs/EVALUATION.md`.
 
-- No gene finding, soft-masking, TE library or GFF editing happens here; those belong to gene-structure-annotation or vitis-te.
+- No gene finding, soft-masking, TE library or GFF editing happens here; those belong to gene-structure-annotation or TE-Lib.
 - Four ID sets must stay distinct in METHODS: frame (F1, F2, F3, F5), script file (`F2_eggnog.sh` is a step inside frame F1), tool card (F1a, F1b, F1c) and gate (Gate-F1 to F7).
 - The merge product is `merged_function_table.tsv`; machine-predicted GO and EC stay IEA.
 - Frame F7 annotates orthogroup representatives, not each gene.

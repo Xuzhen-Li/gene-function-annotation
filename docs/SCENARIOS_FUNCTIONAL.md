@@ -277,7 +277,7 @@ The main input is `proteins.faa` from a structure release (one representative se
 
 ### Cross-cutting pitfalls
 
-- No gene finding, soft-mask, TE library, or GFF editing happens here. Those belong to gene-structure-annotation or vitis-te.
+- No gene finding, soft-mask, TE library, or GFF editing happens here. Those belong to gene-structure-annotation or TE-Lib.
 - Four ID sets must stay distinct in METHODS: frame (F1/F2/F3/F5), script file (`F2_eggnog.sh` is a step inside frame F1), tool card (F1a/F1b/F1c), and gate (Gate-F1…F7).
 - The merge product is `merged_function_table.tsv`. Machine-predicted GO/EC stays IEA.
 - Frame F7 annotates orthogroup representatives, not each gene.
@@ -312,7 +312,7 @@ Catalog rows still marked `[待确认]` (HMMER 3, eggNOG 6, PANNZER2, MetaCyc, P
 
 ### 跨切陷阱
 
-- 这里不做基因预测、soft-mask、TE 库或 GFF 编辑。那些在结构库或 vitis-te。
+- 这里不做基因预测、soft-mask、TE 库或 GFF 编辑。那些在结构库或 TE-Lib。
 - METHODS 里四套编号不要混：框架（F1/F2/F3/F5）、脚本（`F2_eggnog.sh` 是框架 F1 里的一步）、工具卡片（F1a/F1b/F1c）、门控（Gate-F1…F7）。
 - 合并产物是 `merged_function_table.tsv`。机器预测的 GO/EC 仍是 IEA。
 - 框架 F7 注释直系同源组代表序列，不是每个基因。

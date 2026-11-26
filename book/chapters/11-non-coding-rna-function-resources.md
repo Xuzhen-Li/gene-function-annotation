@@ -4,7 +4,7 @@
 
 Resources for non-coding RNA function. These usually need transcriptome or known ncRNA loci, not the protein table alone.
 
-**Needs:** transcriptome or known ncRNA loci — not the protein table alone. Gene finders and TE libraries stay in the structure / vitis-te repos. [Data needs by scenario](../../README.md#data-needs)
+**Needs:** transcriptome or known ncRNA loci — not the protein table alone. Gene finders and TE libraries stay in the structure / TE-Lib repos. [Data needs by scenario](../../README.md#data-needs)
 
 **Clusters:**
 - *miRNA references* (complementary): miRBase, PmiREN 2.0, sRNAanno. Name miRNAs against miRBase and PmiREN; use sRNAanno for phasiRNA loci.

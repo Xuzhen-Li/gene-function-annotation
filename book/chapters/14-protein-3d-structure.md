@@ -6,6 +6,10 @@ Protein 3D structure prediction, search and domains. “Structure” here means 
 
 **Needs:** the proteins; some tools also need AlphaFold / PDB style libraries. “Structure” here means protein 3D structure, not gene models. [Data needs by scenario](../../README.md#data-needs)
 
+![Foldseek workflow](../../docs/figures/guide/published/foldseek_2024_fig1.png)
+
+*Figure. Foldseek: query and target structures are turned into 3Di sequences, prefiltered by double k-mer matches on a diagonal, then aligned without and with gaps (a); the 3Di state of each residue is learned from features of that residue and its nearest neighbour in space (b). Reproduced without changes from van Kempen M, Kim SS, Tumescheit C, Mirdita M, Lee J, Gilchrist CLM, Söding J and Steinegger M (2024), Fast and accurate protein structure search with Foldseek, Nature Biotechnology 42:243-246, Fig. 1, doi:10.1038/s41587-023-01773-0, PMC10869269, licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).*
+
 **Clusters:**
 - *Whole-proteome monomers* (alternatives): ColabFold, ESMFold / ESM-2, AlphaFold2. ColabFold (AlphaFold2 with fast MSAs) or ESMFold for whole proteomes; AlphaFold2 itself has open code and weights.
 - *Complexes* (alternatives): AlphaFold 3, RoseTTAFold All-Atom, Boltz-1. Only for complexes with proteins, nucleic acids or ligands; AlphaFold 3 weights are non-commercial and released on request.

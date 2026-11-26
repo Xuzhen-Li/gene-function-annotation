@@ -16,6 +16,10 @@ This book is a study guide for functional annotation of plant proteomes. It sits
 Every statement cites a paper by DOI or a file in this repository. A quote marked “Authors:” is a claim the tool authors make in their own abstract, not an independent result; independent results come from community assessments such as CAFA3 ([doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)) and Quest for Orthologs ([doi:10.1038/nmeth.3830](https://doi.org/10.1038/nmeth.3830)). Tiers and citation counts come from OpenAlex and were retrieved on 2026-11-25; a high count means a tool is widely used, not that it is the most accurate. Chinese teaching notes that go deeper into the repository workflow are in [`docs/zh/`](../docs/zh/README.md).
 
 
+![Functional annotation route](../docs/figures/guide/function_route_map.png)
+
+*Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: [`function_route_map.svg`](../docs/figures/guide/function_route_map.svg).*
+
 # Chapter 1. Concepts and principles
 
 ## 1.1 What functional annotation produces
@@ -29,6 +33,10 @@ Functional annotation attaches labels to the proteins of a structure release: re
 - **Orthology-based transfer.** eggNOG-mapper transfers annotation through precomputed orthology assignments ([doi:10.1093/molbev/msab293](https://doi.org/10.1093/molbev/msab293)); the eggNOG 6.0 database covers 12,535 reference species ([doi:10.1093/nar/gkac1022](https://doi.org/10.1093/nar/gkac1022)).
 
 Newer approaches add protein language models and 3D structure. FANTASIA, applied to about 1,000 animal proteomes, predicted functions for up to 50 percent of proteins left unannotated by homology methods ([doi:10.1038/s42003-025-08651-2](https://doi.org/10.1038/s42003-025-08651-2)). AlphaFold DB holds over 214 million predicted structures ([doi:10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011)), and Foldseek searches structures four to five orders of magnitude faster than older structural aligners ([doi:10.1038/s41587-023-01773-0](https://doi.org/10.1038/s41587-023-01773-0)).
+
+![Three F1 evidence lines merged into one row](../docs/figures/guide/function_evidence_merge.png)
+
+*Figure. How the three F1 evidence lines for one protein become one row of `merged_function_table.tsv`: each GO term keeps the source that gave it, and machine predictions stay IEA. Values are the simulated test row FAKE_g0001 in `testdata/function_aggregate/expected/merged_function_table.tsv`, not a real gene; schematic drawn for this repository.*
 
 ## 1.3 Vocabularies and evidence
 
@@ -65,6 +73,10 @@ Enrichment tests ask whether a gene list carries some labels more often than a b
 Sequence similarity engines used in the frame F1 homology-search step.
 
 **Needs:** a local DIAMOND (or BLAST) database, typically Swiss-Prot or a documented equivalent, with the version recorded in METHODS. [Data needs by scenario](../README.md#data-needs)
+
+![DIAMOND speed and sensitivity](../docs/figures/guide/published/diamond_2021_fig1.png)
+
+*Figure. Speed-up over BLASTP against alignment sensitivity for DIAMOND, MMseqs2 and other search modes (a), and coverage of protein families against errors per query (b). Reproduced without changes from Buchfink B, Reuter K and Drost H-G (2021), Sensitive protein alignments at tree-of-life scale using DIAMOND, Nature Methods 18:366-368, Fig. 1, doi:10.1038/s41592-021-01101-x, PMC8026399, licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).*
 
 **Clusters:**
 - *Fast pairwise search* (alternatives): DIAMOND (v2), MMseqs2, BLAST+. DIAMOND is the F1 default; use MMseqs2 (CPU or GPU) for clustering and very large sets, and BLAST+ for small reference checks.
@@ -442,6 +454,10 @@ Protein 3D structure prediction, search and domains. “Structure” here means 
 
 **Needs:** the proteins; some tools also need AlphaFold / PDB style libraries. “Structure” here means protein 3D structure, not gene models. [Data needs by scenario](../README.md#data-needs)
 
+![Foldseek workflow](../docs/figures/guide/published/foldseek_2024_fig1.png)
+
+*Figure. Foldseek: query and target structures are turned into 3Di sequences, prefiltered by double k-mer matches on a diagonal, then aligned without and with gaps (a); the 3Di state of each residue is learned from features of that residue and its nearest neighbour in space (b). Reproduced without changes from van Kempen M, Kim SS, Tumescheit C, Mirdita M, Lee J, Gilchrist CLM, Söding J and Steinegger M (2024), Fast and accurate protein structure search with Foldseek, Nature Biotechnology 42:243-246, Fig. 1, doi:10.1038/s41587-023-01773-0, PMC10869269, licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).*
+
 **Clusters:**
 - *Whole-proteome monomers* (alternatives): ColabFold, ESMFold / ESM-2, AlphaFold2. ColabFold (AlphaFold2 with fast MSAs) or ESMFold for whole proteomes; AlphaFold2 itself has open code and weights.
 - *Complexes* (alternatives): AlphaFold 3, RoseTTAFold All-Atom, Boltz-1. Only for complexes with proteins, nucleic acids or ligands; AlphaFold 3 weights are non-commercial and released on request.
@@ -519,6 +535,10 @@ Downstream GO/KEGG enrichment. This uses the finished function table; it is not 
 Ideas, formats and merge rules. The merge product remains `merged_function_table.tsv`. Nothing here changes frame F1 until tested.
 
 **Needs:** depends on the idea; the merge product remains `merged_function_table.tsv`. Nothing here changes frame F1 until tested. [Data needs by scenario](../README.md#data-needs)
+
+![Three F1 evidence lines merged into one row](../docs/figures/guide/function_evidence_merge.png)
+
+*Figure. How the three F1 evidence lines for one protein become one row of `merged_function_table.tsv`: each GO term keeps the source that gave it, and machine predictions stay IEA. Values are the simulated test row FAKE_g0001 in `testdata/function_aggregate/expected/merged_function_table.tsv`, not a real gene; schematic drawn for this repository.*
 
 **Clusters:**
 - *Formats and evidence* (complementary): Evidence & Conclusion Ontology (ECO, 2022), GO Annotation File (GAF 2.2) format, GO-CAM. Every GO row carries an ECO code; use GAF for releases and GO-CAM for curated pathways.
@@ -607,9 +627,17 @@ The repository names one whole annotation frame per release and keeps add-ons se
 | Disease or NLR story | F8 add-on | InterProScan filter, NLR-Annotator, NLRtracker | NLR-Annotator was built because low expression and high similarity make NLRs hard to annotate ([doi:10.1104/pp.19.01273](https://doi.org/10.1104/pp.19.01273)); NLRtracker comes with a reference set of validated plant NLRs ([doi:10.1371/journal.pbio.3001124](https://doi.org/10.1371/journal.pbio.3001124)) | An InterProScan screen is not a curated NLR set |
 | Transcription factors or kinases | F9 add-on | iTAK | Plant TF and kinase classification ([doi:10.1016/j.molp.2016.09.014](https://doi.org/10.1016/j.molp.2016.09.014)) | Only when that family is needed |
 
+![Which frame to use](../docs/figures/guide/function_frame_decision.png)
+
+*Figure. Choosing a frame from the data and the deadline, then adding only the add-ons the paper needs (the same choice as the table in book chapter 18 and `docs/ROADMAP.md`). Schematic drawn for this repository; editable SVG: [`function_frame_decision.svg`](../docs/figures/guide/function_frame_decision.svg).*
+
 ## How to read the tiers
 
 The tier in every table (standard 500 or more citations, established 100 to 499, newer under 100 and published 2023 or later, niche under 100 and older) measures how widely a paper is cited. It says nothing about accuracy on your proteome. Databases and general tools (UniProt, InterPro, KEGG, Cytoscape) collect citations from every field. Community assessments are the better guide to accuracy: CAFA3 found top methods clearly better than baselines but with considerable room for improvement ([doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)).
+
+![Publication year against citations](../docs/figures/guide/function_catalog_year_citations.png)
+
+*Figure. Publication year against OpenAlex citations for the 184 catalog entries with a paper; diamonds mark repository defaults. Databases and general tools collect citations from every field; a count is not a measure of accuracy on your proteome. Source: `catalog/SOFTWARE_AUTHORITY.tsv`; script `docs/figures/guide/src/make_catalog_charts.py`.*
 
 ## Questions to ask before adding a tool
 

@@ -12,6 +12,10 @@ Functional annotation attaches labels to the proteins of a structure release: re
 
 Newer approaches add protein language models and 3D structure. FANTASIA, applied to about 1,000 animal proteomes, predicted functions for up to 50 percent of proteins left unannotated by homology methods ([doi:10.1038/s42003-025-08651-2](https://doi.org/10.1038/s42003-025-08651-2)). AlphaFold DB holds over 214 million predicted structures ([doi:10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011)), and Foldseek searches structures four to five orders of magnitude faster than older structural aligners ([doi:10.1038/s41587-023-01773-0](https://doi.org/10.1038/s41587-023-01773-0)).
 
+![Three F1 evidence lines merged into one row](../../docs/figures/guide/function_evidence_merge.png)
+
+*Figure. How the three F1 evidence lines for one protein become one row of `merged_function_table.tsv`: each GO term keeps the source that gave it, and machine predictions stay IEA. Values are the simulated test row FAKE_g0001 in `testdata/function_aggregate/expected/merged_function_table.tsv`, not a real gene; schematic drawn for this repository.*
+
 ## 1.3 Vocabularies and evidence
 
 - **GO** is a resource describing the functions of genes and is updated regularly ([doi:10.1093/nar/gkaf1292](https://doi.org/10.1093/nar/gkaf1292)); predictions are assessed separately for molecular function, biological process and cellular component ([doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)).

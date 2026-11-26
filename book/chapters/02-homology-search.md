@@ -6,6 +6,10 @@ Sequence similarity engines used in the frame F1 homology-search step.
 
 **Needs:** a local DIAMOND (or BLAST) database, typically Swiss-Prot or a documented equivalent, with the version recorded in METHODS. [Data needs by scenario](../../README.md#data-needs)
 
+![DIAMOND speed and sensitivity](../../docs/figures/guide/published/diamond_2021_fig1.png)
+
+*Figure. Speed-up over BLASTP against alignment sensitivity for DIAMOND, MMseqs2 and other search modes (a), and coverage of protein families against errors per query (b). Reproduced without changes from Buchfink B, Reuter K and Drost H-G (2021), Sensitive protein alignments at tree-of-life scale using DIAMOND, Nature Methods 18:366-368, Fig. 1, doi:10.1038/s41592-021-01101-x, PMC8026399, licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).*
+
 **Clusters:**
 - *Fast pairwise search* (alternatives): DIAMOND (v2), MMseqs2, BLAST+. DIAMOND is the F1 default; use MMseqs2 (CPU or GPU) for clustering and very large sets, and BLAST+ for small reference checks.
 - *Profile search* (complementary): HMMER 3, HH-suite3. Use HMMER for Pfam-style HMMs and HH-suite3 for profile-profile hits on difficult cases.

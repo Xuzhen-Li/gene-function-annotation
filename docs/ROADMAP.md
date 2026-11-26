@@ -142,6 +142,10 @@ Documentation status as of 2026-11-13 (Asia/Shanghai). The trunk (F0 → F1 → 
 
 ### 已完成 / Done (in open PR #9, not merged yet)
 
+> Note added 2026-11-26 (Asia/Shanghai): this heading was written while pull request #9 was still open. It was merged on 2026-11-13 22:38 CST (14:38 UTC) as commit fa6700d8. The status in the heading is out of date; the list below is unchanged.
+>
+> 补注（2026-11-26，北京时间）：这个标题写于拉取请求 #9 仍未合并的时候。它已于 2026-11-13 22:38（UTC 14:38）合并，提交 fa6700d8。标题里的状态已过时，下面的列表未改。
+
 - A 2026-11 methods catalog, in two passes: 68 entries filed by framework / step in `catalog/` and `docs/CATALOG_NEW_TOOLS_2026-11.md`, then 61 further entries in `docs/CATALOG_BY_TYPE_2026-11.md`. Combined inventory: 129. Reading list only; default frame F1 in `docs/TOOLS.md` is unchanged.
 - The repository homepage (`README.md` / `README.zh.md`) is now the catalog by type (15 sections, jump links, counts, a **Needs:** line, a data-needs summary, and credited figures). Long data-needs text is appended to the existing `SCENARIOS_FUNCTIONAL.md`.
 - Two errata files travelled with that PR. The GSAman DOI erratum concerns the structure repo's boundary; it is kept here but does not add GSAman to this pipeline.
@@ -211,6 +215,10 @@ Documentation status as of 2026-11-14 (Asia/Shanghai). The trunk (F0 → F1 → 
 
 ### 已完成 / Done (prepared 2026-11-14, not committed yet)
 
+> Note added 2026-11-26 (Asia/Shanghai): this heading was written before the work was committed. It was merged in pull request #11 on 2026-11-14 17:18 CST (09:18 UTC) as commit c71da0f9. The status in the heading is out of date; the list below is unchanged.
+>
+> 补注（2026-11-26，北京时间）：这个标题写于这些改动提交之前。它们已于 2026-11-14 17:18（UTC 09:18）在拉取请求 #11 中合并，提交 c71da0f9。标题里的状态已过时，下面的列表未改。
+
 - Homepage catalog: 41 new entries, each with a checked DOI or project link and a one-line English and Chinese intro. Total entries 129 → 167.
 - Version merges and renames (one entry per program, named for the latest version; older versions only in the entry note): InterProScan 5 → InterProScan 6, MMseqs2-GPU → MMseqs2, Pfam (2021) → Pfam (2025), metagenomic-DeepFRI → DeepFRI, Grape Gene Reference Catalogue (paper) → Grapedia Grapevine Reference Gene Catalogue.
 - Moved entries to better-fitting sections: Merizo (section 3 → 13), DPFunc (section 3 → 5), dbCAN3 (section 6 → 9), ProtNLM (UniProt names) (section 15 → 12). Section anchors are unchanged.
@@ -223,3 +231,7 @@ Documentation status as of 2026-11-14 (Asia/Shanghai). The trunk (F0 → F1 → 
 - The homepage entry now points to InterProScan 6, whereas the F1 runner was written for InterProScan 5; test the v6 output columns before updating the runner.
 - New entries still marked [待确认]:
 - PhylomeDB V5
+
+---
+
+**Counts updated (2026-11-26, CST).** The numbers above are kept as written. The catalogue now has 194 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 129 was the total of the 2026-11 survey and 167 the total after the 2026-11-14 update. Command and breakdown: [`catalog/COUNTS.md`](../catalog/COUNTS.md).

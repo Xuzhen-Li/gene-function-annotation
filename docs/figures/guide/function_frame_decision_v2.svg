@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="610" viewBox="0 0 1320 610">
+<title>Which functional annotation frame to use</title>
+<defs><filter id="shadow" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-color="#000000" flood-opacity="0.16"/></filter><linearGradient id="g333333" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0F0F0"/><stop offset="1" stop-color="#DADADA"/></linearGradient><linearGradient id="g1F72AE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFF5F9"/><stop offset="1" stop-color="#D6E5F0"/></linearGradient><linearGradient id="g595594" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3F3F7"/><stop offset="1" stop-color="#E1E0EB"/></linearGradient><linearGradient id="gF77E12" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FEF5EE"/><stop offset="1" stop-color="#FDE7D4"/></linearGradient><linearGradient id="gA8127F" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8EEF6"/><stop offset="1" stop-color="#EFD4E7"/></linearGradient><linearGradient id="g119B76" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF8F5"/><stop offset="1" stop-color="#D4EDE6"/></linearGradient><linearGradient id="gCC312C" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF0F0"/><stop offset="1" stop-color="#F5D9D9"/></linearGradient><linearGradient id="g8A4C38" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6F2F1"/><stop offset="1" stop-color="#E9DEDB"/></linearGradient><marker id="m333333" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="9" markerHeight="7.5" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,5 L0,10 L3,5 z" fill="#333333"/></marker><marker id="m1F72AE" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="9" markerHeight="7.5" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,5 L0,10 L3,5 z" fill="#1F72AE"/></marker><marker id="m595594" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="9" markerHeight="7.5" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,5 L0,10 L3,5 z" fill="#595594"/></marker><marker id="mF77E12" viewBox="0 0 12 10" refX="10" refY="5" markerWidth="9" markerHeight="7.5" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,5 L0,10 L3,5 z" fill="#F77E12"/></marker></defs>
+<rect x="0" y="0" width="1320" height="610" fill="#FFFFFF"/>
+<rect x="440.0" y="16.0" width="440.0" height="37.8" rx="8" fill="url(#g333333)" stroke="#333333" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="660.0" y="38.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Structure release passed F0 protein BUSCO</text>
+<polyline points="660.0,50.0 660.0,74.0" fill="none" stroke="#333333" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<rect x="420.0" y="76.0" width="480.0" height="37.8" rx="8" fill="url(#g333333)" stroke="#333333" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="660.0" y="98.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Several genomes in one panel?</text>
+<polyline points="900.0,94.9 968.0,94.9" fill="none" stroke="#1F72AE" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#m1F72AE)"/>
+<text x="934.0" y="87.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">yes</text>
+<rect x="970.0" y="52.0" width="330.0" height="83.6" rx="8" fill="url(#g1F72AE)" stroke="#1F72AE" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="980.0" y="75.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14.5" font-weight="bold" fill="#000000" text-anchor="start">F7 Orthogroups first</text>
+<text x="980.0" y="105.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">OrthoFinder, then F1 on representatives</text>
+<text x="980.0" y="121.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Check: labels apply to representatives, not every gene</text>
+<polyline points="660.0,113.8 660.0,150.0" fill="none" stroke="#333333" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<text x="680.0" y="133.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">no</text>
+<rect x="380.0" y="152.0" width="560.0" height="37.8" rx="8" fill="url(#g333333)" stroke="#333333" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="660.0" y="174.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Only transcriptome peptides (Trinity), no genome GFF?</text>
+<polyline points="940.0,170.9 968.0,170.9" fill="none" stroke="#595594" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#m595594)"/>
+<text x="954.0" y="163.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle"></text>
+<rect x="970.0" y="140.0" width="330.0" height="99.5" rx="8" fill="url(#g595594)" stroke="#595594" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="980.0" y="163.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14.5" font-weight="bold" fill="#000000" text-anchor="start">F5 Trinotate or F3 EnTAP</text>
+<text x="980.0" y="193.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">EnTAP was designed for de novo transcriptomes of</text>
+<text x="980.0" y="209.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">non-model eukaryotes</text>
+<text x="980.0" y="225.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Check: state the frame in METHODS</text>
+<text x="955.0" y="162.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">yes</text>
+<polyline points="660.0,189.8 660.0,230.0" fill="none" stroke="#333333" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#m333333)"/>
+<text x="680.0" y="209.8" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">no</text>
+<rect x="400.0" y="232.0" width="520.0" height="37.8" rx="8" fill="url(#g333333)" stroke="#333333" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="660.0" y="254.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#000000" text-anchor="middle">Need answers today and InterProScan is too slow?</text>
+<polyline points="400.0,250.9 330.0,250.9 330.0,300.0" fill="none" stroke="#F77E12" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#mF77E12)"/>
+<text x="365.0" y="243.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">yes</text>
+<polyline points="920.0,250.9 990.0,250.9 990.0,300.0" fill="none" stroke="#1F72AE" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#m1F72AE)"/>
+<text x="955.0" y="243.9" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12.5" font-weight="bold" fill="#000000" text-anchor="middle">no</text>
+<rect x="140.0" y="302.0" width="380.0" height="99.5" rx="8" fill="url(#gF77E12)" stroke="#F77E12" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="150.0" y="325.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14.5" font-weight="bold" fill="#000000" text-anchor="start">F2 Fast first pass</text>
+<text x="150.0" y="355.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">eggNOG-mapper, optional KofamScan; run InterProScan later into</text>
+<text x="150.0" y="371.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">merge</text>
+<text x="150.0" y="387.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Check: do not ship F2 as if InterProScan had been run</text>
+<rect x="800.0" y="302.0" width="380.0" height="83.6" rx="8" fill="url(#g1F72AE)" stroke="#1F72AE" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="810.0" y="325.3" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="14.5" font-weight="bold" fill="#000000" text-anchor="start">F1 Default paper release</text>
+<text x="810.0" y="355.6" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">DIAMOND vs Swiss-Prot, eggNOG-mapper, InterProScan</text>
+<text x="810.0" y="371.4" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">Check: merged row count close to the protein count</text>
+<rect x="20.0" y="430.0" width="1280.0" height="160.0" rx="10" fill="#FBF5F9" stroke="#A8127F" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="34.0" y="452.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="13.5" font-weight="bold" fill="#000000" text-anchor="start">Then add only what the paper needs (add-ons do not raise the grade by themselves)</text>
+<rect x="34.0" y="466.0" width="304.0" height="88.0" rx="8" fill="url(#gA8127F)" stroke="#A8127F" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="44.0" y="488.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="start">Readable names wanted</text>
+<text x="44.0" y="516.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">F4 AHRD</text>
+<rect x="350.0" y="466.0" width="304.0" height="88.0" rx="8" fill="url(#g119B76)" stroke="#119B76" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="360.0" y="488.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="start">MapMan figure planned</text>
+<text x="360.0" y="516.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">F6 Mercator4</text>
+<rect x="666.0" y="466.0" width="304.0" height="88.0" rx="8" fill="url(#gCC312C)" stroke="#CC312C" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="676.0" y="488.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="start">Disease or NLR story</text>
+<text x="676.0" y="516.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">F8 InterProScan filter, NLR-Annotator, NLRtracker</text>
+<rect x="982.0" y="466.0" width="304.0" height="88.0" rx="8" fill="url(#g8A4C38)" stroke="#8A4C38" stroke-width="1.4" filter="url(#shadow)"/>
+<text x="992.0" y="488.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="start">TFs or kinases</text>
+<text x="992.0" y="516.7" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="12" font-weight="normal" fill="#000000" text-anchor="start">F9 iTAK</text>
+<text x="1300.0" y="606.0" font-family="Arial, Liberation Sans, Helvetica, sans-serif" font-size="1" font-weight="normal" fill="#000000" text-anchor="start"></text>
+</svg>

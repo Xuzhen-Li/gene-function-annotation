@@ -13,15 +13,15 @@
 | 有抗病或 NLR 研究主线 | F8 加件 | InterProScan 过滤、NLR-Annotator、NLRtracker | NLR 表达低、家族内序列相似度高，难以注释，NLR-Annotator 为此而建（[doi:10.1104/pp.19.01273](https://doi.org/10.1104/pp.19.01273)）；NLRtracker 附带经实验验证的植物 NLR 参考集（[doi:10.1371/journal.pbio.3001124](https://doi.org/10.1371/journal.pbio.3001124)） | InterProScan 初筛不等于人工校对的 NLR 集 |
 | 转录因子或激酶 | F9 加件 | iTAK | 植物转录因子和激酶分类（[doi:10.1016/j.molp.2016.09.014](https://doi.org/10.1016/j.molp.2016.09.014)） | 只在需要该家族时使用 |
 
-![Which frame to use](../../docs/figures/guide/function_frame_decision.png)
+![Which frame to use](../../docs/figures/guide/function_frame_decision_v2.png)
 
-*图：按数据与时间选择框架，再只加论文需要的加件（与第 18 章表格及 `docs/ROADMAP.md` 一致）。示意图，为本仓库绘制；可编辑 SVG：[`function_frame_decision.svg`](../../docs/figures/guide/function_frame_decision.svg)。*
+*图：按数据与时间选择框架，再只加论文需要的加件（与第 18 章表格及 `docs/ROADMAP.md` 一致）。示意图，为本仓库绘制；可编辑 SVG：[`function_frame_decision_v2.svg`](../../docs/figures/guide/function_frame_decision_v2.svg)。*
 
 ## 权威度怎么看
 
 各表的权威度（标准：被引 500 及以上；成熟：100 至 499；新近：不足 100 且 2023 年及以后发表；小众：不足 100 且更早）衡量论文被引的广度，不代表在你的蛋白组上更准。数据库和通用工具（UniProt、InterPro、KEGG、Cytoscape）会从所有领域获得引用。准确度更应看社区评测：CAFA3 发现最好的方法明显优于基线，但仍有很大改进空间（[doi:10.1186/s13059-019-1835-8](https://doi.org/10.1186/s13059-019-1835-8)）。
 
-![Publication year against citations](../../docs/figures/guide/function_catalog_year_citations.png)
+![Publication year against citations](../../docs/figures/guide/function_catalog_year_citations_v2.png)
 
 *图：184 条有论文的目录条目的发表年份与 OpenAlex 被引数；菱形为本仓库默认工具。数据库和通用工具会从各个领域获得引用；被引数不代表在你的蛋白组上的准确度。数据：`catalog/SOFTWARE_AUTHORITY.tsv`；脚本 `docs/figures/guide/src/make_catalog_charts.py`。*
 

@@ -2,9 +2,9 @@
 
 This book is a study guide for functional annotation of plant proteomes. It sits beside the gene-function-annotation repository and explains what each step does, why it is there, which tools exist for it, and how to judge the result. The runnable frames (F1, F2, F3, F5, F7), add-ons and acceptance levels stay in the repository ([`README.md`](../../README.md), [`docs/ROADMAP.md`](../../docs/ROADMAP.md), [`docs/EVALUATION.md`](../../docs/EVALUATION.md)); the book does not change the default frame.
 
-![Functional annotation route](../../docs/figures/guide/function_route_map.png)
+![Functional annotation route](../../docs/figures/guide/function_route_map_v2.png)
 
-*Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: [`function_route_map.svg`](../../docs/figures/guide/function_route_map.svg).*
+*Figure. The functional annotation route of this repository: F0 protein QC, frame F1 (DIAMOND against Swiss-Prot, eggNOG-mapper, InterProScan), merge into `merged_function_table.tsv`, function QC and release. Optional add-ons (F4, F6, F8, F9) join at merge; the other frames (F2, F3, F5) and the F7 panel entry also rejoin at merge. Schematic drawn for this repository from `docs/ROADMAP.md` and README; editable SVG: [`function_route_map_v2.svg`](../../docs/figures/guide/function_route_map_v2.svg).*
 
 ## How to read it
 

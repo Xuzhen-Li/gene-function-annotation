@@ -51,3 +51,17 @@ The tables above are unchanged. On 2026-11-26 13:31 CST figures with captions we
 - [`chapters/16-ideas-formats-and-merge-rules.zh.md`](chapters/16-ideas-formats-and-merge-rules.zh.md) `8e88f6385db662ee543b1b1c444ea10efbcbb257a0bd9dce4c23b50e5dba6f40`
 - [`chapters/18-choosing-tools.md`](chapters/18-choosing-tools.md) `f01539bcf3a179cc1e71e80cad5e79c60b32023aa3011d05fba9b9311e91c8b7`
 - [`chapters/18-choosing-tools.zh.md`](chapters/18-choosing-tools.zh.md) `adb4ea4835ed67617f7b78faccfe4889d1df831ec17c3936dcfd5c2f6d67d37c`
+
+The tables above are unchanged. On 2026-11-26 14:12 CST only figure links were pointed at later revised files, so sha256 values of the files below changed; the current values are listed here.
+上表未改。2026-11-26 14:12 CST 仅将若干配图链接改为指向后来新增的修订文件，sha256 因此变化，现值如下。
+
+- [`BOOK_full.md`](BOOK_full.md) `c9992c84cb1224456eac1c0f6b4c303ce1651d9e96cef25471a59fdecbb1470a`
+- [`BOOK_full.zh.md`](BOOK_full.zh.md) `4edefabcad0e8d45088bd8447729ad1d1af3800bd64fc0d754fab443bd164b80`
+- [`chapters/00-preface.md`](chapters/00-preface.md) `996bcb1841f0e640854ded28d63fb06803ab3948e8e8725a39766a13bd460b37`
+- [`chapters/00-preface.zh.md`](chapters/00-preface.zh.md) `18b356516a281873032060bc6aa4054306ea3a0c4dec43c43d160a77ef4b56f9`
+- [`chapters/01-concepts.md`](chapters/01-concepts.md) `989aacd5911ead8b6cbf19dc07e9e4cf159fe3fa9748b0b7cf837f47a775c91f`
+- [`chapters/01-concepts.zh.md`](chapters/01-concepts.zh.md) `28d54f0f13d92d1400009baf0c93b44870777c714dbd81b61623e3941255bed4`
+- [`chapters/16-ideas-formats-and-merge-rules.md`](chapters/16-ideas-formats-and-merge-rules.md) `61a8f7afae637d9df20d5a0236ba64696c59f173b7ebf8ec8be965f38778f204`
+- [`chapters/16-ideas-formats-and-merge-rules.zh.md`](chapters/16-ideas-formats-and-merge-rules.zh.md) `f2a091777edc47ce5fb6d1b46ed7e77ef977f28246804b3e5621e1394d87eef1`
+- [`chapters/18-choosing-tools.md`](chapters/18-choosing-tools.md) `c34820a479091f02b00a60b8f5ec56c828a67badc90eddf79c44e608d8033b0f`
+- [`chapters/18-choosing-tools.zh.md`](chapters/18-choosing-tools.zh.md) `5f6649d44e3d0886f3a10e7e59e0f7e61ab41851d719fae59a0e1465fffdd6f7`

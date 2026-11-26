@@ -6,7 +6,7 @@
 
 **需要：** 视具体思路而定；合并产物仍为 `merged_function_table.tsv`。在完成实测前，不改变框架 F1。[按场景列出的数据需求](../../README.zh.md#data-needs)
 
-![Three F1 evidence lines merged into one row](../../docs/figures/guide/function_evidence_merge.png)
+![Three F1 evidence lines merged into one row](../../docs/figures/guide/function_evidence_merge_v2.png)
 
 *图：一条蛋白的三条 F1 证据如何合成 `merged_function_table.tsv` 中的一行：每个 GO 词条都保留给出它的来源，机器预测一律标 IEA。数值取自 `testdata/function_aggregate/expected/merged_function_table.tsv` 中的模拟测试行 FAKE_g0001，不是真实基因；示意图，为本仓库绘制。*
 

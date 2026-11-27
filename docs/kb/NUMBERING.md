@@ -12,7 +12,7 @@ Several numbering schemes are used in this repository. The current ones are used
 | Script files | `F1_diamond.sh`, `F2_eggnog.sh`, `F3_interproscan.sh` = the three steps of framework F1; `F1b_kofam.sh` = the Kofam step of F1 | current; never a stage name | [`catalog/_namespaces.md`](../../catalog/_namespaces.md) |
 | TOOLS cards | F1a, F1b, F1c; F1+, F2+ | current; card labels only | [`docs/TOOLS.md`](../TOOLS.md) |
 | Finish grades and gates | F-L0, F-L1; Gate-F1–Gate-F7 | current | [`docs/EVALUATION.md`](../EVALUATION.md) |
-| Stage folders of first-pass cards | `F0_protein_qc/`, `frame_F1/` … `Frelease/` | legacy view (2026-11 first pass) | [`catalog/README.md`](../../catalog/README.md) |
+| Stage folders of initial cards | `F0_protein_qc/`, `frame_F1/` … `Frelease/` | legacy view (2026-11 initial) | [`catalog/README.md`](../../catalog/README.md) |
 | Type-class keys | `homology-search` … `idea` | legacy (2026-11 survey) | [`docs/CATALOG_BY_TYPE_2026-11.md`](../CATALOG_BY_TYPE_2026-11.md) |
 
 ## Type sections, legacy keys and book chapters

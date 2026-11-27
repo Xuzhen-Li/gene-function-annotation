@@ -8,6 +8,7 @@ A knowledge unit is a short page on one concept or one set of criteria. The book
 
 | Unit | Kind | Chinese |
 |---|---|---|
+| [Functional gene annotation: an overview](field-overview.md) | overview | [功能基因注释：概览](field-overview.zh.md) |
 | [Functional labels and the four numbering schemes](function-concepts.md) | concept | [功能标签与四套编号](function-concepts.zh.md) |
 | [Transferring function by homology and orthology](homology-transfer.md) | concept | [按同源和直系同源转移功能](homology-transfer.zh.md) |
 | [How far to trust a function table (criteria)](credibility-criteria.md) | criteria | [功能表可信到什么程度（判据）](credibility-criteria.zh.md) |

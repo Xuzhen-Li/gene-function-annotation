@@ -19,6 +19,7 @@ TE-Lib 原名 vitis-te。较早的页面仍用旧名，GitHub 会把旧链接转
 <a id="knowledge-units"></a>
 ## 知识单元与流程索引
 
+- [功能基因注释：概览](kb/field-overview.zh.md)
 - [功能标签与四套编号](kb/function-concepts.zh.md)
 - [按同源和直系同源转移功能](kb/homology-transfer.zh.md)
 - [功能表可信到什么程度（判据）](kb/credibility-criteria.zh.md)

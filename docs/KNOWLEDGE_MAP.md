@@ -19,6 +19,7 @@ TE-Lib was formerly named vitis-te. Older pages still use that name; GitHub redi
 <a id="knowledge-units"></a>
 ## Knowledge units and workflow index
 
+- [Functional gene annotation: an overview](kb/field-overview.md)
 - [Functional labels and the four numbering schemes](kb/function-concepts.md)
 - [Transferring function by homology and orthology](kb/homology-transfer.md)
 - [How far to trust a function table (criteria)](kb/credibility-criteria.md)

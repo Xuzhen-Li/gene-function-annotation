@@ -1,6 +1,6 @@
-# Catalog — new functional tools, databases and ideas by stage (2026-11)
+# Catalog — functional tools, databases and ideas by stage
 
-Entry cards for software, databases and ideas found in the 2026-11 survey, filed by **framework / stage + step name** (see [`_namespaces.md`](_namespaces.md) for the four numbering systems; script names, TOOLS cards and gates are separate fields in each card). Input: released `proteins.faa`; product: `merged_function_table.tsv`. Databases across stages: [`_databases.md`](_databases.md). Flat one-page list of the same survey: [`../docs/CATALOG_NEW_TOOLS_2026-11.md`](../docs/CATALOG_NEW_TOOLS_2026-11.md).
+Entry cards for software, databases and ideas, filed by **framework / stage + step name** (see [`_namespaces.md`](_namespaces.md) for the four numbering systems; script names, TOOLS cards and gates are separate fields in each card). Input: released `proteins.faa`; product: `merged_function_table.tsv`. Databases across stages: [`_databases.md`](_databases.md). Flat one-page list of the same entries: [`../docs/CATALOG_NEW_TOOLS_2026-11.md`](../docs/CATALOG_NEW_TOOLS_2026-11.md).
 
 **Repo-wide boundary:** no gene finders, soft-masking, TE library construction or TE libraries, GFF editing (pointers go to gene-structure-annotation or TE-Lib). The structure repo's A5c `pfam_scan` is structure QC, not a functional tool. F0 BUSCO is input QC. F7 annotates orthogroup representatives, not each gene. "Structure" in protein tools (Foldseek, DeepFRI, AlphaFold DB …) means protein 3D structure.
 
@@ -21,12 +21,12 @@ Entry cards for software, databases and ideas found in the 2026-11 survey, filed
 | Release (`F_release.sh`, Gate-F1–F7) | 1 | [`Frelease/`](Frelease/README.md) |
 | Cross-stage — whole pipelines, non-protein resources, downstream pointers, ideas | 18 | [`X_cross_stage/`](X_cross_stage/README.md) |
 
-Stage-folder cards in this directory: 68 (first pass; table above). Combined inventory with the type catalog ([`docs/CATALOG_BY_TYPE_2026-11.md`](../docs/CATALOG_BY_TYPE_2026-11.md)): **129**. The repository homepage ([`README.md`](../README.md)) lists them by type; after the 2026-11-14 update (older-version entries merged, new entries added) it holds 167 entries. Framework / step order stays in this folder and in [`docs/ROADMAP.md`](../docs/ROADMAP.md).
+Stage-folder cards in this directory: 68 (initial set; table above). Combined inventory with the type catalog ([`docs/CATALOG_BY_TYPE_2026-11.md`](../docs/CATALOG_BY_TYPE_2026-11.md)): **129**. The repository homepage ([`README.md`](../README.md)) lists them by type; after later additions (older-version entries merged, new entries added) it holds 167 entries. Framework / step order stays in this folder and in [`docs/ROADMAP.md`](../docs/ROADMAP.md).
 
 **Card fields:** entry_id (`GFA-<stage>-NNN`), type, stage, script, tools_card, gates, what it does, url, doi, venue / year, venue_label (Allowlisted / Below allowlist / Preprint per [`docs/RECENT_HIGH_QUALITY.md`](../docs/RECENT_HIGH_QUALITY.md)), latest release, license, plant_evidence, existing_doc, io, db_version_field, verdict (include / needs evidence / exclude), checked_at_CST, checked_by.
 
-**How checked:** each DOI was resolved in Crossref (DataCite for Zenodo) and the title matched to the entry; GitHub repos, latest release and licence were read from the GitHub API on 2026-11-12 (CST). `[待确认]` = not verified. Website links that block automated checks are kept but not marked as verified. No entry was added from memory without a resolved record or official page. Machine-predicted GO/EC stays electronic evidence (IEA). Proposals only; framework F1 does not change until tested.
+**How checked:** each DOI was resolved in Crossref (DataCite for Zenodo) and the title matched to the entry; GitHub repos, latest release and licence were read from the GitHub API on 2026-11-12 (CST). Entries that are not yet verified keep their original Chinese tag (the characters for “to be confirmed”) in the tables. Website links that block automated checks are kept but not marked as verified. No entry was added without a resolved record or an official page. Machine-predicted GO/EC stays electronic evidence (IEA). Proposals only; framework F1 does not change until tested.
 
 ---
 
-**Counts updated (2026-11-26, CST).** The numbers above are kept as written. The catalogue now has 194 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 129 was the total of the 2026-11 survey and 167 the total after the 2026-11-14 update. Command and breakdown: [`catalog/COUNTS.md`](COUNTS.md).
+**Counts updated (2026-11-26, CST).** The numbers above are kept as first written. The catalogue now has 194 entries, counted from `catalog/SOFTWARE_AUTHORITY.tsv`. 129 was the first total and 167 the total after the later additions. Command and breakdown: [`catalog/COUNTS.md`](COUNTS.md).

@@ -18,7 +18,7 @@ The layout follows [TE-Lib](https://github.com/Xuzhen-Li/TE-Lib): knowledge firs
 | Example code and test data | read or run small scripts that show each step | [`pipeline/`](pipeline/00_overview.md); [`examples/`](examples/plant_sim/README.md); [`tests/`](tests/) |
 | Figures | see the schematics and charts used on these pages | [`docs/figures/guide/`](docs/figures/guide/README.md) |
 | Chinese pages | read the same structure in Chinese | [`README.zh.md`](README.zh.md); [`docs/kb/README.zh.md`](docs/kb/README.zh.md); [`docs/zh/`](docs/zh/README.md) |
-| Older pages | find dated lists, checks and corrections kept as a record | [`docs/KNOWLEDGE_MAP.md`](docs/KNOWLEDGE_MAP.md#older-pages) |
+| Older pages | find earlier lists, checks and corrections that are kept for reference | [`docs/KNOWLEDGE_MAP.md`](docs/KNOWLEDGE_MAP.md#older-pages) |
 
 The code in `pipeline/` is reference code for the steps described here. It is small and tested on toy data; it is not a maintained software package.
 
@@ -26,10 +26,11 @@ The code in `pipeline/` is reference code for the steps described here. It is sm
 
 Start with the knowledge units, then the book chapter for the step you need:
 
+- [Functional gene annotation: an overview](docs/kb/field-overview.md)
 - [Functional labels and the four numbering schemes](docs/kb/function-concepts.md)
 - [Transferring function by homology and orthology](docs/kb/homology-transfer.md)
 - [How far to trust a function table (criteria)](docs/kb/credibility-criteria.md)
-- Numbering schemes and how older numbers map to current ones: [`docs/kb/NUMBERING.md`](docs/kb/NUMBERING.md)
+- Labels used in these pages (sections, chapters, frameworks, scripts, grades) and how earlier labels map to the current ones: [`docs/kb/NUMBERING.md`](docs/kb/NUMBERING.md)
 - All topics, tools, step cards and example code: [`docs/KNOWLEDGE_MAP.md`](docs/KNOWLEDGE_MAP.md)
 
 ## Book contents
@@ -106,7 +107,7 @@ cp pipeline/flow_tool/answers.example.yaml my_answers.yaml
 python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 ```
 
-For the initial setup, finish `my_fa_plan.md` and list DB disk paths. InterProScan is not required at this stage. Check concepts at [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) or offline at [`docs/zh/02_和结构注释的关系.md`](docs/zh/02_和结构注释的关系.md). Write `grade=` and `status=` separately. Do not write `status=F-L1`.
+For the initial setup, finish `my_fa_plan.md` and list DB disk paths. InterProScan is not required at this stage. Check concepts at [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) or offline at [`docs/zh/02_和结构注释的关系.md`](docs/zh/02_和结构注释的关系.md). Write `grade=` and `status=` as separate fields: `grade` is F-L0 or F-L1, and `status` is provisional or qualified (see [`docs/EVALUATION.md`](docs/EVALUATION.md)). Do not write `status=F-L1`.
 
 For cluster execution, proceed only after the [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) checklist is completed and `python3 pipeline/print_qc_commands.py` exits 0 with no `[STOP]`. Otherwise do not set `RUN=1`. Browsing with `--env config/example.env` will show `[STOP]` as expected. Required fields in METHODS must be draftable per [Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release).
 
@@ -147,7 +148,7 @@ Evaluation checklist: [`docs/EVALUATION_CHECKLIST.md`](docs/EVALUATION_CHECKLIST
 After structure: [`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md)
 Stage IO: [`docs/STAGE_IO.md`](docs/STAGE_IO.md)
 Roadmap: [`docs/ROADMAP.md`](docs/ROADMAP.md)
-Workflow chart with frame choices and decision points (2026-11-14): [`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14)
+Workflow chart with frame choices and decision points: [`docs/ROADMAP.md`, workflow chart](docs/ROADMAP.md#workflow-2026-11-14)
 Tool how-tos: [`docs/TOOLS.md`](docs/TOOLS.md)
 Tool docs: [`docs/tools/`](docs/tools/)
 Evaluation rules: [`docs/EVALUATION.md`](docs/EVALUATION.md)

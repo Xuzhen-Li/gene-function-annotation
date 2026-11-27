@@ -12,7 +12,7 @@
 | 脚本文件 | `F1_diamond.sh`、`F2_eggnog.sh`、`F3_interproscan.sh` 是框架 F1 的三个步骤；`F1b_kofam.sh` 是 F1 的 Kofam 步骤 | 现行；不作阶段名 | [`catalog/_namespaces.md`](../../catalog/_namespaces.md) |
 | TOOLS 卡片 | F1a、F1b、F1c；F1+、F2+ | 现行；只作卡片标签 | [`docs/TOOLS.md`](../TOOLS.md) |
 | 完成等级与门槛 | F-L0、F-L1；Gate-F1–Gate-F7 | 现行 | [`docs/EVALUATION.md`](../EVALUATION.md) |
-| 首批卡片的阶段文件夹 | `F0_protein_qc/`、`frame_F1/` … `Frelease/` | 旧视图（2026-11 首批） | [`catalog/README.md`](../../catalog/README.md) |
+| 最初卡片的阶段文件夹 | `F0_protein_qc/`、`frame_F1/` … `Frelease/` | 旧视图（2026-11 最初） | [`catalog/README.md`](../../catalog/README.md) |
 | 类型键 | `homology-search` … `idea` | 旧（2026-11 调研） | [`docs/CATALOG_BY_TYPE_2026-11.md`](../CATALOG_BY_TYPE_2026-11.md) |
 
 ## 类型小节、旧类型键与书章对照

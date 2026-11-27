@@ -8,6 +8,7 @@
 
 | 单元 | 类型 | English |
 |---|---|---|
+| [功能基因注释：概览](field-overview.zh.md) | 概览 | [Functional gene annotation: an overview](field-overview.md) |
 | [功能标签与四套编号](function-concepts.zh.md) | 概念 | [Functional labels and the four numbering schemes](function-concepts.md) |
 | [按同源和直系同源转移功能](homology-transfer.zh.md) | 概念 | [Transferring function by homology and orthology](homology-transfer.md) |
 | [功能表可信到什么程度（判据）](credibility-criteria.zh.md) | 判据 | [How far to trust a function table (criteria)](credibility-criteria.md) |

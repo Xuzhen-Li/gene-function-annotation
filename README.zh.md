@@ -20,7 +20,7 @@
 | 示例代码与测试数据 | 阅读或运行展示每一步的小脚本 | [`pipeline/`](pipeline/00_overview.md)；[`examples/`](examples/plant_sim/README.md)；[`tests/`](tests/) |
 | 图 | 查看各页用到的示意图和统计图 | [`docs/figures/guide/`](docs/figures/guide/README.md) |
 | 英文页面 | 阅读英文原版 | [`README.md`](README.md) |
-| 旧页面 | 查找作为记录保留的带日期清单、检查和勘误 | [`docs/KNOWLEDGE_MAP.zh.md`](docs/KNOWLEDGE_MAP.zh.md#older-pages) |
+| 旧页面 | 查找为备查而保留的早期清单、检查和勘误 | [`docs/KNOWLEDGE_MAP.zh.md`](docs/KNOWLEDGE_MAP.zh.md#older-pages) |
 
 `pipeline/` 里的代码是本仓库所述各步的参考代码，规模小，在玩具数据上测试过，不是维护中的软件。
 
@@ -28,10 +28,11 @@
 
 先读知识单元，再读需要那一步的书章：
 
+- [功能基因注释：概览](docs/kb/field-overview.zh.md)
 - [功能标签与四套编号](docs/kb/function-concepts.zh.md)
 - [按同源和直系同源转移功能](docs/kb/homology-transfer.zh.md)
 - [功能表可信到什么程度（判据）](docs/kb/credibility-criteria.zh.md)
-- 编号体系及旧编号与现行编号的对照：[`docs/kb/NUMBERING.zh.md`](docs/kb/NUMBERING.zh.md)
+- 本仓库各页使用的标签（节、章、框架、脚本、等级）及早期标签与现行标签的对应：[`docs/kb/NUMBERING.zh.md`](docs/kb/NUMBERING.zh.md)
 - 全部主题、工具、步骤卡片和示例代码：[`docs/KNOWLEDGE_MAP.zh.md`](docs/KNOWLEDGE_MAP.zh.md)
 
 ## 书的目录
@@ -108,7 +109,7 @@ cp pipeline/flow_tool/answers.example.yaml my_answers.yaml
 python3 pipeline/flow_tool/flow.py --answers my_answers.yaml -o my_fa_plan.md
 ```
 
-初始设置时，完成 `my_fa_plan.md` 并列出数据库磁盘路径。此时不需要 InterProScan。在 [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) 或离线文件 [`docs/zh/02_和结构注释的关系.md`](docs/zh/02_和结构注释的关系.md) 检查概念。分开填写 `grade=` 和 `status=`，不要写成 `status=F-L1`。
+初始设置时，完成 `my_fa_plan.md` 并列出数据库磁盘路径。此时不需要 InterProScan。在 [Wiki Concepts](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Concepts) 或离线文件 [`docs/zh/02_和结构注释的关系.md`](docs/zh/02_和结构注释的关系.md) 检查概念。把 `grade=` 和 `status=` 作为两个单独的字段填写：`grade` 取 F-L0 或 F-L1，`status` 取 provisional 或 qualified（见 [`docs/EVALUATION.md`](docs/EVALUATION.md)）。不要写成 `status=F-L1`。
 
 在集群执行时，必须在勾选 [Done when](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Start-tonight#done-when) 且 `python3 pipeline/print_qc_commands.py` 退出码为 0 并无 `[STOP]` 时才可继续。否则不要设置 `RUN=1`。使用 `--env config/example.env` 浏览时会显示 `[STOP]`，这是预期行为。METHODS 必填字段必须能够起草，见 [Wiki Evaluate-release](https://github.com/Xuzhen-Li/gene-function-annotation/wiki/Evaluate-release)。
 
@@ -149,7 +150,7 @@ cp config/example.env config/local.env
 结构注释之后：[`docs/POST_STRUCTURE.md`](docs/POST_STRUCTURE.md)
 阶段输入输出：[`docs/STAGE_IO.md`](docs/STAGE_IO.md)
 路线图：[`docs/ROADMAP.md`](docs/ROADMAP.md)
-含框架选择与判断节点的流程图（2026-11-14）：[`docs/ROADMAP.md#workflow-2026-11-14`](docs/ROADMAP.md#workflow-2026-11-14)
+含框架选择与判断节点的流程图：[`docs/ROADMAP.md`，流程图](docs/ROADMAP.md#workflow-2026-11-14)
 工具指南：[`docs/TOOLS.md`](docs/TOOLS.md)
 工具文档：[`docs/tools/`](docs/tools/)
 评估规则：[`docs/EVALUATION.md`](docs/EVALUATION.md)
